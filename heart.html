@@ -72,6 +72,12 @@ dialog.zoom::backdrop{background:rgba(11,21,48,.6)}
 .lbl.hot{fill:var(--maroon)}
 .sheet{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:18px 18px 16px;display:grid;gap:14px;min-width:0}
 .cardhead h2{font-family:var(--f-display);font-weight:600;font-size:24px;line-height:1.15;margin:2px 0 0;color:var(--navy);text-wrap:balance}
+.depth{margin:0 0 12px}
+.depth button{display:inline-flex;align-items:center;gap:12px;border:0;background:none;padding:4px 0;font:600 15px/1.3 var(--f-body);color:var(--navy);cursor:pointer;text-align:left}
+.depth .track{flex:none;width:46px;height:26px;border-radius:99px;background:#C9CDD8;position:relative;transition:background .2s}
+.depth .knob{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(11,21,48,.3);transition:left .2s}
+.depth button[aria-checked="true"] .track{background:var(--navy)}
+.depth button[aria-checked="true"] .knob{left:23px}
 .modes{display:flex;background:var(--maroon-soft);border-radius:10px;padding:4px;gap:4px}
 .modes button{flex:1;border:0;background:transparent;border-radius:7px;padding:8px 6px;font-size:15px;font-weight:700;color:var(--maroon)}
 .modes button[aria-pressed="true"]{background:var(--maroon);color:#fff}
@@ -109,6 +115,7 @@ footer.note{font-size:14px;color:var(--muted)}
     </div>
       </header>
   <div class="sets" id="sets" role="group" aria-label="Which cards to practice"></div>
+  <div class="depth" id="depth" hidden><button id="dSw" type="button" role="switch" aria-checked="true"><span class="track"><span class="knob"></span></span><span class="dl">Also ask origin, insertion, action and nerve</span></button></div>
   <nav class="strip" id="strip" aria-label="Cards"></nav>
   <main class="stage">
     <div class="plate"><button class="zbtn" id="zoomBtn" type="button" aria-label="Zoom in on this image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg>Zoom</button><svg id="fig" role="img" aria-label="Practice image"></svg></div>
@@ -171,7 +178,9 @@ let set='all', order=CARDS.map((_,i)=>i), pos=0, mode='type', state={}, hotPin=n
 const $=id=>document.getElementById(id);
 const visible=()=>order.filter(i=>set==='all'||CARDS[i].set===set);
 const cur=()=>CARDS[visible()[pos]];
-const units=c=>c.type==='qa'?c.items.map((it,i)=>({key:i+1,lab:String(i+1),it})):c.pins.map(p=>({key:p.n,lab:p.lab,p}));
+const HAS_DETAIL=CARDS.some(c=>c.items.some(it=>it.self&&/origin/i.test(it.q)));
+let nameOnly=HAS_DETAIL&&store.get('atlasNameOnly_'+DECK.id,false);
+const units=c=>c.type==='qa'?c.items.map((it,i)=>({key:i+1,lab:String(i+1),it})).filter(u=>!(nameOnly&&u.it.self)):c.pins.map(p=>({key:p.n,lab:p.lab,p}));
 const autoUnits=c=>units(c).filter(u=>!(u.it&&u.it.self));
 
 function renderSets(){const el=$('sets');el.innerHTML='';
@@ -282,5 +291,8 @@ $('zoom').addEventListener('click',e=>{if(e.target.id==='zWrap'||e.target.id==='
 addEventListener('resize',syncZoom);
 document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight'){pos++;hotPin=null;load()}if(e.key==='ArrowLeft'){pos--;hotPin=null;load()}});
 window.addEventListener('hashchange',fromHash);
+function renderDepth(){if(!HAS_DETAIL)return;$('depth').hidden=false;$('dSw').setAttribute('aria-checked',!nameOnly)}
+$('dSw').onclick=()=>{nameOnly=!nameOnly;store.set('atlasNameOnly_'+DECK.id,nameOnly);state={};renderDepth();load()};
+renderDepth();
 if(!fromHash()){renderSets();load()}
 </script>

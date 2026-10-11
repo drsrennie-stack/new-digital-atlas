@@ -1,0 +1,298 @@
+<title>Upper Limb Vessels and Nerves Practice Cards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: specimen on a lifted white plate at left, answer sheet at right, card strip across the top. Single light look: white page, navy ink, maroon terra cotta, small gold accents. */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --ink:#0B1530; --muted:#4F576A; --line:rgba(11,21,48,.15);
+  --navy:#0B1530; --maroon:#8B3A2E; --maroon-soft:#F3F4F7; --gold:#8B3A2E; --gold-soft:#F3F4F7;
+  --good:#2b7a34; --good-soft:#e5f2e4; --bad:#c0392b; --bad-soft:#fbe9e7;
+  --shadow:0 0 0 .5px rgba(11,21,48,.15);
+  --f-display:"Open Sans","Plus Jakarta Sans",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;font-style:normal}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.45;margin:0}
+a{color:var(--maroon)}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px;padding-block:18px 48px;display:grid;gap:16px}
+.home{font-weight:700;text-decoration:none;font-size:15px;display:inline-flex;gap:6px;align-items:center}
+.home:hover{text-decoration:underline}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4vw,40px);line-height:1.05;margin:4px 0 0;color:var(--navy);text-wrap:balance}
+.sets{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible,.pin:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 14px;font-size:15px}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.strip{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+.strip button{flex:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-variant-numeric:tabular-nums;position:relative}
+.strip button[aria-current="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.strip .dot{position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:50%}
+.strip .dot.done{background:var(--good)} .strip .dot.part{background:var(--gold)}
+.stage{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,1fr);gap:22px;align-items:start}
+@media (max-width:860px){.stage{grid-template-columns:1fr}}
+.plate{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:14px;min-width:0}
+.plate{position:relative}
+.zbtn{position:absolute;top:22px;right:22px;z-index:2;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:rgba(255,255,255,.94);border-radius:99px;padding:7px 13px;font:700 13px/1 var(--f-body);color:var(--navy);cursor:pointer;box-shadow:0 2px 8px rgba(11,21,48,.12)}
+.zbtn:hover{border-color:var(--maroon);color:var(--maroon)}
+.plate svg{cursor:zoom-in}
+dialog.zoom{border:0;padding:0;width:100vw;height:100vh;max-width:100vw;max-height:100vh;background:#0B1530}
+dialog.zoom::backdrop{background:rgba(11,21,48,.6)}
+.zbar{position:fixed;top:0;left:0;right:0;display:flex;gap:10px;align-items:center;padding:12px 16px;color:#fff;font-weight:700;z-index:3}
+.zbar .zt{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zbar button{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;border-radius:99px;padding:8px 14px;font:700 13px/1 var(--f-body);cursor:pointer}
+.zbar button:hover{background:rgba(255,255,255,.22)}
+.zwrap{position:absolute;inset:58px 0 0 0;overflow:auto;display:grid;place-items:center;padding:8px 16px 24px}
+.zwrap svg{display:block;background:#fff;border-radius:8px;max-width:calc(100vw - 32px);max-height:calc(100vh - 92px);width:auto;height:auto}
+.zwrap.big{place-items:start}
+.zwrap.big svg{max-width:none;max-height:none}
+.plate svg{display:block;width:100%;height:auto;background:#fff;border-radius:8px;user-select:none}
+.pin{cursor:pointer}
+.pin circle{fill:var(--navy);stroke:#fff;stroke-width:3}
+.pin text{fill:#fff;font-family:var(--f-body);font-weight:700}
+.pin.hot circle{fill:var(--maroon)}
+.ring{fill:none;stroke:#DCB45C;stroke-width:7;pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.ring{animation:ring 1.4s ease-out infinite}@keyframes ring{0%{stroke-opacity:1;stroke-width:9}100%{stroke-opacity:.15;stroke-width:3}}}
+.lbl.found{fill:var(--maroon)}
+.found-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--gold-soft);border-radius:10px;padding:10px 14px;font-weight:700}
+.found-bar span{color:var(--maroon)}
+.found-bar button{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 12px;font-weight:700;color:var(--navy)}
+.dsearch{position:relative;min-width:0;flex:1 1 280px;max-width:420px}
+.dsearch input{width:100%;font:inherit;font-size:16px;padding:9px 12px;border:2px solid var(--navy);border-radius:10px}
+.dres{position:absolute;z-index:5;left:0;right:0;top:calc(100% + 4px);background:#fff;border-radius:10px;box-shadow:var(--shadow);max-height:360px;overflow:auto}
+.dres a{display:block;padding:9px 12px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+.dres a:hover,.dres a:focus{background:var(--gold-soft)}
+.dres b{color:var(--navy)} .dres small{color:var(--muted);display:block}
+.pin.right circle{fill:var(--good)} .pin.wrong circle{fill:var(--bad)}
+.lbl{font-family:var(--f-body);font-weight:700;fill:var(--navy);paint-order:stroke;stroke:#fff;stroke-width:7px;stroke-linejoin:round;pointer-events:none}
+.lbl.hot{fill:var(--maroon)}
+.sheet{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:18px 18px 16px;display:grid;gap:14px;min-width:0}
+.cardhead h2{font-family:var(--f-display);font-weight:600;font-size:24px;line-height:1.15;margin:2px 0 0;color:var(--navy);text-wrap:balance}
+.depth{margin:0 0 12px}
+.depth button{display:inline-flex;align-items:center;gap:12px;border:0;background:none;padding:4px 0;font:600 15px/1.3 var(--f-body);color:var(--navy);cursor:pointer;text-align:left}
+.depth .track{flex:none;width:46px;height:26px;border-radius:99px;background:#C9CDD8;position:relative;transition:background .2s}
+.depth .knob{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(11,21,48,.3);transition:left .2s}
+.depth button[aria-checked="true"] .track{background:var(--navy)}
+.depth button[aria-checked="true"] .knob{left:23px}
+.modes{display:flex;background:var(--maroon-soft);border-radius:10px;padding:4px;gap:4px}
+.modes button{flex:1;border:0;background:transparent;border-radius:7px;padding:8px 6px;font-size:15px;font-weight:700;color:var(--maroon)}
+.modes button[aria-pressed="true"]{background:var(--maroon);color:#fff}
+.hint{font-size:15px;color:var(--muted);margin:0}
+ol.answers{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.answers li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:center;border-radius:4px;padding:4px 6px}
+ol.answers li.hot{background:var(--gold-soft)}
+.num{width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px;font-variant-numeric:tabular-nums}
+.num.right{background:var(--good)} .num.wrong{background:var(--bad)}
+.q{font-weight:700;margin-bottom:4px}
+.field input{width:100%;font:inherit;font-size:17px;padding:8px 10px;border:1.5px solid var(--line);border-radius:8px;background:#fbfbfc;color:var(--ink)}
+.field input.right{border-color:var(--good);background:var(--good-soft)}
+.field input.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.field input.self{border-color:var(--gold);background:var(--gold-soft)}
+.fix{font-size:15px;margin-top:3px;color:var(--bad);font-weight:700}
+.fix.ok{color:var(--good)} .fix.cmp{color:var(--navy)}
+.reveal{width:100%;text-align:left;border:1.5px dashed var(--line);background:transparent;border-radius:8px;padding:8px 10px;color:var(--muted);font-size:16px}
+.reveal.open{border-style:solid;border-color:transparent;background:var(--gold-soft);color:var(--ink);font-weight:700}
+.ans{font-weight:700;padding:6px 2px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:9px 16px;font-weight:700;font-size:16px;color:var(--navy)}
+.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.score{font-weight:700;font-variant-numeric:tabular-nums;color:var(--maroon)}
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+footer.note{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.pin circle,.num,.reveal{transition:fill .15s,background .15s}}
+</style>
+
+<div class="wrap">
+  <a class="home" href="atlas.html">&larr; Atlas index</a>
+  <header class="top">
+    <div>
+      <div class="eyebrow">Anatomy Atlas &middot; BIO 004 Human Anatomy</div>
+      <h1>Upper Limb Vessels and Nerves Practice Cards</h1>
+    </div>
+      </header>
+  <div class="sets" id="sets" role="group" aria-label="Which cards to practice"></div>
+  <div class="depth" id="depth" hidden><button id="dSw" type="button" role="switch" aria-checked="true"><span class="track"><span class="knob"></span></span><span class="dl">Also ask origin, insertion, action and nerve</span></button></div>
+  <nav class="strip" id="strip" aria-label="Cards"></nav>
+  <main class="stage">
+    <div class="plate"><button class="zbtn" id="zoomBtn" type="button" aria-label="Zoom in on this image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg>Zoom</button><svg id="fig" role="img" aria-label="Practice image"></svg></div>
+    <dialog class="zoom" id="zoom" aria-label="Enlarged image">
+      <div class="zbar"><span class="zt" id="zTitle"></span><button type="button" id="zPrev" aria-label="Previous card">&larr;</button><button type="button" id="zNext" aria-label="Next card">&rarr;</button><button type="button" id="zSize">Bigger</button><button type="button" id="zClose">Close</button></div>
+      <div class="zwrap" id="zWrap"></div>
+    </dialog>
+    <section class="sheet">
+      <div class="cardhead"><div class="eyebrow" id="cardEyebrow"></div><h2 id="cardTitle"></h2></div>
+      <div class="modes" role="group" aria-label="How to practice">
+        <button id="mType" aria-pressed="true">Type answers</button>
+        <button id="mReveal" aria-pressed="false">Tap to reveal</button>
+        <button id="mStudy" aria-pressed="false">Show all</button>
+      </div>
+      <div class="found-bar" id="found" hidden></div>
+      <p class="hint" id="hint"></p>
+      <ol class="answers" id="answers"></ol>
+      <div class="row" id="actions"></div>
+      <div class="nav">
+        <button class="btn" id="prev">&larr; Previous card</button>
+        <button class="btn" id="shuffle">Shuffle cards</button>
+        <button class="btn" id="next">Next card &rarr;</button>
+      </div>
+    </section>
+  </main>
+  <footer class="note">Spelling doesn't have to be perfect, and common abbreviations count (R., L., A., V., SVC, IVC, LAD, SA node). Your progress stays on this device.</footer>
+</div>
+
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script>
+const DECK={"id": "uevn", "title": "Upper Limb Vessels and Nerves", "sets": {"models": "Models", "cad": "Cadaver"}, "cards": [{"id": "01", "n": 1, "title": "Great vessels of the thorax, model", "set": "models", "type": "label", "w": 2396, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Left common carotid artery", "x": 1788, "y": 227, "box": [1838, 221.91999999999996, 1848, 231.91999999999996], "q": "Name this artery.", "acc": ["common carotid artery", "common carotid"], "tags": ["Left common carotid artery"]}, {"n": 2, "lab": "2", "a": "Right internal jugular vein", "x": 628, "y": 272, "box": [568, 266.55999999999995, 578, 276.55999999999995], "q": "Name this vein.", "acc": ["internal jugular vein", "ijv", "internal jugular"], "tags": ["Right internal jugular vein"]}, {"n": 3, "lab": "3", "a": "Left internal jugular vein", "x": 1788, "y": 317, "box": [1838, 311.91999999999996, 1848, 321.91999999999996], "q": "Name this vein.", "acc": ["internal jugular vein", "ijv", "internal jugular"], "tags": ["Left internal jugular vein"]}, {"n": 4, "lab": "4", "a": "Right common carotid artery", "x": 628, "y": 362, "box": [568, 356.55999999999995, 578, 366.55999999999995], "q": "Name this artery.", "acc": ["common carotid artery", "common carotid"], "tags": ["Right common carotid artery"]}, {"n": 5, "lab": "5", "a": "Left subclavian artery", "x": 1788, "y": 426, "box": [1838, 421.0, 1848, 431.0], "q": "Name this artery.", "acc": ["subclavian artery"], "tags": ["Left subclavian artery"]}, {"n": 6, "lab": "6", "a": "Right subclavian artery", "x": 628, "y": 452, "box": [568, 446.55999999999995, 578, 456.55999999999995], "q": "Name this artery.", "acc": ["subclavian artery"], "tags": ["Right subclavian artery"]}, {"n": 7, "lab": "7", "a": "Left brachiocephalic vein", "x": 1788, "y": 516, "box": [1838, 511.0, 1848, 521.0], "q": "Name this vein.", "acc": ["brachiocephalic vein", "left brachiocephalic"], "tags": ["Left brachiocephalic vein"]}, {"n": 8, "lab": "8", "a": "Right subclavian vein", "x": 628, "y": 542, "box": [568, 536.56, 578, 546.56], "q": "Name this vein.", "acc": ["subclavian vein"], "tags": ["Right subclavian vein"]}, {"n": 9, "lab": "9", "a": "Aortic arch", "x": 1788, "y": 606, "box": [1838, 601.0, 1848, 611.0], "q": "Name this arterial arch.", "acc": [], "tags": ["Aortic arch", "aorta"]}, {"n": 10, "lab": "10", "a": "Superior vena cava", "x": 628, "y": 676, "box": [568, 670.84, 578, 680.84], "q": "Name this vein.", "acc": ["svc"], "tags": ["Superior vena cava"]}, {"n": 11, "lab": "11", "a": "Descending aorta", "x": 1788, "y": 696, "box": [1838, 691.0, 1848, 701.0], "q": "Name this part of the aorta.", "acc": [], "tags": ["Descending aorta"]}, {"n": 12, "lab": "12", "a": "Pulmonary trunk", "x": 1788, "y": 977, "box": [1838, 971.7999999999998, 1848, 981.7999999999998], "q": "Name this vessel.", "acc": [], "tags": ["Pulmonary trunk"]}], "items": [], "img": "img/uevn-01.jpg"}, {"id": "02", "n": 2, "title": "Shoulder and arm vessels, model", "set": "models", "type": "label", "w": 1859, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Subclavian artery", "x": 1433, "y": 104, "box": [1483, 99.28571428571428, 1493, 109.28571428571428], "q": "Name this artery.", "acc": [], "tags": ["Subclavian artery"]}, {"n": 2, "lab": "2", "a": "Subclavian vein", "x": 1433, "y": 194, "box": [1483, 189.28571428571428, 1493, 199.28571428571428], "q": "Name this vein.", "acc": [], "tags": ["Subclavian vein"]}, {"n": 3, "lab": "3", "a": "Axillary artery", "x": 386, "y": 505, "box": [326, 499.52380952380963, 336, 509.52380952380963], "q": "Name this artery.", "acc": [], "tags": ["Axillary artery"]}, {"n": 4, "lab": "4", "a": "Axillary vein", "x": 386, "y": 595, "box": [326, 589.5238095238096, 336, 599.5238095238096], "q": "Name this vein.", "acc": [], "tags": ["Axillary vein"]}, {"n": 5, "lab": "5", "a": "Cephalic vein", "x": 386, "y": 685, "box": [326, 679.5238095238096, 336, 689.5238095238096], "q": "Name this vein.", "acc": [], "tags": ["Cephalic vein"]}, {"n": 6, "lab": "6", "a": "Basilic vein", "x": 386, "y": 788, "box": [326, 782.8571428571429, 336, 792.8571428571429], "q": "Name this vein.", "acc": [], "tags": ["Basilic vein"]}, {"n": 7, "lab": "7", "a": "Brachial artery", "x": 386, "y": 878, "box": [326, 872.8571428571429, 336, 882.8571428571429], "q": "Name this artery.", "acc": [], "tags": ["Brachial artery"]}], "items": [], "img": "img/uevn-02.jpg"}, {"id": "03", "n": 3, "title": "Forearm and hand vessels, model", "set": "models", "type": "label", "w": 1547, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Brachial artery", "x": 1161, "y": 67, "box": [1211, 62.49217391304347, 1221, 72.49217391304347], "q": "Name this artery.", "acc": [], "tags": ["Brachial artery"]}, {"n": 2, "lab": "2", "a": "Basilic vein", "x": 1161, "y": 318, "box": [1211, 313.1773913043478, 1221, 323.1773913043478], "q": "Name this vein.", "acc": [], "tags": ["Basilic vein"]}, {"n": 3, "lab": "3", "a": "Cephalic vein", "x": 547, "y": 366, "box": [487, 361.38608695652175, 497, 371.38608695652175], "q": "Name this vein.", "acc": [], "tags": ["Cephalic vein"]}, {"n": 4, "lab": "4", "a": "Radial artery", "x": 547, "y": 501, "box": [487, 496.37043478260864, 497, 506.37043478260864], "q": "Name this artery.", "acc": [], "tags": ["Radial artery"]}, {"n": 5, "lab": "5", "a": "Ulnar artery", "x": 1161, "y": 593, "box": [1211, 587.9669565217391, 1221, 597.9669565217391], "q": "Name this artery.", "acc": [], "tags": ["Ulnar artery"]}, {"n": 6, "lab": "6", "a": "Superficial palmar arch", "x": 547, "y": 921, "box": [487, 915.7860869565217, 497, 925.7860869565217], "q": "Name this arterial arch.", "acc": [], "tags": ["Superficial palmar arch"]}], "items": [], "img": "img/uevn-03.jpg"}, {"id": "04", "n": 4, "title": "Nerves of the arm, model", "set": "models", "type": "label", "w": 1263, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Axillary nerve", "x": 527, "y": 61, "box": [467, 56.05, 477, 66.05], "q": "Name this nerve.", "acc": [], "tags": ["Axillary nerve"]}, {"n": 2, "lab": "2", "a": "Musculocutaneous nerve", "x": 527, "y": 221, "box": [467, 216.1, 477, 226.1], "q": "Name this nerve.", "acc": [], "tags": ["Musculocutaneous nerve"]}, {"n": 3, "lab": "3", "a": "Radial nerve", "x": 527, "y": 318, "box": [467, 312.99999999999994, 477, 322.99999999999994], "q": "Name this nerve.", "acc": [], "tags": ["Radial nerve"]}, {"n": 4, "lab": "4", "a": "Median nerve", "x": 527, "y": 408, "box": [467, 402.99999999999994, 477, 412.99999999999994], "q": "Name this nerve.", "acc": [], "tags": ["Median nerve"]}, {"n": 5, "lab": "5", "a": "Ulnar nerve", "x": 958, "y": 507, "box": [1008, 502.37499999999994, 1018, 512.375], "q": "Name this nerve.", "acc": [], "tags": ["Ulnar nerve"]}], "items": [], "img": "img/uevn-04.jpg"}, {"id": "05", "n": 5, "title": "Brachial plexus and spinal nerves, model", "set": "models", "type": "label", "w": 2231, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Cervical spinal nerves", "x": 1563, "y": 283, "box": [1613, 277.83767741935486, 1623, 287.83767741935486], "q": "Name this nerve.", "acc": ["cervical nerves", "cervical nerve"], "tags": ["Cervical spinal nerves"]}, {"n": 2, "lab": "2", "a": "Brachial plexus", "x": 386, "y": 415, "box": [326, 409.8206451612903, 336, 419.8206451612903], "q": "Name this nerve network.", "acc": [], "tags": ["Brachial plexus"]}, {"n": 3, "lab": "3", "a": "Axillary nerve", "x": 386, "y": 568, "box": [326, 563.3316129032258, 336, 573.3316129032258], "q": "Name this nerve.", "acc": [], "tags": ["Axillary nerve"]}, {"n": 4, "lab": "4", "a": "Spinal cord", "x": 386, "y": 658, "box": [326, 653.3316129032258, 336, 663.3316129032258], "q": "Name this cord.", "acc": [], "tags": ["Spinal cord"]}, {"n": 5, "lab": "5", "a": "Thoracic (intercostal) nerves", "x": 1563, "y": 796, "box": [1613, 790.7470967741936, 1623, 800.7470967741936], "q": "Name this nerve.", "acc": ["intercostal nerves", "thoracic nerves", "intercostal nerve", "thoracic nerve"], "tags": ["Thoracic nerves", "intercostal"]}], "items": [], "img": "img/uevn-05.jpg"}, {"id": "06", "n": 6, "title": "Brachial plexus, anterior", "set": "cad", "type": "label", "w": 2662, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Lateral cord", "x": 2135, "y": 477, "box": [2185, 472.28094318157093, 2195, 482.28094318157093], "q": "Name this cord.", "acc": [], "tags": ["Lateral cord"]}, {"n": 2, "lab": "2", "a": "Axillary nerve", "x": 2135, "y": 567, "box": [2185, 562.2809413288162, 2195, 572.2809413288162], "q": "Name this nerve.", "acc": [], "tags": ["Axillary nerve"]}, {"n": 3, "lab": "3", "a": "Posterior cord", "x": 366, "y": 586, "box": [306, 581.2330623306233, 316, 591.2330623306233], "q": "Name this cord.", "acc": [], "tags": ["Posterior cord"]}, {"n": 4, "lab": "4", "a": "Radial nerve", "x": 2135, "y": 657, "box": [2185, 652.2809394760613, 2195, 662.2809394760613], "q": "Name this nerve.", "acc": [], "tags": ["Radial nerve"]}, {"n": 5, "lab": "5", "a": "Medial cord", "x": 366, "y": 676, "box": [306, 671.2330623306233, 316, 681.2330623306233], "q": "Name this cord.", "acc": [], "tags": ["Medial cord"]}, {"n": 6, "lab": "6", "a": "Musculocutaneous nerve", "x": 2135, "y": 747, "box": [2185, 742.2809380864952, 2195, 752.2809380864952], "q": "Name this nerve.", "acc": [], "tags": ["Musculocutaneous nerve"]}, {"n": 7, "lab": "7", "a": "Median nerve", "x": 2135, "y": 837, "box": [2185, 832.2809373917121, 2195, 842.2809373917121], "q": "Name this nerve.", "acc": [], "tags": ["Median nerve"]}, {"n": 8, "lab": "8", "a": "Ulnar nerve", "x": 2135, "y": 927, "box": [2185, 922.2809373917121, 2195, 932.2809373917121], "q": "Name this nerve.", "acc": [], "tags": ["Ulnar nerve"]}], "items": [], "img": "img/uevn-06.jpg"}, {"id": "07", "n": 7, "title": "Shoulder, anterolateral", "set": "cad", "type": "label", "w": 1742, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Axillary nerve", "x": 1356, "y": 532, "box": [1406, 526.5246636771305, 1416, 536.5246636771305], "q": "Name this nerve.", "acc": [], "tags": ["Axillary nerve"]}, {"n": 2, "lab": "2", "a": "Axillary artery", "x": 1356, "y": 622, "box": [1406, 616.5246636771305, 1416, 626.5246636771305], "q": "Name this artery.", "acc": [], "tags": ["Axillary artery"]}, {"n": 3, "lab": "3", "a": "Axillary vein", "x": 1356, "y": 712, "box": [1406, 706.5246636771305, 1416, 716.5246636771305], "q": "Name this vein.", "acc": [], "tags": ["Axillary vein"]}, {"n": 4, "lab": "4", "a": "Radial nerve", "x": 1356, "y": 874, "box": [1406, 869.1330343796711, 1416, 879.1330343796711], "q": "Name this nerve.", "acc": [], "tags": ["Radial nerve"]}, {"n": 5, "lab": "5", "a": "Ulnar nerve", "x": 1356, "y": 964, "box": [1406, 959.1330343796711, 1416, 969.1330343796711], "q": "Name this nerve.", "acc": [], "tags": ["Ulnar nerve"]}], "items": [], "img": "img/uevn-07.jpg"}, {"id": "08", "n": 8, "title": "Root of the neck, anterior", "set": "cad", "type": "label", "w": 2302, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Subclavian artery", "x": 1876, "y": 712, "box": [1926, 706.6736990154711, 1936, 716.6736990154711], "q": "Name this artery.", "acc": [], "tags": ["Subclavian artery"]}, {"n": 2, "lab": "2", "a": "Axillary artery", "x": 386, "y": 753, "box": [326, 748.4458509142053, 336, 758.4458509142053], "q": "Name this artery.", "acc": [], "tags": ["Axillary artery"]}], "items": [], "img": "img/uevn-08.jpg"}, {"id": "09", "n": 9, "title": "Axillary artery, anterior", "set": "cad", "type": "label", "w": 2107, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Axillary artery", "x": 386, "y": 367, "box": [326, 361.6666666666667, 336, 371.6666666666667], "q": "Name this artery.", "acc": [], "tags": ["Axillary artery"]}, {"n": 2, "lab": "2", "a": "Brachial artery", "x": 1721, "y": 688, "box": [1771, 682.905604719764, 1781, 692.905604719764], "q": "Name this artery.", "acc": [], "tags": ["Brachial artery"]}], "items": [], "img": "img/uevn-09.jpg"}, {"id": "10", "n": 10, "title": "Shoulder and arm, posterior", "set": "cad", "type": "label", "w": 949, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Radial nerve", "x": 624, "y": 401, "box": [674, 396.38888888888886, 684, 406.38888888888886], "q": "Name this nerve.", "acc": [], "tags": ["Radial nerve"]}], "items": [], "img": "img/uevn-10.jpg"}, {"id": "11", "n": 11, "title": "Forearm, anterior", "set": "cad", "type": "label", "w": 749, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Ulnar artery", "x": 346, "y": 295, "box": [286, 290.0556242274413, 296, 300.0556242274413], "q": "Name this artery.", "acc": [], "tags": ["Ulnar artery"]}, {"n": 2, "lab": "2", "a": "Radial artery", "x": 346, "y": 472, "box": [286, 466.81705809641534, 296, 476.81705809641534], "q": "Name this artery.", "acc": [], "tags": ["Radial artery"]}], "items": [], "img": "img/uevn-11.jpg"}, {"id": "12", "n": 12, "title": "Wrist and hand, anterior", "set": "cad", "type": "label", "w": 1638, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Superficial palmar arch", "x": 1091, "y": 590, "box": [1141, 585.379746835443, 1151, 595.379746835443], "q": "Name this arterial arch.", "acc": [], "tags": ["Superficial palmar arch"]}, {"n": 2, "lab": "2", "a": "Ulnar artery", "x": 1091, "y": 744, "box": [1141, 738.5443037974684, 1151, 748.5443037974684], "q": "Name this artery.", "acc": [], "tags": ["Ulnar artery"]}, {"n": 3, "lab": "3", "a": "Radial artery", "x": 346, "y": 877, "box": [286, 872.2151898734178, 296, 882.2151898734178], "q": "Name this artery.", "acc": [], "tags": ["Radial artery"]}], "items": [], "img": "img/uevn-12.jpg"}, {"id": "13", "n": 13, "title": "Wrist, anterior", "set": "cad", "type": "label", "w": 989, "h": 1100, "r": 38, "pins": [{"n": 1, "lab": "1", "a": "Ulnar nerve", "x": 664, "y": 693, "box": [714, 687.9396984924624, 724, 697.9396984924624], "q": "Name this nerve.", "acc": [], "tags": ["Ulnar nerve"]}, {"n": 2, "lab": "2", "a": "Median nerve", "x": 664, "y": 783, "box": [714, 777.9396984924624, 724, 787.9396984924624], "q": "Name this nerve.", "acc": [], "tags": ["Median nerve"]}, {"n": 3, "lab": "3", "a": "Ulnar artery", "x": 664, "y": 908, "box": [714, 902.9145728643217, 724, 912.9145728643217], "q": "Name this artery.", "acc": [], "tags": ["Ulnar artery"]}], "items": [], "img": "img/uevn-13.jpg"}]};
+const SETS=DECK.sets, CARDS=DECK.cards;
+const SYN={"anterior interventricular artery": ["lad", "left anterior descending", "left anterior descending artery"], "bicuspid valve": ["mitral valve", "mitral", "left atrioventricular valve"], "tricuspid valve": ["right atrioventricular valve"], "pulmonary semilunar valve": ["pulmonic valve", "pulmonary valve"], "pulmonic valve": ["pulmonary semilunar valve", "pulmonary valve"], "aortic semilunar valve": ["aortic valve"], "sinoatrial node": ["sa node"], "atrioventricular node": ["av node"], "bundle of his": ["av bundle", "atrioventricular bundle"], "epicardium": ["visceral pericardium"], "fibrous pericardium": ["parietal pericardium", "fibrous parietal pericardium"], "purkinje fibers": ["purkinje"], "thymus": ["thymus gland"], "brachiocephalic trunk": ["brachiocephalic artery"], "transverse tubule": ["t tubule"], "z disc": ["z line", "z disk"], "intercalated disc": ["intercalated disk"], "terminal cistern": ["terminal cisterna", "terminal cisternae"], "skeletal muscle tissue": ["skeletal muscle", "striated muscle"], "cardiac muscle tissue": ["cardiac muscle", "heart muscle", "myocardium"], "smooth muscle tissue": ["smooth muscle", "visceral muscle"], "coronary sulcus": ["atrioventricular groove"]};
+const ABBR={a:'artery',aa:'arteries',art:'artery',v:'vein',vv:'veins',r:'right',rt:'right',l:'left',lt:'left',
+ svc:'superior vena cava',ivc:'inferior vena cava',m:'muscle',ant:'anterior',post:'posterior',sr:'sarcoplasmic reticulum'};
+const DROP=new Set(['the','of','for','to','opening','openings','space','an']);
+function norm(s){
+  return s.toLowerCase().replace(/[\/,.;:()"'+-]/g,' ').split(/\s+/).filter(Boolean)
+   .map(w=>ABBR[w]||w).join(' ').split(' ').filter(w=>!DROP.has(w))
+   .map(w=>w.length>4?w.replace(/(es|s)$/,''):w).join(' ');
+}
+function shortForms(a){
+  const base=a.split(':')[0].replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').trim();
+  const out=base.split(' / ').map(s=>s.trim()); const extra=[];
+  out.forEach(o=>{const k=o.toLowerCase();Object.keys(SYN).forEach(s=>{if(k.includes(s))SYN[s].forEach(x=>extra.push(k.replace(s,x)))})});
+  return {show:out.join(' / '),accept:[...out,...extra].map(norm)};
+}
+function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=[...Array(n+1).keys()];
+ for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]==b[j-1]?0:1));p=c}return p[n]}
+function close(g,list){g=norm(g);if(!g)return false;
+  return list.some(t=>{const tol=t.length<5?0:Math.max(1,Math.floor(t.length/7));return lev(g,t)<=tol})}
+CARDS.forEach(c=>{c.pins.forEach(p=>{p.sf=shortForms(p.a);(p.acc||[]).forEach(x=>p.sf.accept.push(norm(x)))});c.items.forEach(it=>it.accN=[it.a,...it.acc].map(norm))});
+
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const BEST_KEY='atlasBest_'+DECK.id;
+let best=store.get(BEST_KEY,{});
+let set='all', order=CARDS.map((_,i)=>i), pos=0, mode='type', state={}, hotPin=null;
+const $=id=>document.getElementById(id);
+const visible=()=>order.filter(i=>set==='all'||CARDS[i].set===set);
+const cur=()=>CARDS[visible()[pos]];
+const HAS_DETAIL=CARDS.some(c=>c.items.some(it=>it.self&&/origin/i.test(it.q)));
+let nameOnly=HAS_DETAIL&&store.get('atlasNameOnly_'+DECK.id,false);
+const units=c=>c.type==='qa'?c.items.map((it,i)=>({key:i+1,lab:String(i+1),it})).filter(u=>!(nameOnly&&u.it.self)):c.pins.map(p=>({key:p.n,lab:p.lab,p}));
+const autoUnits=c=>units(c).filter(u=>!(u.it&&u.it.self));
+
+function renderSets(){const el=$('sets');el.innerHTML='';
+  [['all','All cards'],...Object.entries(SETS)].forEach(([k,name])=>{const b=document.createElement('button');b.className='chip';b.textContent=name;
+    b.setAttribute('aria-pressed',set===k);b.onclick=()=>{set=k;pos=0;renderSets();load()};el.appendChild(b)})}
+function renderStrip(){const el=$('strip');el.innerHTML='';
+  visible().forEach((i,j)=>{const c=CARDS[i];const b=document.createElement('button');b.textContent=c.n;b.title=c.title;
+    b.setAttribute('aria-label',`Card ${c.n}: ${c.title}`);if(j===pos)b.setAttribute('aria-current','true');
+    const s=best[c.id];if(s!=null){const d=document.createElement('span');d.className='dot '+(s>=autoUnits(c).length?'done':'part');b.appendChild(d)}
+    b.onclick=()=>{pos=j;load()};el.appendChild(b)});
+  const a=el.querySelector('[aria-current]');if(a)a.scrollIntoView({block:'nearest',inline:'nearest'})}
+const NS='http://www.w3.org/2000/svg';
+function svgEl(t,attrs,parent){const e=document.createElementNS(NS,t);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e}
+function drawFig(){
+  const c=cur(),svg=$('fig');svg.innerHTML='';svg.setAttribute('viewBox',`0 0 ${c.w} ${c.h}`);
+  svg.setAttribute('aria-label',c.type==='qa'?`Microscope image for ${c.title}`:`${c.title}, with ${c.pins.length} marked structures`);
+  svgEl('image',{href:c.img,x:0,y:0,width:c.w,height:c.h},svg);
+  if(c.type==='qa'){syncZoom();return}
+  const fs=Math.round(Math.max(26,c.r*1.0));
+  c.pins.forEach(p=>{const st=state[p.n]||{};
+    if(mode==='study'||st.open||(mode==='type'&&st.result!=null)||hotPin===p.n&&st.open){
+      const bx=(p.box[0]+p.box[2])/2;let x,y=p.y+fs*0.35+(p.dy||0),anchor;
+      if(Math.abs(p.x-bx)<6){x=p.x;y=p.y-c.r-10;anchor='middle'}else if(p.x>bx){x=p.x-c.r-6;anchor='end'}else{x=p.x+c.r+6;anchor='start'}
+      const t=svgEl('text',{x,y,'text-anchor':anchor,'font-size':fs,class:'lbl'+(hotPin===p.n?' found':'')},svg);t.textContent=p.sf.show}});
+  const fp=c.pins.find(p=>p.n===hotPin);if(fp)svgEl('circle',{cx:fp.x,cy:fp.y,r:c.r*1.9,class:'ring'},svg);
+  c.pins.forEach(p=>{const st=state[p.n]||{};
+    const g=svgEl('g',{class:'pin'+(st.result===true?' right':st.result===false?' wrong':'')+(hotPin===p.n?' hot':''),'data-n':p.n,tabindex:0,role:'button','aria-label':'Structure '+p.lab},svg);
+    svgEl('circle',{cx:p.x,cy:p.y,r:c.r},g);
+    const t=svgEl('text',{x:p.x,y:p.y+c.r*0.42,'text-anchor':'middle','font-size':Math.round(c.r*1.2)},g);t.textContent=p.lab;
+    g.onclick=()=>pinAct(p.n);g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pinAct(p.n)}};
+    g.onmouseenter=()=>hot(p.n,true);g.onmouseleave=()=>hot(p.n,false)});
+  syncZoom()}
+function syncZoom(){const d=$('zoom');if(!d||!d.open)return;const c=cur(),w=$('zWrap'),big=w.classList.contains('big');
+  const k=$('fig').cloneNode(true);k.removeAttribute('id');k.setAttribute('aria-label',c.title);
+  if(big){k.setAttribute('width',Math.max(c.w,Math.round(window.innerWidth*1.6)));k.removeAttribute('height')}else{const sc=Math.min((innerWidth-32)/c.w,(innerHeight-92)/c.h);k.setAttribute('width',Math.round(c.w*sc));k.setAttribute('height',Math.round(c.h*sc))}
+  w.innerHTML='';w.appendChild(k);$('zTitle').textContent=c.title;$('zSize').textContent=big?'Fit to screen':'Bigger'}
+function openZoom(){const d=$('zoom');$('zWrap').classList.remove('big');if(!d.open)d.showModal();syncZoom()}
+function hot(n,on){document.querySelectorAll(`[data-n="${n}"]`).forEach(e=>e.classList.toggle('hot',on))}
+function pinAct(n){if(mode==='type'){const i=$('in'+n);if(i)i.focus()}
+  else if(mode==='reveal'){state[n]=state[n]||{};state[n].open=!state[n].open;drawFig();drawList()}}
+function drawList(){
+  const c=cur(),ol=$('answers');ol.innerHTML='';
+  units(c).forEach(u=>{const n=u.key,st=state[n]||{},ans=u.it?u.it.a:u.p.a;
+    const li=document.createElement('li');li.dataset.n=n;li.onmouseenter=()=>hot(n,true);li.onmouseleave=()=>hot(n,false);
+    const num=document.createElement('span');num.className='num'+(st.result===true?' right':st.result===false?' wrong':'');num.textContent=u.lab;li.appendChild(num);
+    const box=document.createElement('div');box.className='field';
+    const qq=u.it?u.it.q:(u.p.q||'');if(qq){const q=document.createElement('div');q.className='q';q.textContent=qq;box.appendChild(q)}
+    if(mode==='type'){
+      const inp=document.createElement('input');inp.id='in'+n;inp.autocomplete='off';inp.spellcheck=false;
+      inp.setAttribute('aria-label',u.it?u.it.q:'Answer for '+u.lab);inp.value=st.typed||'';
+      if(st.result!=null)inp.className=st.result?'right':'wrong'; else if(st.shown)inp.className='self';
+      inp.oninput=()=>{state[n]=Object.assign(state[n]||{},{typed:inp.value})};
+      inp.onfocus=()=>hot(n,true);inp.onblur=()=>hot(n,false);
+      inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const nx=$('in'+(n+1));nx?nx.focus():check()}};
+      box.appendChild(inp);
+      if(st.result!=null||st.shown){const f=document.createElement('div');
+        f.className='fix'+(st.shown?' cmp':st.result?' ok':'');f.textContent=st.shown?'Compare with: '+ans:st.result?ans:'Answer: '+ans;box.appendChild(f)}
+    }else if(mode==='reveal'){
+      const b=document.createElement('button');b.className='reveal'+(st.open?' open':'');
+      b.textContent=st.open?ans:(u.it?'Tap to show the answer':'Tap to show '+u.lab);b.setAttribute('aria-expanded',!!st.open);
+      b.onclick=()=>{state[n]=state[n]||{};state[n].open=!state[n].open;drawFig();drawList()};box.appendChild(b);
+    }else{const s=document.createElement('div');s.className='ans';s.textContent=ans;box.appendChild(s)}
+    li.appendChild(box);ol.appendChild(li)});
+  const act=$('actions');act.innerHTML='';
+  if(mode==='type'){
+    const b=document.createElement('button');b.className='btn primary';b.textContent='Check my answers';b.onclick=check;act.appendChild(b);
+    const r=document.createElement('button');r.className='btn';r.textContent='Clear and try again';r.onclick=()=>{state={};drawFig();drawList()};act.appendChild(r);
+    const au=autoUnits(c);if(au.some(u=>(state[u.key]||{}).result!=null)){const s=document.createElement('span');s.className='score';
+      s.setAttribute('aria-live','polite');s.textContent=`${au.filter(u=>(state[u.key]||{}).result===true).length} of ${au.length} correct`;act.appendChild(s)}
+  }else if(mode==='reveal'){const b=document.createElement('button');b.className='btn';b.textContent='Hide all again';
+    b.onclick=()=>{Object.values(state).forEach(s=>s.open=false);drawFig();drawList()};act.appendChild(b)}
+}
+function check(){const c=cur();let right=0;
+  units(c).forEach(u=>{const st=state[u.key]=state[u.key]||{};
+    if(u.it&&u.it.self){st.shown=true;return}
+    st.result=u.it?close(st.typed||'',u.it.accN):close(st.typed||'',u.p.sf.accept);if(st.result)right++});
+  if(best[c.id]==null||right>best[c.id]){best[c.id]=right;store.set(BEST_KEY,best)}
+  drawFig();drawList();renderStrip()}
+const HINTS={type:'Type each answer, then check. Press Enter to jump to the next blank. Questions about function and location show the answer so you can compare.',
+ reveal:'Say each answer out loud first, then tap to see if you were right.',
+ study:'Everything is labeled. Study the card, then switch back to Type answers to test yourself.'};
+function setMode(m){mode=m;[['type','mType'],['reveal','mReveal'],['study','mStudy']].forEach(([k,id])=>$(id).setAttribute('aria-pressed',k===m));
+  $('hint').textContent=HINTS[m];drawFig();drawList()}
+function load(keep){const v=visible();if(pos>=v.length)pos=0;if(pos<0)pos=v.length-1;
+  const c=cur();if(!keep){state={};hotPin=null}
+  $('cardEyebrow').textContent=`Card ${c.n} · ${SETS[c.set]}`;showFound();$('cardTitle').textContent=c.title;renderStrip();setMode(mode)}
+function showFound(){const c=cur(),fb=$('found'),p=c.pins.find(p=>p.n===hotPin);
+  if(!p){fb.hidden=true;return}
+  fb.hidden=false;fb.innerHTML='';fb.append('Found: ');const sp=document.createElement('span');sp.textContent=p.sf.show;fb.append(sp,` (number ${p.lab}, circled in gold)`);
+  const b=document.createElement('button');b.textContent='Clear';b.onclick=()=>{hotPin=null;state={};history.replaceState(null,'',location.pathname);setMode('type');showFound()};fb.append(b);
+  document.querySelector('.plate').scrollIntoView({block:'start',behavior:'smooth'})}
+function fromHash(){const m=/^#c(\d+)(?:-p(\d+))?$/.exec(location.hash);if(!m)return false;
+  const idx=CARDS.findIndex(c=>c.n===+m[1]);if(idx<0)return false;
+  set='all';order=CARDS.map((_,i)=>i);pos=idx;state={};hotPin=null;
+  if(m[2]){hotPin=+m[2];state[hotPin]={open:true};mode='reveal'}
+  renderSets();load(true);return true}
+$('mType').onclick=()=>setMode('type');$('mReveal').onclick=()=>setMode('reveal');$('mStudy').onclick=()=>setMode('study');
+$('prev').onclick=()=>{pos--;load()};$('next').onclick=()=>{pos++;load()};
+$('shuffle').onclick=()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}pos=0;load()};
+$('zoomBtn').onclick=openZoom;
+$('fig').addEventListener('click',e=>{if(!e.target.closest('.pin'))openZoom()});
+$('zClose').onclick=()=>$('zoom').close();
+$('zSize').onclick=()=>{$('zWrap').classList.toggle('big');syncZoom()};
+$('zPrev').onclick=()=>{pos--;hotPin=null;load()};$('zNext').onclick=()=>{pos++;hotPin=null;load()};
+$('zoom').addEventListener('click',e=>{if(e.target.id==='zWrap'||e.target.id==='zoom'){$('zoom').close();return}
+  const g=e.target.closest('.pin');if(!g)return;const n=+g.dataset.n;
+  if(mode==='type'){$('zoom').close();const i=$('in'+n);if(i)i.focus()}else pinAct(n)});
+addEventListener('resize',syncZoom);
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight'){pos++;hotPin=null;load()}if(e.key==='ArrowLeft'){pos--;hotPin=null;load()}});
+window.addEventListener('hashchange',fromHash);
+function renderDepth(){if(!HAS_DETAIL)return;$('depth').hidden=false;$('dSw').setAttribute('aria-checked',!nameOnly)}
+$('dSw').onclick=()=>{nameOnly=!nameOnly;store.set('atlasNameOnly_'+DECK.id,nameOnly);state={};renderDepth();load()};
+renderDepth();
+if(!fromHash()){renderSets();load()}
+</script>
