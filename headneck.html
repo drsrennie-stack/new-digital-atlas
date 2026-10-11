@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Head Muscles: Face, Jaw and Eye Practice Cards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: specimen on a lifted white plate at left, answer sheet at right, card strip across the top. Single light look: white page, navy ink, maroon terra cotta, small gold accents. */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --ink:#0B1530; --muted:#4F576A; --line:rgba(11,21,48,.15);
+  --navy:#0B1530; --maroon:#8B3A2E; --maroon-soft:#F3F4F7; --gold:#8B3A2E; --gold-soft:#F3F4F7;
+  --good:#2b7a34; --good-soft:#e5f2e4; --bad:#c0392b; --bad-soft:#fbe9e7;
+  --shadow:0 0 0 .5px rgba(11,21,48,.15);
+  --f-display:"Open Sans","Plus Jakarta Sans",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;font-style:normal}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.45;margin:0}
+a{color:var(--maroon)}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px;padding-block:18px 48px;display:grid;gap:16px}
+.home{font-weight:700;text-decoration:none;font-size:15px;display:inline-flex;gap:6px;align-items:center}
+.home:hover{text-decoration:underline}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4vw,40px);line-height:1.05;margin:4px 0 0;color:var(--navy);text-wrap:balance}
+.sets{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible,.pin:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 14px;font-size:15px}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.strip{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+.strip button{flex:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-variant-numeric:tabular-nums;position:relative}
+.strip button[aria-current="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.strip .dot{position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:50%}
+.strip .dot.done{background:var(--good)} .strip .dot.part{background:var(--gold)}
+.stage{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,1fr);gap:22px;align-items:start}
+@media (max-width:860px){.stage{grid-template-columns:1fr}}
+.plate{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:14px;min-width:0}
+.plate{position:relative}
+.zbtn{position:absolute;top:22px;right:22px;z-index:2;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:rgba(255,255,255,.94);border-radius:99px;padding:7px 13px;font:700 13px/1 var(--f-body);color:var(--navy);cursor:pointer;box-shadow:0 2px 8px rgba(11,21,48,.12)}
+.zbtn:hover{border-color:var(--maroon);color:var(--maroon)}
+.plate svg{cursor:zoom-in}
+dialog.zoom{border:0;padding:0;width:100vw;height:100vh;max-width:100vw;max-height:100vh;background:#0B1530}
+dialog.zoom::backdrop{background:rgba(11,21,48,.6)}
+.zbar{position:fixed;top:0;left:0;right:0;display:flex;gap:10px;align-items:center;padding:12px 16px;color:#fff;font-weight:700;z-index:3}
+.zbar .zt{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zbar button{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;border-radius:99px;padding:8px 14px;font:700 13px/1 var(--f-body);cursor:pointer}
+.zbar button:hover{background:rgba(255,255,255,.22)}
+.zwrap{position:absolute;inset:58px 0 0 0;overflow:auto;display:grid;place-items:center;padding:8px 16px 24px}
+.zwrap svg{display:block;background:#fff;border-radius:8px;max-width:calc(100vw - 32px);max-height:calc(100vh - 92px);width:auto;height:auto}
+.zwrap.big{place-items:start}
+.zwrap.big svg{max-width:none;max-height:none}
+.plate svg{display:block;width:100%;height:auto;background:#fff;border-radius:8px;user-select:none}
+.pin{cursor:pointer}
+.pin circle{fill:var(--navy);stroke:#fff;stroke-width:3}
+.pin text{fill:#fff;font-family:var(--f-body);font-weight:700}
+.pin.hot circle{fill:var(--maroon)}
+.ring{fill:none;stroke:#DCB45C;stroke-width:7;pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.ring{animation:ring 1.4s ease-out infinite}@keyframes ring{0%{stroke-opacity:1;stroke-width:9}100%{stroke-opacity:.15;stroke-width:3}}}
+.lbl.found{fill:var(--maroon)}
+.found-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--gold-soft);border-radius:10px;padding:10px 14px;font-weight:700}
+.found-bar span{color:var(--maroon)}
+.found-bar button{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 12px;font-weight:700;color:var(--navy)}
+.dsearch{position:relative;min-width:0;flex:1 1 280px;max-width:420px}
+.dsearch input{width:100%;font:inherit;font-size:16px;padding:9px 12px;border:2px solid var(--navy);border-radius:10px}
+.dres{position:absolute;z-index:5;left:0;right:0;top:calc(100% + 4px);background:#fff;border-radius:10px;box-shadow:var(--shadow);max-height:360px;overflow:auto}
+.dres a{display:block;padding:9px 12px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+.dres a:hover,.dres a:focus{background:var(--gold-soft)}
+.dres b{color:var(--navy)} .dres small{color:var(--muted);display:block}
+.pin.right circle{fill:var(--good)} .pin.wrong circle{fill:var(--bad)}
+.lbl{font-family:var(--f-body);font-weight:700;fill:var(--navy);paint-order:stroke;stroke:#fff;stroke-width:7px;stroke-linejoin:round;pointer-events:none}
+.lbl.hot{fill:var(--maroon)}
+.sheet{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:18px 18px 16px;display:grid;gap:14px;min-width:0}
+.cardhead h2{font-family:var(--f-display);font-weight:600;font-size:24px;line-height:1.15;margin:2px 0 0;color:var(--navy);text-wrap:balance}
+.depth{margin:0 0 12px}
+.depth button{display:inline-flex;align-items:center;gap:12px;border:0;background:none;padding:4px 0;font:600 15px/1.3 var(--f-body);color:var(--navy);cursor:pointer;text-align:left}
+.depth .track{flex:none;width:46px;height:26px;border-radius:99px;background:#C9CDD8;position:relative;transition:background .2s}
+.depth .knob{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(11,21,48,.3);transition:left .2s}
+.depth button[aria-checked="true"] .track{background:var(--navy)}
+.depth button[aria-checked="true"] .knob{left:23px}
+.more{margin-top:26px;background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:18px}
+.more h2{font-family:var(--f-display);font-size:20px;margin:0 0 10px;color:var(--navy)}
+.more a{display:block;padding:10px 0;border-top:1px solid var(--line);color:var(--maroon);font-weight:700;text-decoration:none}
+.more a:hover{text-decoration:underline}
+.more a small{display:block;color:var(--muted);font-weight:500}
+.modes{display:flex;background:var(--maroon-soft);border-radius:10px;padding:4px;gap:4px}
+.modes button{flex:1;border:0;background:transparent;border-radius:7px;padding:8px 6px;font-size:15px;font-weight:700;color:var(--maroon)}
+.modes button[aria-pressed="true"]{background:var(--maroon);color:#fff}
+.hint{font-size:15px;color:var(--muted);margin:0}
+ol.answers{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.answers li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:center;border-radius:4px;padding:4px 6px}
+ol.answers li.hot{background:var(--gold-soft)}
+.num{width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px;font-variant-numeric:tabular-nums}
+.num.right{background:var(--good)} .num.wrong{background:var(--bad)}
+.q{font-weight:700;margin-bottom:4px}
+.field input{width:100%;font:inherit;font-size:17px;padding:8px 10px;border:1.5px solid var(--line);border-radius:8px;background:#fbfbfc;color:var(--ink)}
+.field input.right{border-color:var(--good);background:var(--good-soft)}
+.field input.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.field input.self{border-color:var(--gold);background:var(--gold-soft)}
+.fix{font-size:15px;margin-top:3px;color:var(--bad);font-weight:700}
+.fix.ok{color:var(--good)} .fix.cmp{color:var(--navy)}
+.reveal{width:100%;text-align:left;border:1.5px dashed var(--line);background:transparent;border-radius:8px;padding:8px 10px;color:var(--muted);font-size:16px}
+.reveal.open{border-style:solid;border-color:transparent;background:var(--gold-soft);color:var(--ink);font-weight:700}
+.ans{font-weight:700;padding:6px 2px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:9px 16px;font-weight:700;font-size:16px;color:var(--navy)}
+.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.score{font-weight:700;font-variant-numeric:tabular-nums;color:var(--maroon)}
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+footer.note{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.pin circle,.num,.reveal{transition:fill .15s,background .15s}}
+.vids h2{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,3vw,28px);margin:8px 0 2px;color:var(--navy)}
+.vids-sub{color:var(--muted);margin:0 0 12px;font-size:15px}
+</style>
+
+<div class="wrap">
+  <a class="home" href="atlas.html">&larr; Atlas index</a>
+  <header class="top">
+    <div>
+      <div class="eyebrow">Anatomy Atlas &middot; BIO 004 Human Anatomy</div>
+      <h1>Head Muscles: Face, Jaw and Eye Practice Cards</h1>
+    </div>
+      </header>
+  <div class="sets" id="sets" role="group" aria-label="Which cards to practice"></div>
+  <div class="depth" id="depth" hidden><button id="dSw" type="button" role="switch" aria-checked="true"><span class="track"><span class="knob"></span></span><span class="dl">Also ask origin, insertion and action</span></button></div>
+  <nav class="strip" id="strip" aria-label="Cards"></nav>
+  <main class="stage">
+    <div class="plate"><button class="zbtn" id="zoomBtn" type="button" aria-label="Zoom in on this image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg>Zoom</button><svg id="fig" role="img" aria-label="Practice image"></svg></div>
+    <dialog class="zoom" id="zoom" aria-label="Enlarged image">
+      <div class="zbar"><span class="zt" id="zTitle"></span><button type="button" id="zPrev" aria-label="Previous card">&larr;</button><button type="button" id="zNext" aria-label="Next card">&rarr;</button><button type="button" id="zSize">Bigger</button><button type="button" id="zClose">Close</button></div>
+      <div class="zwrap" id="zWrap"></div>
+    </dialog>
+    <section class="sheet">
+      <div class="cardhead"><div class="eyebrow" id="cardEyebrow"></div><h2 id="cardTitle"></h2></div>
+      <div class="modes" role="group" aria-label="How to practice">
+        <button id="mType" aria-pressed="true">Type answers</button>
+        <button id="mReveal" aria-pressed="false">Tap to reveal</button>
+        <button id="mStudy" aria-pressed="false">Show all</button>
+      </div>
+      <div class="found-bar" id="found" hidden></div>
+      <p class="hint" id="hint"></p>
+      <ol class="answers" id="answers"></ol>
+      <div class="row" id="actions"></div>
+      <div class="nav">
+        <button class="btn" id="prev">&larr; Previous card</button>
+        <button class="btn" id="shuffle">Shuffle cards</button>
+        <button class="btn" id="next">Next card &rarr;</button>
+      </div>
+    </section>
+  </main>
+  <section class="vids" id="vids" data-videos="headneck" hidden aria-labelledby="vidsH"><h2 id="vidsH">Walk-through videos</h2><p class="vids-sub">Watch the structures pointed out, then practice them on the cards above.</p></section>
+  <section class="more" id="more" hidden><h2>Further study</h2><div id="moreLinks"></div></section>
+  <footer class="note"><b>Spelling counts on the lab exam.</b> Practice here accepts close spellings, but on the exam the only abbreviations allowed are R. (right), L. (left), A. (artery), V. (vein) and N. (nerve). Spell everything else out. Your progress stays on this device. Cadaver images courtesy of BlueLink, University of Michigan Medical School. Histology images courtesy of Duke University Virtual Microscopy. Black-and-white brain images from Duane E. Haines's neuroanatomy atlas.</footer>
+</div>
+
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="videos-data.js"></script>
+<script src="videos.js"></script>
+<script>
+const DECK={"id": "headneck", "title": "Head Muscles: Face, Jaw and Eye", "sets": {"face": "Face and jaw", "eye": "Eye muscles", "facem": "Face and jaw: one muscle at a time", "eyem": "Eye: one muscle at a time", "nerves": "Nerves by group"}, "cards": [{"id": "01", "title": "Muscles of facial expression and mastication (model)", "set": "face", "type": "label", "w": 1920, "h": 1080, "r": 23, "pins": [{"n": 1, "lab": "1", "a": "Frontalis", "x": 1528, "y": 116, "box": [1523, 111, 1533, 121], "q": "Name this muscle.", "acc": ["frontal belly of occipitofrontalis", "occipitofrontalis", "occipitofrontalis frontal belly", "epicranius frontal belly"], "tags": ["Frontalis"]}, {"n": 2, "lab": "2", "a": "Orbicularis oculi", "x": 1527, "y": 177, "box": [1522, 172, 1532, 182], "q": "Name this muscle.", "acc": [], "tags": ["Orbicularis oculi"]}, {"n": 3, "lab": "3", "a": "Temporalis", "x": 646, "y": 220, "box": [641, 215, 651, 225], "q": "Name this muscle.", "acc": ["temporal muscle"], "tags": ["Temporalis"]}, {"n": 4, "lab": "4", "a": "Zygomaticus minor", "x": 637, "y": 462, "box": [632, 457, 642, 467], "q": "Name this muscle.", "acc": ["zygomatic minor"], "tags": ["Zygomaticus minor"]}, {"n": 5, "lab": "5", "a": "Levator labii superioris", "x": 654, "y": 522, "box": [649, 517, 659, 527], "q": "Name this muscle.", "acc": [], "tags": ["Levator labii superioris"]}, {"n": 6, "lab": "6", "a": "Zygomaticus major", "x": 600, "y": 584, "box": [595, 579, 605, 589], "q": "Name this muscle.", "acc": ["zygomatic major"], "tags": ["Zygomaticus major"]}, {"n": 7, "lab": "7", "a": "Nasalis", "x": 1675, "y": 582, "box": [1670, 577, 1680, 587], "q": "Name this muscle.", "acc": [], "tags": ["Nasalis"]}, {"n": 8, "lab": "8", "a": "Masseter", "x": 538, "y": 675, "box": [533, 670, 543, 680], "q": "Name this muscle.", "acc": [], "tags": ["Masseter"]}, {"n": 9, "lab": "9", "a": "Levator anguli oris", "x": 629, "y": 742, "box": [624, 737, 634, 747], "q": "Name this muscle.", "acc": [], "tags": ["Levator anguli oris"]}, {"n": 10, "lab": "10", "a": "Risorius", "x": 625, "y": 792, "box": [620, 787, 630, 797], "q": "Name this muscle.", "acc": [], "tags": ["Risorius"]}, {"n": 11, "lab": "11", "a": "Orbicularis oris", "x": 1519, "y": 804, "box": [1514, 799, 1524, 809], "q": "Name this muscle.", "acc": [], "tags": ["Orbicularis oris"]}, {"n": 12, "lab": "12", "a": "Mentalis", "x": 1578, "y": 954, "box": [1573, 949, 1583, 959], "q": "Name this muscle.", "acc": [], "tags": ["Mentalis"]}, {"n": 13, "lab": "13", "a": "Depressor anguli oris", "x": 779, "y": 1008, "box": [774, 1003, 784, 1013], "q": "Name this muscle.", "acc": [], "tags": ["Depressor anguli oris"]}, {"n": 14, "lab": "14", "a": "Depressor labii inferioris", "x": 1486, "y": 1030, "box": [1481, 1025, 1491, 1035], "q": "Name this muscle.", "acc": [], "tags": ["Depressor labii inferioris"]}], "items": [], "img": "img/headneck-01.jpg", "n": 1}, {"id": "02", "title": "Eye muscles, lateral view (model)", "set": "eye", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Superior oblique", "x": 845, "y": 125, "box": [840, 120, 850, 130], "q": "Name this muscle.", "acc": [], "tags": ["Superior oblique"]}, {"n": 2, "lab": "2", "a": "Medial rectus", "x": 783, "y": 249, "box": [778, 244, 788, 254], "q": "Name this muscle.", "acc": [], "tags": ["Medial rectus"]}, {"n": 3, "lab": "3", "a": "Superior rectus", "x": 1497, "y": 332, "box": [1492, 327, 1502, 337], "q": "Name this muscle.", "acc": [], "tags": ["Superior rectus"]}, {"n": 4, "lab": "4", "a": "Inferior rectus", "x": 746, "y": 406, "box": [741, 401, 751, 411], "q": "Name this muscle.", "acc": [], "tags": ["Inferior rectus"]}, {"n": 5, "lab": "5", "a": "Lateral rectus", "x": 1622, "y": 682, "box": [1617, 677, 1627, 687], "q": "Name this muscle.", "acc": [], "tags": ["Lateral rectus"]}, {"n": 6, "lab": "6", "a": "Inferior oblique", "x": 1534, "y": 841, "box": [1529, 836, 1539, 846], "q": "Name this muscle.", "acc": [], "tags": ["Inferior oblique"]}], "items": [], "img": "img/headneck-02.jpg", "n": 2}, {"id": "03", "title": "Eye muscles, anterolateral view (model)", "set": "eye", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Superior oblique", "x": 845, "y": 125, "box": [840, 120, 850, 130], "q": "Name this muscle.", "acc": [], "tags": ["Superior oblique"]}, {"n": 2, "lab": "2", "a": "Superior rectus", "x": 538, "y": 318, "box": [533, 313, 543, 323], "q": "Name this muscle.", "acc": [], "tags": ["Superior rectus"]}, {"n": 3, "lab": "3", "a": "Medial rectus", "x": 1655, "y": 404, "box": [1650, 399, 1660, 409], "q": "Name this muscle.", "acc": [], "tags": ["Medial rectus"]}, {"n": 4, "lab": "4", "a": "Lateral rectus", "x": 357, "y": 492, "box": [352, 487, 362, 497], "q": "Name this muscle.", "acc": [], "tags": ["Lateral rectus"]}, {"n": 5, "lab": "5", "a": "Inferior oblique", "x": 1232, "y": 955, "box": [1227, 950, 1237, 960], "q": "Name this muscle.", "acc": [], "tags": ["Inferior oblique"]}], "items": [], "img": "img/headneck-03.jpg", "n": 3}, {"id": "04", "title": "Eye muscles, anterior view (cadaver)", "set": "eye", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Superior oblique", "x": 718, "y": 124, "box": [713, 119, 723, 129], "q": "Name this muscle.", "acc": [], "tags": ["Superior oblique"]}, {"n": 2, "lab": "2", "a": "Superior rectus", "x": 1699, "y": 131, "box": [1694, 126, 1704, 136], "q": "Name this muscle.", "acc": [], "tags": ["Superior rectus"]}, {"n": 3, "lab": "3", "a": "Medial rectus", "x": 706, "y": 455, "box": [701, 450, 711, 460], "q": "Name this muscle.", "acc": [], "tags": ["Medial rectus"]}, {"n": 4, "lab": "4", "a": "Lateral rectus", "x": 1700, "y": 440, "box": [1695, 435, 1705, 445], "q": "Name this muscle.", "acc": [], "tags": ["Lateral rectus"]}, {"n": 5, "lab": "5", "a": "Inferior rectus", "x": 706, "y": 740, "box": [701, 735, 711, 745], "q": "Name this muscle.", "acc": [], "tags": ["Inferior rectus"]}, {"n": 6, "lab": "6", "a": "Inferior oblique", "x": 1668, "y": 724, "box": [1663, 719, 1673, 729], "q": "Name this muscle.", "acc": [], "tags": ["Inferior oblique"]}], "items": [], "img": "img/headneck-04.jpg", "n": 4}, {"id": "05", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-05.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Temporalis", "self": false, "acc": ["temporal muscle"]}, {"q": "Origin of this muscle?", "a": "Temporal fossa of the skull", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Coronoid process of the mandible", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Elevates and retracts the mandible (closes the jaw)", "self": true, "acc": []}], "n": 5}, {"id": "06", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-06.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Frontalis", "self": false, "acc": ["frontal belly of occipitofrontalis", "occipitofrontalis", "occipitofrontalis frontal belly", "epicranius frontal belly"]}, {"q": "Origin of this muscle?", "a": "Galea aponeurotica (epicranial aponeurosis)", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Skin of the eyebrows and forehead", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Raises the eyebrows and wrinkles the forehead", "self": true, "acc": []}], "n": 6}, {"id": "07", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-07.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Orbicularis oculi", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Frontal and maxillary bones along the medial edge of the orbit", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Skin around the eye; the fibers circle the orbit and eyelids", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Closes the eye (blinking and squinting)", "self": true, "acc": []}], "n": 7}, {"id": "08", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-08.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Zygomaticus minor", "self": false, "acc": ["zygomatic minor"]}, {"q": "Origin of this muscle?", "a": "Zygomatic bone", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Upper lip", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Raises the upper lip", "self": true, "acc": []}], "n": 8}, {"id": "09", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-09.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Levator labii superioris", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Maxilla, just below the orbit", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Skin and muscle of the upper lip", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Raises the upper lip", "self": true, "acc": []}], "n": 9}, {"id": "10", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-10.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Zygomaticus major", "self": false, "acc": ["zygomatic major"]}, {"q": "Origin of this muscle?", "a": "Zygomatic bone", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Corner of the mouth", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Pulls the corner of the mouth up and out (smiling)", "self": true, "acc": []}], "n": 10}, {"id": "11", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-11.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Masseter", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Zygomatic arch", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Angle and ramus of the mandible", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Elevates the mandible (closes the jaw)", "self": true, "acc": []}], "n": 11}, {"id": "12", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-12.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Levator anguli oris", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Maxilla, below the infraorbital foramen", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Corner of the mouth", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Raises the corner of the mouth", "self": true, "acc": []}], "n": 12}, {"id": "13", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-13.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Risorius", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Fascia over the masseter", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Corner of the mouth", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Pulls the corner of the mouth sideways (tight-lipped grin)", "self": true, "acc": []}], "n": 13}, {"id": "14", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-14.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Nasalis", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Maxilla", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Cartilage of the nose", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Compresses or flares the nostrils", "self": true, "acc": []}], "n": 14}, {"id": "15", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-15.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Orbicularis oris", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Maxilla and mandible near the midline, and muscle fibers around the mouth", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Skin and mucous membrane of the lips", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Closes and purses the lips", "self": true, "acc": []}], "n": 15}, {"id": "16", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-16.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Mentalis", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Mandible, below the lower incisors", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Skin of the chin", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Raises and wrinkles the chin and pushes the lower lip out (pouting)", "self": true, "acc": []}], "n": 16}, {"id": "17", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-17.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Depressor labii inferioris", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Mandible, between the chin and the mental foramen", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Skin of the lower lip", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Pulls the lower lip down", "self": true, "acc": []}], "n": 17}, {"id": "18", "title": "Muscle at the gold ring", "set": "facem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-18.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Depressor anguli oris", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Mandible (lower border)", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Corner of the mouth", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Pulls the corner of the mouth down (frowning)", "self": true, "acc": []}], "n": 18}, {"id": "19", "title": "Muscle at the gold ring", "set": "eyem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-19.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Superior oblique", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Sphenoid bone at the back of the orbit; its tendon runs through the trochlea (pulley)", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Posterior, superolateral eyeball", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Moves the eye down and out; rotates it inward", "self": true, "acc": []}], "n": 19}, {"id": "20", "title": "Muscle at the gold ring", "set": "eyem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-20.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Medial rectus", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Common tendinous ring", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Medial surface of the eyeball", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Moves the eye toward the nose (adducts)", "self": true, "acc": []}], "n": 20}, {"id": "21", "title": "Muscle at the gold ring", "set": "eyem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-21.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Inferior rectus", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Common tendinous ring", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Inferior surface of the eyeball", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Moves the eye down (depresses)", "self": true, "acc": []}], "n": 21}, {"id": "22", "title": "Muscle at the gold ring", "set": "eyem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-22.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Superior rectus", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Common tendinous ring at the back of the orbit", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Superior surface of the eyeball (sclera)", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Moves the eye up (elevates)", "self": true, "acc": []}], "n": 22}, {"id": "23", "title": "Muscle at the gold ring", "set": "eyem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-23.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Lateral rectus", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Common tendinous ring", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Lateral surface of the eyeball", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Moves the eye out to the side (abducts)", "self": true, "acc": []}], "n": 23}, {"id": "24", "title": "Muscle at the gold ring", "set": "eyem", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/headneck-24.jpg", "items": [{"q": "Name the muscle at the gold ring.", "a": "Inferior oblique", "self": false, "acc": []}, {"q": "Origin of this muscle?", "a": "Floor of the orbit (maxilla), near the front", "self": true, "acc": []}, {"q": "Insertion of this muscle?", "a": "Posterior, inferolateral eyeball", "self": true, "acc": []}, {"q": "Action of this muscle?", "a": "Moves the eye up and out; rotates it outward", "self": true, "acc": []}], "n": 24}, {"id": "25", "title": "Nerves to the face and jaw muscles", "set": "nerves", "type": "qa", "r": 0, "pins": [], "img": "img/headneck-25.jpg", "w": 1920, "h": 1080, "items": [{"q": "Which nerve supplies all the muscles of facial expression?", "a": "Facial nerve (CN VII)", "self": false, "acc": ["facial nerve", "facial N.", "CN VII"]}, {"q": "Which nerve supplies the muscles of mastication (temporalis and masseter)?", "a": "Trigeminal nerve, mandibular division (CN V3)", "self": false, "acc": ["trigeminal nerve", "mandibular nerve", "CN V3", "trigeminal N.", "CN V"]}], "n": 25}, {"id": "26", "title": "Nerves to the eye muscles", "set": "nerves", "type": "qa", "r": 0, "pins": [], "img": "img/headneck-26.jpg", "w": 1920, "h": 1080, "items": [{"q": "Which nerve supplies the lateral rectus?", "a": "Abducens nerve (CN VI)", "self": false, "acc": ["abducens nerve", "abducens N.", "CN VI"]}, {"q": "Which nerve supplies the superior oblique?", "a": "Trochlear nerve (CN IV)", "self": false, "acc": ["trochlear nerve", "trochlear N.", "CN IV"]}, {"q": "Which nerve supplies the other four eye muscles?", "a": "Oculomotor nerve (CN III)", "self": false, "acc": ["oculomotor nerve", "oculomotor N.", "CN III"]}], "n": 26}]};
+const SETS=DECK.sets, CARDS=DECK.cards;
+if(DECK.links&&DECK.links.length){const m=document.getElementById('more');m.hidden=false;DECK.links.forEach(l=>{const a=document.createElement('a');a.href=l.u;a.target='_blank';a.rel='noopener';a.textContent=l.t;const sm=document.createElement('small');sm.textContent=l.d;a.appendChild(sm);document.getElementById('moreLinks').appendChild(a)})}
+const SYN={"anterior interventricular artery": ["lad", "left anterior descending", "left anterior descending artery"], "bicuspid valve": ["mitral valve", "mitral", "left atrioventricular valve"], "tricuspid valve": ["right atrioventricular valve"], "pulmonary semilunar valve": ["pulmonic valve", "pulmonary valve"], "pulmonic valve": ["pulmonary semilunar valve", "pulmonary valve"], "aortic semilunar valve": ["aortic valve"], "sinoatrial node": ["sa node"], "atrioventricular node": ["av node"], "bundle of his": ["av bundle", "atrioventricular bundle"], "epicardium": ["visceral pericardium"], "fibrous pericardium": ["parietal pericardium", "fibrous parietal pericardium"], "purkinje fibers": ["purkinje"], "thymus": ["thymus gland"], "brachiocephalic trunk": ["brachiocephalic artery"], "transverse tubule": ["t tubule"], "z disc": ["z line", "z disk"], "intercalated disc": ["intercalated disk"], "terminal cistern": ["terminal cisterna", "terminal cisternae"], "skeletal muscle tissue": ["skeletal muscle", "striated muscle"], "cardiac muscle tissue": ["cardiac muscle", "heart muscle", "myocardium"], "smooth muscle tissue": ["smooth muscle", "visceral muscle"], "coronary sulcus": ["atrioventricular groove"]};
+const ABBR={a:'artery',aa:'arteries',art:'artery',v:'vein',vv:'veins',r:'right',rt:'right',l:'left',lt:'left',
+ svc:'superior vena cava',ivc:'inferior vena cava',m:'muscle',ant:'anterior',post:'posterior',sr:'sarcoplasmic reticulum'};
+const DROP=new Set(['the','of','for','to','opening','openings','space','an']);
+function norm(s){
+  return s.toLowerCase().replace(/[\/,.;:()"'+-]/g,' ').split(/\s+/).filter(Boolean)
+   .map(w=>ABBR[w]||w).join(' ').split(' ').filter(w=>!DROP.has(w))
+   .map(w=>w.length>4?w.replace(/(es|s)$/,''):w).join(' ');
+}
+function shortForms(a){
+  const base=a.split(':')[0].replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').trim();
+  const out=base.split(' / ').map(s=>s.trim()); const extra=[];
+  out.forEach(o=>{const k=o.toLowerCase();Object.keys(SYN).forEach(s=>{if(k.includes(s))SYN[s].forEach(x=>extra.push(k.replace(s,x)))})});
+  return {show:out.join(' / '),accept:[...out,...extra].map(norm)};
+}
+function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=[...Array(n+1).keys()];
+ for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]==b[j-1]?0:1));p=c}return p[n]}
+function close(g,list){g=norm(g);if(!g)return false;
+  return list.some(t=>{const tol=t.length<5?0:Math.max(1,Math.floor(t.length/7));return lev(g,t)<=tol})}
+CARDS.forEach(c=>{c.pins.forEach(p=>{p.sf=shortForms(p.a);(p.acc||[]).forEach(x=>p.sf.accept.push(norm(x)))});c.items.forEach(it=>it.accN=[it.a,...it.acc].map(norm))});
+
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const BEST_KEY='atlasBest_'+DECK.id;
+let best=store.get(BEST_KEY,{});
+let set='all', order=CARDS.map((_,i)=>i), pos=0, mode='type', state={}, hotPin=null;
+const $=id=>document.getElementById(id);
+const visible=()=>order.filter(i=>set==='all'||CARDS[i].set===set);
+const cur=()=>CARDS[visible()[pos]];
+const HAS_DETAIL=CARDS.some(c=>c.items.some(it=>it.self&&/origin/i.test(it.q)));
+let nameOnly=HAS_DETAIL&&store.get('atlasNameOnly_'+DECK.id,false);
+const units=c=>c.type==='qa'?c.items.map((it,i)=>({key:i+1,lab:String(i+1),it})).filter(u=>!(nameOnly&&u.it.self)):c.pins.map(p=>({key:p.n,lab:p.lab,p}));
+const autoUnits=c=>units(c).filter(u=>!(u.it&&u.it.self));
+
+function renderSets(){const el=$('sets');el.innerHTML='';
+  [['all','All cards'],...Object.entries(SETS)].forEach(([k,name])=>{const b=document.createElement('button');b.className='chip';b.textContent=name;
+    b.setAttribute('aria-pressed',set===k);b.onclick=()=>{set=k;pos=0;renderSets();load()};el.appendChild(b)})}
+function renderStrip(){const el=$('strip');el.innerHTML='';
+  visible().forEach((i,j)=>{const c=CARDS[i];const b=document.createElement('button');b.textContent=c.n;b.title=c.title;
+    b.setAttribute('aria-label',`Card ${c.n}: ${c.title}`);if(j===pos)b.setAttribute('aria-current','true');
+    const s=best[c.id];if(s!=null){const d=document.createElement('span');d.className='dot '+(s>=autoUnits(c).length?'done':'part');b.appendChild(d)}
+    b.onclick=()=>{pos=j;load()};el.appendChild(b)});
+  const a=el.querySelector('[aria-current]');if(a)a.scrollIntoView({block:'nearest',inline:'nearest'})}
+const NS='http://www.w3.org/2000/svg';
+function svgEl(t,attrs,parent){const e=document.createElementNS(NS,t);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e}
+function drawFig(){
+  const c=cur(),svg=$('fig');svg.innerHTML='';svg.setAttribute('viewBox',`0 0 ${c.w} ${c.h}`);
+  svg.setAttribute('aria-label',c.type==='qa'?`Microscope image for ${c.title}`:`${c.title}, with ${c.pins.length} marked structures`);
+  svgEl('image',{href:c.img,x:0,y:0,width:c.w,height:c.h},svg);
+  if(c.type==='qa'){syncZoom();return}
+  const fs=Math.round(Math.max(26,c.r*1.0));
+  c.pins.forEach(p=>{const st=state[p.n]||{};
+    if(mode==='study'||st.open||(mode==='type'&&st.result!=null)||hotPin===p.n&&st.open){
+      const bx=(p.box[0]+p.box[2])/2;let x,y=p.y+fs*0.35+(p.dy||0),anchor;
+      if(Math.abs(p.x-bx)<6){x=p.x;y=p.y-c.r-10;anchor='middle'}else if(p.x>bx){x=p.x-c.r-6;anchor='end'}else{x=p.x+c.r+6;anchor='start'}
+      const t=svgEl('text',{x,y,'text-anchor':anchor,'font-size':fs,class:'lbl'+(hotPin===p.n?' found':'')},svg);t.textContent=p.sf.show}});
+  const fp=c.pins.find(p=>p.n===hotPin);if(fp)svgEl('circle',{cx:fp.x,cy:fp.y,r:c.r*1.9,class:'ring'},svg);
+  c.pins.forEach(p=>{const st=state[p.n]||{};
+    const g=svgEl('g',{class:'pin'+(st.result===true?' right':st.result===false?' wrong':'')+(hotPin===p.n?' hot':''),'data-n':p.n,tabindex:0,role:'button','aria-label':'Structure '+p.lab},svg);
+    svgEl('circle',{cx:p.x,cy:p.y,r:c.r},g);
+    const t=svgEl('text',{x:p.x,y:p.y+c.r*0.42,'text-anchor':'middle','font-size':Math.round(c.r*1.2)},g);t.textContent=p.lab;
+    g.onclick=()=>pinAct(p.n);g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pinAct(p.n)}};
+    g.onmouseenter=()=>hot(p.n,true);g.onmouseleave=()=>hot(p.n,false)});
+  syncZoom()}
+function syncZoom(){const d=$('zoom');if(!d||!d.open)return;const c=cur(),w=$('zWrap'),big=w.classList.contains('big');
+  const k=$('fig').cloneNode(true);k.removeAttribute('id');k.setAttribute('aria-label',c.title);
+  if(big){k.setAttribute('width',Math.max(c.w,Math.round(window.innerWidth*1.6)));k.removeAttribute('height')}else{const sc=Math.min((innerWidth-32)/c.w,(innerHeight-92)/c.h);k.setAttribute('width',Math.round(c.w*sc));k.setAttribute('height',Math.round(c.h*sc))}
+  w.innerHTML='';w.appendChild(k);$('zTitle').textContent=c.title;$('zSize').textContent=big?'Fit to screen':'Bigger'}
+function openZoom(){const d=$('zoom');$('zWrap').classList.remove('big');if(!d.open)d.showModal();syncZoom()}
+function hot(n,on){document.querySelectorAll(`[data-n="${n}"]`).forEach(e=>e.classList.toggle('hot',on))}
+function pinAct(n){if(mode==='type'){const i=$('in'+n);if(i)i.focus()}
+  else if(mode==='reveal'){state[n]=state[n]||{};state[n].open=!state[n].open;drawFig();drawList()}}
+function drawList(){
+  const c=cur(),ol=$('answers');ol.innerHTML='';
+  units(c).forEach(u=>{const n=u.key,st=state[n]||{},ans=u.it?u.it.a:u.p.a;
+    const li=document.createElement('li');li.dataset.n=n;li.onmouseenter=()=>hot(n,true);li.onmouseleave=()=>hot(n,false);
+    const num=document.createElement('span');num.className='num'+(st.result===true?' right':st.result===false?' wrong':'');num.textContent=u.lab;li.appendChild(num);
+    const box=document.createElement('div');box.className='field';
+    const qq=u.it?u.it.q:(u.p.q||'');if(qq){const q=document.createElement('div');q.className='q';q.textContent=qq;box.appendChild(q)}
+    if(mode==='type'){
+      const inp=document.createElement('input');inp.id='in'+n;inp.autocomplete='off';inp.spellcheck=false;
+      inp.setAttribute('aria-label',u.it?u.it.q:'Answer for '+u.lab);inp.value=st.typed||'';
+      if(st.result!=null)inp.className=st.result?'right':'wrong'; else if(st.shown)inp.className='self';
+      inp.oninput=()=>{state[n]=Object.assign(state[n]||{},{typed:inp.value})};
+      inp.onfocus=()=>hot(n,true);inp.onblur=()=>hot(n,false);
+      inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const nx=$('in'+(n+1));nx?nx.focus():check()}};
+      box.appendChild(inp);
+      if(st.result!=null||st.shown){const f=document.createElement('div');
+        f.className='fix'+(st.shown?' cmp':st.result?' ok':'');f.textContent=st.shown?'Compare with: '+ans:st.result?ans:'Answer: '+ans;box.appendChild(f)}
+    }else if(mode==='reveal'){
+      const b=document.createElement('button');b.className='reveal'+(st.open?' open':'');
+      b.textContent=st.open?ans:(u.it?'Tap to show the answer':'Tap to show '+u.lab);b.setAttribute('aria-expanded',!!st.open);
+      b.onclick=()=>{state[n]=state[n]||{};state[n].open=!state[n].open;drawFig();drawList()};box.appendChild(b);
+    }else{const s=document.createElement('div');s.className='ans';s.textContent=ans;box.appendChild(s)}
+    li.appendChild(box);ol.appendChild(li)});
+  const act=$('actions');act.innerHTML='';
+  if(mode==='type'){
+    const b=document.createElement('button');b.className='btn primary';b.textContent='Check my answers';b.onclick=check;act.appendChild(b);
+    const r=document.createElement('button');r.className='btn';r.textContent='Clear and try again';r.onclick=()=>{state={};drawFig();drawList()};act.appendChild(r);
+    const au=autoUnits(c);if(au.some(u=>(state[u.key]||{}).result!=null)){const s=document.createElement('span');s.className='score';
+      s.setAttribute('aria-live','polite');s.textContent=`${au.filter(u=>(state[u.key]||{}).result===true).length} of ${au.length} correct`;act.appendChild(s)}
+  }else if(mode==='reveal'){const b=document.createElement('button');b.className='btn';b.textContent='Hide all again';
+    b.onclick=()=>{Object.values(state).forEach(s=>s.open=false);drawFig();drawList()};act.appendChild(b)}
+}
+function check(){const c=cur();let right=0;
+  units(c).forEach(u=>{const st=state[u.key]=state[u.key]||{};
+    if(u.it&&u.it.self){st.shown=true;return}
+    st.result=u.it?close(st.typed||'',u.it.accN):close(st.typed||'',u.p.sf.accept);if(st.result)right++});
+  if(best[c.id]==null||right>best[c.id]){best[c.id]=right;store.set(BEST_KEY,best)}
+  drawFig();drawList();renderStrip()}
+const HINTS={type:'Type each answer, then check. Press Enter to jump to the next blank. Questions about function and location show the answer so you can compare.',
+ reveal:'Say each answer out loud first, then tap to see if you were right.',
+ study:'Everything is labeled. Study the card, then switch back to Type answers to test yourself.'};
+function setMode(m){mode=m;[['type','mType'],['reveal','mReveal'],['study','mStudy']].forEach(([k,id])=>$(id).setAttribute('aria-pressed',k===m));
+  $('hint').textContent=HINTS[m];drawFig();drawList()}
+function load(keep){const v=visible();if(pos>=v.length)pos=0;if(pos<0)pos=v.length-1;
+  const c=cur();if(!keep){state={};hotPin=null}
+  $('cardEyebrow').textContent=`Card ${c.n} · ${SETS[c.set]}`;showFound();$('cardTitle').textContent=c.title;renderStrip();setMode(mode)}
+function showFound(){const c=cur(),fb=$('found'),p=c.pins.find(p=>p.n===hotPin);
+  if(!p){fb.hidden=true;return}
+  fb.hidden=false;fb.innerHTML='';fb.append('Found: ');const sp=document.createElement('span');sp.textContent=p.sf.show;fb.append(sp,` (number ${p.lab}, circled in gold)`);
+  const b=document.createElement('button');b.textContent='Clear';b.onclick=()=>{hotPin=null;state={};history.replaceState(null,'',location.pathname);setMode('type');showFound()};fb.append(b);
+  document.querySelector('.plate').scrollIntoView({block:'start',behavior:'smooth'})}
+function fromHash(){const m=/^#c(\d+)(?:-p(\d+))?$/.exec(location.hash);if(!m)return false;
+  const idx=CARDS.findIndex(c=>c.n===+m[1]);if(idx<0)return false;
+  set='all';order=CARDS.map((_,i)=>i);pos=idx;state={};hotPin=null;
+  if(m[2]){hotPin=+m[2];state[hotPin]={open:true};mode='reveal'}
+  renderSets();load(true);return true}
+$('mType').onclick=()=>setMode('type');$('mReveal').onclick=()=>setMode('reveal');$('mStudy').onclick=()=>setMode('study');
+$('prev').onclick=()=>{pos--;load()};$('next').onclick=()=>{pos++;load()};
+$('shuffle').onclick=()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}pos=0;load()};
+$('zoomBtn').onclick=openZoom;
+$('fig').addEventListener('click',e=>{if(!e.target.closest('.pin'))openZoom()});
+$('zClose').onclick=()=>$('zoom').close();
+$('zSize').onclick=()=>{$('zWrap').classList.toggle('big');syncZoom()};
+$('zPrev').onclick=()=>{pos--;hotPin=null;load()};$('zNext').onclick=()=>{pos++;hotPin=null;load()};
+$('zoom').addEventListener('click',e=>{if(e.target.id==='zWrap'||e.target.id==='zoom'){$('zoom').close();return}
+  const g=e.target.closest('.pin');if(!g)return;const n=+g.dataset.n;
+  if(mode==='type'){$('zoom').close();const i=$('in'+n);if(i)i.focus()}else pinAct(n)});
+addEventListener('resize',syncZoom);
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight'){pos++;hotPin=null;load()}if(e.key==='ArrowLeft'){pos--;hotPin=null;load()}});
+window.addEventListener('hashchange',fromHash);
+function renderDepth(){if(!HAS_DETAIL)return;$('depth').hidden=false;$('dSw').setAttribute('aria-checked',!nameOnly)}
+$('dSw').onclick=()=>{nameOnly=!nameOnly;store.set('atlasNameOnly_'+DECK.id,nameOnly);state={};renderDepth();load()};
+renderDepth();
+if(!fromHash()){renderSets();load()}
+</script>
+
+</html>

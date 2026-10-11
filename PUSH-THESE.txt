@@ -1,98 +1,76 @@
-CANVAS PACKAGE. Upload every part into the SAME Canvas folder named Anatomy-Atlas and expand (unzip) each one there. The parts fill in the same folders (img, pdf). Then open Anatomy-Atlas/index.html. See README-CANVAS.txt.
+MODULE 5 UPDATE: Brain and Cranial Nerves, Spinal Cord, Head Muscles (face, jaw, eye)
 
-Part 1 of 5. Files (95):
-README-CANVAS.txt
-abdves.html
+This one zip goes to TWO places. Unzip it first.
+
+1) GitHub: new-digital-atlas (the atlas repo, NOT the course site)
+   Add file > Upload files. Select everything inside the unzipped folder at once,
+   including the img and pdf FOLDERS themselves (drag the folders, do not open them), then commit.
+
+2) Canvas: your Anatomy-Atlas folder in Files
+   Upload this zip into the Anatomy-Atlas folder and choose to expand (unzip) it there.
+   Replace files when Canvas asks.
+
+New pages: brain.html, spinal.html, headneck.html
+Updated: atlas.html, welcome.html, index.html, search-data.js
+New PDFs: pdf/brain-cards.pdf, pdf/spinal-cards.pdf, pdf/headneck-cards.pdf
+New pictures: img/brain-*, img/spinal-*, img/headneck-*
+
+Files (58 incl. this note):
 atlas.html
-back.html
-blood.html
-digest.html
-heart.html
+brain.html
+headneck.html
+img/brain-01.jpg
+img/brain-02.jpg
+img/brain-03.jpg
+img/brain-04.jpg
+img/brain-05.jpg
+img/brain-06.jpg
+img/brain-07.jpg
+img/brain-08.jpg
+img/brain-09.jpg
+img/brain-10.jpg
+img/brain-11.jpg
+img/brain-12.jpg
+img/brain-13.jpg
+img/brain-14.jpg
+img/brain-15.jpg
+img/brain-16.jpg
+img/headneck-01.jpg
+img/headneck-02.jpg
+img/headneck-03.jpg
+img/headneck-04.jpg
+img/headneck-05.jpg
+img/headneck-06.jpg
+img/headneck-07.jpg
+img/headneck-08.jpg
+img/headneck-09.jpg
+img/headneck-10.jpg
+img/headneck-11.jpg
+img/headneck-12.jpg
+img/headneck-13.jpg
+img/headneck-14.jpg
+img/headneck-15.jpg
+img/headneck-16.jpg
+img/headneck-17.jpg
+img/headneck-18.jpg
+img/headneck-19.jpg
+img/headneck-20.jpg
+img/headneck-21.jpg
+img/headneck-22.jpg
+img/headneck-23.jpg
+img/headneck-24.jpg
+img/headneck-25.jpg
+img/headneck-26.jpg
+img/spinal-01.jpg
+img/spinal-02.jpg
+img/spinal-03.jpg
+img/spinal-04.jpg
+img/spinal-05.jpg
+img/spinal-06.jpg
 index.html
-leg.html
-muscle.html
-repro.html
-resp.html
+pdf/brain-cards.pdf
+pdf/headneck-cards.pdf
+pdf/spinal-cards.pdf
 search-data.js
-search.js
-thigh.html
-uevn.html
-upper.html
-urinary.html
-videos-data.js
-videos.html
-videos.js
+spinal.html
 welcome.html
-img/abdves-01.jpg
-img/abdves-02.jpg
-img/abdves-03.jpg
-img/abdves-04.jpg
-img/abdves-05.jpg
-img/abdves-06.jpg
-img/abdves-07.jpg
-img/abdves-08.jpg
-img/abdves-09.jpg
-img/back-01.jpg
-img/back-02.jpg
-img/back-03.jpg
-img/back-04.jpg
-img/back-05.jpg
-img/back-06.jpg
-img/back-07.jpg
-img/back-08.jpg
-img/back-09.jpg
-img/back-10.jpg
-img/back-11.jpg
-img/back-12.jpg
-img/back-13.jpg
-img/back-14.jpg
-img/back-15.jpg
-img/back-16.jpg
-img/back-17.jpg
-img/back-18.jpg
-img/back-19.jpg
-img/back-20.jpg
-img/back-21.jpg
-img/back-22.jpg
-img/blood-01.jpg
-img/blood-02.jpg
-img/blood-03.jpg
-img/blood-04.jpg
-img/blood-05.jpg
-img/blood-06.jpg
-img/blood-07.jpg
-img/blood-08.jpg
-img/blood-09.jpg
-img/blood-10.jpg
-img/blood-11.jpg
-img/blood-12.jpg
-img/blood-13.jpg
-img/blood-14.jpg
-img/blood-15.jpg
-img/blood-16.jpg
-img/blood-17.jpg
-img/blood-18.jpg
-img/blood-19.jpg
-img/blood-20.jpg
-img/blood-thumb.jpg
-img/brain-hero.png
-img/digest-01.jpg
-img/digest-02.jpg
-img/digest-03.jpg
-img/digest-04.jpg
-img/digest-05.jpg
-img/digest-06.jpg
-img/digest-07.jpg
-img/digest-08.jpg
-img/digest-09.jpg
-img/digest-10.jpg
-img/digest-11.jpg
-img/digest-12.jpg
-img/digest-13.jpg
-img/digest-14.jpg
-img/digest-15.jpg
-img/digest-16.jpg
-img/digest-17.jpg
-img/digest-18.jpg
-img/heart-01.jpg
-img/heart-02.jpg
