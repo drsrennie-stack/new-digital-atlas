@@ -93,14 +93,13 @@ footer.note{font-size:14px;color:var(--muted)}
 </head>
 <body>
 <div class="wrap">
-  <a class="home" href="atlas.html">&larr; Atlas index and structure search</a>
+  <a class="home" href="atlas.html">&larr; Atlas index</a>
   <header class="top">
     <div>
-      <div class="eyebrow">Anatomy Atlas &middot; MedMasters Collaborative</div>
+      <div class="eyebrow">Anatomy Atlas &middot; BIO 004 Human Anatomy</div>
       <h1>Muscle Tissue Practice Cards</h1>
     </div>
-    <div class="dsearch"><label class="eyebrow" for="dq">Find a structure</label><input id="dq" type="search" autocomplete="off" spellcheck="false" placeholder="Type a structure name"><div class="dres" id="dres" hidden></div></div>
-  </header>
+      </header>
   <div class="sets" id="sets" role="group" aria-label="Which cards to practice"></div>
   <nav class="strip" id="strip" aria-label="Cards"></nav>
   <main class="stage">
@@ -126,6 +125,8 @@ footer.note{font-size:14px;color:var(--muted)}
   <footer class="note">Spelling doesn't have to be perfect, and common abbreviations count (R., L., A., V., SVC, IVC, LAD, SA node). Your progress stays on this device.</footer>
 </div>
 
+<script src="search-data.js"></script>
+<script src="search.js"></script>
 <script>
 const DECK={"id": "muscle", "title": "Muscle Tissue", "sets": {"histo": "Muscle histology", "micro": "Muscle microanatomy"}, "cards": [{"id": "01", "n": 1, "title": "Muscle tissue 1", "set": "histo", "type": "qa", "w": 1143, "h": 858, "r": 0, "pins": [], "items": [{"q": "Name this tissue.", "a": "Skeletal muscle tissue", "self": false, "acc": ["skeletal muscle", "skeletal"]}, {"q": "Is it voluntary or involuntary?", "a": "Voluntary", "self": false, "acc": ["voluntary"]}, {"q": "What does this tissue do?", "a": "Locomotion and movement; heat generation", "self": true, "acc": []}, {"q": "Where is this tissue found?", "a": "Attached to bones", "self": true, "acc": []}], "img": "img/muscle-01.jpg"}, {"id": "02", "n": 2, "title": "Muscle tissue 2", "set": "histo", "type": "qa", "w": 992, "h": 1018, "r": 0, "pins": [], "items": [{"q": "Name this tissue.", "a": "Cardiac muscle tissue", "self": false, "acc": ["cardiac muscle", "cardiac"]}, {"q": "Name the structure at the end of the arrow.", "a": "Intercalated disc", "self": false, "acc": ["intercalated disc", "intercalated disk"]}, {"q": "Is it voluntary or involuntary?", "a": "Involuntary", "self": false, "acc": ["involuntary"]}, {"q": "What does this tissue do?", "a": "Pumps blood (generates cardiac output)", "self": true, "acc": []}, {"q": "Where is this tissue found?", "a": "Heart wall", "self": true, "acc": []}], "img": "img/muscle-02.jpg"}, {"id": "03", "n": 3, "title": "Muscle tissue 3", "set": "histo", "type": "qa", "w": 1086, "h": 869, "r": 0, "pins": [], "items": [{"q": "Name this tissue.", "a": "Smooth muscle tissue", "self": false, "acc": ["smooth muscle", "smooth"]}, {"q": "Is it voluntary or involuntary?", "a": "Involuntary", "self": false, "acc": ["involuntary"]}, {"q": "What does this tissue do?", "a": "Movement of blood, fluid, and food boluses", "self": true, "acc": []}, {"q": "Where is this tissue found?", "a": "Blood vessels, GI tract, eye", "self": true, "acc": []}], "img": "img/muscle-03.jpg"}, {"id": "04", "n": 4, "title": "Inside a skeletal muscle fiber", "set": "micro", "type": "label", "w": 1490, "h": 1131, "r": 34, "items": [], "pins": [{"n": 1, "lab": "1", "a": "Myofibril", "x": 559, "y": 94, "box": [511, 79, 607, 109], "tags": ["Myofibril"]}, {"n": 2, "lab": "2", "a": "Sarcoplasmic reticulum", "x": 453, "y": 365, "box": [319, 321, 466, 372], "tags": ["Sarcoplasmic reticulum"]}, {"n": 3, "lab": "3", "a": "Transverse (T) tubule", "x": 412, "y": 451, "box": [165, 438, 404, 464], "tags": ["Transverse tubule", "T", "t tubule"]}, {"n": 4, "lab": "4", "a": "Triad (one T tubule + two terminal cisterns)", "x": 432, "y": 612, "box": [168, 570, 424, 653], "tags": ["Triad"]}, {"n": 5, "lab": "5", "a": "Terminal cistern", "x": 487, "y": 836, "box": [305, 825, 479, 848], "tags": ["Terminal cistern", "terminal cisterna", "terminal cisternae"]}, {"n": 6, "lab": "6", "a": "Sarcomere", "x": 1026, "y": 502, "box": [963, 484, 1088, 520], "tags": ["Sarcomere"]}, {"n": 7, "lab": "7", "a": "Sarcolemma", "x": 775, "y": 1035, "box": [775, 1035, 775, 1035], "tags": ["Sarcolemma"]}, {"n": 8, "lab": "8", "a": "Sarcoplasm", "x": 582, "y": 913, "box": [582, 913, 582, 913], "tags": ["Sarcoplasm"]}], "img": "img/muscle-04.jpg"}, {"id": "05", "n": 5, "title": "Bands of the sarcomere", "set": "micro", "type": "label", "w": 1299, "h": 1042, "r": 34, "items": [], "pins": [{"n": 1, "lab": "A", "a": "M line", "x": 666, "y": 94, "box": [647, 75, 684, 114], "tags": ["M line"]}, {"n": 2, "lab": "B", "a": "H zone", "x": 634, "y": 802, "box": [617, 780, 652, 824], "tags": ["H zone"]}, {"n": 3, "lab": "C", "a": "A band", "x": 494, "y": 94, "box": [476, 74, 512, 115], "tags": ["A band"]}, {"n": 4, "lab": "D", "a": "I band", "x": 283, "y": 94, "box": [266, 75, 300, 114], "tags": ["I band"]}, {"n": 5, "lab": "E", "a": "Z disc (Z line)", "x": 1128, "y": 94, "box": [1110, 75, 1146, 114], "tags": ["Z disc", "Z line", "z disk"]}, {"n": 6, "lab": "F", "a": "One sarcomere (Z disc to Z disc)", "x": 607, "y": 967, "box": [592, 945, 622, 989], "tags": ["One sarcomere", "Z disc to Z disc", "z line to z line", "z disk to z disk"]}], "img": "img/muscle-05.jpg"}]};
 const SETS=DECK.sets, CARDS=DECK.cards;
@@ -244,16 +245,6 @@ function showFound(){const c=cur(),fb=$('found'),p=c.pins.find(p=>p.n===hotPin);
   fb.hidden=false;fb.innerHTML='';fb.append('Found: ');const sp=document.createElement('span');sp.textContent=p.sf.show;fb.append(sp,` (number ${p.lab}, circled in gold)`);
   const b=document.createElement('button');b.textContent='Clear';b.onclick=()=>{hotPin=null;state={};history.replaceState(null,'',location.pathname);setMode('type');showFound()};fb.append(b);
   document.querySelector('.plate').scrollIntoView({block:'start',behavior:'smooth'})}
-// in-deck search
-const IDX=[];CARDS.forEach(c=>c.pins.forEach(p=>IDX.push({c,p,names:[p.sf.show,...(p.tags||[])].map(norm)})));
-$('dq').addEventListener('input',()=>{const q=norm($('dq').value),box=$('dres');box.innerHTML='';
-  if(q.length<2){box.hidden=true;return}
-  const hits=IDX.filter(h=>h.names.some(n=>n.includes(q)||(q.length>=5&&lev(q,n)<=Math.max(1,Math.floor(n.length/7))))).slice(0,30);
-  if(!hits.length){box.innerHTML='<a href="atlas.html">No match in this chapter. Search all chapters</a>';box.hidden=false;return}
-  hits.forEach(h=>{const a=document.createElement('a');a.href=`#c${h.c.n}-p${h.p.n}`;a.innerHTML='<b></b><small></small>';
-    a.firstChild.textContent=h.p.sf.show;a.lastChild.textContent=`Card ${h.c.n} · ${h.c.title}`;a.onclick=()=>{box.hidden=true};box.appendChild(a)});
-  box.hidden=false});
-document.addEventListener('click',e=>{if(!e.target.closest('.dsearch'))$('dres').hidden=true});
 function fromHash(){const m=/^#c(\d+)(?:-p(\d+))?$/.exec(location.hash);if(!m)return false;
   const idx=CARDS.findIndex(c=>c.n===+m[1]);if(idx<0)return false;
   set='all';order=CARDS.map((_,i)=>i);pos=idx;state={};hotPin=null;

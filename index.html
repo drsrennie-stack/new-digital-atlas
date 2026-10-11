@@ -49,7 +49,8 @@ a{color:inherit}
 
 /* ---------- landing ---------- */
 .wrap{max-width:1160px;margin:0 auto;padding-inline:max(20px,5vw)}
-header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;padding-right:190px}
+@media (max-width:600px){header.top{padding-right:52px}.top nav{display:none!important}}
 .brand{font-family:var(--f-display);font-weight:800;font-size:17px;letter-spacing:-.01em;text-decoration:none}
 .brand span{color:var(--terra)}
 .top nav{display:flex;gap:18px;flex-wrap:wrap}
@@ -66,13 +67,15 @@ h1 span{color:var(--terra)}
 .btn.primary{background:var(--terra);border-color:var(--terra);color:var(--white)}
 .btn.primary:hover{background:#6F2C22;border-color:#6F2C22}
 .btn.ghost{background:var(--white);color:var(--navy)}
-.stage{position:relative;aspect-ratio:4/3.4;max-width:100%}
-.stage figure{position:absolute;margin:0;border-radius:8px;overflow:hidden;background:var(--white);border:.5px solid var(--navy-15)}
-.stage img{display:block;width:100%;height:100%;object-fit:cover}
-.stage .a{inset:0 22% 26% 0}
-.stage .b{right:0;top:18%;width:44%;height:46%}
-.stage .c{left:12%;bottom:0;width:52%;height:34%}
-@media (prefers-reduced-motion:no-preference){.stage .a img{animation:drift 18s ease-in-out infinite alternate}}
+.stage{position:relative;aspect-ratio:1/1;max-width:100%}
+.stage figure{position:absolute;margin:0}
+.stage img{display:block;width:100%;height:100%;object-fit:contain}
+.stage .a{left:0;top:4%;width:56%;height:64%;border-radius:8px;overflow:hidden}
+.stage .a img{object-fit:cover}
+.stage .b{right:0;top:0;width:44%;height:52%}
+.stage .c{right:2%;bottom:0;width:66%;height:50%}
+@media (prefers-reduced-motion:no-preference){.stage .a img{animation:drift 18s ease-in-out infinite alternate}.stage .c img{animation:float 9s ease-in-out infinite alternate}}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(-10px)}}
 @keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-2%,-1%)}}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:.5px solid var(--navy-15);border-bottom:.5px solid var(--navy-15)}
 .stats div{padding:26px 8px;text-align:center}
@@ -92,7 +95,9 @@ h2.sec span{color:var(--terra)}
 .band .eyebrow{color:#E8CE85}
 .band p.big{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3.4vw,40px);line-height:1.15;margin:0;text-wrap:balance}
 .band p.big span{color:var(--gold)}
-.chapters{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.chapters{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.chap.mod small{color:var(--terra)}
+.chap.mod:hover{border-color:var(--terra)}
 .chap{border:.5px solid var(--navy-15);border-radius:8px;padding:18px;display:grid;gap:6px;text-decoration:none;background:var(--white)}
 .chap.live{border:2px solid var(--terra)}
 .chap b{font-size:16px}
@@ -115,16 +120,16 @@ footer{padding-block:36px 52px;border-top:.5px solid var(--navy-15);display:flex
     <div class="word" id="hl">Welcome</div>
   </div>
   <div class="scene title-scene" id="s2">
-    <div><div class="eb">MedMasters Collaborative presents</div><h2>The Anatomy <span>Atlas</span></h2></div>
+    <div><div class="eb">BIO 004 Human Anatomy · Solano College</div><h2>The Anatomy <span>Atlas</span></h2></div>
   </div>
-  <div class="scene montage" id="s3"><figure><img src="img/heart-01.jpg" alt=""></figure><figure><img src="img/heart-17.jpg" alt=""></figure><figure><img src="img/heart-31.jpg" alt=""></figure><figure><img src="img/muscle-04.jpg" alt=""></figure><figure><img src="img/heart-07.jpg" alt=""></figure><figure><img src="img/heart-32.jpg" alt=""></figure></div>
+  <div class="scene montage" id="s3"><figure><img src="img/heart-01.jpg" alt=""></figure><figure><img src="img/brain-hero.png" alt=""></figure><figure><img src="img/kidney-hero.png" alt=""></figure><figure><img src="img/heart-17.jpg" alt=""></figure><figure><img src="img/heart-07.jpg" alt=""></figure><figure><img src="img/heart-32.jpg" alt=""></figure></div>
   <button class="skip" id="skip" type="button">Skip intro</button>
 </div>
 
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="#top" id="top">MedMasters <span>Collaborative</span></a>
-    <nav aria-label="Atlas"><a href="atlas.html">Find a structure</a><a href="#chapters">Chapters</a><a href="#thanks">Thanks</a></nav>
+    <a class="brand" href="#top" id="top">BIO 004 <span>Human Anatomy</span> · Solano College</a>
+    <nav aria-label="Atlas"><a href="atlas.html">Index</a><a href="#chapters">Chapters</a><a href="#thanks">Thanks</a></nav>
   </header>
 
   <div class="hero">
@@ -134,20 +139,20 @@ footer{padding-block:36px 52px;border-top:.5px solid var(--navy-15);display:flex
       <p class="lede">Real cadavers, classroom models and slides, all searchable and ready to practice.</p>
       <div class="btns"><a class="btn primary" href="atlas.html">Enter the atlas</a><a class="btn ghost" href="#how">How it works</a></div>
     </div>
-    <div class="stage" aria-hidden="true"><figure class="a"><img src="img/heart-01.jpg" alt=""></figure><figure class="b"><img src="img/heart-31.jpg" alt=""></figure><figure class="c"><img src="img/muscle-04.jpg" alt=""></figure></div>
+    <div class="stage" aria-hidden="true"><figure class="a"><img src="img/heart-01.jpg" alt=""></figure><figure class="b"><img src="img/kidney-hero.png" alt=""></figure><figure class="c"><img src="img/brain-hero.png" alt=""></figure></div>
   </div>
 
   <div class="stats" aria-label="What is in the atlas">
     <div><b data-n="37">37</b><span>Practice cards</span></div>
     <div><b data-n="96">96</b><span>Structures tagged</span></div>
-    <div><b data-n="14">14</b><span>Chapters</span></div>
+    <div><b data-n="20">20</b><span>Chapters</span></div>
   </div>
 
   <section id="how">
     <div class="eyebrow">How it works</div>
     <h2 class="sec">Three ways to <span>study</span></h2>
     <div class="steps">
-      <div class="step"><div class="n">1</div><h3>Search a structure</h3><p>Type a name. Every image that shows it opens with the structure circled.</p></div>
+      <div class="step"><div class="n">1</div><h3>Search a structure</h3><p>Use Find a structure at the top right of any page. Every image that shows it opens with the structure circled.</p></div>
       <div class="step"><div class="n">2</div><h3>Practice a card</h3><p>Type the answers, tap to reveal, or study with every label showing.</p></div>
       <div class="step"><div class="n">3</div><h3>Print and laminate</h3><p>Practice on the front, answer key on the back. Use a dry-erase marker.</p></div>
     </div>
@@ -160,8 +165,8 @@ footer{padding-block:36px 52px;border-top:.5px solid var(--navy-15);display:flex
 
   <section id="chapters">
     <div class="eyebrow">Chapters</div>
-    <h2 class="sec">What is <span>inside</span></h2>
-    <div class="chapters"><a class="chap live" href="heart.html"><small>Ready to study</small><b>Heart</b><span style="font-size:14px;color:#4F576A">32 cards · 78 structures</span></a><a class="chap live" href="muscle.html"><small>Ready to study</small><b>Muscle Tissue</b><span style="font-size:14px;color:#4F576A">5 cards · 18 structures</span></a><div class="chap"><small>Coming soon</small><b>Upper Extremity Muscles</b></div><div class="chap"><small>Coming soon</small><b>Head, Neck and Trunk Muscles</b></div><div class="chap"><small>Coming soon</small><b>Thigh Muscles</b></div><div class="chap"><small>Coming soon</small><b>Blood and Blood Vessels</b></div><div class="chap"><small>Coming soon</small><b>Brain, Spinal Cord and Nerves</b></div><div class="chap"><small>Coming soon</small><b>Tissues, Bone and Cartilage</b></div><div class="chap"><small>Coming soon</small><b>Skeleton and Joints</b></div><div class="chap"><small>Coming soon</small><b>Body Regions and Cavities</b></div><div class="chap"><small>Coming soon</small><b>Respiratory System</b></div><div class="chap"><small>Coming soon</small><b>Digestive System</b></div><div class="chap"><small>Coming soon</small><b>Urinary System</b></div><div class="chap"><small>Coming soon</small><b>Reproductive System</b></div></div>
+    <h2 class="sec">Five modules, <span>one atlas</span></h2>
+    <div class="chapters"><a class="chap mod" href="atlas.html"><small>Module 1</small><b>Body plan, tissues and skin</b><span style="font-size:14px;color:#4F576A">2 chapters · 0 ready</span></a><a class="chap mod" href="atlas.html"><small>Module 2</small><b>Bones, skeleton and joints</b><span style="font-size:14px;color:#4F576A">3 chapters · 0 ready</span></a><a class="chap mod" href="atlas.html"><small>Module 3</small><b>Muscles, heart, vessels and blood</b><span style="font-size:14px;color:#4F576A">6 chapters · 2 ready</span></a><a class="chap mod" href="atlas.html"><small>Module 4</small><b>Trunk organs and lower limb muscles</b><span style="font-size:14px;color:#4F576A">6 chapters · 0 ready</span></a><a class="chap mod" href="atlas.html"><small>Module 5</small><b>Nervous system and head muscles</b><span style="font-size:14px;color:#4F576A">3 chapters · 0 ready</span></a></div>
   </section>
 
   <section id="thanks" style="padding-top:0">
@@ -181,6 +186,8 @@ footer{padding-block:36px 52px;border-top:.5px solid var(--navy-15);display:flex
   </footer>
 </div>
 
+<script src="search-data.js"></script>
+<script src="search.js"></script>
 <script>
 (function(){
   const film=document.getElementById('film');
