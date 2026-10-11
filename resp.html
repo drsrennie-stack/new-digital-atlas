@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
 <title>Respiratory System Practice Cards</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,6 +111,8 @@ ol.answers li.hot{background:var(--gold-soft)}
 .nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 footer.note{font-size:14px;color:var(--muted)}
 @media (prefers-reduced-motion:no-preference){.pin circle,.num,.reveal{transition:fill .15s,background .15s}}
+.vids h2{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,3vw,28px);margin:8px 0 2px;color:var(--navy)}
+.vids-sub{color:var(--muted);margin:0 0 12px;font-size:15px}
 </style>
 
 <div class="wrap">
@@ -146,12 +150,15 @@ footer.note{font-size:14px;color:var(--muted)}
       </div>
     </section>
   </main>
+  <section class="vids" id="vids" data-videos="resp" hidden aria-labelledby="vidsH"><h2 id="vidsH">Walk-through videos</h2><p class="vids-sub">Watch the structures pointed out, then practice them on the cards above.</p></section>
   <section class="more" id="more" hidden><h2>Further study</h2><div id="moreLinks"></div></section>
   <footer class="note">Spelling doesn't have to be perfect, and common abbreviations count (R., L., A., V., SVC, IVC, LAD, SA node). Your progress stays on this device.</footer>
 </div>
 
 <script src="search-data.js"></script>
 <script src="search.js"></script>
+<script src="videos-data.js"></script>
+<script src="videos.js"></script>
 <script>
 const DECK={"id": "resp", "title": "Respiratory System", "sets": {"larynx": "Larynx"}, "cards": [{"id": "01", "n": 1, "title": "Larynx, posterior view", "set": "larynx", "type": "label", "w": 2258, "h": 1460, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Epiglottis", "x": 390, "y": 130, "box": [330, 125, 340, 135], "q": "Name this flap at the top.", "acc": [], "tags": ["Epiglottis"]}, {"n": 2, "lab": "2", "a": "Cuneiform cartilage", "x": 1648, "y": 250, "box": [1698, 245, 1708, 255], "q": "Name this small cartilage.", "acc": ["cuneiform"], "tags": ["Cuneiform cartilage"]}, {"n": 3, "lab": "3", "a": "Thyroid cartilage", "x": 390, "y": 400, "box": [330, 395, 340, 405], "q": "Name this cartilage.", "acc": [], "tags": ["Thyroid cartilage"]}, {"n": 4, "lab": "4", "a": "Corniculate cartilage", "x": 1648, "y": 420, "box": [1698, 415, 1708, 425], "q": "Name this small cartilage.", "acc": ["corniculate"], "tags": ["Corniculate cartilage"]}, {"n": 5, "lab": "5", "a": "Arytenoid cartilage", "x": 390, "y": 560, "box": [330, 555, 340, 565], "q": "Name this cartilage.", "acc": ["arytenoid", "arytenoids"], "tags": ["Arytenoid cartilage"]}, {"n": 6, "lab": "6", "a": "Posterior cricoarytenoid muscle", "x": 1648, "y": 700, "box": [1698, 695, 1708, 705], "q": "Name this muscle.", "acc": ["posterior cricoarytenoid", "pca"], "tags": ["Posterior cricoarytenoid muscle"]}, {"n": 7, "lab": "7", "a": "Cricoid cartilage", "x": 390, "y": 790, "box": [330, 785, 340, 795], "q": "Name this cartilage.", "acc": ["cricoid"], "tags": ["Cricoid cartilage"]}, {"n": 8, "lab": "8", "a": "Thyroid gland", "x": 1648, "y": 1000, "box": [1698, 995, 1708, 1005], "q": "Name this gland.", "acc": [], "tags": ["Thyroid gland"]}, {"n": 9, "lab": "9", "a": "Tracheal cartilage (C-ring)", "x": 390, "y": 1080, "box": [330, 1075, 340, 1085], "q": "Name these rings.", "acc": ["tracheal cartilage", "tracheal cartilages", "c-ring", "c-rings", "c rings", "trachea", "tracheal rings"], "tags": ["Tracheal cartilage", "C-ring"]}, {"n": 10, "lab": "10", "a": "Trachealis muscle", "x": 390, "y": 1230, "box": [330, 1225, 340, 1235], "q": "Name this muscle.", "acc": ["trachealis"], "tags": ["Trachealis muscle"]}], "items": [], "img": "img/resp-01.jpg"}]};
 const SETS=DECK.sets, CARDS=DECK.cards;
@@ -303,3 +310,5 @@ $('dSw').onclick=()=>{nameOnly=!nameOnly;store.set('atlasNameOnly_'+DECK.id,name
 renderDepth();
 if(!fromHash()){renderSets();load()}
 </script>
+
+</html>

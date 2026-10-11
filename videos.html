@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Walk-through Videos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --navy:#0B1530; --navy-72:#4F576A; --line:rgba(11,21,48,.15); --tint:#F3F4F7;
+  --terra:#8B3A2E; --gold:#DCB45C; --white:#fff;
+  --f-display:"Open Sans","Plus Jakarta Sans",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;font-style:normal}
+body{margin:0;background:var(--white);color:var(--navy);font-family:var(--f-body);font-size:17px;line-height:1.5}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--terra);outline-offset:3px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:12px;background:var(--navy);color:var(--white);padding:10px 14px;border-radius:4px;z-index:10}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:max(16px,5vw);padding-block:18px 64px}
+header.top{display:flex;align-items:center;gap:18px;flex-wrap:wrap;min-height:44px;padding-right:200px}
+@media (max-width:600px){header.top{padding-right:56px}}
+.brand{font-family:var(--f-display);font-weight:800;font-size:17px;text-decoration:none}
+.brand span{color:var(--terra)}
+.top a.back{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--navy-72)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--terra)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(36px,6vw,64px);line-height:1;letter-spacing:-.03em;margin:.3em 0 .25em}
+h1 span{color:var(--terra)}
+.lede{color:var(--navy-72);margin:0 0 22px;max-width:52ch}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.jump a{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:10px 14px;border-radius:99px;background:var(--tint);color:var(--navy)}
+.jump a:hover{background:var(--navy);color:var(--white)}
+section.mod{margin-top:34px}
+section.mod>h2{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3.4vw,36px);letter-spacing:-.02em;margin:0 0 4px}
+section.mod>p{color:var(--navy-72);margin:0 0 6px;font-size:15.5px}
+.ch{margin-top:22px;scroll-margin-top:16px}
+.ch h3{font-size:19px;font-weight:800;margin:0 0 10px}
+.ch h3 small{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-72);margin-left:8px}
+.ch h3 a{color:var(--terra);font-size:13px;font-weight:700;margin-left:10px}
+footer{margin-top:48px;padding-top:22px;border-top:.5px solid var(--line);font-size:13px;color:var(--navy-72)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the videos</a>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="welcome.html">BIO 004 <span>Human Anatomy</span> · Solano College</a>
+    <a class="back" href="atlas.html">Atlas index</a>
+  </header>
+  <main id="main">
+    <div class="eyebrow" style="margin-top:28px">Anatomy Atlas · Dr. Sharilyn Rennie</div>
+    <h1>Walk-through <span>videos</span></h1>
+    <p class="lede">Watch the structures pointed out on a model, then find them yourself in lab. Tap a video to play it here, or scan its code to watch on your phone.</p>
+    <nav class="jump" id="jump" aria-label="Jump to a module"></nav>
+    <div id="mods"></div>
+  </main>
+  <footer>All videos on this page are made by Ninja Nerd and play from YouTube. This page only sorts and links to them.</footer>
+</div>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="videos-data.js"></script>
+<script src="videos.js"></script>
+<script>
+(function(){
+  var MODS=[['1','Module 1','Body plan, tissues and skin'],['2','Module 2','Bones, skeleton and joints'],['3','Module 3','Muscles, heart, vessels and blood'],['4','Module 4','Trunk organs and lower limb muscles'],['5','Module 5','Nervous system and head muscles']];
+  var LIVE={heart:1,upper:1,uevn:1,back:1,resp:1};
+  var V=window.ATLAS_VIDEOS, box=document.getElementById('mods'), jump=document.getElementById('jump');
+  MODS.forEach(function(m){
+    var list=V.chapters.filter(function(c){return c.module===m[0]});
+    if(!list.length) return;
+    var s=document.createElement('section'); s.className='mod'; s.id='module-'+m[0];
+    s.setAttribute('aria-labelledby','mh-'+m[0]);
+    s.innerHTML='<h2 id="mh-'+m[0]+'"></h2><p></p>';
+    s.querySelector('h2').textContent=m[1]; s.querySelector('p').textContent=m[2];
+    list.forEach(function(c){
+      var d=document.createElement('div'); d.className='ch'; d.id=c.key;
+      var h=document.createElement('h3'); h.textContent=c.title;
+      var sm=document.createElement('small'); sm.textContent=c.ids.length+(c.ids.length===1?' video':' videos'); h.appendChild(sm);
+      if(LIVE[c.key]){var a=document.createElement('a'); a.href=c.key+'.html'; a.textContent='Practice cards'; h.appendChild(a);}
+      d.appendChild(h); d.appendChild(window.atlasVideoCards(c.key)); s.appendChild(d);
+    });
+    box.appendChild(s);
+    var j=document.createElement('a'); j.href='#module-'+m[0]; j.textContent=m[1]; jump.appendChild(j);
+  });
+  if(location.hash){var t=document.getElementById(location.hash.slice(1)); if(t) t.scrollIntoView();}
+})();
+</script>
+</body>
+</html>
