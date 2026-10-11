@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
 <title>Muscle Tissue Practice Cards</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,6 +111,8 @@ ol.answers li.hot{background:var(--gold-soft)}
 .nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 footer.note{font-size:14px;color:var(--muted)}
 @media (prefers-reduced-motion:no-preference){.pin circle,.num,.reveal{transition:fill .15s,background .15s}}
+.vids h2{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,3vw,28px);margin:8px 0 2px;color:var(--navy)}
+.vids-sub{color:var(--muted);margin:0 0 12px;font-size:15px}
 </style>
 
 <div class="wrap">
@@ -146,12 +150,15 @@ footer.note{font-size:14px;color:var(--muted)}
       </div>
     </section>
   </main>
+  <section class="vids" id="vids" data-videos="muscle" hidden aria-labelledby="vidsH"><h2 id="vidsH">Walk-through videos</h2><p class="vids-sub">Watch the structures pointed out, then practice them on the cards above.</p></section>
   <section class="more" id="more" hidden><h2>Further study</h2><div id="moreLinks"></div></section>
-  <footer class="note">Spelling doesn't have to be perfect, and common abbreviations count (R., L., A., V., SVC, IVC, LAD, SA node). Your progress stays on this device.</footer>
+  <footer class="note"><b>Spelling counts on the lab exam.</b> Practice here accepts close spellings, but on the exam the only abbreviations allowed are R. (right), L. (left), A. (artery), V. (vein) and N. (nerve). Spell everything else out. Your progress stays on this device. Cadaver images courtesy of BlueLink, University of Michigan Medical School. Histology images courtesy of Duke University Virtual Microscopy.</footer>
 </div>
 
 <script src="search-data.js"></script>
 <script src="search.js"></script>
+<script src="videos-data.js"></script>
+<script src="videos.js"></script>
 <script>
 const DECK={"id": "muscle", "title": "Muscle Tissue", "sets": {"histo": "Muscle histology", "micro": "Muscle microanatomy"}, "cards": [{"id": "01", "n": 1, "title": "Muscle tissue 1", "set": "histo", "type": "qa", "w": 1143, "h": 858, "r": 0, "pins": [], "items": [{"q": "Name this tissue.", "a": "Skeletal muscle tissue", "self": false, "acc": ["skeletal muscle", "skeletal"]}, {"q": "Is it voluntary or involuntary?", "a": "Voluntary", "self": false, "acc": ["voluntary"]}, {"q": "What does this tissue do?", "a": "Locomotion and movement; heat generation", "self": true, "acc": []}, {"q": "Where is this tissue found?", "a": "Attached to bones", "self": true, "acc": []}], "img": "img/muscle-01.jpg"}, {"id": "02", "n": 2, "title": "Muscle tissue 2", "set": "histo", "type": "qa", "w": 992, "h": 1018, "r": 0, "pins": [], "items": [{"q": "Name this tissue.", "a": "Cardiac muscle tissue", "self": false, "acc": ["cardiac muscle", "cardiac"]}, {"q": "Name the structure at the end of the arrow.", "a": "Intercalated disc", "self": false, "acc": ["intercalated disc", "intercalated disk"]}, {"q": "Is it voluntary or involuntary?", "a": "Involuntary", "self": false, "acc": ["involuntary"]}, {"q": "What does this tissue do?", "a": "Pumps blood (generates cardiac output)", "self": true, "acc": []}, {"q": "Where is this tissue found?", "a": "Heart wall", "self": true, "acc": []}], "img": "img/muscle-02.jpg"}, {"id": "03", "n": 3, "title": "Muscle tissue 3", "set": "histo", "type": "qa", "w": 1086, "h": 869, "r": 0, "pins": [], "items": [{"q": "Name this tissue.", "a": "Smooth muscle tissue", "self": false, "acc": ["smooth muscle", "smooth"]}, {"q": "Is it voluntary or involuntary?", "a": "Involuntary", "self": false, "acc": ["involuntary"]}, {"q": "What does this tissue do?", "a": "Movement of blood, fluid, and food boluses", "self": true, "acc": []}, {"q": "Where is this tissue found?", "a": "Blood vessels, GI tract, eye", "self": true, "acc": []}], "img": "img/muscle-03.jpg"}, {"id": "04", "n": 4, "title": "Inside a skeletal muscle fiber", "set": "micro", "type": "label", "w": 1490, "h": 1131, "r": 34, "items": [], "pins": [{"n": 1, "lab": "1", "a": "Myofibril", "x": 559, "y": 94, "box": [511, 79, 607, 109], "tags": ["Myofibril"]}, {"n": 2, "lab": "2", "a": "Sarcoplasmic reticulum", "x": 453, "y": 365, "box": [319, 321, 466, 372], "tags": ["Sarcoplasmic reticulum"]}, {"n": 3, "lab": "3", "a": "Transverse (T) tubule", "x": 412, "y": 451, "box": [165, 438, 404, 464], "tags": ["Transverse tubule", "T", "t tubule"]}, {"n": 4, "lab": "4", "a": "Triad (one T tubule + two terminal cisterns)", "x": 432, "y": 612, "box": [168, 570, 424, 653], "tags": ["Triad"]}, {"n": 5, "lab": "5", "a": "Terminal cistern", "x": 487, "y": 836, "box": [305, 825, 479, 848], "tags": ["Terminal cistern", "terminal cisterna", "terminal cisternae"]}, {"n": 6, "lab": "6", "a": "Sarcomere", "x": 1026, "y": 502, "box": [963, 484, 1088, 520], "tags": ["Sarcomere"]}, {"n": 7, "lab": "7", "a": "Sarcolemma", "x": 775, "y": 1035, "box": [775, 1035, 775, 1035], "tags": ["Sarcolemma"]}, {"n": 8, "lab": "8", "a": "Sarcoplasm", "x": 582, "y": 913, "box": [582, 913, 582, 913], "tags": ["Sarcoplasm"]}], "img": "img/muscle-04.jpg"}, {"id": "05", "n": 5, "title": "Bands of the sarcomere", "set": "micro", "type": "label", "w": 1299, "h": 1042, "r": 34, "items": [], "pins": [{"n": 1, "lab": "A", "a": "M line", "x": 666, "y": 94, "box": [647, 75, 684, 114], "tags": ["M line"]}, {"n": 2, "lab": "B", "a": "H zone", "x": 634, "y": 802, "box": [617, 780, 652, 824], "tags": ["H zone"]}, {"n": 3, "lab": "C", "a": "A band", "x": 494, "y": 94, "box": [476, 74, 512, 115], "tags": ["A band"]}, {"n": 4, "lab": "D", "a": "I band", "x": 283, "y": 94, "box": [266, 75, 300, 114], "tags": ["I band"]}, {"n": 5, "lab": "E", "a": "Z disc (Z line)", "x": 1128, "y": 94, "box": [1110, 75, 1146, 114], "tags": ["Z disc", "Z line", "z disk"]}, {"n": 6, "lab": "F", "a": "One sarcomere (Z disc to Z disc)", "x": 607, "y": 967, "box": [592, 945, 622, 989], "tags": ["One sarcomere", "Z disc to Z disc", "z line to z line", "z disk to z disk"]}], "img": "img/muscle-05.jpg"}], "links": [{"t": "Duke Virtual Microscopy", "u": "https://histology.oit.duke.edu/", "d": "Zoom through real slides of skeletal, cardiac and smooth muscle like you would on a microscope."}, {"t": "Digital Histology", "u": "https://digitalhistology.org/", "d": "Labeled slides with short explanations of each tissue."}, {"t": "Histology Guide Slide Box", "u": "https://histologyguide.com/slidebox/slidebox.html", "d": "A full box of virtual slides sorted by tissue and organ."}]};
 const SETS=DECK.sets, CARDS=DECK.cards;
@@ -303,3 +310,5 @@ $('dSw').onclick=()=>{nameOnly=!nameOnly;store.set('atlasNameOnly_'+DECK.id,name
 renderDepth();
 if(!fromHash()){renderSets();load()}
 </script>
+
+</html>
