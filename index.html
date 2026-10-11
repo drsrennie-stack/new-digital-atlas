@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Anatomy Atlas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: a short cinematic opening (greeting drawn on, title, specimen montage) that settles into a quiet editorial landing page. MedMasters house system: white ground, navy ink and boxes, terra as the one accent, hairline cards, a single gold word in the navy band. */
+:root{
+  --navy:#0B1530; --navy-72:#4F576A; --navy-15:rgba(11,21,48,.15); --navy-tint:#F3F4F7;
+  --terra:#8B3A2E; --gold:#DCB45C; --white:#FFFFFF;
+  --f-display:"Open Sans","Plus Jakarta Sans",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;font-style:normal}
+html,body{background:var(--white)}
+body{margin:0;color:var(--navy);font-family:var(--f-body);font-size:17px;line-height:1.55}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--terra);outline-offset:3px}
+
+/* ---------- opening film ---------- */
+#film{position:fixed;inset:0;z-index:20;background:var(--white);display:grid;place-items:center;overflow:hidden;transition:opacity .9s ease,visibility .9s}
+#film.done{opacity:0;visibility:hidden}
+.scene{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .8s ease}
+.scene.on{opacity:1}
+.hello svg{width:min(88vw,1100px);height:auto;overflow:visible}
+.hello text{font-family:var(--f-display);font-weight:800;font-size:200px;letter-spacing:-6px;fill:transparent;stroke:var(--navy);stroke-width:2.2;stroke-dasharray:1400;stroke-dashoffset:1400}
+.hello.on text{animation:draw 1.9s ease forwards,fill .7s ease 1.5s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fill{to{fill:var(--navy)}}
+.word{font-family:var(--f-body);font-weight:600;font-size:clamp(15px,2vw,20px);letter-spacing:.32em;text-transform:uppercase;color:var(--terra);position:absolute;bottom:22vh;left:0;right:0;text-align:center;opacity:0;transition:opacity .6s ease .9s}
+.hello.on .word{opacity:1}
+.title-scene{text-align:center;padding:0 24px}
+.title-scene .eb{font-weight:700;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--terra);transform:translateY(12px);opacity:0;transition:all .8s ease .2s}
+.title-scene h2{font-family:var(--f-display);font-weight:800;font-size:clamp(46px,9vw,124px);line-height:.95;letter-spacing:-.03em;margin:.18em 0 0;transform:scale(1.08);opacity:0;transition:all 1.4s cubic-bezier(.2,.7,.1,1) .35s}
+.title-scene h2 span{color:var(--terra)}
+.title-scene.on .eb,.title-scene.on h2{transform:none;opacity:1}
+.montage{grid-template-columns:repeat(3,1fr);gap:1.4vw;padding:6vh 6vw;place-items:stretch}
+.montage figure{margin:0;overflow:hidden;border-radius:8px;background:var(--white);border:.5px solid var(--navy-15)}
+.montage img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);opacity:0;transition:transform 4.2s ease,opacity 1s ease}
+.montage.on img{transform:scale(1);opacity:1}
+.montage.on figure:nth-child(2) img{transition-delay:.25s}.montage.on figure:nth-child(3) img{transition-delay:.5s}
+.montage.on figure:nth-child(4) img{transition-delay:.75s}.montage.on figure:nth-child(5) img{transition-delay:1s}.montage.on figure:nth-child(6) img{transition-delay:1.25s}
+.skip{position:absolute;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:3;font:600 12px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--navy);background:var(--white);border:.5px solid var(--navy-15);border-radius:4px;padding:11px 16px;cursor:pointer}
+
+/* ---------- landing ---------- */
+.wrap{max-width:1160px;margin:0 auto;padding-inline:max(20px,5vw)}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px}
+.brand{font-family:var(--f-display);font-weight:800;font-size:17px;letter-spacing:-.01em;text-decoration:none}
+.brand span{color:var(--terra)}
+.top nav{display:flex;gap:18px;flex-wrap:wrap}
+.top nav a{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--navy-72)}
+.top nav a:hover{color:var(--terra)}
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(24px,6vw,72px) clamp(40px,6vw,80px)}
+@media (max-width:860px){.hero{grid-template-columns:1fr}}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--terra)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,7vw,92px);line-height:.98;letter-spacing:-.03em;margin:.2em 0 .3em;text-wrap:balance}
+h1 span{color:var(--terra)}
+.lede{font-size:clamp(17px,1.6vw,20px);color:var(--navy-72);max-width:34ch;margin:0 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:16px 24px;border-radius:4px;border:1px solid var(--navy)}
+.btn.primary{background:var(--terra);border-color:var(--terra);color:var(--white)}
+.btn.primary:hover{background:#6F2C22;border-color:#6F2C22}
+.btn.ghost{background:var(--white);color:var(--navy)}
+.stage{position:relative;aspect-ratio:4/3.4;max-width:100%}
+.stage figure{position:absolute;margin:0;border-radius:8px;overflow:hidden;background:var(--white);border:.5px solid var(--navy-15)}
+.stage img{display:block;width:100%;height:100%;object-fit:cover}
+.stage .a{inset:0 22% 26% 0}
+.stage .b{right:0;top:18%;width:44%;height:46%}
+.stage .c{left:12%;bottom:0;width:52%;height:34%}
+@media (prefers-reduced-motion:no-preference){.stage .a img{animation:drift 18s ease-in-out infinite alternate}}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-2%,-1%)}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:.5px solid var(--navy-15);border-bottom:.5px solid var(--navy-15)}
+.stats div{padding:26px 8px;text-align:center}
+.stats div+div{border-left:.5px solid var(--navy-15)}
+.stats b{display:block;font-family:var(--f-display);font-weight:800;font-size:clamp(36px,5vw,58px);line-height:1;color:var(--navy);font-variant-numeric:tabular-nums}
+.stats span{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--navy-72)}
+section{padding-block:clamp(48px,7vw,88px)}
+h2.sec{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1.05;letter-spacing:-.02em;margin:.25em 0 .8em;text-wrap:balance}
+h2.sec span{color:var(--terra)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+.step{border:.5px solid var(--navy-15);border-radius:8px;padding:24px 22px;background:var(--white)}
+.step .n{font-family:var(--f-display);font-weight:800;font-size:56px;line-height:1;color:var(--terra)}
+.step h3{font-size:19px;font-weight:800;margin:10px 0 6px}
+.step p{margin:0;color:var(--navy-72);font-size:15.5px}
+.band{background:var(--navy);color:var(--white);border-radius:8px;padding:clamp(32px,5vw,56px);display:grid;gap:14px}
+.band .eyebrow{color:#E8CE85}
+.band p.big{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3.4vw,40px);line-height:1.15;margin:0;text-wrap:balance}
+.band p.big span{color:var(--gold)}
+.chapters{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.chap{border:.5px solid var(--navy-15);border-radius:8px;padding:18px;display:grid;gap:6px;text-decoration:none;background:var(--white)}
+.chap.live{border:2px solid var(--terra)}
+.chap b{font-size:16px}
+.chap small{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy-72)}
+.chap.live small{color:var(--terra)}
+.thanks{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:center;border:.5px solid var(--navy-15);border-radius:8px;padding:28px}
+@media (max-width:640px){.thanks{grid-template-columns:1fr}}
+.seal{width:84px;height:84px;border-radius:50%;background:var(--navy);display:grid;place-items:center;color:var(--gold);font-family:var(--f-display);font-weight:800;font-size:15px;letter-spacing:.06em;text-align:center;line-height:1.05}
+.thanks h3{margin:0 0 6px;font-size:21px;font-weight:800}
+.thanks p{margin:0;color:var(--navy-72)}
+footer{padding-block:36px 52px;border-top:.5px solid var(--navy-15);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:13px;color:var(--navy-72)}
+@media (prefers-reduced-motion:reduce){#film{display:none}}
+</style>
+
+</head>
+<body>
+<div id="film" aria-hidden="true">
+  <div class="scene hello" id="s1">
+    <svg viewBox="0 0 1100 300"><text id="hw" x="550" y="225" text-anchor="middle">hello</text></svg>
+    <div class="word" id="hl">Welcome</div>
+  </div>
+  <div class="scene title-scene" id="s2">
+    <div><div class="eb">MedMasters Collaborative presents</div><h2>The Anatomy <span>Atlas</span></h2></div>
+  </div>
+  <div class="scene montage" id="s3"><figure><img src="img/heart-01.jpg" alt=""></figure><figure><img src="img/heart-17.jpg" alt=""></figure><figure><img src="img/heart-31.jpg" alt=""></figure><figure><img src="img/muscle-04.jpg" alt=""></figure><figure><img src="img/heart-07.jpg" alt=""></figure><figure><img src="img/heart-32.jpg" alt=""></figure></div>
+  <button class="skip" id="skip" type="button">Skip intro</button>
+</div>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top" id="top">MedMasters <span>Collaborative</span></a>
+    <nav aria-label="Atlas"><a href="atlas.html">Find a structure</a><a href="#chapters">Chapters</a><a href="#thanks">Thanks</a></nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Anatomy Atlas · Dr. Sharilyn Rennie</div>
+      <h1>Every structure. <span>Every specimen.</span></h1>
+      <p class="lede">Real cadavers, classroom models and slides, all searchable and ready to practice.</p>
+      <div class="btns"><a class="btn primary" href="atlas.html">Enter the atlas</a><a class="btn ghost" href="#how">How it works</a></div>
+    </div>
+    <div class="stage" aria-hidden="true"><figure class="a"><img src="img/heart-01.jpg" alt=""></figure><figure class="b"><img src="img/heart-31.jpg" alt=""></figure><figure class="c"><img src="img/muscle-04.jpg" alt=""></figure></div>
+  </div>
+
+  <div class="stats" aria-label="What is in the atlas">
+    <div><b data-n="37">37</b><span>Practice cards</span></div>
+    <div><b data-n="96">96</b><span>Structures tagged</span></div>
+    <div><b data-n="14">14</b><span>Chapters</span></div>
+  </div>
+
+  <section id="how">
+    <div class="eyebrow">How it works</div>
+    <h2 class="sec">Three ways to <span>study</span></h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Search a structure</h3><p>Type a name. Every image that shows it opens with the structure circled.</p></div>
+      <div class="step"><div class="n">2</div><h3>Practice a card</h3><p>Type the answers, tap to reveal, or study with every label showing.</p></div>
+      <div class="step"><div class="n">3</div><h3>Print and laminate</h3><p>Practice on the front, answer key on the back. Use a dry-erase marker.</p></div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="eyebrow">Built for lab day</div>
+    <p class="big">Learn it on the model, then find it on the <span>cadaver</span>.</p>
+  </div>
+
+  <section id="chapters">
+    <div class="eyebrow">Chapters</div>
+    <h2 class="sec">What is <span>inside</span></h2>
+    <div class="chapters"><a class="chap live" href="heart.html"><small>Ready to study</small><b>Heart</b><span style="font-size:14px;color:#4F576A">32 cards · 78 structures</span></a><a class="chap live" href="muscle.html"><small>Ready to study</small><b>Muscle Tissue</b><span style="font-size:14px;color:#4F576A">5 cards · 18 structures</span></a><div class="chap"><small>Coming soon</small><b>Upper Extremity Muscles</b></div><div class="chap"><small>Coming soon</small><b>Head, Neck and Trunk Muscles</b></div><div class="chap"><small>Coming soon</small><b>Thigh Muscles</b></div><div class="chap"><small>Coming soon</small><b>Blood and Blood Vessels</b></div><div class="chap"><small>Coming soon</small><b>Brain, Spinal Cord and Nerves</b></div><div class="chap"><small>Coming soon</small><b>Tissues, Bone and Cartilage</b></div><div class="chap"><small>Coming soon</small><b>Skeleton and Joints</b></div><div class="chap"><small>Coming soon</small><b>Body Regions and Cavities</b></div><div class="chap"><small>Coming soon</small><b>Respiratory System</b></div><div class="chap"><small>Coming soon</small><b>Digestive System</b></div><div class="chap"><small>Coming soon</small><b>Urinary System</b></div><div class="chap"><small>Coming soon</small><b>Reproductive System</b></div></div>
+  </section>
+
+  <section id="thanks" style="padding-top:0">
+    <div class="thanks">
+      <div class="seal" aria-hidden="true">Blue<br>Link</div>
+      <div>
+        <div class="eyebrow">Special thanks</div>
+        <h3>University of Michigan Medical School</h3>
+        <p>Our cadaver images come from BlueLink, the University of Michigan Medical School's anatomy collection. Thank you for sharing them with students everywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Dr. Sharilyn Rennie · MedMasters Collaborative</span>
+    <span>For enrolled students. Please do not share images outside the course.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const film=document.getElementById('film');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seen=false;try{seen=sessionStorage.getItem('atlasIntro')==='1'}catch(e){}
+  const end=()=>{film.classList.add('done');try{sessionStorage.setItem('atlasIntro','1')}catch(e){}};
+  document.getElementById('skip').onclick=end;
+  if(reduce||seen){film.classList.add('done');return}
+  const s=[1,2,3].map(i=>document.getElementById('s'+i));
+  const hw=document.getElementById('hw'),hl=document.getElementById('hl');
+  const greet=[['hello','Welcome'],['hola','Bienvenidos'],['kumusta','Maligayang pagdating']];
+  let t=0;const at=(ms,f)=>setTimeout(f,t+=ms);
+  greet.forEach(([w,l],i)=>{
+    if(i) at(2300,()=>s[0].classList.remove('on'));
+    at(i?800:200,()=>{hw.textContent=w;hl.textContent=l;void hw.getBBox();s[0].classList.add('on')});
+  });
+  at(2700,()=>{s[0].classList.remove('on');s[1].classList.add('on')});
+  at(2600,()=>{s[1].classList.remove('on');s[2].classList.add('on')});
+  at(4200,end);
+})();
+</script>
+
+</body>
+</html>
