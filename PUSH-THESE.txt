@@ -1,40 +1,14 @@
-MODULE 5 UPDATE: Brain and Cranial Nerves, Spinal Cord, Head Muscles (face, jaw, eye)
+UPDATE: face and jaw muscles moved into Upper Extremity Muscles; Module 5 head chapter is now Eye Muscles only.
 
-This one zip goes to TWO places. Unzip it first.
+Same two places as before:
+1) GitHub new-digital-atlas: Add file > Upload files, drag everything in (img and pdf as FOLDERS), commit.
+2) Canvas Anatomy-Atlas folder: upload this zip and expand it there, replacing files.
 
-1) GitHub: new-digital-atlas (the atlas repo, NOT the course site)
-   Add file > Upload files. Select everything inside the unzipped folder at once,
-   including the img and pdf FOLDERS themselves (drag the folders, do not open them), then commit.
+Optional cleanup: img/headneck-11.jpg through img/headneck-26.jpg are no longer used and can be deleted.
 
-2) Canvas: your Anatomy-Atlas folder in Files
-   Upload this zip into the Anatomy-Atlas folder and choose to expand (unzip) it there.
-   Replace files when Canvas asks.
-
-New pages: brain.html, spinal.html, headneck.html
-Updated: atlas.html, welcome.html, index.html, search-data.js
-New PDFs: pdf/brain-cards.pdf, pdf/spinal-cards.pdf, pdf/headneck-cards.pdf
-New pictures: img/brain-*, img/spinal-*, img/headneck-*
-
-Files (58 incl. this note):
+Files:
 atlas.html
-brain.html
 headneck.html
-img/brain-01.jpg
-img/brain-02.jpg
-img/brain-03.jpg
-img/brain-04.jpg
-img/brain-05.jpg
-img/brain-06.jpg
-img/brain-07.jpg
-img/brain-08.jpg
-img/brain-09.jpg
-img/brain-10.jpg
-img/brain-11.jpg
-img/brain-12.jpg
-img/brain-13.jpg
-img/brain-14.jpg
-img/brain-15.jpg
-img/brain-16.jpg
 img/headneck-01.jpg
 img/headneck-02.jpg
 img/headneck-03.jpg
@@ -45,32 +19,23 @@ img/headneck-07.jpg
 img/headneck-08.jpg
 img/headneck-09.jpg
 img/headneck-10.jpg
-img/headneck-11.jpg
-img/headneck-12.jpg
-img/headneck-13.jpg
-img/headneck-14.jpg
-img/headneck-15.jpg
-img/headneck-16.jpg
-img/headneck-17.jpg
-img/headneck-18.jpg
-img/headneck-19.jpg
-img/headneck-20.jpg
-img/headneck-21.jpg
-img/headneck-22.jpg
-img/headneck-23.jpg
-img/headneck-24.jpg
-img/headneck-25.jpg
-img/headneck-26.jpg
-img/spinal-01.jpg
-img/spinal-02.jpg
-img/spinal-03.jpg
-img/spinal-04.jpg
-img/spinal-05.jpg
-img/spinal-06.jpg
-index.html
-pdf/brain-cards.pdf
+img/upper-48.jpg
+img/upper-49.jpg
+img/upper-50.jpg
+img/upper-51.jpg
+img/upper-52.jpg
+img/upper-53.jpg
+img/upper-54.jpg
+img/upper-55.jpg
+img/upper-56.jpg
+img/upper-57.jpg
+img/upper-58.jpg
+img/upper-59.jpg
+img/upper-60.jpg
+img/upper-61.jpg
+img/upper-62.jpg
+img/upper-63.jpg
 pdf/headneck-cards.pdf
-pdf/spinal-cards.pdf
+pdf/upper-cards.pdf
 search-data.js
-spinal.html
-welcome.html
+upper.html
