@@ -3,7 +3,7 @@
 (function(){
   const css=`
   .ss-btn{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;z-index:30;display:flex;align-items:center;gap:8px;
-    font:800 13px/1 "Plus Jakarta Sans",system-ui,sans-serif;color:#0B1530;background:#fff;border:.5px solid rgba(11,21,48,.15);border-radius:99px;
+    font:600 13px/1 "Plus Jakarta Sans",system-ui,sans-serif;color:#0B1530;background:#fff;border:.5px solid rgba(11,21,48,.15);border-radius:99px;
     padding:9px 14px 9px 12px;cursor:pointer;box-shadow:0 1px 3px rgba(11,21,48,.08)}
   .ss-btn:hover{border-color:#8B3A2E;color:#8B3A2E}
   .ss-btn kbd{font:600 11px/1 "Plus Jakarta Sans",system-ui,sans-serif;color:#4F576A;border:.5px solid rgba(11,21,48,.2);border-radius:4px;padding:3px 5px}

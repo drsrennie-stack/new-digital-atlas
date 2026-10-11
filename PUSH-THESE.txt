@@ -1,15 +1,106 @@
-BIO 004 course site: Digital Atlas link swap
-Drag every file in this folder into the repo root of new-build-bio4-solano. Each file replaces the copy already there.
+PUSH TO: new-digital-atlas (the atlas repo).
 
-What changed: every link to the old Articulate atlas (share.articulate.com/UOHEe3p6DmTC4nXuUTE02) now opens the new Anatomy Atlas (https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo). Nothing else in these files changed.
+IMPORTANT, keep the folders: drag the img and pdf FOLDERS themselves into GitHub's upload page
+(not the pictures inside them). GitHub keeps folder paths only when you drag the folder.
+Some earlier pictures landed at the top level of the repo instead of inside img/, which is why
+a few chapters on the GitHub atlas were missing pictures. This sync fills them in.
 
-- slides-*.html (51 slide decks): Digital Atlas link in the slide nav
-- week-*-hub.html, week-1-mw.html (18 week pages): Digital Atlas link
-- module-1 to module-5-structure-list.html: Digital Atlas link
-- syllabus-class1/2/3.html, welcome.html: Digital Atlas link
-- bio004-launchpad.html, bio004-launchpad-overlay.js, bio004-dock.js, bio004-faculty-dock.js, course-links.js: the course tools (launchpad door, dock button, shared link list)
-- bio004-digital-atlas.html: the old iframe wrapper now sends students straight to the new atlas, with a tap-here link as backup
-- kajabi-embed-kit.html, kajabi-embed-snippets.txt, canvas-links.md: link lists and embed kits
-- bio004-atlas-tile-add.py, bio004-apps-flyer-build.py: build scripts, so a rebuild keeps the new link
+Brings the GitHub atlas up to date with today's version: new BlueLink cards (duodenum, mesentery,
+renal sinus, retroperitoneum, iliac veins, inferior vena cava), fixed images with no missing organs,
 
-Before students click: open the atlas, use its Share menu and turn on link sharing, or students will see a sign-in page.
+Part 1 of 3. Files (95):
+abdves.html
+atlas.html
+digest.html
+index.html
+leg.html
+repro.html
+search-data.js
+search.js
+thigh.html
+urinary.html
+welcome.html
+img/abdves-06.jpg
+img/abdves-07.jpg
+img/abdves-08.jpg
+img/abdves-09.jpg
+img/blood-01.jpg
+img/blood-03.jpg
+img/blood-06.jpg
+img/blood-08.jpg
+img/blood-10.jpg
+img/blood-20.jpg
+img/blood-thumb.jpg
+img/digest-01.jpg
+img/digest-02.jpg
+img/digest-03.jpg
+img/digest-04.jpg
+img/digest-05.jpg
+img/digest-06.jpg
+img/digest-07.jpg
+img/digest-08.jpg
+img/digest-09.jpg
+img/digest-10.jpg
+img/digest-11.jpg
+img/digest-12.jpg
+img/digest-13.jpg
+img/digest-14.jpg
+img/digest-15.jpg
+img/digest-16.jpg
+img/digest-17.jpg
+img/digest-18.jpg
+img/leg-01.jpg
+img/leg-02.jpg
+img/leg-03.jpg
+img/leg-04.jpg
+img/leg-05.jpg
+img/leg-06.jpg
+img/leg-07.jpg
+img/leg-08.jpg
+img/leg-09.jpg
+img/leg-10.jpg
+img/leg-11.jpg
+img/repro-01.jpg
+img/repro-02.jpg
+img/repro-03.jpg
+img/repro-04.jpg
+img/repro-05.jpg
+img/repro-06.jpg
+img/repro-07.jpg
+img/repro-08.jpg
+img/repro-09.jpg
+img/repro-10.jpg
+img/repro-11.jpg
+img/repro-12.jpg
+img/repro-13.jpg
+img/repro-14.jpg
+img/repro-15.jpg
+img/repro-16.jpg
+img/repro-17.jpg
+img/repro-18.jpg
+img/repro-19.jpg
+img/repro-20.jpg
+img/repro-21.jpg
+img/repro-22.jpg
+img/repro-23.jpg
+img/repro-24.jpg
+img/repro-25.jpg
+img/repro-26.jpg
+img/repro-27.jpg
+img/repro-28.jpg
+img/repro-29.jpg
+img/repro-30.jpg
+img/repro-31.jpg
+img/repro-32.jpg
+img/repro-33.jpg
+img/repro-34.jpg
+img/repro-35.jpg
+img/repro-36.jpg
+img/repro-37.jpg
+img/repro-38.jpg
+img/repro-39.jpg
+img/repro-40.jpg
+img/repro-41.jpg
+img/repro-42.jpg
+img/repro-43.jpg
+img/repro-44.jpg
