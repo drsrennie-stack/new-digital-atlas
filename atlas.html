@@ -1,5 +1,3 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
 <title>Anatomy Atlas Index</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,7 +68,6 @@ footer{margin-top:48px;padding-top:22px;border-top:.5px solid var(--line);font-s
   <header class="top">
     <a class="brand" href="welcome.html">BIO 004 <span>Human Anatomy</span> · Solano College</a>
     <a class="back" href="welcome.html">Welcome</a>
-    <a class="back" href="videos.html">Videos</a>
   </header>
 
   <div class="eyebrow" style="margin-top:28px">Anatomy Atlas · Dr. Sharilyn Rennie</div>
@@ -101,8 +98,6 @@ footer{margin-top:48px;padding-top:22px;border-top:.5px solid var(--line);font-s
 
 <script src="search-data.js"></script>
 <script src="search.js"></script>
-<script src="videos-data.js"></script>
-<script src="videos.js"></script>
 <script>
 const CH=[{"id": "heart", "title": "Heart", "live": true, "module": "3", "system": "Cardiovascular", "cards": 32, "structures": 78, "thumb": "img/heart-15.jpg", "pdf": "pdf/heart-cards.pdf"}, {"id": "muscle", "title": "Muscle Tissue", "live": true, "module": "3", "system": "Muscular", "cards": 5, "structures": 18, "thumb": "img/muscle-04.jpg", "pdf": "pdf/muscle-cards.pdf"}, {"id": "upper", "title": "Upper Extremity Muscles", "live": true, "module": "3", "system": "Muscular", "cards": 47, "structures": 61, "thumb": "img/upper-38.jpg", "pdf": "pdf/upper-cards.pdf"}, {"id": "resp", "title": "Respiratory System", "live": true, "module": "4", "system": "Respiratory", "cards": 1, "structures": 10, "thumb": "img/resp-01.jpg", "pdf": "pdf/resp-cards.pdf"}, {"id": "uevn", "title": "Upper Limb Vessels and Nerves", "live": true, "module": "3", "system": "Cardiovascular", "cards": 13, "structures": 34, "thumb": "img/uevn-01.jpg", "pdf": "pdf/uevn-cards.pdf"}, {"id": "back", "title": "Back and Thorax Muscles", "live": true, "module": "3", "system": "Muscular", "cards": 22, "structures": 42, "thumb": "img/back-17.jpg", "pdf": "pdf/back-cards.pdf"}, {"id": "blood", "title": "Blood", "live": true, "module": "3", "system": "Cardiovascular", "cards": 20, "structures": 14, "thumb": "img/blood-10.jpg", "pdf": "pdf/blood-cards.pdf"}, {"id": null, "title": "Body Regions and Cavities", "live": false, "module": "1", "system": "Body plan"}, {"id": null, "title": "Epithelial and Connective Tissues", "live": false, "module": "1", "system": "Tissues"}, {"id": null, "title": "Bone, Cartilage and the Long Bone", "live": false, "module": "2", "system": "Skeletal"}, {"id": null, "title": "Axial and Appendicular Skeleton", "live": false, "module": "2", "system": "Skeletal"}, {"id": null, "title": "Joints", "live": false, "module": "2", "system": "Skeletal"}, {"id": null, "title": "Blood Vessels", "live": false, "module": "3", "system": "Cardiovascular"}, {"id": null, "title": "Digestive System and Abdominal Wall", "live": false, "module": "4", "system": "Digestive"}, {"id": null, "title": "Urinary System", "live": false, "module": "4", "system": "Urinary"}, {"id": null, "title": "Reproductive System", "live": false, "module": "4", "system": "Reproductive"}, {"id": null, "title": "Thigh and Leg Muscles", "live": false, "module": "4", "system": "Muscular"}, {"id": null, "title": "Abdominal and Pelvic Vessels", "live": false, "module": "4", "system": "Cardiovascular"}, {"id": null, "title": "Head and Neck Muscles", "live": false, "module": "5", "system": "Muscular"}, {"id": null, "title": "Brain, Meninges and CSF", "live": false, "module": "5", "system": "Nervous"}, {"id": null, "title": "Spinal Cord, Cranial and Spinal Nerves", "live": false, "module": "5", "system": "Nervous"}];
 const MODULES=[
@@ -139,12 +134,9 @@ function render(){
     d.querySelector('.tag').textContent=(c.live?'Ready to study · ':'Coming soon · ')+(mode==='mod'?c.system:'Module '+c.module);
     d.querySelector('h3').textContent=c.title;
     d.querySelector('.meta').textContent=c.live?`${c.cards} cards · ${c.structures} structures`:'Images received, cards being built';
-    const vkey=c.id||c.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-    const nv=window.atlasVideoCount?window.atlasVideoCount(vkey):0;
     if(c.live){const L=d.querySelector('.links');
       const a=document.createElement('a');a.className='btn primary';a.href=c.id+'.html';a.textContent='Practice';L.appendChild(a);
       const p=document.createElement('a');p.className='btn';p.href=c.pdf;p.target='_blank';p.rel='noopener';p.textContent='Printable cards';L.appendChild(p)}
-    if(nv){const L=d.querySelector('.links');const v=document.createElement('a');v.className='btn';v.href='videos.html#'+vkey;v.textContent=nv===1?'1 video':nv+' videos';L.appendChild(v)}
     cards.appendChild(d)});
 }
 function save(){try{localStorage.setItem('atlasIndex',JSON.stringify({mode,sel}))}catch(e){}}
@@ -152,5 +144,3 @@ $('byMod').onclick=()=>{mode='mod';sel=null;save();render()};
 $('bySys').onclick=()=>{mode='sys';sel=null;save();render()};
 render();
 </script>
-
-</html>
