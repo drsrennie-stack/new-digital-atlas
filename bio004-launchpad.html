@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO 004 Launchpad</title>
+<meta name="description" content="One dark screen, four doors: Lecture, Lab, Study, Calendar. Each opens the current best page for that part of the course.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   THE LAUNCHPAD. One dark Mastery OS style screen, white cards
+   with the dock's gradient icon squares. Level one: Lecture,
+   Lab, Study, Calendar. Lecture, Lab and Study open a second
+   level of options; Calendar goes straight there. Every link
+   lands on the current best page for that thing, so this screen
+   is the one address that never goes stale.
+   No serif, no italics.
+   ============================================================ */
+  :root{
+    --navy:#08101F; --near-black:#05080F; --tint:#EDF1F3;
+    --rust:#A0522D; --terra:#C2734D; --gold:#B8924A; --gold-light:#CFA95F;
+    --blue:#1E2A47; --white:#FFFFFF; --offtext:#F4EFE8;
+    --ink:#08101F; --ink-soft:#2A3949;
+    --line:rgba(30,61,76,0.16);
+    --disp:'Plus Jakarta Sans',system-ui,sans-serif;
+    --eyeb:'DM Sans',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  [hidden]{display:none !important}
+  body{background:var(--navy);color:var(--offtext);font-family:var(--disp);font-size:16.5px;line-height:1.5;min-height:100vh}
+  button{font-family:inherit;cursor:pointer}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;border-radius:8px}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 20px 80px;text-align:center}
+
+  .logo{display:inline-flex;align-items:center;gap:12px;margin-bottom:8px}
+  .logo svg{height:44px}
+  .logo .lt{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;text-align:left}
+  .logo .lt .ac{color:var(--terra)}
+  .logo .ls{font-family:var(--eyeb);font-size:9px;font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:#C8D2DA;display:block;margin-top:3px;text-align:left}
+  h1{font-size:clamp(24px,5vw,34px);font-weight:800;letter-spacing:-.02em;margin:10px 0 4px;color:#fff}
+  .sub{font-size:15px;color:#C8D2DA;margin:0 0 34px}
+
+  .deck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:640px;margin:0 auto}
+  @media (max-width:430px){ .deck{grid-template-columns:1fr} }
+  .door{background:var(--white);color:var(--ink);border:0;border-radius:18px;padding:22px 18px 20px;
+    text-align:center;text-decoration:none;display:block;
+    box-shadow:0 14px 34px -12px rgba(0,0,0,.6);
+    transition:transform .18s ease,box-shadow .18s ease}
+  .door:hover{transform:translateY(-4px);box-shadow:0 22px 44px -14px rgba(0,0,0,.7)}
+  @media (prefers-reduced-motion:reduce){ .door{transition:none} .door:hover{transform:none} }
+  .icsq{width:56px;height:56px;border-radius:16px;margin:0 auto 12px;display:flex;
+    align-items:center;justify-content:center}
+  .icsq svg{width:28px;height:28px;color:#fff}
+  .ic-gold{background:linear-gradient(135deg,#B8924A,#8a6a2e)}
+  .ic-terra{background:linear-gradient(135deg,#C2734D,#8a4526)}
+  .ic-navy{background:linear-gradient(135deg,#1E2A47,#08101F)}
+  .ic-blue{background:linear-gradient(135deg,#33507e,#1E2A47)}
+  .door b{display:block;font-size:18px;font-weight:800;letter-spacing:-.01em;color:var(--ink)}
+  .door span{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:3px}
+  .door-boost{grid-column:1/-1;display:flex;align-items:center;gap:16px;text-align:left;
+    background:linear-gradient(135deg,#DCB45C,#B8924A);padding:18px 22px}
+  .door-boost .icsq{margin:0;flex:none}
+  .door-boost .bt{display:block;margin:0}
+  .door-boost b{color:#08101F}
+  .door-boost span span,.door-boost .bt span{color:rgba(8,16,31,.78)}
+  .door-news{grid-column:1/-1;display:flex;align-items:center;gap:16px;text-align:left;
+    background:linear-gradient(135deg,#C2734D,#8a4526);padding:18px 22px;position:relative;width:100%}
+  .door-news b{color:#fff}
+  .door-news .bt{display:block;margin:0}
+  .door-news .bt span{color:rgba(255,255,255,.88)}
+  .door-news .icsq{margin:0;flex:none;background:rgba(8,16,31,.35)}
+  .abadge{position:absolute;top:-9px;right:-9px;background:#DCB45C;color:#08101F;font-weight:800;
+    border-radius:999px;min-width:26px;height:26px;display:flex;align-items:center;justify-content:center;
+    font-size:13px;padding:0 8px;box-shadow:0 4px 10px rgba(0,0,0,.4);border:2px solid #08101F}
+
+  /* level two */
+  .panel{display:none}
+  .panel.on{display:block}
+  .backrow{margin:0 0 18px;text-align:left}
+  .backrow button{background:none;border:1.5px solid rgba(244,239,232,.45);color:var(--offtext);
+    font-weight:700;font-size:13.5px;border-radius:999px;padding:8px 16px}
+  .backrow button:hover{border-color:var(--gold-light);color:#fff}
+  .subdeck{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+  .subdeck .door{padding:16px 14px}
+  .subdeck .icsq{width:44px;height:44px;border-radius:12px;margin-bottom:9px}
+  .subdeck .icsq svg{width:22px;height:22px}
+  .subdeck .door b{font-size:15.5px}
+
+  .calrow{margin-top:22px;text-align:center}
+  .calrow a{display:inline-block;background:none;border:1.5px solid rgba(244,239,232,.45);color:var(--offtext);
+    text-decoration:none;font-weight:700;font-size:13.5px;border-radius:999px;padding:8px 18px}
+  .calrow a:hover{border-color:var(--gold-light);color:#fff}
+  .discrow{margin-top:16px;display:flex;flex-direction:column;gap:12px;align-items:center}
+  .discrow .dlbl{font-size:12.5px;font-weight:700;color:#C8D2DA}
+  .discrow .drow{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:flex-start}
+  .discrow .dcard{display:flex;flex-direction:column;align-items:center;gap:9px}
+  .discrow a{display:inline-block;background:none;border:1.5px solid rgba(244,239,232,.45);color:var(--offtext);
+    text-decoration:none;font-weight:700;font-size:13px;border-radius:999px;padding:7px 14px}
+  .discrow a:hover{border-color:var(--gold-light);color:#fff}
+  .discrow .dqr{background:#fff;border-radius:10px;padding:7px;line-height:0}
+  .discrow .dqr svg{width:96px;height:96px;display:block}
+
+  footer{margin-top:44px;font-size:13px;color:#8C96A5}
+
+  /* announcements column, right side on wide screens */
+  .ann{background:var(--white);color:var(--ink);border-radius:16px;padding:18px 18px 14px;
+    text-align:left;box-shadow:0 14px 34px -12px rgba(0,0,0,.6);margin:26px auto 0;max-width:640px}
+  .ann h2{font-size:16px;font-weight:800;margin:0;color:var(--ink)}
+  .ann .asub{font-family:var(--eyeb);font-size:10.5px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--terra);margin:2px 0 4px}
+  .ann .ai{border-top:1px solid rgba(30,61,76,.14);padding:11px 0 10px}
+  .ann .ai:first-of-type{border-top:0}
+  .ann .ad{font-family:var(--eyeb);font-size:10.5px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-soft)}
+  .ann .anew{display:inline-block;background:#B8924A;color:#fff;border-radius:999px;
+    font-size:9.5px;padding:2px 8px;margin-left:6px;vertical-align:1px}
+  .ann .at{font-weight:800;font-size:14.5px;margin:3px 0 3px;color:var(--ink)}
+  .ann .ab{font-size:13px;color:var(--ink-soft);margin:0}
+  .ann .al{display:inline-block;font-weight:700;font-size:12.5px;color:#8a4526;
+    text-decoration:none;margin-top:5px}
+  .ann .al:hover{text-decoration:underline}
+  .ann .anote{font-family:var(--eyeb);font-size:10.5px;color:var(--ink-soft);margin:10px 0 0;
+    border-top:1px solid rgba(30,61,76,.14);padding-top:9px}
+  .ann a.ai{display:block;text-decoration:none;color:inherit}
+  .ann a.ai:hover .at,.ann a.ai:focus-visible .at{color:#8a4526}
+  @media (min-width:1060px){
+    .wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;column-gap:30px;max-width:1200px;align-items:start}
+    .wrap>*{grid-column:1}
+    .wrap>.ann{grid-column:2;grid-row:1/span 30;margin:52px 0 0;max-width:none}
+  }
+</style>
+</head>
+<body data-no-back>
+<div class="wrap">
+
+  <span class="logo">
+    <svg viewBox="40 10 125 148" aria-hidden="true"><g transform="translate(0,18)">
+      <g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#C2734D"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C2734D"/></g>
+      <g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#A0522D"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#A0522D"/></g>
+      <g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#1E2A47"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#1E2A47"/></g>
+    </g></svg>
+    <span><span class="lt">BIO <span class="ac">004</span></span><span class="ls">Human Anatomy &middot; Fall 2026</span></span>
+  </span>
+  <h1>Where are you headed?</h1>
+  <p class="sub">Four doors. Everything in the course is behind one of them.</p>
+
+  <!-- level one -->
+  <div class="panel on" id="p-home">
+    <div class="deck">
+      <button class="door" data-open="lecture">
+        <span class="icsq ic-terra" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+        <b>Lecture</b><span>Notes, videos, pre-work, course materials</span>
+      </button>
+      <button class="door" data-open="lab">
+        <span class="icsq ic-navy" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.5L4.5 19a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 9.5V2"/><path d="M8 2h8"/></svg></span>
+        <b>Lab</b><span>Loops, lab sprints, the Digital Atlas</span>
+      </button>
+      <button class="door" data-open="study">
+        <span class="icsq ic-gold" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.4-1.2 4.2-2.6 5.6-.8.8-1.4 1.9-1.4 3v.4H9v-.4c0-1.1-.6-2.2-1.4-3C6.2 13.2 5 11.4 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/></svg></span>
+        <b>Study</b><span>Mastery OS, recall cards, loops, brain dump</span>
+      </button>
+      <a class="door" data-go="bio004-study-protocol.html" href="bio004-study-protocol.html" target="_top">
+        <span class="icsq ic-blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 11v4M12 19v2"/><rect x="8" y="7" width="8" height="4" rx="1"/><rect x="8" y="15" width="8" height="4" rx="1"/></svg></span>
+        <b>Study Protocol</b><span>The flow chart for this week</span>
+      </a>
+      <a class="door door-boost" data-go="bio004-blog.html" href="bio004-blog.html" target="_top">
+        <span class="icsq ic-navy" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span>
+        <span class="bt"><b>Need motivation?</b><span>Short reads for hard weeks, from Dr. Rennie</span></span>
+      </a>
+      <button class="door door-news" data-open="news" id="newsDoor">
+        <span class="icsq" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
+        <span class="bt"><b>Weekly announcements</b><span>What you missed, in one place</span></span>
+        <span class="abadge" id="annBadge" hidden aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="calrow"><a data-go="bio004-course-calendar.html" href="bio004-course-calendar.html" target="_top">Go to the calendar &#8594;</a></div>
+    <div class="discrow" id="discRow" aria-label="Class Discord servers"></div>
+  </div>
+
+  <!-- level two: lecture -->
+  <div class="panel" id="p-lecture">
+    <div class="backrow"><button data-back>&#8592; Back to the four doors</button></div>
+    <div class="subdeck">
+      <a class="door" data-go="course-materials.html" href="course-materials.html" target="_top"><span class="icsq ic-terra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><b>Course materials</b><span>Everything, organized by module</span></a>
+      <a class="door" data-go="bio004-quick-access.html?cat=videos" href="bio004-quick-access.html?cat=videos" target="_top"><span class="icsq ic-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="10 8 16 12 10 16 10 8"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg></span><b>Videos</b><span>Just the videos, by module</span></a>
+      <a class="door" data-go="bio004-quick-access.html?cat=notes" href="bio004-quick-access.html?cat=notes" target="_top"><span class="icsq ic-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><b>Notes</b><span>Just the notes, by module</span></a>
+      <a class="door" data-go="bio004-quick-access.html?cat=prework" href="bio004-quick-access.html?cat=prework" target="_top"><span class="icsq ic-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><b>Pre-work</b><span>Just what is due before class</span></a>
+    </div>
+  </div>
+
+  <!-- level two: lab -->
+  <div class="panel" id="p-lab">
+    <div class="backrow"><button data-back>&#8592; Back to the four doors</button></div>
+    <div class="subdeck">
+      <a class="door" href="https://drsrennie-stack.github.io/loops/" target="_blank" rel="noopener"><span class="icsq ic-terra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span><b>Loops</b><span>Fast visual practice, 39 image loops</span></a>
+      <a class="door" data-go="lab-sprints.html" href="lab-sprints.html" target="_top"><span class="icsq ic-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><b>Lab sprints</b><span>Structure checklists, station by station</span></a>
+      <a class="door" href="https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo" target="_blank" rel="noopener"><span class="icsq ic-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"/></svg></span><b>Digital Atlas</b><span>Opens in its own tab</span></a>
+      <a class="door" data-go="histology-help.html" href="histology-help.html" target="_top"><span class="icsq ic-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg></span><b>Histology help</b><span>Every slide tool, sorted by need</span></a>
+      <a class="door" data-go="bio004-tissue-chart-practice.html" href="bio004-tissue-chart-practice.html" target="_top"><span class="icsq ic-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><b>Tissue Chart</b><span>The chart behind reveal boxes</span></a>
+      <a class="door" data-go="bio004-bluelink-videos.html" href="bio004-bluelink-videos.html" target="_top"><span class="icsq ic-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="13" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/><path d="M7 9.5l3.5 2.5L7 14.5z"/></svg></span><b>Cadaver videos</b><span>U of Michigan, by body system</span></a>
+    </div>
+  </div>
+
+  <!-- level two: study -->
+  <div class="panel" id="p-study">
+    <div class="backrow"><button data-back>&#8592; Back to the four doors</button></div>
+    <div class="subdeck">
+      <a class="door" data-go="mastery-os-fall-2026.html" href="mastery-os-fall-2026.html" target="_top"><span class="icsq ic-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a4 4 0 0 1 4 4c2 0 4 2 4 4s-1 3-2 4c1 1 1 3 0 4a4 4 0 0 1-4 4 4 4 0 0 1-4-2 4 4 0 0 1-4 2 4 4 0 0 1-4-4c-1-1-1-3 0-4-1-1-2-2-2-4s2-4 4-4a4 4 0 0 1 4-4z"/></svg></span><b>Mastery OS</b><span>Your plan, your dials, your session</span></a>
+      <a class="door" data-go="mastery-os-fall-2026.html#s-recall" href="mastery-os-fall-2026.html#s-recall" target="_top"><span class="icsq ic-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M7 6V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/></svg></span><b>Recall cards</b><span>Straight into the cards due today</span></a>
+      <a class="door" href="https://drsrennie-stack.github.io/loops/" target="_blank" rel="noopener"><span class="icsq ic-terra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span><b>Loops</b><span>Fast visual practice, any topic</span></a>
+      <a class="door" data-go="brain-dump-practice.html" href="brain-dump-practice.html" target="_top"><span class="icsq ic-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><b>Brain dump</b><span>Blank page, timer, then check yourself</span></a>
+      <a class="door" data-go="bio004-study-protocol.html" href="bio004-study-protocol.html" target="_top"><span class="icsq ic-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v4M12 11v4M12 19v2"/><rect x="8" y="7" width="8" height="4" rx="1"/><rect x="8" y="15" width="8" height="4" rx="1"/></svg></span><b>Study Protocol</b><span>The flow chart: what to try this week</span></a>
+      <a class="door" data-go="bio004-tissue-chart-practice.html" href="bio004-tissue-chart-practice.html" target="_top"><span class="icsq ic-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><b>Tissue Chart</b><span>Recall it column by column</span></a>
+      <a class="door" data-go="bio004-practice-exam-builder.html" href="bio004-practice-exam-builder.html" target="_top"><span class="icsq ic-terra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span><b>Exam Builder</b><span>Fresh practice exam, any time</span></a>
+      <a class="door" data-go="kahoots.html" href="kahoots.html" target="_top"><span class="icsq ic-terra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><circle cx="17.5" cy="6.5" r="3.5"/><path d="M6.5 13.5 10 17l-3.5 3.5L3 17z"/><rect x="13.6" y="13.6" width="6.8" height="6.8" rx="1" transform="rotate(45 17 17)"/></svg></span><b>Kahoots</b><span>Every class Kahoot, play again and check it off</span></a>
+      <a class="door" data-go="study-session-signup.html" href="study-session-signup.html" target="_top"><span class="icsq ic-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><b>Study With Me</b><span>See the calendar, join a session or host one</span></a>
+    </div>
+  </div>
+
+  <!-- level two: announcements -->
+  <div class="panel" id="p-news">
+    <div class="backrow"><button data-back>&#8592; Back to the four doors</button></div>
+    <div class="ann" id="newsList" style="margin-top:0"></div>
+  </div>
+
+  <aside class="ann" id="annCol" aria-label="Announcements" hidden></aside>
+
+  <footer>BIO 004 Human Anatomy &middot; Solano Community College &middot; Dr. Sharilyn Rennie</footer>
+</div>
+
+<script src="bio004-announcements.js"></script>
+<script>
+(function () {
+  'use strict';
+  /* announcements: right column (newest 5), full panel behind the
+     Weekly announcements door (newest 15), and the unread badge.
+     An item with a link is fully clickable through to its HTML page.
+     Read tracking: bio004-ann-read stores the newest date seen; the
+     badge shows how many entries are newer. Opening the panel (or the
+     column being visible on a wide screen) marks everything read. */
+  var A = window.BIO004_ANNOUNCEMENTS;
+  var markRead = null;
+  var annEl = document.getElementById('annCol');
+  if (A && A.length && annEl) {
+    var aesc = function(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); };
+    var MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var now = new Date(); now.setHours(0,0,0,0);
+    var sorted = A.slice().sort(function(a,b){ return a.date===b.date?0:(a.date<b.date?1:-1); });
+    var itemHTML = function(a){
+      var d = new Date(a.date+'T00:00:00');
+      var isNew = (now-d) <= 7*864e5;
+      var ext = /^https?:/i.test(a.link||'');
+      var inner = '<span class="ad">' + MO[d.getMonth()] + ' ' + d.getDate() + '</span>'
+        + (isNew?'<span class="anew">NEW</span>':'')
+        + '<div class="at">' + aesc(a.title) + '</div>'
+        + '<p class="ab">' + aesc(a.body) + '</p>'
+        + (a.link ? '<span class="al">' + aesc(a.linkLabel||'Read it') + ' &#8594;</span>' : '');
+      return a.link
+        ? '<a class="ai" href="' + aesc(a.link) + '"' + (ext?' target="_blank" rel="noopener"':' target="_top"') + '>' + inner + '</a>'
+        : '<div class="ai">' + inner + '</div>';
+    };
+    var note = '<p class="anote">Announcements also go out by email through Canvas.</p>';
+    var head = '<div class="asub">From Dr. Rennie</div><h2>Announcements</h2>';
+    annEl.hidden = false;
+    annEl.innerHTML = head + sorted.slice(0,5).map(itemHTML).join('') + note;
+    var newsList = document.getElementById('newsList');
+    if (newsList) newsList.innerHTML = head + sorted.slice(0,15).map(itemHTML).join('') + note;
+
+    var badge = document.getElementById('annBadge');
+    var newsDoor = document.getElementById('newsDoor');
+    var readDate = '';
+    try { readDate = localStorage.getItem('bio004-ann-read') || ''; } catch(e) {}
+    var unread = A.filter(function(a){ return a.date > readDate; }).length;
+    if (badge && unread > 0) {
+      badge.hidden = false;
+      badge.textContent = unread > 9 ? '9+' : unread;
+      if (newsDoor) newsDoor.setAttribute('aria-label', 'Weekly announcements, ' + unread + ' unread');
+    }
+    markRead = function(){
+      var mx = A.reduce(function(m,a){ return a.date>m?a.date:m; }, '');
+      try { localStorage.setItem('bio004-ann-read', mx); } catch(e) {}
+      if (badge) badge.hidden = true;
+      if (newsDoor) newsDoor.setAttribute('aria-label', 'Weekly announcements');
+    };
+    /* on a wide screen the column is in plain sight, so it counts as read */
+    if (window.matchMedia && matchMedia('(min-width:1060px)').matches) markRead();
+  }
+
+  /* level switching, one panel visible at a time */
+  var panels = { home: 'p-home', lecture: 'p-lecture', lab: 'p-lab', study: 'p-study', news: 'p-news' };
+  function show(key) {
+    Object.keys(panels).forEach(function (k) {
+      document.getElementById(panels[k]).classList.toggle('on', k === key);
+    });
+    /* the news panel IS the announcements list, so the side column
+       steps aside while it is open to avoid showing the list twice */
+    var ac = document.getElementById('annCol');
+    if (ac) ac.style.display = (key === 'news') ? 'none' : '';
+    var first = document.querySelector('#' + panels[key] + ' .door, #' + panels[key] + ' button');
+    if (first) first.focus();
+  }
+  document.addEventListener('click', function (e) {
+    var o = e.target.closest('[data-open]');
+    if (o) {
+      var key = o.getAttribute('data-open');
+      if (key === 'news' && markRead) markRead();
+      show(key); return;
+    }
+    var b = e.target.closest('[data-back]');
+    if (b) { show('home'); }
+  });
+  /* carry the class section through internal links */
+  var m = window.location.search.match(/[?&]sec=(mw|tr-am|tr-eve)/);
+  var sec = m ? m[1] : null;
+  if (!sec) { try { sec = localStorage.getItem('bio004-section'); } catch (e) {} }
+  if (sec) {
+    document.querySelectorAll('a[data-go]').forEach(function (a) {
+      var go = a.getAttribute('data-go');
+      var bits = go.split('#');
+      var base = bits[0] + (bits[0].indexOf('?') > -1 ? '&' : '?') + 'sec=' + sec;
+      a.setAttribute('href', base + (bits[1] ? '#' + bits[1] : ''));
+    });
+  }
+  /* class Discord servers, one per section */
+  var DISCORD = {
+    'mw':     { label: '80650 &middot; MW 12:30 to 4:50', url: 'https://discord.gg/8kr8b27ePE', qr: '<svg viewBox="0 0 33 33" class="segno"><path class="qrline" stroke="#0b1530" d="M2 2.5h7m1 0h2m1 0h3m2 0h1m5 0h7m-29 1h1m5 0h1m2 0h2m2 0h3m4 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h2m3 0h1m2 0h3m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h3m1 0h2m3 0h1m3 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h2m1 0h1m2 0h2m3 0h1m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h2m1 0h4m2 0h1m-17 1h1m1 0h1m1 0h4m1 0h1m2 0h2m1 0h2m1 0h1m1 0h3m1 0h2m1 0h1m-29 1h2m1 0h1m3 0h1m1 0h3m3 0h1m1 0h1m2 0h1m1 0h2m4 0h1m-28 1h1m1 0h1m2 0h2m1 0h1m3 0h1m3 0h3m2 0h1m4 0h1m-28 1h2m1 0h1m1 0h1m4 0h1m1 0h1m5 0h1m2 0h2m2 0h3m-27 1h1m2 0h5m1 0h1m5 0h2m2 0h1m1 0h2m-23 1h1m3 0h1m1 0h3m2 0h2m3 0h1m1 0h3m1 0h1m1 0h1m1 0h1m-28 1h1m1 0h1m3 0h6m1 0h2m1 0h2m9 0h2m-29 1h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h5m1 0h1m4 0h1m-29 1h1m1 0h1m2 0h2m2 0h1m2 0h3m1 0h1m1 0h2m1 0h1m1 0h1m3 0h1m-27 1h5m3 0h1m2 0h1m2 0h1m1 0h1m2 0h4m3 0h2m-29 1h1m1 0h1m2 0h2m2 0h2m1 0h1m4 0h1m2 0h2m1 0h1m1 0h1m1 0h2m-20 1h1m2 0h8m3 0h2m3 0h1m-29 1h1m3 0h1m1 0h5m1 0h1m3 0h1m3 0h8m-20 1h1m2 0h2m4 0h4m3 0h1m2 0h2m-29 1h7m1 0h1m4 0h1m4 0h1m1 0h1m1 0h1m1 0h4m-28 1h1m5 0h1m1 0h1m1 0h2m1 0h4m3 0h1m3 0h1m1 0h3m-29 1h1m1 0h3m1 0h1m2 0h5m2 0h1m1 0h1m1 0h6m1 0h1m-28 1h1m1 0h3m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h3m3 0h2m1 0h3m3 0h1m3 0h1m-29 1h1m5 0h1m1 0h3m1 0h1m3 0h2m2 0h2m1 0h1m3 0h1m-28 1h7m2 0h3m2 0h2m1 0h1m1 0h2m1 0h1m1 0h2m1 0h1"/></svg>' },
+    'tr-am':  { label: '80654 &middot; TR 9:30 to 1:50',  url: 'https://discord.gg/XxhERvqf3N', qr: '<svg viewBox="0 0 33 33" class="segno"><path class="qrline" stroke="#0b1530" d="M2 2.5h7m2 0h1m2 0h1m1 0h2m4 0h1m1 0h7m-29 1h1m5 0h1m9 0h5m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h3m2 0h1m1 0h1m1 0h4m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m6 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m3 0h1m3 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h3m1 0h1m2 0h3m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-19 1h3m1 0h1m2 0h2m-18 1h1m2 0h1m1 0h1m1 0h2m1 0h2m1 0h1m5 0h2m1 0h2m1 0h1m-24 1h1m1 0h1m1 0h1m7 0h2m1 0h1m4 0h2m1 0h3m-29 1h1m1 0h1m1 0h3m1 0h1m1 0h2m2 0h1m5 0h2m1 0h1m1 0h2m1 0h1m-29 1h1m1 0h3m3 0h1m2 0h1m1 0h2m1 0h3m2 0h1m1 0h2m2 0h2m-24 1h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m2 0h1m-29 1h1m1 0h3m4 0h3m1 0h6m3 0h1m1 0h1m1 0h1m1 0h1m-28 1h3m1 0h12m1 0h1m3 0h1m1 0h1m3 0h1m-28 1h1m2 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h2m2 0h1m1 0h2m1 0h1m-26 1h3m2 0h2m5 0h3m1 0h1m1 0h2m1 0h1m5 0h1m-28 1h1m3 0h1m5 0h1m1 0h1m1 0h1m2 0h2m2 0h1m1 0h2m3 0h1m-26 1h1m2 0h1m3 0h2m2 0h2m2 0h1m4 0h1m1 0h2m1 0h1m-22 1h1m1 0h1m1 0h10m2 0h3m2 0h1m-29 1h3m2 0h3m1 0h1m2 0h3m2 0h1m1 0h6m1 0h3m-21 1h2m4 0h2m3 0h2m3 0h1m1 0h1m1 0h1m-29 1h7m3 0h4m1 0h3m1 0h2m1 0h1m1 0h1m3 0h1m-29 1h1m5 0h1m6 0h1m1 0h1m1 0h1m1 0h2m3 0h2m1 0h1m-28 1h1m1 0h3m1 0h1m1 0h4m1 0h2m3 0h7m2 0h2m-29 1h1m1 0h3m1 0h1m3 0h2m1 0h1m2 0h1m1 0h1m4 0h1m1 0h1m1 0h1m-28 1h1m1 0h3m1 0h1m3 0h1m1 0h1m3 0h1m2 0h3m5 0h2m-29 1h1m5 0h1m1 0h2m3 0h1m3 0h1m1 0h5m1 0h1m1 0h2m-29 1h7m2 0h2m3 0h2m1 0h1m2 0h1m1 0h1m1 0h1m2 0h1"/></svg>' },
+    'tr-eve': { label: '80655 &middot; TR 5:30 to 9:50',  url: 'https://discord.gg/7Z2k7DePJ6', qr: '<svg viewBox="0 0 33 33" class="segno"><path class="qrline" stroke="#0b1530" d="M2 2.5h7m2 0h1m1 0h1m4 0h1m1 0h2m2 0h7m-29 1h1m5 0h1m4 0h1m3 0h1m1 0h4m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h3m2 0h1m1 0h1m1 0h2m3 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m4 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m1 0h2m2 0h2m3 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h3m4 0h3m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-19 1h4m3 0h1m-17 1h1m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m2 0h2m2 0h1m1 0h2m1 0h1m-25 1h2m1 0h1m1 0h2m6 0h2m2 0h1m2 0h3m1 0h3m-29 1h1m3 0h3m1 0h1m1 0h1m1 0h1m1 0h2m4 0h2m1 0h4m1 0h1m-29 1h1m1 0h1m1 0h1m3 0h1m2 0h1m1 0h2m1 0h3m1 0h2m1 0h1m3 0h2m-27 1h1m2 0h4m4 0h1m3 0h1m1 0h2m2 0h1m1 0h1m2 0h1m-27 1h3m4 0h3m1 0h4m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m-28 1h3m2 0h3m2 0h6m1 0h1m2 0h1m2 0h1m3 0h1m-25 1h2m2 0h2m2 0h3m1 0h2m2 0h1m2 0h1m1 0h1m-26 1h1m1 0h1m3 0h1m3 0h1m1 0h1m3 0h1m1 0h3m2 0h1m3 0h1m-28 1h2m2 0h2m1 0h2m3 0h1m1 0h1m2 0h2m2 0h2m1 0h1m3 0h1m-27 1h2m2 0h1m3 0h1m3 0h2m2 0h1m4 0h4m1 0h1m-27 1h1m4 0h3m3 0h6m1 0h1m2 0h2m3 0h1m-29 1h3m2 0h3m1 0h1m1 0h4m2 0h1m1 0h6m2 0h2m-21 1h2m3 0h3m3 0h2m3 0h1m1 0h1m1 0h1m-29 1h7m2 0h4m1 0h4m1 0h2m1 0h1m1 0h1m3 0h1m-29 1h1m5 0h1m3 0h1m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1m-28 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h2m3 0h7m2 0h2m-29 1h1m1 0h3m1 0h1m3 0h1m2 0h2m1 0h1m1 0h1m4 0h1m2 0h2m-28 1h1m1 0h3m1 0h1m3 0h1m5 0h1m2 0h3m3 0h4m-29 1h1m5 0h1m1 0h2m1 0h1m1 0h1m3 0h1m4 0h2m1 0h1m1 0h2m-29 1h7m2 0h2m3 0h2m1 0h1m2 0h3m1 0h1m1 0h2"/></svg>' }
+  };
+  var dr = document.getElementById('discRow');
+  if (dr) {
+    function dcard(d, text) {
+      return '<span class="dcard"><a href="' + d.url + '" target="_blank" rel="noopener">' + text + '</a>'
+        + '<span class="dqr" aria-hidden="true">' + d.qr + '</span></span>';
+    }
+    if (sec && DISCORD[sec]) {
+      dr.innerHTML = '<span class="dlbl">Your class Discord, click or scan:</span><span class="drow">'
+        + dcard(DISCORD[sec], 'Join ' + DISCORD[sec].label + ' &#8594;') + '</span>';
+    } else {
+      dr.innerHTML = '<span class="dlbl">Class Discord, click yours or scan it:</span><span class="drow">'
+        + dcard(DISCORD['mw'], DISCORD['mw'].label)
+        + dcard(DISCORD['tr-am'], DISCORD['tr-am'].label)
+        + dcard(DISCORD['tr-eve'], DISCORD['tr-eve'].label) + '</span>';
+    }
+  }
+  /* height sender for embeds */
+  var FRAME_ID = 'bio004-launchpad';
+  function sendHeight() {
+    var h = (window.BIO004_CONTENT_HEIGHT ? window.BIO004_CONTENT_HEIGHT() : document.body.scrollHeight);
+    if (window.parent && window.parent !== window) parent.postMessage({type: 'resize', id: FRAME_ID, height: h}, '*');
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+  [200, 600, 1200].forEach(function (t) { setTimeout(sendHeight, t); });
+})();
+</script>
+<script src="bio004-dock.js"></script>
+</body>
+</html>

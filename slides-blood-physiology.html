@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blood · Human Physiology · Dr. Sharilyn Rennie</title>
+<style>
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Arial,sans-serif;background:#FAFAF9;color:#060A18;font-size:16px;line-height:1.5}
+button{font-family:inherit} a{color:#8B3A2E}
+:focus-visible{outline:3px solid #8B3A2E;outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;position:fixed;background:#060A18;color:#fff;padding:10px 14px;border-radius:4px;z-index:80}
+.site-header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px max(16px,3vw);background:#fff;border-bottom:1px solid rgba(11,21,48,.14)}
+.site-header .id{flex:1;min-width:240px;display:flex;align-items:center;gap:14px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8B3A2E;display:block;margin-bottom:2px}
+.site-header h1{font-size:18px;font-weight:800;margin:0;color:#0B1530}
+.site-header h1 .ac{color:#8B3A2E}
+.btn{font-weight:700;font-size:13px;letter-spacing:.04em;border:1px solid #060A18;background:#060A18;color:#fff;padding:10px 16px;border-radius:6px;cursor:pointer}
+.btn:hover{background:#16213d}
+.deck{max-width:1180px;margin:0 auto;padding:24px max(16px,3vw) 40px}
+.slide{background:#fff;border:1px solid rgba(11,21,48,.14);border-radius:12px;box-shadow:0 1px 3px rgba(11,21,48,.06);margin-bottom:22px;overflow:hidden}
+.slide-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:15px 20px;background:#FAFAF9;border-bottom:1px solid rgba(11,21,48,.14)}
+.slide-num{font-size:28px;font-weight:800;color:#8B3A2E;min-width:46px}
+.slide-eyebrow{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#060A18;opacity:.6;margin:0 0 3px}
+.slide-title{font-size:clamp(18px,2.2vw,24px);font-weight:800;margin:0}
+.slide-meta{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8B3A2E}
+.slide-body{padding:22px}
+.lead-in{font-size:17px;font-weight:600;margin:0 0 14px}
+.slide-content h3{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8B3A2E;margin:0 0 14px}
+.slide-content ul{margin:0;padding:0;list-style:none}
+.slide-content li{font-size:15.5px;line-height:1.5;padding:5px 0 5px 18px;position:relative}
+.slide-content li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;background:#8B3A2E;border-radius:50%}
+.slide-content li strong{font-weight:800}
+.split{display:grid;grid-template-columns:minmax(260px,1fr) minmax(280px,1.05fr);gap:22px;align-items:center}
+.takeaway{margin-top:16px;padding:14px 16px;background:#FAFAF9;border-left:3px solid #8B3A2E;border-radius:6px;font-size:15px}
+.takeaway strong{color:#8B3A2E}
+.figcol{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0}
+.slidefig{width:100%;height:auto;max-width:620px;border-radius:8px;background:#fff;cursor:zoom-in}
+.figcap{font-size:12.5px;color:#060A18;opacity:.78;text-align:center;margin:8px 0 0}
+.figcap strong{color:#8B3A2E;opacity:1}
+.divider .slide-header{display:none}
+.divider .slide-body{padding:0}
+.divhero{background:#060A18;color:#fff;padding:9vh 6vw;min-height:46vh;display:flex;flex-direction:column;justify-content:center}
+.divhero .dn{font-size:13px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#DCB45C;margin:0 0 10px}
+.divhero h2{font-size:clamp(26px,4vw,46px);font-weight:800;margin:0 0 10px;line-height:1.06}
+.divhero p{font-size:clamp(15px,1.6vw,20px);opacity:.9;margin:0;max-width:64ch}
+.q{border:1px solid rgba(11,21,48,.14);border-left:4px solid #8B3A2E;background:#fff;border-radius:8px;padding:16px 18px;margin:0 0 14px}
+.q .lab{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8B3A2E;margin:0 0 8px}
+.q .prompt2{font-weight:700;font-size:16px;margin:0 0 12px}
+.choices{display:flex;gap:10px;flex-wrap:wrap}
+.choice{font-weight:700;font-size:15px;border-radius:6px;cursor:pointer;border:1px solid #060A18;background:#fff;color:#060A18;padding:10px 15px}
+.choice:hover{background:#EAEEF4}
+.choice.right{background:#EAEEF4;border-color:#0B1530;color:#0B1530}
+.choice.wrong{border-color:rgba(11,21,48,.14);opacity:.55}
+.reveal{margin:12px 0 0;border:1px solid rgba(11,21,48,.14);background:#FAFAF9;border-radius:6px;padding:12px 14px}
+.reveal[hidden]{display:none}.reveal .rlab{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6E5018;margin:0 0 6px}.reveal p{margin:0}
+.foot{margin:8px max(16px,3vw) 30px;font-size:12px;color:#060A18;opacity:.6;border-top:1px solid rgba(11,21,48,.14);padding-top:12px;max-width:1180px}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+body.present{overflow:hidden;background:#060A18}
+body.present .site-header,body.present .foot{display:none}
+body.present .deck{max-width:none;margin:0;padding:0}
+body.present .slide{display:none}
+body.present .slide.is-current{display:flex;flex-direction:column;position:fixed;inset:0;margin:0;border:0;border-radius:0;box-shadow:none;overflow:auto;background:#fff}
+body.present .slide.is-current .slide-body{flex:1;max-width:1280px;width:100%;margin:0 auto;padding:2.5vh 5vw;display:flex;flex-direction:column;justify-content:center}
+body.present .slide-content li{font-size:clamp(16px,1.7vw,25px);padding:7px 0 7px 26px}
+body.present .slide-content li::before{top:15px;width:9px;height:9px}
+body.present .slide-content h3{font-size:clamp(15px,1.5vw,20px)!important}
+body.present .lead-in{font-size:clamp(18px,2vw,28px)}
+body.present .slidefig{max-width:100%;max-height:70vh;width:auto;height:auto}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(6,10,24,.93);display:flex;align-items:center;justify-content:center;padding:3vh 3vw;cursor:zoom-out}
+.lightbox[hidden]{display:none}
+.lightbox .lb-img{max-width:96vw;max-height:94vh;width:auto;height:auto;border-radius:6px;background:#fff;cursor:default}
+.lightbox .lb-close{position:fixed;top:16px;right:20px;background:#8B3A2E;color:#fff;border:0;border-radius:8px;font-size:24px;line-height:1;width:46px;height:46px;cursor:pointer}
+body.present .q .prompt2{font-size:clamp(18px,1.8vw,25px)}
+body.present .choice{font-size:clamp(16px,1.6vw,21px);padding:13px 19px}
+body.present .reveal{font-size:clamp(15px,1.5vw,21px)}
+.present-bar{position:fixed;z-index:70;left:50%;bottom:18px;transform:translateX(-50%);display:none;align-items:center;gap:10px;background:rgba(11,21,48,.92);color:#fff;padding:8px 12px;border-radius:999px}
+body.present .present-bar{display:flex}
+.present-bar button{font-weight:700;font-size:16px;border:0;border-radius:999px;background:#8B3A2E;color:#fff;width:42px;height:42px;cursor:pointer}
+.present-bar button:disabled{background:#3a4357}.present-bar .count{font-size:13px;font-weight:700;min-width:62px;text-align:center}
+.present-bar .exit{width:auto;padding:0 14px;background:transparent;border:1px solid rgba(255,255,255,.4)}
+@media print{.site-header,.present-bar,.foot,#presentBtn{display:none}.slide{break-inside:avoid;page-break-after:always;box-shadow:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.tkey{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;align-items:start;margin-top:4px}
+.tkey .tcol{border:1px solid rgba(11,21,48,.18);border-radius:10px;overflow:hidden;background:#fff}
+.tkey .th{padding:8px 12px;font-weight:800;font-size:14px;letter-spacing:.02em}
+.tkey .th small{display:block;font-weight:600;font-size:11px;opacity:.95}
+.tkey .th.ep{background:#C9A14A;color:#0B1530}
+.tkey .th.ct{background:#8B3A2E;color:#fff}
+.tkey .th.mu{background:#0B1530;color:#fff}
+.tkey .th.ne{background:#142a36;color:#fff}
+.tkey .sub{padding:9px 12px}
+.tkey .grp{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8B3A2E;margin:9px 0 4px}
+.tkey .grp:first-child{margin-top:0}
+.tkey .it{font-size:12.5px;line-height:1.34;margin:0 0 7px;color:#1d2733}
+.tkey .it b{color:#0B1530}
+.tkey .it .tell{color:#3a4658}
+@media (max-width:760px){.tkey{grid-template-columns:1fr}}
+@media print{.tkey{grid-template-columns:repeat(2,1fr)}.tkey .tcol{break-inside:avoid}}
+.imgph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:200px;border:2px dashed #B8924A;border-radius:10px;background:#FAFAF9;color:#8B3A2E;text-align:center;padding:18px}.imgph .ph-t{font-weight:800;font-size:14px}.imgph .ph-s{font-weight:600;font-size:12px;color:#5a6573}.dtable{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}.dtable caption{text-align:left;font-weight:700;color:#8B3A2E;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}.dtable th,.dtable td{border:1px solid rgba(11,21,48,.18);padding:8px 10px;text-align:left;vertical-align:top}.dtable thead th{background:#0B1530;color:#fff}.dtable tbody th{background:#FAFAF9;color:#0B1530;white-space:nowrap}.dtable tbody tr:nth-child(even) td{background:#FAFAF9}@media print{.imgph{min-height:120px}.dtable{font-size:10.5px}}
+.qr-close .slide-body{align-items:center}.qr-grid{display:flex;gap:40px;flex-wrap:wrap;justify-content:center}.qr-card{background:#fff;border-radius:14px;padding:18px 20px;text-align:center;max-width:300px;box-shadow:0 10px 26px rgba(11,21,48,.14)}.qr-card .qe{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8B3A2E;margin:0 0 4px}.qr-card h3{font-size:20px;font-weight:800;color:#0B1530;margin:0 0 10px}.qr-card img{width:210px;height:auto;display:block;margin:0 auto;border-radius:8px}.qr-card p{font-size:13px;color:#060A18;opacity:.8;margin:10px 0 0}
+.lvlchip{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:2px 9px;border-radius:999px;margin-left:8px;vertical-align:middle;white-space:nowrap}
+.lvlchip.lvl1{background:#0B1530;color:#fff}
+.lvlchip.lvl2{background:#B8924A;color:#0B1530}
+.lvlchip.lvl3{background:#8B3A2E;color:#fff}
+.slide.lvl-hidden{display:none}
+.lvlbar{max-width:1180px;margin:14px auto 0;padding:0 max(16px,3vw);display:flex;gap:9px;flex-wrap:wrap;align-items:center;font-size:13px}
+.lvlbar .lbl{font-weight:800;color:#0B1530}
+.lvlbar button{font-weight:700;font-size:12.5px;border:1px solid #0B1530;background:#fff;color:#0B1530;padding:7px 13px;border-radius:999px;cursor:pointer}
+.lvlbar button[aria-pressed="true"]{background:#0B1530;color:#fff}
+.lvlbar button.tgl.lvl2[aria-pressed="true"]{background:#B8924A;color:#0B1530;border-color:#B8924A}
+.lvlbar button.tgl.lvl3[aria-pressed="true"]{background:#8B3A2E;color:#fff;border-color:#8B3A2E}
+.lvlbar button:focus-visible{outline:3px solid #B8924A;outline-offset:2px}
+body.present .lvlbar{display:none}
+@media print{.lvlbar{display:none}}
+
+.keygrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:4px 0 16px}
+.keycard{border-radius:10px;padding:14px 16px;color:#fff}
+.keycard.k1{background:#0B1530}.keycard.k2{background:#B8924A;color:#0B1530}.keycard.k3{background:#8B3A2E}
+.keycard h4{margin:0 0 4px;font-size:15px;font-weight:800;letter-spacing:.02em}
+.keycard p{margin:0;font-size:13px;opacity:.96;line-height:1.4}
+.invite{margin-top:12px;padding:14px 16px;background:#FAFAF9;border-left:3px solid #8B3A2E;border-radius:6px;font-size:15px}
+.invite strong{color:#8B3A2E}
+
+.casc{border:1px solid rgba(11,21,48,.16);border-radius:12px;padding:14px 16px;background:#fff;width:100%}
+.casc .steps{list-style:none;margin:0;padding:0;counter-reset:cs}
+/* An unrevealed step was the whole row at opacity .38, which put its
+   heading at 2.39:1 and its detail at 1.94:1. That is the worst of
+   both: too faint to pass, still legible enough to give the step away
+   before it is revealed. Muted with solid colors instead, and the
+   revealed state below still lifts it to full ink. */
+.casc .steps li{position:relative;padding:10px 12px 10px 44px;border-radius:8px;margin:0 0 8px;background:#F4F5F7;border:1px solid rgba(11,21,48,.12);color:#5E6576;transition:color .25s,background .25s,border-color .25s}
+.casc .steps li b{color:#5E6576}
+.casc .steps li span{color:#5E6576}
+.casc .steps li::before{counter-increment:cs;content:counter(cs);position:absolute;left:10px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:#8C90A0;color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+.casc .steps li b{display:block;font-size:15px;color:#0B1530}
+.casc .steps li span{display:block;font-size:12.5px;color:#3a4658}
+.casc .steps li.on{background:#EDF1F3;border-color:#0B1530;color:#0B1530}
+.casc .steps li.on b,.casc .steps li.on span{color:#0B1530}
+.casc .steps li.on::before{background:#8B3A2E}
+.casc .steps li.cur{border-color:#8B3A2E;box-shadow:0 0 0 2px rgba(139,58,46,.18)}
+.cascbtns{display:flex;gap:8px;margin:8px 0 4px}
+.casc .cascnow{font-weight:700;color:#8B3A2E;margin:6px 0 0;min-height:18px;font-size:13.5px}
+@media print{.casc .steps li{opacity:1}}
+
+.anatgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:6px 0 2px}
+.anatgrid .ac{border:1px solid rgba(11,21,48,.16);border-left:3px solid #0B1530;border-radius:8px;padding:10px 12px;background:#fff}
+.anatgrid .ac b{display:block;font-size:14px;color:#0B1530;font-weight:800;margin-bottom:2px}
+.anatgrid .ac span{font-size:12.5px;color:#3a4658;line-height:1.4}
+@media print{.anatgrid{grid-template-columns:repeat(3,1fr)}.anatgrid .ac{break-inside:avoid}}
+</style></head><body>
+<a href="#deck" class="skip">Skip to slides</a>
+<header class="site-header"><div class="id"><svg viewBox="40 10 125 148" role="img" aria-label="Human Anatomy logo" focusable="false" style="height:46px;width:auto"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#0B1530"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#8B3A2E"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/></g></g></svg><div><span class="eyebrow">Focus: Human Physiology</span><h1>Human <span class="ac">Physiology</span> · Blood</h1></div></div><div class="hero-actions"><button class="btn" id="backBtn" type="button" hidden>← Back</button> <button class="btn" id="presentBtn" type="button">Present</button> <button class="btn" id="printBtn" type="button">Print / Save PDF</button></div></header>
+<div class="lvlbar" role="group" aria-label="Filter slides by level">
+<span class="lbl">Course preset:</span>
+<button type="button" class="preset" data-preset="all" aria-pressed="true">Majors, Physiology (all)</button>
+<button type="button" class="preset" data-preset="core" aria-pressed="false">Non-majors (core)</button>
+<span aria-hidden="true" style="opacity:.4">|</span>
+<span class="lbl">Levels:</span>
+<button type="button" class="tgl lvl1" data-lvl="1" aria-pressed="true">Core</button>
+<button type="button" class="tgl lvl2" data-lvl="2" aria-pressed="true">Mechanism</button>
+<button type="button" class="tgl lvl3" data-lvl="3" aria-pressed="true">Clinical</button>
+</div>
+
+<!-- Digital Atlas, added by bio004-atlas-tile-add.py. Click or scan, opens in a second tab. -->
+<style>
+  .atl-wrap{max-width:900px;margin:22px auto;padding:0 26px}
+  .atl-tile{display:grid;grid-template-columns:52px 1fr 124px;gap:18px;align-items:center;
+    background:#0B1530;border-radius:16px;padding:16px 20px;text-decoration:none;color:#fff;
+    box-shadow:0 0 0 2px #C9A14A,0 8px 18px -12px rgba(8,16,31,.4);
+    transition:transform .2s ease,box-shadow .2s ease}
+  .atl-tile:hover{transform:translateY(-2px);box-shadow:0 0 0 2px #C9A14A,0 12px 22px -12px rgba(8,16,31,.55)}
+  .atl-tile:focus-visible{outline:3px solid #C9A14A;outline-offset:3px}
+  .atl-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
+    background:linear-gradient(145deg,#5C7FA8,#2F4C7D);box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
+  .atl-ic svg{width:26px;height:26px;stroke:#0B1530;fill:none;stroke-width:2.1;
+    stroke-linecap:round;stroke-linejoin:round}
+  .atl-tag{font-family:'DM Sans',system-ui,sans-serif;font-size:10.5px;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;color:#E8C97E;margin:0}
+  .atl-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:19px;font-weight:800;
+    letter-spacing:-.015em;color:#EBCE86;margin:2px 0 0;line-height:1.2}
+  .atl-d{font-size:12.5px;color:#E9EDF3;margin:3px 0 0;line-height:1.4}
+  /* 124px, not 92. At 92 a phone camera has under three pixels per module and
+     hunts for the code. */
+  .atl-qr{width:124px;height:124px;background:#fff;border-radius:11px;padding:6px}
+  .atl-qr-svg{width:100%;height:100%;display:block;shape-rendering:crispEdges}
+  .atl-qr-line{stroke:#0B1530}
+  @media (prefers-reduced-motion:reduce){.atl-tile:hover{transform:none}}
+  @media (max-width:640px){
+    .atl-tile{grid-template-columns:1fr;justify-items:center;text-align:center;gap:12px}
+  }
+  @media print{
+    .atl-wrap{margin:14pt auto;padding:0}
+    .atl-tile{break-inside:avoid;grid-template-columns:34pt 1fr 68pt;gap:12pt;padding:10pt 13pt;
+      border-radius:10pt;box-shadow:0 0 0 1.2pt #C9A14A;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .atl-ic{width:34pt;height:34pt;border-radius:9pt}
+    .atl-ic svg{width:17pt;height:17pt}
+    .atl-tag{font-size:6.6pt}
+    .atl-h{font-size:12.5pt}
+    .atl-d{font-size:8.4pt}
+    .atl-qr{width:68pt;height:68pt;padding:3.5pt;border-radius:7pt}
+  }
+</style>
+<div class="atl-wrap">
+  <a class="atl-tile" href="https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo" target="_blank" rel="noopener"
+     aria-label="Open the Digital Atlas in a new tab">
+    <span class="atl-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
+    <span>
+      <span class="atl-tag" style="display:block">Open it beside this page</span>
+      <span class="atl-h" style="display:block">Digital Atlas</span>
+      <span class="atl-d" style="display:block">Turn the structures around while you read. Click here, or scan the code with your phone, and it opens in a second window.</span>
+    </span>
+    <span class="atl-qr"><svg viewBox="0 0 35 35" preserveAspectRatio="xMidYMid meet" class="atl-qr-svg" aria-hidden="true" focusable="false"><path class="atl-qr-line" stroke="#08101f" d="M1 1.5h7m1 0h6m2 0h1m1 0h1m4 0h2m1 0h7m-33 1h1m5 0h1m3 0h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h1m2 0h2m1 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m6 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m2 0h1m2 0h1m2 0h1m1 0h3m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h2m4 0h1m2 0h7m-24 1h1m3 0h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m2 0h10m2 0h1m-31 1h1m6 0h2m1 0h1m1 0h2m1 0h1m5 0h1m1 0h1m3 0h3m-32 1h1m1 0h1m3 0h1m1 0h2m3 0h3m2 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m-27 1h1m4 0h2m1 0h1m1 0h1m4 0h2m3 0h1m5 0h1m-32 1h3m2 0h2m4 0h3m1 0h2m2 0h2m1 0h1m3 0h1m1 0h2m2 0h1m-33 1h1m2 0h1m4 0h1m1 0h1m3 0h1m3 0h3m1 0h1m3 0h2m1 0h2m-31 1h2m2 0h1m1 0h1m5 0h1m1 0h2m1 0h2m2 0h3m1 0h4m2 0h1m-31 1h1m2 0h1m2 0h11m3 0h1m2 0h3m1 0h2m-28 1h2m1 0h3m3 0h1m1 0h1m3 0h1m1 0h1m1 0h3m2 0h1m1 0h2m1 0h1m-31 1h2m1 0h1m4 0h2m1 0h1m1 0h3m1 0h1m3 0h2m5 0h4m-33 1h4m1 0h2m2 0h1m3 0h1m1 0h1m1 0h1m2 0h2m1 0h3m1 0h1m1 0h1m1 0h1m-29 1h1m3 0h1m2 0h1m1 0h3m2 0h3m1 0h3m3 0h1m-28 1h3m1 0h1m1 0h2m1 0h1m3 0h3m2 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m-32 1h3m1 0h2m4 0h2m1 0h2m1 0h1m2 0h2m2 0h1m1 0h3m2 0h2m-30 1h6m2 0h2m4 0h3m3 0h2m3 0h1m2 0h2m-30 1h1m4 0h1m1 0h4m1 0h1m2 0h3m1 0h6m1 0h1m3 0h1m-33 1h4m2 0h1m1 0h3m1 0h4m1 0h6m1 0h6m1 0h2m-25 1h5m1 0h5m3 0h1m1 0h1m3 0h1m1 0h3m-33 1h7m1 0h2m4 0h2m2 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m-32 1h1m5 0h1m3 0h4m2 0h1m4 0h1m2 0h1m3 0h1m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m4 0h1m4 0h1m2 0h6m-30 1h1m1 0h3m1 0h1m2 0h1m1 0h3m3 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-31 1h1m1 0h3m1 0h1m2 0h1m2 0h4m2 0h1m2 0h1m1 0h2m1 0h4m-30 1h1m5 0h1m2 0h1m2 0h2m1 0h3m3 0h2m1 0h1m4 0h1m-30 1h7m1 0h3m1 0h1m4 0h1m1 0h4m1 0h1m4 0h1m2 0h1"/></svg></span>
+  </a>
+</div>
+
+<main class="deck" id="deck">
+<section class="slide divider" aria-label="Blood"><div class="slide-body"><div class="divhero"><p class="dn">BIO 005 / BIO 431 · Human Physiology · Blood</p><h2>Blood</h2><p>How blood works: gas transport, the control of blood-cell production, hemostasis, and transfusion. Pairs with the Blood Anatomy deck.</p></div></div></section>
+<section class="slide" aria-label="Who covers what"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Start here</p><h2 class="slide-title">Who covers what</h2></div><span class="slide-meta">Course key</span></div><div class="slide-body"><p class="lead-in">This is the <strong>Physiology</strong> deck. Every content slide carries a colored tag; your track tells you which tags you are responsible for. The rest are still yours to look at.</p><div class="keygrid"><div class="keycard k1"><h4>Core</h4><p>Every student. The essential function, in plain language.</p></div><div class="keycard k2"><h4>Mechanism</h4><p>Majors. How and why the process works.</p></div><div class="keycard k3"><h4>Clinical</h4><p>Majors. Drugs, labs, and disorders.</p></div></div><table class="dtable"><caption>What each track covers &middot; this is the Physiology deck</caption><thead><tr><th scope="col">Track</th><th scope="col">Covers</th></tr></thead><tbody><tr><th scope="row">Non-majors</th><td>Core slides only</td></tr><tr><th scope="row">Majors, Physiology</th><td>Core, Mechanism, and Clinical (all of this deck)</td></tr><tr><th scope="row">Majors, Anatomy</th><td>The separate Blood Anatomy deck</td></tr><tr><th scope="row">Combined majors (BIO 430 / 431)</th><td>Both decks, Anatomy and Physiology</td></tr></tbody></table><div class="invite"><strong>Non-majors:</strong> you are responsible for the navy <strong>Core</strong> slides. The gold <strong>Mechanism</strong> and terra <strong>Clinical</strong> tags are a first look at the majors course. Use the <strong>Levels</strong> buttons at the top to show or hide each tier.</div></div></section>
+<section class="slide" aria-label="Anatomy in one slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Anatomy recap</p><h2 class="slide-title">Anatomy in one slide</h2> <span class="lvlchip lvl1" data-lvl="1">Core</span></div><span class="slide-meta">Prerequisite</span></div><div class="slide-body"><p class="lead-in">Did not take anatomy first? Start here. Already took it? Skim and move on. These are the structures the rest of this deck assumes.</p><div class="anatgrid"><div class="ac"><b>Blood</b><span>a fluid connective tissue: about 45% formed elements and 55% plasma</span></div><div class="ac"><b>Plasma</b><span>the liquid matrix; key proteins are albumin, globulins, and fibrinogen</span></div><div class="ac"><b>Erythrocyte (RBC)</b><span>biconcave, no nucleus, packed with hemoglobin; the oxygen carrier</span></div><div class="ac"><b>Hemoglobin</b><span>four globin chains and four iron-containing hemes; binds oxygen</span></div><div class="ac"><b>Leukocytes (WBCs)</b><span>five types (neutrophil, lymphocyte, monocyte, eosinophil, basophil); defense</span></div><div class="ac"><b>Platelets</b><span>fragments of megakaryocytes; plug injuries and start clotting</span></div><div class="ac"><b>Hemocytoblast</b><span>the stem cell in red bone marrow that gives rise to every blood cell</span></div><div class="ac"><b>Red bone marrow</b><span>the site of blood-cell formation (hematopoiesis)</span></div><div class="ac"><b>Antigens &amp; antibodies</b><span>surface markers on cells and proteins in plasma; the basis of blood typing</span></div></div></div></section>
+<section class="slide divider" aria-label="Transport"><div class="slide-body"><div class="divhero"><p class="dn">Part 1</p><h2>Transport</h2><p>How blood moves gases, and the pigment that carries them.</p></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Overview</p><h2 class="slide-title">Functions of blood</h2> <span class="lvlchip lvl1" data-lvl="1">Core</span></div><span class="slide-meta">Homeostasis</span></div><div class="slide-body"><div class="slide-content"><h3>Key points</h3><ul><li><strong>Transport:</strong> oxygen and carbon dioxide, nutrients, wastes, hormones.</li><li><strong>Regulation:</strong> body temperature, pH buffering, fluid balance.</li><li><strong>Protection:</strong> clotting stops blood loss; white cells and antibodies fight infection.</li></ul><div class="takeaway">Everything blood does serves one goal: keeping the internal environment steady.</div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Gas transport</p><h2 class="slide-title">Carrying oxygen and carbon dioxide</h2> <span class="lvlchip lvl1" data-lvl="1">Core</span></div><span class="slide-meta">Respiration</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>Key points</h3><ul><li><strong>Oxygen:</strong> about 98.5% rides bound to hemoglobin (as oxyhemoglobin); 1.5% is dissolved in plasma.</li><li>Hemoglobin <strong>loads</strong> O2 where it is high (lungs) and <strong>unloads</strong> where it is low (tissues).</li><li><strong>Carbon dioxide:</strong> about 70% as bicarbonate in plasma, 20% on the globin chains, 10% dissolved.</li></ul><div class="takeaway">Hemoglobin carries almost all the oxygen; most CO2 travels home as bicarbonate.</div></div><div class="figcol"><img class="slidefig" src="blood-img/fig-blood-type-pdfs-22.png" alt="Carrying oxygen and carbon dioxide, lecture figure"><p class="figcap"><strong>Dr. Rennie</strong>, lecture figure</p></div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Clinical</p><h2 class="slide-title">When the carrier fails</h2> <span class="lvlchip lvl3" data-lvl="3">Clinical</span></div><span class="slide-meta">Abnormal hemoglobin</span></div><div class="slide-body"><div class="slide-content"><h3>Key points</h3><ul><li><strong>Carboxyhemoglobin:</strong> carbon monoxide binds hemoglobin ~200x tighter than O2, so it blocks oxygen carriage (CO poisoning).</li><li><strong>Methemoglobin:</strong> iron oxidized to Fe3+ can no longer bind oxygen.</li><li>Both cut delivery even when breathing and lung function look normal.</li></ul><div class="takeaway">Oxygen can be normal in the lungs yet never reach the tissue if the carrier is blocked.</div></div></div></section>
+<section class="slide divider" aria-label="Making Blood Cells"><div class="slide-body"><div class="divhero"><p class="dn">Part 2</p><h2>Making Blood Cells</h2><p>The signals that control production.</p></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Regulation</p><h2 class="slide-title">Erythropoiesis and EPO</h2> <span class="lvlchip lvl2" data-lvl="2">Mechanism</span></div><span class="slide-meta">Feedback</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>Key points</h3><ul><li>Red cells are made in red bone marrow from the hemocytoblast, a ~15 day assembly line.</li><li><strong>Erythropoietin (EPO)</strong>, about 90% from the kidney, is released when tissue oxygen falls (hypoxia).</li><li>EPO drives proerythroblasts to divide and mature; a <strong>negative feedback</strong> loop shuts it off as oxygen recovers.</li><li>Raw materials required: iron, vitamin B12, and folate.</li></ul><div class="takeaway">The kidney is the oxygen sensor; EPO is the throttle on red-cell production.</div></div><div class="figcol"><img class="slidefig" src="blood-img/fig-blood-type-pdfs-26.png" alt="Erythropoiesis and EPO, lecture figure"><p class="figcap"><strong>Dr. Rennie</strong>, lecture figure</p></div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Regulation</p><h2 class="slide-title">Iron homeostasis</h2> <span class="lvlchip lvl2" data-lvl="2">Mechanism</span></div><span class="slide-meta">Recycling</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>Key points</h3><ul><li>Worn red cells are broken down by macrophages; hemoglobin splits into heme and globin.</li><li><strong>Iron</strong> is salvaged: stored as <strong>ferritin</strong>, carried by <strong>transferrin</strong>, reused for new hemoglobin.</li><li>Leftover heme becomes <strong>bilirubin</strong>, sent to the liver and excreted in bile.</li></ul><div class="takeaway">The body hoards iron and recycles it; only the pigment is thrown away.</div></div><div class="figcol"><img class="slidefig" src="blood-img/fig-blood-type-pdfs-24.png" alt="Iron homeostasis, lecture figure"><p class="figcap"><strong>Dr. Rennie</strong>, lecture figure</p></div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Regulation</p><h2 class="slide-title">Leukopoiesis and CSFs</h2> <span class="lvlchip lvl2" data-lvl="2">Mechanism</span></div><span class="slide-meta">White-cell control</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>Key points</h3><ul><li>White cells are produced on demand under <strong>colony-stimulating factors (CSFs)</strong> and interleukins.</li><li><strong>G-CSF</strong> (granulocytes), <strong>M-CSF</strong> (monocytes), <strong>GM-CSF</strong> (both), <strong>IL-3</strong> (multiple lines).</li><li>Clinical: G-CSF (filgrastim) rebuilds neutrophils after chemotherapy.</li></ul><div class="takeaway">Infection raises CSFs, and CSFs raise the white-cell output to match the threat.</div></div><div class="figcol"><img class="slidefig" src="blood-img/fig-pages-from-blood-type-pdfs-2.png" alt="Leukopoiesis and CSFs, lecture figure"><p class="figcap"><strong>Dr. Rennie</strong>, lecture figure</p></div></div></div></section>
+<section class="slide divider" aria-label="Hemostasis"><div class="slide-body"><div class="divhero"><p class="dn">Part 3</p><h2>Hemostasis</h2><p>Stopping bleeding, step by step.</p></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Hemostasis</p><h2 class="slide-title">How bleeding stops</h2> <span class="lvlchip lvl1" data-lvl="1">Core</span></div><span class="slide-meta">Three ideas</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>Key points</h3><ul><li><strong>1 Vasoconstriction:</strong> the injured vessel squeezes shut to slow flow.</li><li><strong>2 Platelet plug:</strong> platelets stick to the wound and to each other.</li><li><strong>3 Coagulation:</strong> a fibrin mesh hardens the plug into a clot.</li></ul><div class="takeaway">Narrow the pipe, plug the hole, then cement the plug.</div></div><div class="figcol"><img class="slidefig" src="blood-img/fig-blood-type-pdfs-37.png" alt="How bleeding stops, lecture figure"><p class="figcap"><strong>Dr. Rennie</strong>, lecture figure</p></div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Hemostasis</p><h2 class="slide-title">Coagulation, the cascade</h2> <span class="lvlchip lvl2" data-lvl="2">Mechanism</span></div><span class="slide-meta">Teach it</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>A way to picture it</h3><ul><li>Think of it as <strong>falling dominoes:</strong> each clotting factor is a domino lying flat (inactive). The injury tips the first one, and each fall knocks over the next.</li><li>Two on-ramps, one highway: the <strong>extrinsic</strong> pathway (tissue factor, fast) and the <strong>intrinsic</strong> pathway (contact, slower) both merge into the <strong>common</strong> pathway.</li><li>The cascade <strong>amplifies:</strong> a tiny trigger becomes a big clot in seconds because each step activates many of the next.</li><li>It always ends the same way: <strong>thrombin</strong> turns <strong>fibrinogen into fibrin</strong>. Calcium and vitamin K are required.</li></ul><div class="takeaway">One line to leave them with: two roads merge into one, and the destination is always fibrin. Walk the stepper beside it.</div></div><div class="figcol"><div class="casc" id="casc1"><ol class="steps"><li data-s="1"><b>Injury</b><span>the vessel wall tears and hidden factors are exposed</span></li><li data-s="2"><b>Two pathways fire</b><span>extrinsic (tissue factor, fast) and intrinsic (contact, slower)</span></li><li data-s="3"><b>They meet at Factor X</b><span>both roads converge on the common pathway</span></li><li data-s="4"><b>Prothrombin &rarr; thrombin</b><span>the prothrombin activator forms, calcium required</span></li><li data-s="5"><b>Fibrinogen &rarr; fibrin</b><span>thrombin snips fibrinogen into sticky fibrin threads</span></li><li data-s="6"><b>Fibrin mesh</b><span>threads weave a net that traps cells: the clot is set</span></li></ol><div class="cascbtns"><button type="button" class="btn step">Next step &rarr;</button><button type="button" class="btn ghost reset">Reset</button></div><p class="cascnow" aria-live="polite">Press Next step to build the clot.</p></div></div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Hemostasis</p><h2 class="slide-title">Coagulation pathways (reference)</h2> <span class="lvlchip lvl2" data-lvl="2">Mechanism</span></div><span class="slide-meta">Pathways</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>Key points</h3><ul><li><strong>Intrinsic:</strong> triggered inside the vessel by contact with damage; slower.</li><li><strong>Extrinsic:</strong> triggered by tissue factor from injured tissue; faster.</li><li><strong>Common:</strong> both activate Factor X, which drives prothrombin to <strong>thrombin</strong>, then fibrinogen to <strong>fibrin</strong>.</li><li>Clinical tie-in: <strong>PT</strong> tests the extrinsic road, <strong>PTT</strong> the intrinsic road.</li></ul><div class="takeaway">PT checks the fast road (extrinsic); PTT checks the long road (intrinsic).</div></div><div class="figcol"><img class="slidefig" src="blood-img/fig-blood-type-pdfs-43.png" alt="Coagulation pathways (reference), lecture figure"><p class="figcap"><strong>Dr. Rennie</strong>, lecture figure</p></div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Hemostasis</p><h2 class="slide-title">Clot retraction and fibrinolysis</h2> <span class="lvlchip lvl2" data-lvl="2">Mechanism</span></div><span class="slide-meta">Cleanup</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>Key points</h3><ul><li><strong>Clot retraction:</strong> platelet actin and myosin contract, pulling the wound edges together.</li><li><strong>Fibrinolysis:</strong> once healed, <strong>plasmin</strong> digests the fibrin and dissolves the clot (tPA activates plasmin).</li><li>Anticlotting factors keep the clot from spreading beyond the injury.</li></ul><div class="takeaway">The clot tightens to heal, then plasmin cleans it up when the job is done.</div></div><div class="figcol"><img class="slidefig" src="blood-img/fig-blood-type-pdfs-41.png" alt="Clot retraction and fibrinolysis, lecture figure"><p class="figcap"><strong>Dr. Rennie</strong>, lecture figure</p></div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Clinical</p><h2 class="slide-title">Anticoagulant and antiplatelet drugs</h2> <span class="lvlchip lvl3" data-lvl="3">Clinical</span></div><span class="slide-meta">Pharmacology</span></div><div class="slide-body"><div class="slide-content"><h3>Key points</h3><ul><li><strong>Antiplatelets</strong> (aspirin) block platelet aggregation.</li><li><strong>Anticoagulants</strong> (heparin, warfarin) slow the cascade; warfarin blocks vitamin K.</li><li>Used to prevent thrombosis in at-risk patients, balanced against bleeding risk.</li></ul><div class="takeaway">Every clot-slowing drug trades clot risk for bleeding risk.</div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Clinical</p><h2 class="slide-title">Coagulation lab tests</h2> <span class="lvlchip lvl3" data-lvl="3">Clinical</span></div><span class="slide-meta">Monitoring</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>Key points</h3><ul><li><strong>PT</strong> (prothrombin time): the extrinsic and common pathways; INR standardizes it.</li><li><strong>PTT</strong>: the intrinsic and common pathways.</li><li><strong>Bleeding time:</strong> platelet function.</li></ul><div class="takeaway">PT for the extrinsic road, PTT for the intrinsic, bleeding time for platelets.</div></div><div class="figcol"><img class="slidefig" src="blood-img/fig-blood-type-pdfs-45.png" alt="Coagulation lab tests, lecture figure"><p class="figcap"><strong>Dr. Rennie</strong>, lecture figure</p></div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Clinical</p><h2 class="slide-title">Clotting disorders</h2> <span class="lvlchip lvl3" data-lvl="3">Clinical</span></div><span class="slide-meta">When it goes wrong</span></div><div class="slide-body"><div class="slide-content"><h3>Key points</h3><ul><li><strong>Too little clotting:</strong> hemophilia (missing a factor) or thrombocytopenia; bleeding.</li><li><strong>Too much clotting:</strong> thrombosis; a clot that breaks free is an <strong>embolus</strong>.</li><li>Read each as a broken step in spasm, plug, or cascade.</li></ul><div class="takeaway">Bleeding or clotting: too little or too much of one step in hemostasis.</div></div></div></section>
+<section class="slide divider" aria-label="Transfusion"><div class="slide-body"><div class="divhero"><p class="dn">Part 4</p><h2>Transfusion</h2><p>Matching blood, and what happens when it is wrong.</p></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Immunohematology</p><h2 class="slide-title">Transfusion compatibility</h2> <span class="lvlchip lvl1" data-lvl="1">Core</span></div><span class="slide-meta">Matching</span></div><div class="slide-body"><div class="slide-content"><h3>Key points</h3><ul><li>Red cells carry <strong>antigens</strong>; plasma carries <strong>antibodies</strong> against the antigens a person lacks.</li><li>A safe transfusion never gives an antigen the recipient has antibodies against.</li><li><strong>O negative</strong> is the universal donor; <strong>AB positive</strong> is the universal recipient.</li></ul><div class="takeaway">Match the antigen to the antibody, or the immune system attacks the donor cells.</div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Clinical</p><h2 class="slide-title">Hemolytic transfusion reaction</h2> <span class="lvlchip lvl3" data-lvl="3">Clinical</span></div><span class="slide-meta">Mismatch</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>Key points</h3><ul><li>A mismatched unit: recipient antibodies bind donor antigens.</li><li>Result: <strong>agglutination and hemolysis</strong> of donor cells.</li><li>Free hemoglobin can damage the kidneys; cross-matching prevents it.</li></ul><div class="takeaway">The wrong unit clumps and bursts the donor cells within minutes.</div></div><div class="figcol"><img class="slidefig" src="blood-img/fig-htr-2-pages.png" alt="Hemolytic transfusion reaction, lecture figure"><p class="figcap"><strong>Dr. Rennie</strong>, lecture figure</p></div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Clinical</p><h2 class="slide-title">Hemolytic disease of the newborn</h2> <span class="lvlchip lvl3" data-lvl="3">Clinical</span></div><span class="slide-meta">Rh sensitization</span></div><div class="slide-body"><div class="split"><div class="slide-content"><h3>Key points</h3><ul><li>An <strong>Rh-negative</strong> mother is sensitized by an <strong>Rh-positive</strong> fetus and makes anti-Rh antibodies.</li><li>In a later Rh-positive pregnancy those antibodies cross the placenta and destroy fetal red cells.</li><li>Prevention: <strong>anti-D immunoglobulin (RhIg)</strong>.</li></ul><div class="takeaway">The danger is the next Rh-positive pregnancy; RhIg prevents sensitization.</div></div><div class="figcol"><img class="slidefig" src="blood-img/fig-hdn-blood-type-pdfs.png" alt="Hemolytic disease of the newborn, lecture figure"><p class="figcap"><strong>Dr. Rennie</strong>, lecture figure</p></div></div></div></section>
+<section class="slide"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Wrap-up</p><h2 class="slide-title">Key takeaways</h2></div><span class="slide-meta">Review</span></div><div class="slide-body"><ul><li>Blood transports gases: hemoglobin carries almost all the oxygen; most CO2 rides as bicarbonate.</li><li>The kidney senses low oxygen and releases EPO to make red cells; CSFs control white-cell production; iron is recycled.</li><li>Hemostasis is spasm, plug, and coagulation: two pathways (intrinsic and extrinsic) merge into a common pathway that makes fibrin.</li><li>The clot retracts to heal, then plasmin dissolves it; drugs and lab tests target these steps.</li><li>Transfusion safety is antigen-antibody matching; mismatch causes a transfusion reaction, and Rh mismatch causes HDN.</li></ul></div></section>
+<section class="slide qr-close"><div class="slide-header"><span class="slide-num"></span><div><p class="slide-eyebrow">Keep studying</p><h2 class="slide-title">Take it with you</h2></div><span class="slide-meta">Scan</span></div><div class="slide-body"><div class="qr-grid"><div class="qr-card"><p class="qe">This deck</p><h3>Physiology slides</h3><img src="blood-img/qr-physiology.png" alt="QR to the blood physiology slides"><p>Open on your phone.</p></div><div class="qr-card"><p class="qe">The pair</p><h3>Anatomy slides</h3><img src="blood-img/qr-slides.png" alt="QR to the blood anatomy slides"><p>Structure of the components.</p></div><div class="qr-card"><p class="qe">Practice</p><h3>Study-question guide</h3><img src="blood-img/qr-study.png" alt="QR to the study guide"><p>Questions only.</p></div></div></div></section>
+<script>(function(){var c=document.getElementById("casc1");if(!c)return;var items=[].slice.call(c.querySelectorAll(".steps li"));var now=c.querySelector(".cascnow");var idx=0;function render(){items.forEach(function(li,k){li.classList.toggle("on",k<idx);li.classList.toggle("cur",k===idx-1);});if(idx===0){now.textContent="Press Next step to build the clot.";}else{var li=items[idx-1];now.textContent="Step "+idx+" of "+items.length+": "+li.querySelector("b").textContent;}}c.querySelector(".step").addEventListener("click",function(){if(idx<items.length)idx++;render();});c.querySelector(".reset").addEventListener("click",function(){idx=0;render();});render();})();</script>
+</main>
+<p class="foot">Dr. Sharilyn Rennie · Focus: Human Anatomy · Blood. Need a PDF? Use Print / Save PDF above, or download the accessible PDF from Canvas.</p>
+<div class="present-bar"><button type="button" class="prev" aria-label="Previous slide">&#8249;</button><span class="count" id="presentCount">1 / 1</span><button type="button" class="next" aria-label="Next slide">&#8250;</button><button type="button" class="exit">Exit</button></div>
+<script>
+(function(){document.querySelectorAll('.deck .slide').forEach(function(s,i){var n=s.querySelector('.slide-num');if(n)n.textContent=(i<10?'0':'')+i;});})();
+(function(){document.querySelectorAll('.decision').forEach(function(g){var r=g.querySelector('.reveal');g.querySelectorAll('.choice').forEach(function(b){b.addEventListener('click',function(){g.querySelectorAll('.choice').forEach(function(x){x.classList.remove('right','wrong');x.classList.add(x.getAttribute('data-correct')==='true'?'right':'wrong');});if(r)r.hidden=false;});});});})();
+(function(){var pr=document.getElementById('printBtn');if(pr)pr.addEventListener('click',function(){window.print();});})();
+(function(){var slides=[].slice.call(document.querySelectorAll('.deck .slide'));if(!slides.length)return;var idx=0,on=false;var bar=document.querySelector('.present-bar'),countEl=document.getElementById('presentCount');var prev=bar.querySelector('.prev'),next=bar.querySelector('.next'),exitB=bar.querySelector('.exit');
+function show(i){idx=Math.max(0,Math.min(slides.length-1,i));slides.forEach(function(s,k){s.classList.toggle('is-current',k===idx);});countEl.textContent=(idx+1)+' / '+slides.length;prev.disabled=idx===0;next.disabled=idx===slides.length-1;}
+function enter(i){on=true;document.body.classList.add('present');show(i||0);if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(function(){});}
+function exit(){on=false;document.body.classList.remove('present');slides.forEach(function(s){s.classList.remove('is-current');});if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(function(){});}
+var pb=document.getElementById('presentBtn');if(pb)pb.addEventListener('click',function(){enter(0);});
+prev.addEventListener('click',function(){show(idx-1);});next.addEventListener('click',function(){show(idx+1);});exitB.addEventListener('click',exit);
+document.addEventListener('keydown',function(e){if(!on)return;if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();show(idx+1);}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(idx-1);}else if(e.key==='Escape'){exit();}});
+document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&on)exit();});
+})();
+</script>
+<div class="lightbox" id="lightbox" hidden><img class="lb-img" src="" alt=""><button type="button" class="lb-close" aria-label="Close enlarged image">&times;</button></div>
+<script>
+(function(){var lb=document.getElementById('lightbox');if(!lb)return;var img=lb.querySelector('.lb-img');var cb=lb.querySelector('.lb-close');
+document.querySelectorAll('.slidefig').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();img.src=el.currentSrc||el.src;img.alt=el.alt||'';lb.hidden=false;});});
+function close(){lb.hidden=true;img.removeAttribute('src');}
+lb.addEventListener('click',function(e){if(e.target!==img)close();});
+cb.addEventListener('click',function(e){e.stopPropagation();close();});
+document.addEventListener('keydown',function(e){if(!lb.hidden&&e.key==='Escape')close();});})();
+</script>
+<script>(function(){var b=document.getElementById("backBtn");if(!b)return;if(document.referrer||window.history.length>1){b.hidden=false;}b.addEventListener("click",function(){if(history.length>1)history.back();else if(document.referrer)location.href=document.referrer;});})();</script>
+<script>
+(function(){
+ var active={"1":true,"2":true,"3":true};
+ var slides=[].slice.call(document.querySelectorAll(".deck .slide"));
+ var tgls=[].slice.call(document.querySelectorAll(".lvlbar .tgl"));
+ var presets=[].slice.call(document.querySelectorAll(".lvlbar .preset"));
+ function apply(){
+  slides.forEach(function(sl){var c=sl.querySelector(".lvlchip");
+   if(c){sl.classList.toggle("lvl-hidden",!active[c.dataset.lvl]);}});
+  tgls.forEach(function(b){b.setAttribute("aria-pressed",active[b.dataset.lvl]?"true":"false");});
+ }
+ tgls.forEach(function(b){b.addEventListener("click",function(){
+  active[b.dataset.lvl]=!active[b.dataset.lvl];
+  presets.forEach(function(p){p.setAttribute("aria-pressed","false");});apply();});});
+ presets.forEach(function(p){p.addEventListener("click",function(){
+  var m=p.dataset.preset;
+  active={"1":true,"2":m!=="core","3":m!=="core"?true:false};
+  if(m==="core"){active={"1":true,"2":false,"3":false};}
+  else{active={"1":true,"2":true,"3":true};}
+  presets.forEach(function(x){x.setAttribute("aria-pressed",x===p?"true":"false");});apply();});});
+ apply();
+})();
+</script>
+<script>(function(){function s(){try{parent.postMessage({type:"setHeight",id:"blood-physiology",height:(window.BIO004_CONTENT_HEIGHT ? window.BIO004_CONTENT_HEIGHT() : document.body.scrollHeight)},"*");}catch(e){}}window.addEventListener("load",s);window.addEventListener("resize",s);if(window.ResizeObserver)new ResizeObserver(s).observe(document.body);})();</script>
+
+<script src="bio004-dock.js"></script>
+<script src="dock-coachmark.js"></script>
+<script src="missing-figure.js"></script>
+</body></html>

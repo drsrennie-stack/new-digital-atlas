@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Week 1 &middot; Mon/Wed &middot; BIO 004 Human Anatomy &middot; Fall 2026</title>
+<meta name="description" content="Week 1 home base for BIO 004 Human Anatomy, Mon/Wed section. Lecture and lab, one topic per class day, with concept videos, worksheets, slides, lab sprints, the atlas, and Recall Rx.">
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+*{box-sizing:border-box}
+body{margin:0;background:#FFFFFF;color:#08101F;font-family:'Plus Jakarta Sans Variable','Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+a{color:inherit}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:12px;top:12px;background:#08101F;color:#fff;padding:10px 14px;border-radius:6px;z-index:60}
+.pad{padding-left:max(40px,5vw);padding-right:max(40px,5vw)}
+.protobar{background:#6B1616;color:#fff;text-align:center;font-size:13px;font-weight:600;padding:8px 14px}
+.protobar b{font-weight:800}
+
+.site-header{background:#FFFFFF;padding-top:24px;padding-bottom:24px;border-bottom:.5px solid rgba(11,21,48,.10)}
+.shead{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.site-logo{display:inline-flex;align-items:center;gap:16px;text-decoration:none}
+.site-logo svg{height:54px;width:auto;display:block}
+.logo-text{display:flex;flex-direction:column;gap:3px}
+.logo-title{font-size:27px;font-weight:800;letter-spacing:-.02em;color:#08101F;line-height:1}
+.logo-title .logo-accent{color:#6B1616}
+.logo-sub{font-size:11.8px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:#08101F;opacity:.72}
+.hdr-syl{font-weight:800;font-size:13.5px;color:#08101F;background:#fff;border:1.5px solid #ECE7DE;border-radius:999px;padding:9px 18px;text-decoration:none}
+.hdr-syl:hover{border-color:#6B1616}
+.site-logo:focus-visible.footer-logo:focus-visible{outline:3px solid #C9A14A;outline-offset:3px}
+
+.intro{padding-top:40px;padding-bottom:8px}
+.crumb{display:inline-flex;align-items:center;gap:7px;font-size:11.8px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6B1616;text-decoration:none}
+.crumb:hover{text-decoration:underline}
+.eyebrow{font-size:12.3px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#6B1616;margin:18px 0 14px}
+h1{font-size:clamp(30px,4vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.06;margin:0 0 14px;color:#08101F}
+h1 .accent{color:#6B1616}
+.lead{font-size:17px;font-weight:400;color:#08101F;opacity:.82;line-height:1.6;max-width:760px;margin:0}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px 18px;margin:16px 0 0;font-size:13.5px;font-weight:700;color:#08101F;opacity:.8}
+.op-btn{display:inline-flex;align-items:center;gap:8px;background:#6B1616;color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:12px 22px;border-radius:8px;margin:18px 0 0}
+
+/* Mastery OS banner */
+.mastery{display:block;text-decoration:none;background:#08101F;border-radius:12px;padding:30px 26px;text-align:center;box-shadow:0 18px 40px -20px rgba(11,21,48,.45),0 4px 12px -6px rgba(11,21,48,.22);transition:transform .2s ease,box-shadow .2s ease}
+.mastery:hover{transform:translateY(-3px);box-shadow:0 26px 50px -22px rgba(11,21,48,.55)}
+.mastery .m-name{font-size:26px;font-weight:800;letter-spacing:-.02em;color:#F4EFE8;line-height:1}
+.mastery .m-name span{color:#DCB45C}
+.mastery .m-desc{font-size:15px;color:#F4EFE8;opacity:.9;line-height:1.6;max-width:560px;margin:10px auto 0}
+.mastery .m-go{font-size:13px;color:#DCB45C;font-weight:800;margin:8px 0 0}
+
+/* section head */
+.sec{padding-top:34px}
+.sec-eyebrow{font-size:12.3px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#6B1616;margin:0 0 4px}
+.sec-title{font-size:23px;font-weight:800;letter-spacing:-.015em;color:#08101F;margin:0 0 4px}
+.sec-sub{font-size:15px;color:#08101F;opacity:.8;margin:0 0 16px;max-width:720px}
+
+/* day cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;list-style:none;margin:0;padding:0;align-items:start}
+.card{display:grid;grid-template-columns:104px 1fr;background:#FFFFFF;border:1px solid #ECE7DE;border-radius:12px;overflow:hidden;box-shadow:0 14px 32px -18px rgba(11,21,48,.32),0 2px 8px -4px rgba(11,21,48,.1);transition:transform .2s ease,box-shadow .2s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 22px 44px -18px rgba(11,21,48,.4)}
+.dayrail{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:16px 8px;text-align:center}
+.card.mon .dayrail{background:#08101F;color:#fff}
+.card.wed .dayrail{background:#C9A14A;color:#08101F}
+.d-abbr{font-size:20px;font-weight:800;letter-spacing:.03em;line-height:1}
+.d-date{font-size:11px;font-weight:700;opacity:.9}
+.d-num{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin-top:2px}
+.card-body{padding:18px 22px}
+.card h2{font-size:20px;font-weight:800;color:#08101F;letter-spacing:-.015em;line-height:1.3;margin:0 0 5px}
+.card .desc{font-size:14.6px;color:#08101F;opacity:.82;line-height:1.5;margin:0 0 14px}
+.mini{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6B1616;margin:0 0 9px}
+.mini.two{margin-top:14px}
+
+/* connect path pills */
+.daypath{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:0}
+.daypath>li{display:flex;align-items:center;gap:6px}
+.daypath>li:not(:last-child)::after{content:'\2192';color:#08101F;opacity:.45;font-weight:800;font-size:16px;margin-left:2px}
+.dp{display:inline-flex;align-items:center;text-decoration:none;border-radius:11px;padding:9px 15px;font-size:13.5px;font-weight:800;transition:transform .16s ease,box-shadow .16s ease}
+.dp:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(11,21,48,.16)}
+.dp-video{background:#8B1D1D;color:#08101F}
+.dp-work{background:#C9A14A;color:#08101F}
+.dp-slides{background:#FFFFFF;color:#08101F;border:1px solid #ECE7DE}
+.dp-recall{background:#08101F;color:#fff}
+.dp-sprint{background:#C9A14A;color:#08101F}
+.dp-atlas{background:#8B1D1D;color:#08101F}
+.dp-digital{background:#FFFFFF;color:#08101F;border:1px solid #ECE7DE}
+.dp-pending{display:inline-flex;align-items:center;border-radius:11px;padding:9px 15px;font-size:13.5px;font-weight:800;color:#5a6573;background:#EDF1F3;border:1px dashed #9aa6b2}
+
+/* day toggle, one card, flip between days like sheets; whole card = day color */
+.dtoggle{display:grid;grid-template-columns:118px 1fr;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px -20px rgba(11,21,48,.4),0 3px 10px -4px rgba(11,21,48,.12);border:1px solid #ECE7DE}
+@media(max-width:560px){.dtoggle{grid-template-columns:82px 1fr}}
+.dtoggle-tabs{display:flex;flex-direction:column}
+.dtoggle-tab{flex:1;min-height:88px;border:none;cursor:pointer;font:inherit;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:16px 8px;transition:opacity .18s ease}
+.dtoggle-tab b{font-size:19px;letter-spacing:.03em;line-height:1}
+.dtoggle-tab span{font-size:11px;font-weight:700;opacity:.9}
+.dtoggle-tab.mon{background:#08101F;color:#F4EFE8}
+.dtoggle-tab.wed{background:#6B1616;color:#F4EFE8}
+.dtoggle-tab[aria-selected="false"]{opacity:.34}
+.dtoggle-tab[aria-selected="false"]:hover{opacity:.7}
+.dpane{padding:22px 24px}
+.dpane[hidden]{display:none}
+.dpane.mon{background:#08101F;color:#F4EFE8}
+.dpane.wed{background:#6B1616;color:#F4EFE8}
+.dpane h3{margin:0 0 5px;font-size:21px;font-weight:800;letter-spacing:-.015em}
+.dpane .pdesc{margin:0 0 14px;font-size:14.6px;line-height:1.5;opacity:.9}
+.dpane .mini{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin:0 0 9px}
+.dpane.mon .mini{color:#DCB45C}
+.dpane.wed .mini{color:#DCB45C}
+.dpane .mini.two{margin-top:15px}
+.wpath{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:0}
+.wpath>li{display:flex;align-items:center;gap:6px}
+.wpath>li:not(:last-child)::after{content:'\2192';color:currentColor;opacity:.5;font-weight:800;font-size:16px;margin-left:2px}
+.wp{display:inline-flex;align-items:center;text-decoration:none;background:#fff;color:#08101F;border-radius:11px;padding:9px 15px;font-size:13.5px;font-weight:800;transition:transform .16s ease,box-shadow .16s ease}
+.wp:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(0,0,0,.22)}
+.wp-soon{background:rgba(255,255,255,.2);color:inherit;border:1px dashed currentColor;font-weight:800}
+.dpane.wed .wp-soon{background:rgba(11,21,48,.07)}
+.pnote{margin:0;font-size:14px;line-height:1.5;opacity:.92}
+.block.gold .b-note strong{color:#DCB45C}
+.wkbanner .wk-text strong{color:#08101F}
+.wktools{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 0;padding:0}
+@media(max-width:640px){.wktools{grid-template-columns:1fr}}
+.wktool{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:#fff;border:1px solid #ECE7DE;border-radius:10px;padding:12px 15px;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.wktool:hover{transform:translateY(-2px);border-color:#6B1616;box-shadow:0 10px 20px -12px rgba(11,21,48,.3)}
+.wktool b{color:#08101F;font-size:14.5px}
+.wktool span{color:#08101F;opacity:.72;font-size:12.5px;line-height:1.4}
+
+/* full-color blocks */
+.block{border-radius:12px;padding:18px 20px;margin-top:16px}
+.block.navy{background:#08101F;color:#F4EFE8;box-shadow:0 18px 40px -20px rgba(11,21,48,.45),0 4px 12px -6px rgba(11,21,48,.22)}
+.block.gold{background:#6B1616;color:#F4EFE8}
+.b-eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin:0 0 8px}
+.block.navy .b-eyebrow{color:#DCB45C}
+.block.gold .b-eyebrow{color:#DCB45C;opacity:1}
+.b-note{font-size:14px;line-height:1.55;margin:8px 0 0}
+.block.navy .b-note{opacity:.9}
+
+/* recall decks */
+.decks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+@media(max-width:620px){.decks{grid-template-columns:1fr}}
+.deck{display:flex;flex-direction:column;gap:5px;text-decoration:none;background:#fff;border:1px solid #ECE7DE;border-radius:12px;padding:16px;box-shadow:0 12px 28px -18px rgba(11,21,48,.3),0 2px 6px -3px rgba(11,21,48,.1);transition:transform .16s ease,box-shadow .16s ease}
+.deck:hover{transform:translateY(-2px);box-shadow:0 18px 36px -18px rgba(11,21,48,.4)}
+.deck-tag{align-self:flex-start;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#08101F;border-radius:999px;padding:3px 10px}
+.deck.alt .deck-tag{background:#6B1616}
+.deck-name{font-size:16px;font-weight:800;color:#08101F;margin-top:4px}
+.deck-desc{font-size:13px;line-height:1.5;color:#08101F;opacity:.84}
+.deck-go{font-size:12.5px;font-weight:800;color:#6B1616;margin-top:4px}
+
+/* study with me + tools */
+.tool-row{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:6px}
+@media(max-width:640px){.tool-row{grid-template-columns:1fr}}
+.swm{display:flex;flex-direction:column;text-decoration:none;background:#560E0E;border-radius:14px;padding:20px 22px;color:#fff;box-shadow:0 14px 30px -16px rgba(11,21,48,.4);transition:transform .18s ease,background .18s ease}
+.swm:hover{transform:translateY(-4px);background:#6A2415}
+.swm-t{font-weight:800;font-size:20px;margin:0}
+.swm-s{font-size:13.5px;color:rgba(255,255,255,.92);margin:7px 0 0;line-height:1.45}
+.swm-go{font-weight:800;font-size:13px;color:#EAD08A;margin-top:12px}
+.loops{display:flex;flex-direction:column;justify-content:center;text-decoration:none;background:#6B1616;border-radius:14px;padding:20px 22px;color:#fff;box-shadow:0 14px 30px -16px rgba(11,21,48,.4);transition:transform .18s ease}
+.loops:hover{transform:translateY(-4px)}
+.loops-t{font-weight:800;font-size:18px}
+.loops-s{font-size:13px;color:rgba(255,255,255,.9);margin-top:6px}
+
+/* practice midterm */
+.midterm{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;background:linear-gradient(135deg,#E8CE85,#DCB45C);color:#08101F;border-radius:12px;padding:20px 22px;margin-top:16px;box-shadow:0 20px 44px -22px rgba(201,161,74,.6)}
+.midterm .mt-w{flex:1;min-width:240px}
+.mt-eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#6B1616;margin:0 0 6px}
+.mt-title{font-size:18px;font-weight:800;margin:0 0 4px}
+.mt-desc{font-size:13.5px;opacity:.82;margin:0;line-height:1.5}
+.mt-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#08101F;border:1px solid rgba(11,21,48,.15);font-weight:800;font-size:13.5px;border-radius:999px;padding:11px 18px}
+
+/* weekend */
+.wkbanner{background:#fff;color:#08101F;border:1px solid #ECE7DE;border-radius:12px;padding:20px 22px;margin-top:26px;box-shadow:0 14px 32px -18px rgba(11,21,48,.28)}
+.wk-eyebrow{font-weight:800;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#6B1616;opacity:1;margin:0 0 6px}
+.wk-text{font-size:15.5px;line-height:1.55;margin:0}
+
+.site-footer{background:#08101F;padding-top:44px;padding-bottom:26px;color:#fff;margin-top:40px}
+.footer-logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-bottom:14px}
+.footer-logo svg{height:46px;width:auto}
+.footer-logo .logo-title{color:#fff;font-size:22px}
+.footer-logo .logo-accent{color:#C9A14A}
+.footer-logo .logo-sub{color:#fff;opacity:.62}
+.footer-tag{font-size:14px;color:#fff;opacity:.8;max-width:560px;margin:0 0 14px}
+.footer-copy{font-size:11.8px;color:#fff;opacity:.6;border-top:.5px solid rgba(255,255,255,.14);padding-top:16px;margin-top:8px}
+@media(max-width:640px){.card{grid-template-columns:1fr}.dayrail{flex-direction:row;gap:10px;padding:10px 14px;justify-content:flex-start}.d-num{margin-top:0}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.topnav{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0 0}
+.tn-tab{--c:#08101F;border:2px solid #ECE7DE;background:#fff;color:#08101F;opacity:.62;font:inherit;font-weight:800;font-size:15px;cursor:pointer;padding:11px 24px;border-radius:999px;transition:opacity .16s ease,background .16s ease,color .16s ease,box-shadow .16s ease,border-color .16s ease}
+.tn-tab:hover{opacity:1;border-color:#d7cfc2}
+.tn-tab[aria-selected="true"]{background:var(--c);color:#F4EFE8;border-color:var(--c);opacity:1;box-shadow:0 12px 24px -12px rgba(11,21,48,.5)}
+.tn-lecture{--c:#08101F}.tn-lab{--c:#6B1616}.tn-study{--c:#560E0E}
+.secpanel[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="protobar">Prototype &middot; <b>Week 1, Mon/Wed</b> &middot; rebuilt in your page style. Approve and I'll generate all 51.</div>
+<a class="skip" href="#lecture">Skip to this week</a>
+
+<header class="site-header pad">
+  <div class="shead">
+    <a href="welcome.html" class="site-logo" target="_top" aria-label="BIO 004 Human Anatomy, course home"><svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#08101F"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#08101F"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#6B1616"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#6B1616"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#DCB45C"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#DCB45C"/></g></g></svg><span class="logo-text"><span class="logo-title">Human <span class="logo-accent">Anatomy</span></span><span class="logo-sub">BIO 004 &middot; Solano Community College</span></span></a>
+    <a class="hdr-syl" href="syllabus-class1.html" target="_top">Syllabus &rarr;</a>
+  </div>
+</header>
+
+<section class="intro pad">
+  <a class="crumb" href="welcome.html" target="_top"><span aria-hidden="true">&larr;</span> Course home</a>
+  <p class="eyebrow">Week 1 &middot; Mon / Wed &middot; Module 1</p>
+  <h1>Foundations &amp; the <span class="accent">Language of Anatomy</span></h1>
+  <p class="lead">One topic per class day. <strong>Lecture</strong> connects your concept video, worksheet, slides, and Recall Rx. <strong>Lab</strong> runs explore then recall. Set your week up from the blocks below.</p>
+  <div class="meta-row"><span>Mon Aug 17 &amp; Wed Aug 19</span><span>Lecture 12:30&ndash;1:50 pm &middot; VC 118</span><span>Lab 2:00&ndash;4:50 pm &middot; VC 1137</span></div>
+  <p><a class="op-btn" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-1-one-pagers.html" target="_top">Week 1 One Pagers <span aria-hidden="true">&rarr;</span></a></p>
+</section>
+
+<section class="pad" aria-label="Mastery OS" style="padding-top:22px">
+  <a class="mastery" href="mastery-os-fall-2026.html" target="_top">
+    <div class="m-name">Mastery <span>OS</span></div>
+    <p class="m-desc">Your study operating system: today's plan, the gap finder, weak-spot repair, spaced recall, and exam cram, all in one place.</p>
+    <p class="m-go">Open the Mastery OS &rarr;</p>
+  </a>
+</section>
+
+<nav class="topnav pad" role="tablist" aria-label="Sections">
+  <button class="tn-tab tn-lecture" role="tab" data-sec="lecture" aria-selected="true">Lecture</button>
+  <button class="tn-tab tn-lab" role="tab" data-sec="lab" aria-selected="false">Lab</button>
+  <button class="tn-tab tn-study" role="tab" data-sec="study" aria-selected="false">Study</button>
+</nav>
+
+<!-- LECTURE -->
+<section class="sec pad secpanel" id="lecture" data-sec="lecture">
+  <p class="sec-eyebrow">Lecture</p>
+  <h2 class="sec-title">Before &amp; during class</h2>
+  <p class="sec-sub">Each day connects the same path: <strong>concept video &rarr; worksheet &rarr; slides &rarr; Recall Rx</strong>. Do the video and worksheet the night before.</p>
+  <div class="dtoggle">
+    <div class="dtoggle-tabs" role="tablist" aria-label="Pick a lecture day">
+      <button class="dtoggle-tab mon" role="tab" data-day="mon" aria-selected="true"><b>MON</b><span>Aug 17</span></button>
+      <button class="dtoggle-tab wed" role="tab" data-day="wed" aria-selected="false"><b>WED</b><span>Aug 19</span></button>
+    </div>
+    <div class="dtoggle-body">
+      <div class="dpane mon" role="tabpanel" data-day="mon">
+        <h3>The Language of Anatomy</h3>
+        <p class="pdesc">Anatomical position, directional terms, planes, and body organization. Intro &amp; team formation.</p>
+        <p class="mini">This day connects</p>
+        <ol class="wpath">
+          <li><a class="wp" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week1-concept-videos.html" target="_top">Concept video</a></li>
+          <li><span class="wp wp-soon">Worksheet (soon)</span></li>
+          <li><a class="wp" href="https://drsrennie-stack.github.io/A-P-lecture-core/foundations-human-anatomy.html" target="_top">Slides</a></li>
+          <li><a class="wp" href="mastery-os-fall-2026.html" target="_top">Recall Rx</a></li>
+        </ol>
+      </div>
+      <div class="dpane wed" role="tabpanel" data-day="wed" hidden>
+        <h3>The Cell</h3>
+        <p class="pdesc">Cell structure and function, the guided cell activity, opening with a brain dump.</p>
+        <p class="mini">This day connects</p>
+        <ol class="wpath">
+          <li><a class="wp" href="https://drsrennie-stack.github.io/new-build-bio4-solano/cell-concept-videos.html" target="_top">Concept video</a></li>
+          <li><span class="wp wp-soon">Worksheet (soon)</span></li>
+          <li><a class="wp" href="https://drsrennie-stack.github.io/A-P-lecture-core/cell-anatomy-histology.html" target="_top">Slides</a></li>
+          <li><a class="wp" href="mastery-os-fall-2026.html" target="_top">Recall Rx</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="block navy">
+    <p class="b-eyebrow">Check questions</p>
+    <p class="b-note" style="margin-top:0">Every non-exam, non-TBL day opens with a <strong style="color:#DCB45C">brain dump</strong> on last night's pre-work, low-stakes, 5% of your grade. Studying the night before is the easiest way to ace them.</p>
+  </div>
+</section>
+
+<!-- LAB -->
+<section class="sec pad secpanel" id="lab" data-sec="lab" hidden>
+  <p class="sec-eyebrow">Lab</p>
+  <h2 class="sec-title">Explore, then recall</h2>
+  <p class="sec-sub">Each lab day: <strong>Explore</strong> today's material (Lab Sprint, Atlas, Digital Atlas), then <strong>Recall</strong> the last lab.</p>
+  <div class="dtoggle">
+    <div class="dtoggle-tabs" role="tablist" aria-label="Pick a lab day">
+      <button class="dtoggle-tab mon" role="tab" data-day="mon" aria-selected="true"><b>MON</b><span>Aug 17</span></button>
+      <button class="dtoggle-tab wed" role="tab" data-day="wed" aria-selected="false"><b>WED</b><span>Aug 19</span></button>
+    </div>
+    <div class="dtoggle-body">
+      <div class="dpane mon" role="tabpanel" data-day="mon">
+        <h3>Microscope &amp; Cell Anatomy</h3>
+        <p class="pdesc">Lab intro, safety &amp; terminology; the microscope; cell anatomy &amp; microscopy.</p>
+        <p class="mini">Explore</p>
+        <ol class="wpath">
+          <li><a class="wp" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-1-lab-sprints.html" target="_top">Lab Sprint</a></li>
+          <li><a class="wp" href="https://drsrennie-stack.github.io/new-build-bio4-solano/atlas-coloring-book.html" target="_top">Atlas Canvas</a></li>
+          <li><a class="wp" href="https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo" target="_blank" rel="noopener">Digital Atlas</a></li>
+        </ol>
+        <p class="mini two">Recall</p>
+        <p class="pnote">This is your <strong>first lab</strong>, nothing to recall yet.</p>
+      </div>
+      <div class="dpane wed" role="tabpanel" data-day="wed" hidden>
+        <h3>Epithelial Tissues</h3>
+        <p class="pdesc">Histology of epithelium, identify the types on slides.</p>
+        <p class="mini">Explore</p>
+        <ol class="wpath">
+          <li><a class="wp" href="https://drsrennie-stack.github.io/new-build-bio4-solano/week-1-lab-sprints.html" target="_top">Lab Sprint</a></li>
+          <li><a class="wp" href="https://drsrennie-stack.github.io/new-build-bio4-solano/atlas-coloring-book.html" target="_top">Atlas Canvas</a></li>
+          <li><a class="wp" href="https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo" target="_blank" rel="noopener">Digital Atlas</a></li>
+        </ol>
+        <p class="mini two">Recall</p>
+        <ol class="wpath"><li><a class="wp" href="mastery-os-fall-2026.html" target="_top">Recall Rx &middot; Mon's lab</a></li></ol>
+      </div>
+    </div>
+  </div>
+  <div class="block gold">
+    <p class="b-eyebrow">Lab notes</p>
+    <p class="b-note" style="margin-top:0">No phones or cameras in the lab, ever. First <strong>lab practical is Week 4</strong> (covers Weeks 1&ndash;4). Also this week: <a href="https://www.medmasterscollaborative.com/anatomy-loops" target="_blank" rel="noopener" style="font-weight:800;text-decoration:underline;color:#DCB45C">Loops</a>.</p>
+  </div>
+  <div class="midterm">
+    <div class="mt-w">
+      <p class="mt-eyebrow">End of Module 1</p>
+      <p class="mt-title">HTML practice midterm &middot; DOK 2&ndash;3</p>
+      <p class="mt-desc">Before Exam 1, pressure-test what you know with an interactive practice midterm. Unlocks at the end of the module.</p>
+    </div>
+    <span class="mt-pill">Opens in Week 4</span>
+  </div>
+</section>
+
+<!-- STUDY -->
+<section class="sec pad secpanel" id="study" data-sec="study" hidden>
+  <p class="sec-eyebrow">Study</p>
+  <h2 class="sec-title">Lock it in</h2>
+  <p class="sec-sub">Spaced recall and student-run sessions.</p>
+  <div class="decks">
+    <a class="deck" href="https://drsrennie-stack.github.io/new-build-bio4-solano/bio004-spaced-recall.html" target="_top">
+      <span class="deck-tag">Course deck</span><span class="deck-name">Study my premade cards</span>
+      <span class="deck-desc">The cards I built for this course, by topic.</span><span class="deck-go" aria-hidden="true">Open Course Deck &rarr;</span></a>
+    <a class="deck alt" href="https://drsrennie-stack.github.io/new-build-bio4-solano/recall-cards.html" target="_top">
+      <span class="deck-tag">Your deck</span><span class="deck-name">Build your own from scratch</span>
+      <span class="deck-desc">Make your own cards; it tells you what to review each day.</span><span class="deck-go" aria-hidden="true">Open Your Deck &rarr;</span></a>
+  </div>
+  <div class="tool-row">
+    <a class="swm" href="https://drsrennie-stack.github.io/new-build-bio4-solano/study-session-signup.html" target="_top">
+      <span class="swm-t">Study With Me</span>
+      <span class="swm-s">Student-run study sessions. Host your own or join a classmate, online or in person. Counts toward Scholar Points.</span>
+      <span class="swm-go" aria-hidden="true">Host or join a session &rarr;</span></a>
+    <a class="loops" href="https://www.medmasterscollaborative.com/anatomy-loops" target="_blank" rel="noopener">
+      <span class="loops-t">Loops</span>
+      <span class="loops-s">Short looping anatomy animations for quick review.</span></a>
+  </div>
+</section>
+
+<section class="pad">
+  <div class="wkbanner">
+    <p class="wk-eyebrow">Friday to Sunday</p>
+    <p class="wk-text"><strong>Rest, and keep it ticking over.</strong> Reach for these when you need them:</p>
+    <div class="wktools">
+      <a class="wktool" href="mastery-os-fall-2026.html" target="_top"><b>Spaced recall cards</b><span>Daily, keep the streak going.</span></a>
+      <a class="wktool" href="https://www.medmasterscollaborative.com/anatomy-loops" target="_blank" rel="noopener"><b>Loops</b><span>Quick visual review of tricky structures.</span></a>
+      <a class="wktool" href="mastery-os-fall-2026.html" target="_top"><b>Gap Finder</b><span>End of the week, find your weak spots.</span></a>
+      <a class="wktool" href="mastery-os-fall-2026.html" target="_top"><b>3-Day Cram</b><span>The 3 days before an exam.</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer pad">
+  <a href="welcome.html" class="footer-logo" target="_top" aria-label="BIO 004 Human Anatomy, course home"><svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#FFFFFF"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#FFFFFF"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#6B1616"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#6B1616"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#DCB45C"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#DCB45C"/></g></g></svg><span class="logo-text"><span class="logo-title">Human <span class="logo-accent">Anatomy</span></span><span class="logo-sub">BIO 004 &middot; Solano Community College</span></span></a>
+  <p class="footer-tag">Your home base for Week 1, Mon/Wed. Do the pre-work, run the lab, lock it in.</p>
+  <p class="footer-copy">BIO 004 Human Anatomy &middot; Mon / Wed &middot; Fall 2026 &middot; Dr. Sharilyn Rennie</p>
+</footer>
+<script>
+document.querySelectorAll('.tn-tab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    var sec=tab.getAttribute('data-sec');
+    document.querySelectorAll('.tn-tab').forEach(function(t){t.setAttribute('aria-selected',t.getAttribute('data-sec')===sec?'true':'false');});
+    document.querySelectorAll('.secpanel').forEach(function(p){p.hidden=p.getAttribute('data-sec')!==sec;});
+  });
+});
+document.querySelectorAll('.dtoggle').forEach(function(dt){
+  dt.querySelectorAll('.dtoggle-tab').forEach(function(tab){
+    tab.addEventListener('click',function(){
+      var day=tab.getAttribute('data-day');
+      dt.querySelectorAll('.dtoggle-tab').forEach(function(t){t.setAttribute('aria-selected',t.getAttribute('data-day')===day?'true':'false');});
+      dt.querySelectorAll('.dpane').forEach(function(p){p.hidden=p.getAttribute('data-day')!==day;});
+    });
+  });
+});
+</script>
+
+<script src="bio004-dock.js"></script>
+</body>
+</html>

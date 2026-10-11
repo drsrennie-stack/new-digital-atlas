@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CNS Organization &middot; BIO 004 Drawing Slides</title>
+<style>
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/plus-jakarta-sans/index.css');
+* { box-sizing: border-box; } html, body { margin: 0; padding: 0; font-size: 17.9px; line-height: 1.5; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body { font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif; background: #FAFAF9; color: #0B1530; }
+img { max-width: 100%; display: block; } a { color: inherit; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px solid #8B3A2E; outline-offset: 3px; border-radius: 4px; }
+.skip-link { position: absolute; top: -100px; left: 8px; background: #0B1530; color: #FAFAF9; padding: 12px 20px; text-decoration: none; font-size: 14.6px; font-weight: 700; border-radius: 4px; z-index: 9999; letter-spacing: 0.04em; }
+.skip-link:focus { top: 8px; }
+.site-header, .lecture-hero, .deck, .footer-section { padding-left: max(24px, 3vw); padding-right: max(24px, 3vw); }
+.site-header { background: #FFFFFF; padding-top: 18px; padding-bottom: 14px; }
+.site-logo { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; }
+.site-logo svg { height: 46px; width: auto; display: block; }
+.logo-text { display: flex; flex-direction: column; gap: 2px; }
+.logo-title { font-size: 23.5px; font-weight: 800; color: #0B1530; line-height: 1; }
+.logo-title .logo-accent { color: #8B3A2E; }
+.logo-sub { font-size: 11.2px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; opacity: 0.72; }
+.lecture-hero { background: #FFFFFF; padding-top: 18px; padding-bottom: 22px; }
+.hero-eyebrow { font-size: 11.8px; font-weight: 700; color: #8B3A2E; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 10px; }
+.hero-headline { font-size: clamp(29.1px, 3.4vw, 42.6px); font-weight: 800; color: #0B1530; line-height: 1.06; margin: 0 0 10px; }
+.hero-headline .accent { color: #8B3A2E; }
+.hero-subhead { font-size: 16.2px; color: #0B1530; line-height: 1.55; opacity: 0.84; margin: 0; max-width: 780px; }
+.hero-actions { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+.hero-actions button { background: #0B1530; color: #FFFFFF; border: none; padding: 9px 16px; border-radius: 4px; font-family: inherit; font-size: 11.8px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; }
+.hero-actions button:hover { background: #142A36; }
+.hero-actions button.ghost { background: transparent; color: #0B1530; border: 1px solid rgba(11, 21, 48, 0.30); }
+.hero-actions button.ghost:hover { background: #FAFAF9; border-color: #8B3A2E; color: #8B3A2E; }
+.deck { padding-top: 28px; padding-bottom: 36px; max-width: 1400px; margin: 0 auto; }
+.slide { background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.14); border-radius: 10px; box-shadow: 0 1px 3px rgba(11, 21, 48, 0.06); margin-bottom: 22px; overflow: hidden; scroll-margin-top: 24px; transition: transform 200ms ease, box-shadow 200ms ease; }
+.slide:hover, .slide:focus-within { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(11, 21, 48, 0.10); }
+.slide-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; padding: 16px 22px; background: #FAFAF9; border-bottom: 1px solid rgba(11, 21, 48, 0.14); }
+.slide-num { font-size: 33.6px; font-weight: 800; color: #8B3A2E; line-height: 1; min-width: 48px; }
+.slide-eyebrow { font-size: 11.2px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: #0B1530; opacity: 0.62; margin: 0 0 4px; }
+.slide-title { font-size: clamp(20.2px, 2.2vw, 26.9px); font-weight: 800; color: #0B1530; line-height: 1.2; margin: 0; }
+.slide-meta { font-size: 12.3px; font-weight: 700; color: #8B3A2E; letter-spacing: 0.10em; text-transform: uppercase; }
+.slide-body { display: grid; grid-template-columns: minmax(260px, 320px) 1fr; }
+.slide-content { padding: 22px; border-right: 1px solid rgba(11, 21, 48, 0.10); background: #FFFFFF; min-width: 0; }
+.slide-content h3 { font-size: 13.4px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: #8B3A2E; margin: 0 0 14px; }
+.slide-content ul { margin: 0; padding: 0; list-style: none; }
+.slide-content li { font-size: 15.7px; line-height: 1.55; color: #0B1530; padding: 4px 0 4px 16px; position: relative; }
+.slide-content li::before { content: ""; position: absolute; left: 2px; top: 12px; width: 6px; height: 6px; background: #8B3A2E; border-radius: 50%; }
+.slide-content li strong { color: #0B1530; font-weight: 800; }
+.slide-content li .tag { display: inline-block; font-size: 11.8px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8B3A2E; margin-left: 4px; }
+.slide-content .prompt { margin-top: 18px; padding: 12px 14px; background: #FAFAF9; border-left: 3px solid #C9A14A; border-radius: 4px; font-size: 14.6px; line-height: 1.5; }
+.slide-content .prompt strong { color: #8B3A2E; }
+.info-slide .slide-body { grid-template-columns: 1fr; }
+.info-slide .slide-content { border-right: none; padding: 28px 32px 32px; }
+.info-slide .slide-content ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px 32px; max-width: 1100px; }
+.info-slide .slide-content li { font-size: 17.9px; padding: 6px 0 6px 18px; }
+.info-slide .slide-content li::before { top: 14px; width: 7px; height: 7px; }
+.info-slide .takeaway { margin-top: 22px; padding: 14px 18px; background: #FAFAF9; border-left: 3px solid #8B3A2E; border-radius: 4px; font-size: 15.7px; line-height: 1.55; max-width: 900px; }
+.info-slide .takeaway strong { color: #8B3A2E; }
+.title-slide .slide-body { grid-template-columns: 1fr 1fr; }
+.title-slide .tree-col { display: flex; align-items: center; justify-content: center; background: #FAFAF9; padding: 26px 22px; }
+.tree { width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 16px; }
+.tree-root { text-align: center; background: #0B1530; color: #FAFAF9; padding: 10px 14px; border-radius: 6px; font-size: 15.1px; font-weight: 800; }
+.tree-branches { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tree-branch { background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.16); border-top: 3px solid #8B3A2E; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+.tree-branch.alt { border-top-color: #C9A14A; }
+.tree-branch h4 { font-size: 13.4px; font-weight: 800; margin: 0; }
+.tree-branch .subtype { font-size: 12.3px; padding: 2px 0 2px 10px; position: relative; line-height: 1.4; }
+.tree-branch .subtype::before { content: ""; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; background: #8B3A2E; border-radius: 50%; }
+.tree-branch.alt .subtype::before { background: #C9A14A; }
+.canvas-col { display: flex; flex-direction: column; background: #FFFFFF; min-width: 0; }
+.canvas-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px 14px; background: #FAFAF9; border-bottom: 1px solid rgba(11, 21, 48, 0.10); }
+.tool-group { display: flex; align-items: center; gap: 4px; padding: 0 4px; border-right: 1px solid rgba(11, 21, 48, 0.12); }
+.tool-group:last-of-type { border-right: none; }
+.tool-label { font-size: 10.6px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0B1530; opacity: 0.6; margin-right: 4px; }
+.swatch { width: 26px; height: 26px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; padding: 0; }
+.swatch:hover { transform: scale(1.08); } .swatch.is-active { border-color: #0B1530; transform: scale(1.08); }
+.swatch.navy{background:#0B1530;}.swatch.rust{background:#8B3A2E;}.swatch.gold{background:#C9A14A;}
+.swatch.dark{background:#060A18;}.swatch.red{background:#C0392B;}.swatch.teal{background:#2A6F7A;}
+.size-btn { background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.20); border-radius: 4px; width: 30px; height: 28px; cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+.size-btn:hover { border-color: #8B3A2E; } .size-btn.is-active { border-color: #0B1530; background: #FAFAF9; }
+.size-btn .dot { display: block; background: #0B1530; border-radius: 50%; }
+.size-btn[data-size="2"] .dot{width:4px;height:4px;} .size-btn[data-size="4"] .dot{width:7px;height:7px;}
+.size-btn[data-size="8"] .dot{width:11px;height:11px;} .size-btn[data-size="14"] .dot{width:16px;height:16px;}
+.action-btn { background: #FFFFFF; border: 1px solid rgba(11, 21, 48, 0.20); border-radius: 4px; padding: 6px 12px; font-family: inherit; font-size: 11.8px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: #0B1530; cursor: pointer; }
+.action-btn:hover { border-color: #8B3A2E; color: #8B3A2E; }
+.action-btn.primary { background: #8B3A2E; color: #FFFFFF; border-color: #8B3A2E; }
+.action-btn.primary:hover { background: #A0452F; color: #FFFFFF; }
+.action-btn.is-active { background: #0B1530; color: #FFFFFF; border-color: #0B1530; }
+/* canvas-lock-v1 */
+.canvas-col { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.canvas-wrap { position: relative; background: linear-gradient(rgba(11, 21, 48, 0.04) 1px, transparent 1px) 0 0/24px 24px, linear-gradient(90deg, rgba(11, 21, 48, 0.04) 1px, transparent 1px) 0 0/24px 24px, #FFFFFF; flex: 1; min-height: 520px; cursor: crosshair; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; overscroll-behavior: contain; }
+.canvas-wrap.is-erasing { cursor: cell; }
+.draw-canvas { display: block; width: 100%; height: 100%; position: absolute; inset: 0; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-user-drag: none; }
+.footer-section { background: #060A18; padding-top: 22px; padding-bottom: 18px; text-align: center; }
+.footer-section p { margin: 0; }
+.footer-byline { font-size: 11.8px; font-weight: 700; color: #C9A14A; letter-spacing: 0.18em; text-transform: uppercase; }
+.footer-meta { font-size: 12.9px; color: #FAFAF9; opacity: 0.78; margin-top: 6px; }
+.footer-meta a { color: #C9A14A; text-decoration: underline; }
+@media (max-width: 900px) { .slide-body { grid-template-columns: 1fr; } .slide-content { border-right: none; border-bottom: 1px solid rgba(11, 21, 48, 0.10); } .title-slide .slide-body { grid-template-columns: 1fr; } .canvas-wrap { min-height: 400px; } }
+@media (max-width: 560px) { .slide-header { grid-template-columns: auto 1fr; } .slide-meta { display: none; } .hero-headline { font-size: 29.1px; } .tool-label { display: none; } .canvas-wrap { min-height: 340px; } .tree-branches { grid-template-columns: 1fr; } }
+@media print {
+  @page { size: letter portrait; margin: 0.45in; }
+  body { background: #FFFFFF !important; color: #0B1530; font-size: 11.8pt; }
+  .site-header, .footer-section, .hero-actions, .canvas-toolbar, .skip-link, .slide-print-btn { display: none !important; }
+  .lecture-hero { padding: 0 0 10px !important; background: #FFFFFF !important; border-bottom: 2px solid #0B1530; margin-bottom: 14px; }
+  .hero-eyebrow { font-size: 9.5pt; }
+  .hero-headline { font-size: 19pt; line-height: 1.15; }
+  .hero-subhead { font-size: 10.6pt; max-width: none; }
+  .deck { padding: 0 !important; max-width: none !important; }
+  .slide { page-break-before: always; page-break-inside: avoid; box-shadow: none !important; border: none !important; margin: 0 !important; transform: none !important; background: #FFFFFF !important; }
+  .slide:first-of-type { page-break-before: avoid; }
+  .slide:hover, .slide:focus-within { transform: none !important; }
+  .slide-header { background: #FFFFFF !important; padding: 0 0 6px !important; border-bottom: 1px solid #0B1530 !important; gap: 12px; }
+  .slide-num { font-size: 17.9pt; min-width: 36px; }
+  .slide-title { font-size: 15.7pt; }
+  .slide-eyebrow { font-size: 8.4pt; margin-bottom: 2px; }
+  .slide-meta { display: none !important; }
+  .slide-body { display: block !important; grid-template-columns: none !important; }
+  .slide-content { padding: 8px 0 6px !important; border: none !important; background: #FFFFFF !important; }
+  .slide-content h3 { font-size: 10.1pt; margin: 6px 0 4px; }
+  .slide-content ul { display: block !important; }
+  .slide-content li { font-size: 10.6pt; padding: 1px 0 1px 14px; line-height: 1.4; break-inside: avoid; }
+  .slide-content li::before { top: 9px; }
+  .slide-content .prompt { background: #FFFFFF !important; border-left: 3px solid #8B3A2E !important; padding: 6px 10px; font-size: 9.5pt; margin-top: 8px; break-inside: avoid; }
+  .canvas-col { display: block !important; min-height: 4.4in !important; border: 1.5pt solid #0B1530; border-radius: 4px; background: linear-gradient(rgba(11,21,48,0.07) 1px, transparent 1px) 0 0/0.25in 0.25in, linear-gradient(90deg, rgba(11,21,48,0.07) 1px, transparent 1px) 0 0/0.25in 0.25in, #FFFFFF !important; position: relative; margin-top: 8px; break-inside: avoid; }
+  .canvas-wrap, .draw-canvas { display: none !important; }
+  .canvas-col::before { content: "Draw here \2192  open on tablet in GoodNotes \00B7 Notability \00B7 OneNote \00B7 Adobe"; display: block; padding: 5px 10px; font-size: 8.4pt; color: #0B1530; font-weight: 700; text-transform: uppercase; letter-spacing: 0.10em; opacity: 0.55; }
+  .info-slide .slide-content { padding: 8px 0 !important; }
+  .info-slide .takeaway { background: #FFFFFF !important; border-left: 3px solid #8B3A2E !important; font-size: 10.6pt; padding: 8px 12px; margin-top: 8px; }
+  .title-slide .slide-body { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 14px; }
+  .title-slide .tree-col { background: #FFFFFF !important; padding: 0 !important; }
+  .tree-root { background: #0B1530 !important; color: #FFFFFF !important; }
+  body.print-single .slide { display: none !important; }
+  body.print-single .slide.print-target { display: block !important; page-break-before: avoid !important; }
+  body.print-single .lecture-hero { display: none !important; }
+}
+
+.slide-print-btn { background: transparent; border: 1px solid rgba(11, 21, 48, 0.22); border-radius: 4px; padding: 4px 10px; font-family: inherit; font-size: 10.6px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: #0B1530; cursor: pointer; opacity: 0; transition: opacity 200ms ease, border-color 200ms ease, color 200ms ease; }
+.slide:hover .slide-print-btn, .slide:focus-within .slide-print-btn, .slide-print-btn:focus-visible { opacity: 0.85; }
+.slide-print-btn:hover { border-color: #8B3A2E; color: #8B3A2E; opacity: 1; }
+@media (max-width: 560px) { .slide-print-btn { opacity: 0.7; padding: 3px 8px; font-size: 10.1px; } } 
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } .slide:hover { transform: none; } }
+
+/* spaced-recall-cta */
+.hero-actions a.cards-cta{display:inline-flex;align-items:center;gap:8px;background:#8B3A2E;color:#FFFFFF;text-decoration:none;padding:9px 16px;border-radius:4px;font-family:inherit;font-size:11.8px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;line-height:1.2;}
+.hero-actions a.cards-cta:hover{background:#A0452F;color:#FFFFFF;}
+@media print{.hero-actions a.cards-cta{display:none !important;}}
+</style>
+</head>
+<body>
+<a href="#deck" class="skip-link">Skip to slides</a>
+<header class="site-header">
+  <a href="welcome.html" class="site-logo" target="_top" aria-label="BIO 004 course home">
+    <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+      <g transform="translate(0, 18)">
+        <g transform="translate(60, 0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/></g>
+        <g transform="translate(100, 0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+        <g transform="translate(140, 0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+      </g>
+    </svg>
+    <span class="logo-text"><span class="logo-title">Human <span class="logo-accent">A&amp;P</span></span><span class="logo-sub">BIO 004 &middot; Solano Community College</span></span>
+  </a>
+</header>
+<section class="lecture-hero" aria-labelledby="lecture-title">
+  <div class="hero-eyebrow">Week 5 &middot; Lecture Slides &middot; Nervous System</div>
+  <h1 id="lecture-title" class="hero-headline">CNS <span class="accent">Organization</span>.</h1>
+  <p class="hero-subhead">Seven slides on the central nervous system: cerebrum, brainstem, cerebellum, spinal cord, meninges, ventricles, and clinical patterns. Sketch each from memory.</p>
+  <div class="hero-actions"><a class="cards-cta" href="mastery-os-fall-2026.html#s-recall#topic=t-cns-organization" target="_top" aria-label="Practice spaced-recall cards: CNS Organization">Practice these cards</a><button type="button" id="downloadAll">Download all drawings</button><button type="button" class="ghost" id="clearAll">Clear all canvases</button></div>
+</section>
+
+<!-- Digital Atlas, added by bio004-atlas-tile-add.py. Click or scan, opens in a second tab. -->
+<style>
+  .atl-wrap{max-width:900px;margin:22px auto;padding:0 26px}
+  .atl-tile{display:grid;grid-template-columns:52px 1fr 124px;gap:18px;align-items:center;
+    background:#0B1530;border-radius:16px;padding:16px 20px;text-decoration:none;color:#fff;
+    box-shadow:0 0 0 2px #C9A14A,0 8px 18px -12px rgba(8,16,31,.4);
+    transition:transform .2s ease,box-shadow .2s ease}
+  .atl-tile:hover{transform:translateY(-2px);box-shadow:0 0 0 2px #C9A14A,0 12px 22px -12px rgba(8,16,31,.55)}
+  .atl-tile:focus-visible{outline:3px solid #C9A14A;outline-offset:3px}
+  .atl-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
+    background:linear-gradient(145deg,#5C7FA8,#2F4C7D);box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
+  .atl-ic svg{width:26px;height:26px;stroke:#0B1530;fill:none;stroke-width:2.1;
+    stroke-linecap:round;stroke-linejoin:round}
+  .atl-tag{font-family:'DM Sans',system-ui,sans-serif;font-size:10.5px;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;color:#E8C97E;margin:0}
+  .atl-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:19px;font-weight:800;
+    letter-spacing:-.015em;color:#EBCE86;margin:2px 0 0;line-height:1.2}
+  .atl-d{font-size:12.5px;color:#E9EDF3;margin:3px 0 0;line-height:1.4}
+  /* 124px, not 92. At 92 a phone camera has under three pixels per module and
+     hunts for the code. */
+  .atl-qr{width:124px;height:124px;background:#fff;border-radius:11px;padding:6px}
+  .atl-qr-svg{width:100%;height:100%;display:block;shape-rendering:crispEdges}
+  .atl-qr-line{stroke:#0B1530}
+  @media (prefers-reduced-motion:reduce){.atl-tile:hover{transform:none}}
+  @media (max-width:640px){
+    .atl-tile{grid-template-columns:1fr;justify-items:center;text-align:center;gap:12px}
+  }
+  @media print{
+    .atl-wrap{margin:14pt auto;padding:0}
+    .atl-tile{break-inside:avoid;grid-template-columns:34pt 1fr 68pt;gap:12pt;padding:10pt 13pt;
+      border-radius:10pt;box-shadow:0 0 0 1.2pt #C9A14A;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .atl-ic{width:34pt;height:34pt;border-radius:9pt}
+    .atl-ic svg{width:17pt;height:17pt}
+    .atl-tag{font-size:6.6pt}
+    .atl-h{font-size:12.5pt}
+    .atl-d{font-size:8.4pt}
+    .atl-qr{width:68pt;height:68pt;padding:3.5pt;border-radius:7pt}
+  }
+</style>
+<div class="atl-wrap">
+  <a class="atl-tile" href="https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo" target="_blank" rel="noopener"
+     aria-label="Open the Digital Atlas in a new tab">
+    <span class="atl-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
+    <span>
+      <span class="atl-tag" style="display:block">Open it beside this page</span>
+      <span class="atl-h" style="display:block">Digital Atlas</span>
+      <span class="atl-d" style="display:block">Turn the structures around while you read. Click here, or scan the code with your phone, and it opens in a second window.</span>
+    </span>
+    <span class="atl-qr"><svg viewBox="0 0 35 35" preserveAspectRatio="xMidYMid meet" class="atl-qr-svg" aria-hidden="true" focusable="false"><path class="atl-qr-line" stroke="#08101f" d="M1 1.5h7m1 0h6m2 0h1m1 0h1m4 0h2m1 0h7m-33 1h1m5 0h1m3 0h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h1m2 0h2m1 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m6 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m2 0h1m2 0h1m2 0h1m1 0h3m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h2m4 0h1m2 0h7m-24 1h1m3 0h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m2 0h10m2 0h1m-31 1h1m6 0h2m1 0h1m1 0h2m1 0h1m5 0h1m1 0h1m3 0h3m-32 1h1m1 0h1m3 0h1m1 0h2m3 0h3m2 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m-27 1h1m4 0h2m1 0h1m1 0h1m4 0h2m3 0h1m5 0h1m-32 1h3m2 0h2m4 0h3m1 0h2m2 0h2m1 0h1m3 0h1m1 0h2m2 0h1m-33 1h1m2 0h1m4 0h1m1 0h1m3 0h1m3 0h3m1 0h1m3 0h2m1 0h2m-31 1h2m2 0h1m1 0h1m5 0h1m1 0h2m1 0h2m2 0h3m1 0h4m2 0h1m-31 1h1m2 0h1m2 0h11m3 0h1m2 0h3m1 0h2m-28 1h2m1 0h3m3 0h1m1 0h1m3 0h1m1 0h1m1 0h3m2 0h1m1 0h2m1 0h1m-31 1h2m1 0h1m4 0h2m1 0h1m1 0h3m1 0h1m3 0h2m5 0h4m-33 1h4m1 0h2m2 0h1m3 0h1m1 0h1m1 0h1m2 0h2m1 0h3m1 0h1m1 0h1m1 0h1m-29 1h1m3 0h1m2 0h1m1 0h3m2 0h3m1 0h3m3 0h1m-28 1h3m1 0h1m1 0h2m1 0h1m3 0h3m2 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m-32 1h3m1 0h2m4 0h2m1 0h2m1 0h1m2 0h2m2 0h1m1 0h3m2 0h2m-30 1h6m2 0h2m4 0h3m3 0h2m3 0h1m2 0h2m-30 1h1m4 0h1m1 0h4m1 0h1m2 0h3m1 0h6m1 0h1m3 0h1m-33 1h4m2 0h1m1 0h3m1 0h4m1 0h6m1 0h6m1 0h2m-25 1h5m1 0h5m3 0h1m1 0h1m3 0h1m1 0h3m-33 1h7m1 0h2m4 0h2m2 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m-32 1h1m5 0h1m3 0h4m2 0h1m4 0h1m2 0h1m3 0h1m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m4 0h1m4 0h1m2 0h6m-30 1h1m1 0h3m1 0h1m2 0h1m1 0h3m3 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-31 1h1m1 0h3m1 0h1m2 0h1m2 0h4m2 0h1m2 0h1m1 0h2m1 0h4m-30 1h1m5 0h1m2 0h1m2 0h2m1 0h3m3 0h2m1 0h1m4 0h1m-30 1h7m1 0h3m1 0h1m4 0h1m1 0h4m1 0h1m4 0h1m2 0h1"/></svg></span>
+  </a>
+</div>
+
+<main class="deck" id="deck" aria-label="CNS Organization lecture slides">
+
+  <article class="slide title-slide" id="slide-0" aria-labelledby="s0-title">
+    <header class="slide-header"><span class="slide-num" aria-hidden="true">00</span><div><p class="slide-eyebrow">Core concept</p><h2 id="s0-title" class="slide-title">CNS Organization</h2></div><span class="slide-meta" aria-hidden="true">Start here</span></header>
+    <div class="slide-body">
+      <div class="slide-content">
+        <h3>What you'll do</h3>
+        <ul>
+          <li>Move through <strong>six concept slides</strong></li>
+          <li>Three slides have a <strong>drawable canvas</strong></li>
+          <li>Toolbar: pen color, size, eraser, undo, add image, save</li>
+          <li>Drop in your own anatomy images to label them</li>
+        </ul>
+      </div>
+      <div class="tree-col" aria-label="CNS Organization classification">
+        <div class="tree">
+          <div class="tree-root">Central Nervous System</div>
+          <div class="tree-branches">
+            <div class="tree-branch">
+              <h4>Brain</h4>
+              <div class="subtype">Cerebrum (4 lobes)</div>
+              <div class="subtype">Diencephalon (thalamus + hypothalamus)</div>
+              <div class="subtype">Brainstem (midbrain, pons, medulla)</div>
+              <div class="subtype">Cerebellum</div>
+            </div>
+            <div class="tree-branch alt">
+              <h4>Spinal cord</h4>
+              <div class="subtype">Gray matter (central H)</div>
+              <div class="subtype">White matter (tracts)</div>
+              <div class="subtype">31 spinal nerves</div>
+              <div class="subtype">C, T, L, S, Co regions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="slide info-slide" id="slide-1" aria-labelledby="s1-title">
+    <header class="slide-header"><span class="slide-num" aria-hidden="true">01</span><div><p class="slide-eyebrow">Big picture</p><h2 id="s1-title" class="slide-title">CNS Overview</h2></div><span class="slide-meta" aria-hidden="true">Concept</span></header>
+    <div class="slide-body">
+      <div class="slide-content">
+        <h3>Brain + spinal cord</h3>
+        <ul>
+          <li><strong>Brain</strong>: cerebrum, diencephalon, brainstem, cerebellum</li>
+          <li><strong>Spinal cord</strong>: continues from brainstem at foramen magnum</li>
+          <li><strong>Gray matter</strong>: cell bodies + dendrites (cortex + nuclei)</li>
+          <li><strong>White matter</strong>: myelinated axon tracts</li>
+          <li>Protected by skull, vertebrae, meninges, CSF, blood-brain barrier</li>
+        </ul>
+        <div class="takeaway"><strong>Takeaway:</strong> gray = compute, white = communicate. Cortex is gray on the outside (cerebrum + cerebellum). Inside the brain, gray matter sits as deep nuclei surrounded by white matter tracts.</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="slide" id="slide-2" aria-labelledby="s2-title">
+    <header class="slide-header"><span class="slide-num" aria-hidden="true">02</span><div><p class="slide-eyebrow">Cerebrum</p><h2 id="s2-title" class="slide-title">Four Lobes + Functions</h2></div><span class="slide-meta" aria-hidden="true">Draw</span></header>
+    <div class="slide-body">
+      <div class="slide-content">
+        <h3>Frontal, parietal, temporal, occipital</h3>
+        <ul>
+          <li><strong>Frontal:</strong> motor (precentral gyrus), executive function, Broca area (speech production)</li>
+          <li><strong>Parietal:</strong> somatosensory (postcentral gyrus), spatial awareness</li>
+          <li><strong>Temporal:</strong> auditory cortex, Wernicke area (speech comprehension), memory (hippocampus)</li>
+          <li><strong>Occipital:</strong> visual cortex</li>
+          <li><strong>Insula:</strong> deep, taste + interoception</li>
+          <li><strong>Limbic system:</strong> emotion + memory</li>
+        </ul>
+        <div class="prompt"><strong>Draw:</strong> a lateral view of the left cerebrum. Outline and color-shade the four lobes. Mark the central sulcus (frontal/parietal boundary), lateral sulcus (separates temporal). Label Broca, Wernicke, primary motor, primary somatosensory cortex.</div>
+      </div>
+      <div class="canvas-col" data-slide="2" data-slide-title="02-cerebrum-lobes"></div>
+    </div>
+  </article>
+
+  <article class="slide info-slide" id="slide-3" aria-labelledby="s3-title">
+    <header class="slide-header"><span class="slide-num" aria-hidden="true">03</span><div><p class="slide-eyebrow">Subcortical</p><h2 id="s3-title" class="slide-title">Diencephalon + Brainstem + Cerebellum</h2></div><span class="slide-meta" aria-hidden="true">Concept</span></header>
+    <div class="slide-body">
+      <div class="slide-content">
+        <h3>Below the cortex</h3>
+        <ul>
+          <li><strong>Thalamus</strong> sensory relay (everything except smell)</li>
+          <li><strong>Hypothalamus</strong> homeostasis, hormones, autonomic control</li>
+          <li><strong>Pineal</strong> melatonin</li>
+          <li><strong>Midbrain</strong> reflexes, dopamine (substantia nigra)</li>
+          <li><strong>Pons</strong> bridges + respiratory centers</li>
+          <li><strong>Medulla</strong> cardiac, respiratory, vasomotor centers</li>
+          <li><strong>Cerebellum</strong> coordination, balance, motor learning</li>
+        </ul>
+        <div class="takeaway"><strong>Takeaway:</strong> the brainstem (midbrain + pons + medulla) is non-negotiable: damage here kills you. The medulla in particular controls breathing and heart rate. Brain death = brainstem death.</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="slide" id="slide-4" aria-labelledby="s4-title">
+    <header class="slide-header"><span class="slide-num" aria-hidden="true">04</span><div><p class="slide-eyebrow">Spinal cord</p><h2 id="s4-title" class="slide-title">Cord Cross-Section</h2></div><span class="slide-meta" aria-hidden="true">Draw</span></header>
+    <div class="slide-body">
+      <div class="slide-content">
+        <h3>Gray vs white inverted</h3>
+        <ul>
+          <li><strong>Gray matter</strong> is central (butterfly/H-shaped)</li>
+          <li><strong>White matter</strong> wraps the outside</li>
+          <li><strong>Dorsal (posterior) horns</strong>: sensory in</li>
+          <li><strong>Ventral (anterior) horns</strong>: motor out</li>
+          <li><strong>Lateral horns</strong> (T1-L2): autonomic</li>
+          <li><strong>Dorsal root ganglion</strong>: sensory cell bodies</li>
+          <li><strong>Ventral root</strong>: motor axons out</li>
+          <li><strong>Central canal</strong>: CSF in the middle</li>
+        </ul>
+        <div class="prompt"><strong>Draw:</strong> a cross-section of the spinal cord. Butterfly-shaped gray matter in the middle, white matter outside, central canal as a small dot. Show dorsal root ganglion entering posterior, ventral root exiting anterior. Label horns.</div>
+      </div>
+      <div class="canvas-col" data-slide="4" data-slide-title="04-cord-cross-section"></div>
+    </div>
+  </article>
+
+  <article class="slide info-slide" id="slide-5" aria-labelledby="s5-title">
+    <header class="slide-header"><span class="slide-num" aria-hidden="true">05</span><div><p class="slide-eyebrow">Protection</p><h2 id="s5-title" class="slide-title">Meninges, Ventricles, CSF</h2></div><span class="slide-meta" aria-hidden="true">Concept</span></header>
+    <div class="slide-body">
+      <div class="slide-content">
+        <h3>Cushioning + circulation</h3>
+        <ul>
+          <li><strong>Dura mater</strong> tough outer (epi/sub-dural spaces)</li>
+          <li><strong>Arachnoid mater</strong> middle web-like (subarachnoid has CSF)</li>
+          <li><strong>Pia mater</strong> delicate inner, on brain surface</li>
+          <li><strong>Lateral ventricles</strong> (x2) in cerebrum → 3rd in diencephalon → cerebral aqueduct → 4th in brainstem</li>
+          <li>CSF made by <strong>choroid plexus</strong>, absorbed by <strong>arachnoid villi</strong> into venous sinuses</li>
+          <li>~500 mL produced daily, total ~150 mL circulating</li>
+        </ul>
+        <div class="takeaway"><strong>Takeaway:</strong> CSF cushions, buoys (brain weighs ~1/30 in CSF vs in air), and clears waste. Hydrocephalus = obstruction or absorption failure. Lumbar puncture samples it at L3-L4.</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="slide info-slide" id="slide-6" aria-labelledby="s6-title">
+    <header class="slide-header"><span class="slide-num" aria-hidden="true">06</span><div><p class="slide-eyebrow">Clinical</p><h2 id="s6-title" class="slide-title">When the CNS Fails</h2></div><span class="slide-meta" aria-hidden="true">Concept</span></header>
+    <div class="slide-body">
+      <div class="slide-content">
+        <h3>Common hits</h3>
+        <ul>
+          <li><strong>Stroke</strong> ischemic (clot) or hemorrhagic (bleed)</li>
+          <li><strong>TBI</strong> concussion, contusion, diffuse axonal injury</li>
+          <li><strong>Multiple sclerosis</strong> CNS demyelination</li>
+          <li><strong>Parkinson</strong> substantia nigra dopamine loss</li>
+          <li><strong>Alzheimer</strong> cortical atrophy, amyloid plaques</li>
+          <li><strong>Hydrocephalus</strong> CSF obstruction</li>
+          <li><strong>Spinal cord injury</strong> level determines deficit: C1-C5 ventilator-dependent, T1 paraplegia</li>
+        </ul>
+        <div class="takeaway"><strong>Takeaway:</strong> localize the lesion. Left hemisphere stroke + right-sided weakness + aphasia = MCA territory. The pattern tells you the artery. Map symptoms to vascular territories or tract locations.</div>
+      </div>
+    </div>
+  </article>
+
+</main>
+<footer class="footer-section">
+  <p class="footer-byline">Dr. Sharilyn Rennie</p>
+  <p class="footer-meta">BIO 004 &middot; Week 5 Lecture &middot; Source: <a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/13-1-the-embryologic-perspective" target="_blank" rel="noopener">OpenStax §13 Anatomy of the Nervous System</a>, CC BY 4.0</p>
+</footer>
+<script>
+(function () {
+  var COLORS = [{name:'navy',hex:'#0B1530'},{name:'rust',hex:'#8B3A2E'},{name:'gold',hex:'#C9A14A'},{name:'red',hex:'#C0392B'},{name:'teal',hex:'#2A6F7A'},{name:'dark',hex:'#060A18'}];
+  var SIZES = [2,4,8,14]; var allCanvases = [];
+  function buildToolbar(slot, state) {
+    var bar = document.createElement('div'); bar.className = 'canvas-toolbar'; bar.setAttribute('role','toolbar');
+    var colorGroup = document.createElement('div'); colorGroup.className='tool-group';
+    var cl = document.createElement('span'); cl.className='tool-label'; cl.textContent='Pen'; colorGroup.appendChild(cl);
+    var eraseBtn;
+    COLORS.forEach(function(c,idx){
+      var btn=document.createElement('button'); btn.type='button';
+      btn.className='swatch '+c.name+(idx===0?' is-active':'');
+      btn.setAttribute('aria-label','Pen color '+c.name);
+      btn.addEventListener('click',function(){
+        state.color=c.hex; state.erasing=false;
+        colorGroup.querySelectorAll('.swatch').forEach(function(s){s.classList.remove('is-active');});
+        btn.classList.add('is-active');
+        if (eraseBtn) eraseBtn.classList.remove('is-active');
+        state.wrap.classList.remove('is-erasing');
+      });
+      colorGroup.appendChild(btn);
+    });
+    bar.appendChild(colorGroup);
+    var sizeGroup = document.createElement('div'); sizeGroup.className='tool-group';
+    var sl = document.createElement('span'); sl.className='tool-label'; sl.textContent='Size'; sizeGroup.appendChild(sl);
+    SIZES.forEach(function(sz,idx){
+      var btn=document.createElement('button'); btn.type='button';
+      btn.className='size-btn'+(idx===1?' is-active':'');
+      btn.setAttribute('aria-label','Pen size '+sz); btn.setAttribute('data-size',sz);
+      var dot=document.createElement('span'); dot.className='dot'; btn.appendChild(dot);
+      btn.addEventListener('click',function(){
+        state.size=sz;
+        sizeGroup.querySelectorAll('.size-btn').forEach(function(s){s.classList.remove('is-active');});
+        btn.classList.add('is-active');
+      });
+      sizeGroup.appendChild(btn);
+    });
+    bar.appendChild(sizeGroup);
+    var actGroup = document.createElement('div'); actGroup.className='tool-group';
+    eraseBtn = document.createElement('button'); eraseBtn.type='button';
+    eraseBtn.className='action-btn'; eraseBtn.textContent='Eraser';
+    eraseBtn.addEventListener('click',function(){
+      state.erasing=!state.erasing;
+      eraseBtn.classList.toggle('is-active',state.erasing);
+      state.wrap.classList.toggle('is-erasing',state.erasing);
+    });
+    actGroup.appendChild(eraseBtn);
+    var undoBtn = document.createElement('button'); undoBtn.type='button';
+    undoBtn.className='action-btn'; undoBtn.textContent='Undo';
+    undoBtn.addEventListener('click',function(){ undo(state); });
+    actGroup.appendChild(undoBtn);
+    var clearBtn = document.createElement('button'); clearBtn.type='button';
+    clearBtn.className='action-btn'; clearBtn.textContent='Clear';
+    clearBtn.addEventListener('click',function(){
+      if(state.strokes.length===0) return;
+      if(confirm('Clear this canvas?')){ state.strokes=[]; redraw(state); }
+    });
+    actGroup.appendChild(clearBtn);
+    var imgBtn = document.createElement('button'); imgBtn.type='button';
+    imgBtn.className='action-btn'; imgBtn.textContent='Add image';
+    var fileInput = document.createElement('input'); fileInput.type='file'; fileInput.accept='image/*'; fileInput.style.display='none';
+    imgBtn.addEventListener('click',function(){
+      if (state.bgImage) {
+        if (confirm('Remove background image? Your drawing stays.')) {
+          state.bgImage = null;
+          state.wrap.style.background = '';
+          imgBtn.textContent = 'Add image';
+        }
+      } else {
+        fileInput.click();
+      }
+    });
+    fileInput.addEventListener('change',function(e){
+      var file = e.target.files && e.target.files[0]; if(!file) return;
+      var reader = new FileReader();
+      reader.onload = function(ev){
+        var img = new Image();
+        img.onload = function(){
+          state.bgImage = img;
+          state.wrap.style.background = "url('" + ev.target.result + "') center/contain no-repeat #FFFFFF";
+          imgBtn.textContent = 'Remove image';
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+      e.target.value = '';
+    });
+    actGroup.appendChild(imgBtn); actGroup.appendChild(fileInput);
+    var saveBtn = document.createElement('button'); saveBtn.type='button';
+    saveBtn.className='action-btn primary'; saveBtn.textContent='Save PNG';
+    saveBtn.addEventListener('click',function(){ savePNG(state); });
+    actGroup.appendChild(saveBtn);
+    bar.appendChild(actGroup); slot.appendChild(bar); return bar;
+  }
+  function setupCanvas(slot){
+    var slideNum = slot.getAttribute('data-slide');
+    var slideTitle = slot.getAttribute('data-slide-title') || ('slide-'+slideNum);
+    var state = { slideNum:slideNum, slideTitle:slideTitle, color:COLORS[0].hex, size:SIZES[1], erasing:false, strokes:[], currentStroke:null, wrap:null, canvas:null, ctx:null, dpr:window.devicePixelRatio||1, bgImage:null };
+    buildToolbar(slot, state);
+    var wrap = document.createElement('div'); wrap.className='canvas-wrap'; state.wrap=wrap;
+    var canvas = document.createElement('canvas'); canvas.className='draw-canvas';
+    canvas.setAttribute('role','img'); canvas.setAttribute('aria-label','Drawing canvas for slide '+slideNum);
+    wrap.appendChild(canvas); slot.appendChild(wrap);
+    state.canvas = canvas; state.ctx = canvas.getContext('2d');
+    function resize(){
+      var rect = wrap.getBoundingClientRect(); var dpr = window.devicePixelRatio||1; state.dpr = dpr;
+      canvas.width = Math.max(1,Math.floor(rect.width*dpr));
+      canvas.height = Math.max(1,Math.floor(rect.height*dpr));
+      canvas.style.width = rect.width+'px'; canvas.style.height = rect.height+'px';
+      state.ctx.setTransform(dpr,0,0,dpr,0,0); redraw(state);
+    }
+    resize(); window.addEventListener('resize',resize);
+    if(window.ResizeObserver) new ResizeObserver(resize).observe(wrap);
+    function getXY(ev){ var r=canvas.getBoundingClientRect(); return {x:ev.clientX-r.left, y:ev.clientY-r.top}; }
+    function start(ev){
+      ev.preventDefault();
+      if (canvas.setPointerCapture) { try { canvas.setPointerCapture(ev.pointerId); } catch (e) {} }
+      var p = getXY(ev);
+      state.currentStroke = { color: state.erasing?null:state.color, size: state.erasing?Math.max(12,state.size*4):state.size, erasing: state.erasing, points: [p] };
+      state.currentPointerId = ev.pointerId;
+      state.currentPointerType = ev.pointerType;
+      state.strokes.push(state.currentStroke);
+      drawStrokeSegment(state, state.currentStroke, 0);
+    }
+    function move(ev){
+      if (!state.currentStroke) return; ev.preventDefault();
+      var p = getXY(ev); var s = state.currentStroke; var prevIdx = s.points.length-1;
+      s.points.push(p); drawStrokeSegment(state, s, prevIdx);
+    }
+    function end(ev) {
+      if (!state.currentStroke) return;
+      if (ev && ev.pointerId != null && state.currentPointerId != null && ev.pointerId !== state.currentPointerId) return;
+      state.currentStroke = null;
+      state.currentPointerId = null;
+      state.currentPointerType = null;
+    }
+    canvas.addEventListener('pointerdown',start);
+    canvas.addEventListener('pointermove',move);
+    canvas.addEventListener('pointerup',end);
+    canvas.addEventListener('pointercancel',end);
+    canvas.addEventListener('touchstart',function(e){ var t=e.touches&&e.touches[0]; if(t&&t.touchType==='stylus')return; if(state.currentStroke&&state.currentPointerType==='pen')return; e.preventDefault(); },{passive:false});
+    canvas.addEventListener('touchmove',function(e){ var t=e.touches&&e.touches[0]; if(t&&t.touchType==='stylus')return; if(state.currentStroke&&state.currentPointerType==='pen')return; e.preventDefault(); },{passive:false});
+    canvas.addEventListener('gesturestart',function(e){ e.preventDefault(); });
+    canvas.addEventListener('contextmenu',function(e){ e.preventDefault(); });
+    allCanvases.push(state);
+  }
+  function drawStrokeSegment(state, stroke, fromIdx){
+    var ctx = state.ctx; ctx.save();
+    if (stroke.erasing) { ctx.globalCompositeOperation='destination-out'; ctx.strokeStyle='rgba(0,0,0,1)'; }
+    else { ctx.globalCompositeOperation='source-over'; ctx.strokeStyle=stroke.color; }
+    ctx.lineWidth = stroke.size; ctx.lineCap='round'; ctx.lineJoin='round';
+    var pts = stroke.points;
+    if (pts.length===1) {
+      ctx.beginPath(); ctx.arc(pts[0].x, pts[0].y, Math.max(0.5, stroke.size/2), 0, Math.PI*2);
+      ctx.fillStyle = stroke.erasing?'rgba(0,0,0,1)':stroke.color; ctx.fill();
+    } else if (fromIdx < pts.length-1) {
+      ctx.beginPath(); ctx.moveTo(pts[fromIdx].x, pts[fromIdx].y);
+      for (var i=fromIdx+1; i<pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+  function redraw(state){
+    var r = state.canvas.getBoundingClientRect();
+    state.ctx.clearRect(0,0,r.width,r.height);
+    state.strokes.forEach(function(s){ drawStrokeSegment(state, s, 0); });
+  }
+  function undo(state){ if (state.strokes.length===0) return; state.strokes.pop(); redraw(state); }
+  function savePNG(state){
+    var r = state.canvas.getBoundingClientRect();
+    var out = document.createElement('canvas');
+    var dpr = state.dpr; out.width = r.width*dpr; out.height = r.height*dpr;
+    var oc = out.getContext('2d');
+    oc.fillStyle = '#FFFFFF'; oc.fillRect(0,0,out.width,out.height);
+    if (state.bgImage) {
+      var bg = state.bgImage;
+      var iw = bg.naturalWidth, ih = bg.naturalHeight;
+      var cw = out.width, ch = out.height;
+      var scale = Math.min(cw/iw, ch/ih);
+      var dw = iw*scale, dh = ih*scale;
+      var dx = (cw-dw)/2, dy = (ch-dh)/2;
+      oc.drawImage(bg, dx, dy, dw, dh);
+    }
+    oc.drawImage(state.canvas, 0, 0);
+    var link = document.createElement('a');
+    link.download = 'canvas-cns-organization-'+state.slideTitle+'.png';
+    link.href = out.toDataURL('image/png');
+    document.body.appendChild(link); link.click(); document.body.removeChild(link);
+  }
+  document.querySelectorAll('.canvas-col[data-slide]').forEach(setupCanvas);
+  var dlAll = document.getElementById('downloadAll');
+  if (dlAll) dlAll.addEventListener('click', function(){ allCanvases.forEach(function(s,i){ setTimeout(function(){ savePNG(s); }, i*350); }); });
+  var clrAll = document.getElementById('clearAll');
+  if (clrAll) clrAll.addEventListener('click', function(){ if (confirm('Clear every canvas?')) { allCanvases.forEach(function(s){ s.strokes=[]; redraw(s); }); } });
+})();
+(function(){
+  var FRAME_ID = 'bio304-cns-organization-slides';
+  function sendHeight(){ var h = (window.BIO004_CONTENT_HEIGHT ? window.BIO004_CONTENT_HEIGHT() : document.body.scrollHeight); if (window.parent && window.parent!==window) parent.postMessage({type:'resize', id:FRAME_ID, height:h}, '*'); }
+  window.addEventListener('load', sendHeight); window.addEventListener('resize', sendHeight);
+  if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+  [200,600,1200,2400].forEach(function(t){ setTimeout(sendHeight, t); });
+})();
+
+(function(){
+  var hero = document.querySelector('.hero-actions');
+  if (hero) {
+    var pdfBtn = document.createElement('button');
+    pdfBtn.type = 'button';
+    pdfBtn.className = 'ghost';
+    pdfBtn.id = 'printDeckPdf';
+    pdfBtn.textContent = 'Download blank PDF pack';
+    pdfBtn.setAttribute('aria-label', 'Print or save the whole slide pack as PDF with blank drawing boxes');
+    pdfBtn.addEventListener('click', function(){
+      document.body.classList.remove('print-single');
+      document.querySelectorAll('.slide.print-target').forEach(function(s){ s.classList.remove('print-target'); });
+      window.print();
+    });
+    hero.appendChild(pdfBtn);
+  }
+  document.querySelectorAll('.slide').forEach(function(slide){
+    var header = slide.querySelector('.slide-header');
+    if (!header) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'slide-print-btn';
+    btn.textContent = 'Print this slide';
+    btn.setAttribute('aria-label', 'Print just this slide as a one-page PDF');
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      document.querySelectorAll('.slide.print-target').forEach(function(s){ s.classList.remove('print-target'); });
+      slide.classList.add('print-target');
+      document.body.classList.add('print-single');
+      setTimeout(function(){ window.print(); }, 60);
+    });
+    header.appendChild(btn);
+  });
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('print-single');
+    document.querySelectorAll('.slide.print-target').forEach(function(s){ s.classList.remove('print-target'); });
+  });
+})();
+</script>
+
+<script src="bio004-dock.js"></script>
+<script src="dock-coachmark.js"></script>
+</body>
+</html>

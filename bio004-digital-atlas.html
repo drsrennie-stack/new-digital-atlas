@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Atlas &middot; BIO 004 Human Anatomy &middot; Fall 2026</title>
+<meta name="description" content="The Digital Human Anatomy Atlas inside the course frame, with a back button to return to wherever you came from.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DIGITAL ATLAS WRAPPER
+   The Atlas itself lives on Articulate's site and cannot carry
+   course buttons. This page puts the course's slim bar above it:
+   a back button, the course name, and an escape hatch that opens
+   the Atlas in its own tab if the embed ever misbehaves.
+   ============================================================ */
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{display:flex;flex-direction:column;background:#08101F;
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+  .bar{display:flex;align-items:center;gap:14px;padding:10px 16px;background:#08101F;color:#F4EFE8}
+  .bk{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0B1530;
+    border:2px solid #0B1530;border-radius:999px;padding:8px 15px 8px 11px;cursor:pointer;text-decoration:none;
+    font:800 13.5px/1 'Plus Jakarta Sans',system-ui,sans-serif;
+    transition:transform .18s ease,box-shadow .18s ease}
+  .bk:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(0,0,0,.6);border-color:#C9A14A}
+  .bk:focus-visible{outline:3px solid #DCB45C;outline-offset:3px}
+  .bk svg{width:15px;height:15px}
+  @media (prefers-reduced-motion:reduce){ .bk{transition:none} .bk:hover{transform:none} }
+  .t{flex:1;min-width:0}
+  .t b{display:block;font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .t span{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#DCB45C}
+  .nt{color:#F4EFE8;font-size:13px;font-weight:700;text-decoration:none;border:1.5px solid rgba(244,239,232,.45);
+    border-radius:999px;padding:7px 14px;white-space:nowrap}
+  .nt:hover{border-color:#DCB45C;color:#fff}
+  .nt:focus-visible{outline:3px solid #DCB45C;outline-offset:2px}
+  @media (max-width:560px){ .t span{display:none} .nt{display:none} }
+  iframe{flex:1;width:100%;border:0;background:#fff}
+</style>
+</head>
+<body data-no-back data-no-reading-mode>
+  <header class="bar">
+    <a class="bk" id="backBtn" href="welcome.html" target="_top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      <span>Back</span>
+    </a>
+    <div class="t">
+      <span>BIO 004 &middot; Human Anatomy &middot; Fall 2026</span>
+      <b>Digital Human Anatomy Atlas</b>
+    </div>
+    <a class="nt" href="https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo" target="_blank" rel="noopener">Open in its own tab &#8599;</a>
+  </header>
+  <div style="flex:1;display:grid;place-items:center;padding:24px;text-align:center"><p style="font:600 18px/1.5 system-ui,sans-serif;color:#0B1530">Opening the Anatomy Atlas&hellip;<br><a href="https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo" style="color:#8B3A2E">Tap here if it does not open</a></p></div><script>location.replace("https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo")</script>
+<script>
+(function () {
+  'use strict';
+  /* Same back logic as everywhere else: real history first, then the
+     page that linked here, then the course home. */
+  var ref = '';
+  try {
+    if (document.referrer && document.referrer !== window.location.href
+        && document.referrer.indexOf('share.articulate.com') === -1) ref = document.referrer;
+  } catch (e) {}
+  var b = document.getElementById('backBtn');
+  b.addEventListener('click', function (ev) {
+    var canBack = false;
+    try { canBack = window.history.length > 1; } catch (e) {}
+    if (canBack) {
+      ev.preventDefault();
+      var before = window.location.href;
+      window.history.back();
+      setTimeout(function () {
+        if (window.location.href === before) window.location.href = ref || 'welcome.html';
+      }, 500);
+    } else if (ref) {
+      b.href = ref;
+    }
+  });
+})();
+</script>
+</body>
+</html>

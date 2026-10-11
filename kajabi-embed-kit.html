@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kajabi Embed Kit &middot; BIO 004 Human Anatomy &middot; Fall 2026</title>
+<meta name="description" content="Copy-ready iframe embed code for every BIO 004 course tool, with a live preview of each page and one universal height receiver that works with every embed convention in the repo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital@1&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     KAJABI EMBED KIT
+
+     WHAT THIS IS FOR
+     The course site lives on GitHub Pages. Kajabi does not host it;
+     Kajabi shows it through an iframe. This page is the workbench
+     for that: every tool listed once, with a live preview so you
+     can look at a page without hunting for its URL, and the exact
+     block to paste into a Kajabi custom code area.
+
+     THE HEIGHT PROBLEM, AND WHY THE RECEIVER MATTERS
+     An iframe has a fixed height. The page inside does not. Open a
+     collapsible card or deal a 62-question exam and the iframe
+     either scrolls inside itself, which is horrible on a phone, or
+     it clips. So every page in the repo posts its height to the
+     parent window as it changes, and the parent has to listen and
+     resize. Without a receiver the sender is talking to nobody.
+
+     WHY THE RECEIVER MATCHES ON SOURCE, NOT ON ID
+     The repo grew two conventions. Most pages post
+     {type:'resize', id:'...'} with the id hardcoded per page; the
+     newer ones post {type:'resize', frameId:'...'} read off the
+     query string. A receiver keyed on either name works for some
+     pages and silently fails for the rest.
+
+     So this receiver ignores the name entirely and matches
+     event.source against the iframe's contentWindow. A message can
+     only have come from the frame that sent it, so this is both
+     stricter and simpler, and it works with every page in the repo
+     no matter which convention it was built with.
+
+     Each snippet is standalone: iframe plus its own receiver, safe
+     to paste more than once on a page.
+
+     Dr. Sharilyn Rennie, BIO 004 Human Anatomy, Solano Community
+     College.
+     ============================================================ -->
+
+<style>
+  :root{
+    --navy:#08101F; --navy-tint:#ECEFF4;
+    --terra-dark:#6B1616; --terra:#8B1D1D;
+    --gold:#DCB45C; --gold-text:#6F5316;
+    --offwhite:#FAFAF9; --sub:#F1F4F7;
+    --ink-3:#4A5763;
+    --ok:#1F6B3A; --bad:#8A1010;
+    --rest:0 1px 3px rgba(0,0,0,0.08);
+    --hover:0 10px 22px rgba(0,0,0,0.12);
+    --t:transform 180ms ease, box-shadow 180ms ease;
+    --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);color:var(--navy);background:var(--offwhite);
+       line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:28px 20px 90px}
+  .skip{position:absolute;left:-9999px;background:var(--terra-dark);color:#fff;padding:10px 16px;
+        border-radius:8px;font-weight:700;z-index:60}
+  .skip:focus{left:16px;top:16px}
+  :focus-visible{outline:3px solid var(--terra-dark);outline-offset:2px;border-radius:6px}
+  .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+      clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+  .cover-eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;
+                 color:var(--terra-dark);margin:0 0 10px}
+  h1{font-weight:800;font-size:clamp(26px,4.6vw,40px);line-height:1.04;letter-spacing:-.02em;margin:0 0 12px}
+  h1 span{color:var(--gold-text)}
+  .lede{font-size:17px;color:var(--ink-3);margin:0 0 6px;max-width:70ch}
+  .usage{font-family:'Lora',Georgia,serif;font-style:italic;color:var(--ink-3);
+         font-size:16px;margin:14px 0 0;max-width:70ch}
+
+  .card{background:#fff;border-radius:12px;padding:24px;margin:18px 0;box-shadow:var(--rest)}
+  .card h2{font-size:clamp(18px,3vw,22px);font-weight:800;letter-spacing:-.02em;margin:0 0 6px}
+  .card h3{font-size:16px;font-weight:800;margin:18px 0 6px;color:var(--terra-dark)}
+  .step-k{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;
+          color:var(--terra-dark);display:block;margin-bottom:4px}
+  .hint{color:var(--ink-3);font-size:14.5px;margin:0 0 12px;max-width:76ch}
+  .hint b{color:var(--navy)}
+  ol.steps{margin:8px 0 0;padding-left:20px;color:var(--ink-3);font-size:14.5px;max-width:76ch}
+  ol.steps li{margin:0 0 7px}
+  ol.steps b{color:var(--navy)}
+
+  pre{background:var(--navy);color:#E7ECF3;border-radius:11px;padding:16px 18px;overflow:auto;
+      font-size:12.7px;line-height:1.62;margin:10px 0 0;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      -moz-tab-size:2;tab-size:2}
+  pre .c{color:#9FB3C8}
+  code{background:var(--sub);border-radius:5px;padding:2px 6px;font-size:13px;
+       font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .codehead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:14px}
+
+  button{font-family:var(--font)}
+  .copy{background:var(--gold);color:#08101F;font-weight:800;font-size:14px;padding:10px 16px;
+        border:0;border-radius:9px;cursor:pointer;transition:var(--t);box-shadow:var(--rest)}
+  .copy:hover{transform:translateY(-2px);box-shadow:var(--hover)}
+  .copy.done{background:var(--ok);color:#fff}
+  .ghost{background:#fff;color:var(--navy);font-weight:800;font-size:14px;padding:10px 15px;border:0;
+         border-radius:9px;cursor:pointer;transition:var(--t);box-shadow:var(--rest);
+         text-decoration:none;display:inline-block}
+  .ghost:hover{transform:translateY(-2px);box-shadow:var(--hover)}
+
+  .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 0}
+  .bar input[type=search]{flex:1 1 240px;min-width:180px;font-family:var(--font);font-size:15px;
+        padding:12px 14px;border:0;border-radius:10px;background:var(--sub);color:var(--navy);
+        box-shadow:var(--rest)}
+  .chip{background:var(--sub);border:0;border-radius:99px;padding:9px 15px;font-weight:800;font-size:13.5px;
+        color:var(--navy);cursor:pointer;transition:var(--t)}
+  .chip[aria-pressed="true"]{background:var(--navy);color:#fff}
+
+  .tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-top:16px}
+  .tool{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:var(--rest);
+        display:flex;flex-direction:column;gap:4px}
+  .tool .g{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:800;color:var(--terra-dark)}
+  .tool h3{font-size:17px;font-weight:800;margin:2px 0 0;color:var(--navy)}
+  .tool p{margin:2px 0 0;font-size:14px;color:var(--ink-3)}
+  .tool .u{font-size:12.4px;color:var(--ink-3);word-break:break-all;margin-top:7px;
+           font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .tool .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:12px}
+  .tool .acts button,.tool .acts a{font-size:13.5px;padding:9px 13px}
+  .flag{display:inline-block;font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:800;
+        border-radius:99px;padding:3px 9px;margin-left:7px;vertical-align:2px}
+  .flag.ext{background:var(--navy-tint);color:var(--navy)}
+  .flag.soon{background:#F6E7C6;color:var(--gold-text)}
+
+  dialog{border:0;border-radius:14px;padding:0;width:min(1080px,94vw);max-width:94vw;
+         box-shadow:0 30px 70px -18px rgba(0,0,0,.5);color:var(--navy)}
+  dialog::backdrop{background:rgba(8,16,31,.62)}
+  .dh{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+      padding:16px 20px;background:var(--navy);color:#fff}
+  .dh h2{margin:0;font-size:18px;font-weight:800}
+  .dh .x{background:#1B2942;color:#fff;border:0;border-radius:9px;padding:9px 14px;font-weight:800;
+         font-size:14px;cursor:pointer}
+  .dbody{padding:0;background:var(--offwhite)}
+  .dbody iframe{display:block;width:100%;height:min(74vh,900px);border:0;background:#fff}
+
+  .note{background:var(--sub);border-radius:10px;padding:14px 16px;font-size:14.5px;color:var(--ink-3);
+        margin:14px 0 0}
+  .note b{color:var(--navy)}
+  .note.warn{background:#FBEDED;color:#5E1414}
+  .note.warn b{color:#5E1414}
+
+  footer{margin-top:34px;padding-top:20px;color:var(--ink-3);font-size:14px;
+         box-shadow:inset 0 1px 0 rgba(8,16,31,.10)}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .copy,.ghost,.chip{transition:none}
+    .copy:hover,.ghost:hover{transform:none}
+  }
+  @media print{ .bar,.acts,.copy{display:none !important} .card,.tool{box-shadow:none} }
+</style>
+</head>
+<body>
+<a class="skip" href="#tools">Skip to the tool list</a>
+
+<div class="wrap">
+<main id="main">
+
+  <section>
+    <p class="cover-eyebrow">BIO 004 &middot; Human Anatomy &middot; Fall 2026</p>
+    <h1>Kajabi <span>embed kit</span></h1>
+    <p class="lede">The course site stays on GitHub Pages. Kajabi shows it through an iframe. One block
+       puts the whole site in a single frame with navigation working inside it. Below that, every page is
+       listed with a live preview and its own block, for when you want one tool on its own.</p>
+    <p class="usage">Preview first, then copy. The block you copy already carries the height receiver,
+       so the frame grows with the page instead of scrolling inside itself.</p>
+  </section>
+
+  <section class="card" aria-labelledby="h-one" style="box-shadow:var(--hover)">
+    <span class="step-k">The short answer</span>
+    <h2 id="h-one">One embed, the whole site inside it</h2>
+    <p class="hint">You do not need twenty-eight embeds. Paste <b>this one block</b> on a single Kajabi
+      page and the dock, the links and every tool work inside that one frame. The student never leaves
+      the Kajabi page, and the frame resizes and scrolls to the top of each new page as they move.</p>
+    <p class="hint"><b>The catch this solves.</b> Every internal link on the course site carries
+      <code>target="_top"</code>, which is right for Canvas and exactly wrong here: one click and the
+      whole Kajabi page navigates away to github.io. The <code>?embed=solo</code> flag on the address
+      switches the site into keeping navigation inside the frame, and carries itself forward on every
+      link so it survives every hop.</p>
+    <div class="codehead">
+      <h3 style="margin:0">Paste this into one Custom Code block</h3>
+      <button type="button" class="copy" data-copy="solo">Copy the one embed</button>
+    </div>
+    <pre id="pre-solo" tabindex="0"></pre>
+    <div class="note"><b>Which page should it open on?</b> Any of them, since the dock is on every page.
+      Course home is the natural front door. Swap the file name in the address for a different landing
+      page and everything else still works.</div>
+    <p class="hint" style="margin-top:14px">Everything below is the per-page version, for when you
+      deliberately want one tool sitting on its own Kajabi page.</p>
+  </section>
+
+  <section class="card" aria-labelledby="h-how">
+    <span class="step-k">Or one tool at a time</span>
+    <h2 id="h-how">Putting a single tool on a Kajabi page</h2>
+    <ol class="steps">
+      <li>In Kajabi, open the page and add a <b>Custom Code</b> block where you want the tool to sit.</li>
+      <li>Come back here, find the tool, press <b>Copy embed</b>.</li>
+      <li>Paste into the code block and save. Nothing else to configure.</li>
+      <li>Preview the Kajabi page on a phone. The frame should grow to fit and never scroll inside itself.</li>
+    </ol>
+    <div class="note"><b>Each block is self-contained.</b> The iframe and its height receiver travel
+      together, so you can put several tools on one Kajabi page and they will not interfere with each
+      other. There is no site-wide script to install first.</div>
+    <div class="note warn"><b>A page has to be live before its frame shows anything.</b> These addresses
+      point at GitHub Pages. Any page not yet uploaded to the repo will render as a 404 inside the frame.
+      Preview here first and you will know straight away.</div>
+  </section>
+
+  <section class="card" aria-labelledby="h-tools" id="tools">
+    <span class="step-k">The tools</span>
+    <h2 id="h-tools">Every page worth embedding</h2>
+    <p class="hint">Filter by where it belongs, or search. <b>Preview</b> opens the real page in a frame
+      on this screen, at the width Kajabi will give it.</p>
+
+    <div class="bar">
+      <label class="sr" for="q">Search the tools</label>
+      <input type="search" id="q" placeholder="Search: exam, notes, atlas, syllabus...">
+      <div role="group" aria-label="Filter by group" id="chips"></div>
+    </div>
+
+    <div class="tools" id="grid"></div>
+    <p class="hint" id="count" role="status" style="margin-top:14px"></p>
+  </section>
+
+  <section class="card" aria-labelledby="h-rec">
+    <span class="step-k">Reference</span>
+    <h2 id="h-rec">The height receiver, and why it is written this way</h2>
+    <p class="hint">You do not need to install this separately. It is already inside every block you copy.
+      It is here so the behavior is documented rather than mysterious.</p>
+    <p class="hint">Every page in the repo posts its height to the parent window as the content changes.
+      The parent has to listen and resize the frame, or the sender is talking to nobody. The catch is that
+      the repo grew <b>two message shapes</b>: older pages send <code>{type:'resize', id:'...'}</code> and
+      newer ones send <code>{type:'resize', frameId:'...'}</code>. A receiver keyed on either name works
+      for some pages and silently fails for the rest.</p>
+    <p class="hint">So this one ignores the name and matches <b>the window the message came from</b>
+      against the frame's own <code>contentWindow</code>. A message can only have come from the frame that
+      sent it, which makes this both stricter than an id check and immune to the naming split. It works
+      with every page in the repo.</p>
+    <div class="codehead">
+      <h3 style="margin:0">The receiver on its own</h3>
+      <button type="button" class="copy" data-copy="receiver">Copy receiver</button>
+    </div>
+    <pre id="pre-receiver" tabindex="0"></pre>
+  </section>
+
+  <footer>
+    <p>Every address points at the live course site on GitHub Pages. Kajabi displays the page; it does not
+      hold a copy, so a fix pushed to the repo appears on Kajabi with no re-embedding.</p>
+    <p>Dr. Sharilyn Rennie &middot; BIO 004 Human Anatomy &middot; Solano Community College</p>
+  </footer>
+</main>
+</div>
+
+<dialog id="prev" aria-labelledby="prev-h">
+  <div class="dh">
+    <h2 id="prev-h">Preview</h2>
+    <div style="display:flex;gap:9px;flex-wrap:wrap">
+      <a class="ghost" id="prev-open" href="#" target="_blank" rel="noopener">Open in a new tab</a>
+      <button type="button" class="x" id="prev-x">Close</button>
+    </div>
+  </div>
+  <div class="dbody"><iframe id="prev-f" title="Tool preview" src="about:blank"></iframe></div>
+</dialog>
+
+<script>
+(function(){
+  'use strict';
+
+  var BASE = 'https://drsrennie-stack.github.io/new-build-bio4-solano/';
+
+  /* Every tile in the course dock, plus the syllabus, which the dock
+     builds per section rather than as one link. `ext` means the page
+     is somewhere else and cannot be height-synced, so it is embedded
+     at a fixed height or, better, linked. */
+  var TOOLS = [
+    {g:'Index',   n:'Course home',            f:'welcome.html',                    s:'The front door. Start here if you only embed one thing.'},
+    {g:'Index',   n:'Course tools dock',      f:'course-index.html',               s:'The full index of case deep dives, with the dock on every page.'},
+    {g:'Index',   n:'All course materials',   f:'course-materials.html',           s:'Notes, pre-work and videos by module, collapsible.'},
+
+    {g:'This week', n:'Today',                f:'today.html',                      s:'What to do today, per section.'},
+    {g:'This week', n:'Course calendar',      f:'bio004-course-calendar.html',     s:'The term at a glance, with the Start here walkthrough.'},
+    {g:'This week', n:'Study With Me',        f:'study-session-signup.html',       s:'Session sign-up.'},
+
+    {g:'Materials', n:'Notes',                f:'course-materials.html?show=notes',  s:'The materials index filtered to notes.'},
+    {g:'Materials', n:'Pre-work sheets',      f:'course-materials.html?show=sheets', s:'Filtered to pre-work.'},
+    {g:'Materials', n:'Concept videos',       f:'course-materials.html?show=videos', s:'Filtered to videos.'},
+    {g:'Materials', n:'Lab sprints',          f:'lab-sprints.html',                s:'All 31 sprints by module and exam.'},
+    {g:'Materials', n:'Exam modules',         f:'bio004-exam-modules.html',        s:'What each exam covers.'},
+
+    {g:'Study tools', n:'Practice exam',      f:'practice-lecture-exam.html',      s:'A fresh 100 point paper in the real format, no repeats.'},
+    {g:'Study tools', n:'Brain dump practice',f:'brain-dump-practice.html',        s:'Spin a prompt, set a clock, write it on paper, self-check.'},
+    {g:'Study tools', n:'Mastery OS',         f:'mastery-os-fall-2026.html',       s:'The study hub: recall, weak spots, day review.'},
+    {g:'Study tools', n:'Weak spot board',    f:'mastery-os-fall-2026.html#s-weak',s:'Straight to the weak spots panel.'},
+    {g:'Study tools', n:'Recall cards',       f:'mastery-os-fall-2026.html#s-recall', s:'Straight to spaced recall.'},
+    {g:'Study tools', n:'Draw it from memory',f:'mastery-canvas.html',             s:'Drawing-based synthesis.'},
+    {g:'Study tools', n:'What I got done today', f:'bio004-day-review.html',       s:'End of day review.'},
+
+    {g:'Course',  n:'Syllabus, Mon / Wed',    f:'syllabus-class1.html',            s:'CRN 80650.'},
+    {g:'Course',  n:'Syllabus, Tue / Thu AM', f:'syllabus-class2.html',            s:'CRN 80654.'},
+    {g:'Course',  n:'Syllabus, Tue / Thu PM', f:'syllabus-class3.html',            s:'CRN 80655.'},
+    {g:'Course',  n:'Start here',             f:'start-here.html',                 s:'First-week checklist.'},
+    {g:'Course',  n:'How this course works',  f:'how-this-course-works.html',      s:'The method, in plain words.'},
+    {g:'Course',  n:'Virtual Office',         f:'virtual-office.html',             s:'Hours and the per-section question board.'},
+    {g:'Course',  n:'Required materials',     f:'required-materials.html',         s:'No book, no kit, lab coat and gloves by week five.'},
+
+    {g:'Elsewhere', n:'Digital Atlas',        u:'https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo', ext:true,
+                    s:'Articulate. Not height-synced, so this one gets a fixed frame.'},
+    {g:'Elsewhere', n:'Loops',                u:'https://drsrennie-stack.github.io/loops/', ext:true,
+                    s:'Separate repo. Fixed frame.'},
+    {g:'Elsewhere', n:'Muscle charts, I O A', u:'https://www.medmasterscollaborative.com/muscle-charts-i-o-a-inn', ext:true,
+                    s:'On MedMasters. Link rather than nest a Kajabi page inside a Kajabi page.'}
+  ];
+
+  function urlOf(t){ return t.u ? t.u : BASE + t.f; }
+  function slugOf(t){
+    return String(t.n).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  }
+
+  /* ---------- the receiver, as source text ---------- */
+  function receiverSrc(varName){
+    var v = varName || 'frame';
+    return [
+      '<script>',
+      '/* Keeps the frame the right height, and puts the reader at the',
+      '   top of each page they open inside it.',
+      '',
+      '   Matches on the window the message came from, not on an id,',
+      '   because the course site uses two id conventions and this is',
+      '   immune to both. */',
+      '(function(){',
+      '  var ' + v + ' = document.currentScript.previousElementSibling;',
+      '  if(!' + v + ' || ' + v + '.tagName !== "IFRAME"){',
+      '    ' + v + ' = document.currentScript.parentNode.querySelector("iframe");',
+      '  }',
+      '  if(!' + v + ') return;',
+      '  window.addEventListener("message", function(e){',
+      '    var d = e.data;',
+      '    if(!d || e.source !== ' + v + '.contentWindow) return;   /* not our frame */',
+      '    if(d.type === "resize" && d.height){',
+      '      /* A dealt practice exam runs past 25,000px. The ceiling is',
+      '         only here to ignore a nonsense number, not to trim a page. */',
+      '      var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));',
+      '      ' + v + '.style.height = h + "px";',
+      '    }',
+      '    if(d.type === "scrollTop"){',
+      '      /* The student clicked a link inside the frame. Without this',
+      '         they land halfway down a new page, because the Kajabi',
+      '         page never moved. */',
+      '      try{ ' + v + '.scrollIntoView({block:"start", behavior:"smooth"}); }',
+      '      catch(err){ ' + v + '.scrollIntoView(true); }',
+      '    }',
+      '  }, false);',
+      '',
+      '  /* Tell the frame which slice of it is on screen. Inside a frame that',
+      '     is as tall as its whole page, position:fixed pins to the bottom of',
+      '     all of it, so the Course tools button sat far below whatever the',
+      '     student was looking at. With this the button rides the screen. */',
+      '  function sendView(){',
+      '    var r = ' + v + '.getBoundingClientRect();',
+      '    var top = Math.max(0, -r.top);',
+      '    var height = Math.max(0, Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0));',
+      '    if(height <= 0) return;',
+      '    try{ ' + v + '.contentWindow.postMessage({type:"bio004-viewport", top:top, height:height}, "*"); }catch(err){}',
+      '  }',
+      '  var tick = false;',
+      '  function onMove(){ if(tick) return; tick = true;',
+      '    requestAnimationFrame(function(){ tick = false; sendView(); }); }',
+      '  window.addEventListener("scroll", onMove, {passive:true});',
+      '  window.addEventListener("resize", onMove);',
+      '  ' + v + '.addEventListener("load", sendView);',
+      '  setInterval(sendView, 500);',
+      '}());',
+      '<\/script>'
+    ].join('\n');
+  }
+
+  /* The single embed: one frame, in-frame navigation, whole site. */
+  function soloEmbed(landing){
+    var url = BASE + (landing || 'welcome.html') + '?embed=solo';
+    return [
+      '<!-- BIO 004 Human Anatomy, Fall 2026. THE WHOLE COURSE SITE, ONE FRAME.',
+      '     ?embed=solo keeps every link inside this frame instead of',
+      '     navigating the Kajabi page away. Change the file name below to',
+      '     land somewhere other than the course home page. -->',
+      '<iframe src="' + url + '"',
+      '        title="BIO 004 Human Anatomy course site"',
+      '        style="display:block;width:100%;height:1400px;border:0;background:transparent"',
+      '        scrolling="no"',
+      '        allowfullscreen></iframe>',
+      receiverSrc('f')
+    ].join('\n');
+  }
+
+  function embedFor(t){
+    var url = urlOf(t);
+    var id  = slugOf(t);
+    if(t.ext){
+      return [
+        '<!-- ' + t.n + '. Hosted elsewhere, so no height message arrives.',
+        '     Fixed frame; adjust the height to taste. -->',
+        '<iframe src="' + url + '"',
+        '        title="' + t.n + '"',
+        '        loading="lazy"',
+        '        style="display:block;width:100%;height:900px;border:0;border-radius:12px;background:#fff"',
+        '        allowfullscreen></iframe>'
+      ].join('\n');
+    }
+    /* frameId is passed even though the receiver does not read it:
+       the page uses it in its own message, and it makes the frame
+       identifiable in the browser console when something misbehaves. */
+    var src = url + (url.indexOf('?') > -1 ? '&' : '?') + 'frameId=' + id;
+    return [
+      '<!-- ' + t.n + '. BIO 004 Fall 2026. Height syncs automatically. -->',
+      '<iframe src="' + src + '"',
+      '        title="' + t.n + '"',
+      '        loading="lazy"',
+      '        style="display:block;width:100%;height:1200px;border:0;background:transparent"',
+      '        scrolling="no"></iframe>',
+      receiverSrc('f')
+    ].join('\n');
+  }
+
+  /* ---------- render ---------- */
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  var GROUPS = [];
+  TOOLS.forEach(function(t){ if(GROUPS.indexOf(t.g) === -1) GROUPS.push(t.g); });
+  var filter = 'All', query = '';
+
+  function renderChips(){
+    var h = '';
+    ['All'].concat(GROUPS).forEach(function(g){
+      h += '<button type="button" class="chip" data-g="' + esc(g) + '" aria-pressed="'
+         + (filter === g ? 'true' : 'false') + '">' + esc(g) + '</button>';
+    });
+    document.getElementById('chips').innerHTML = h;
+  }
+
+  function visible(){
+    var q = query.trim().toLowerCase();
+    return TOOLS.filter(function(t){
+      if(filter !== 'All' && t.g !== filter) return false;
+      if(!q) return true;
+      return (t.n + ' ' + t.s + ' ' + t.g + ' ' + urlOf(t)).toLowerCase().indexOf(q) > -1;
+    });
+  }
+
+  function renderGrid(){
+    var list = visible(), h = '';
+    list.forEach(function(t){
+      var i = TOOLS.indexOf(t);
+      h += '<article class="tool">'
+        +  '<span class="g">' + esc(t.g) + '</span>'
+        +  '<h3>' + esc(t.n) + (t.ext ? '<span class="flag ext">off site</span>' : '') + '</h3>'
+        +  '<p>' + esc(t.s) + '</p>'
+        +  '<p class="u">' + esc(urlOf(t)) + '</p>'
+        +  '<div class="acts">'
+        +    '<button type="button" class="copy" data-embed="' + i + '">Copy embed</button>'
+        +    '<button type="button" class="ghost" data-prev="' + i + '">Preview</button>'
+        +    '<a class="ghost" href="' + esc(urlOf(t)) + '" target="_blank" rel="noopener">Open<span class="sr">'
+        +      ' ' + esc(t.n) + ' in a new tab</span></a>'
+        +  '</div>'
+        +  '</article>';
+    });
+    document.getElementById('grid').innerHTML = h;
+    document.getElementById('count').textContent =
+      list.length + (list.length === 1 ? ' tool' : ' tools') + ' shown of ' + TOOLS.length + '.';
+  }
+
+  document.getElementById('chips').addEventListener('click', function(e){
+    var b = e.target.closest('.chip'); if(!b) return;
+    filter = b.getAttribute('data-g'); renderChips(); renderGrid();
+  });
+  document.getElementById('q').addEventListener('input', function(e){
+    query = e.target.value; renderGrid();
+  });
+
+  /* ---------- copy ---------- */
+  function flash(btn, msg){
+    var was = btn.textContent;
+    btn.textContent = msg; btn.classList.add('done');
+    window.setTimeout(function(){ btn.textContent = was; btn.classList.remove('done'); }, 1600);
+  }
+  function copyText(text, btn){
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try{ ok = document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta);
+      flash(btn, ok ? 'Copied' : 'Press Ctrl C');
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ flash(btn,'Copied'); }, fallback);
+    } else { fallback(); }
+  }
+
+  document.addEventListener('click', function(e){
+    var c = e.target.closest('[data-embed]');
+    if(c){ copyText(embedFor(TOOLS[parseInt(c.getAttribute('data-embed'),10)]), c); return; }
+    var r = e.target.closest('[data-copy="receiver"]');
+    if(r){ copyText(receiverSrc('f'), r); return; }
+    var so = e.target.closest('[data-copy="solo"]');
+    if(so){ copyText(soloEmbed(), so); return; }
+  });
+
+  /* ---------- preview ---------- */
+  var dlg = document.getElementById('prev'), pf = document.getElementById('prev-f');
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-prev]'); if(!b) return;
+    var t = TOOLS[parseInt(b.getAttribute('data-prev'),10)];
+    var url = urlOf(t);
+    document.getElementById('prev-h').textContent = t.n;
+    document.getElementById('prev-open').href = url;
+    pf.title = t.n + ' preview';
+    pf.src = t.ext ? url : url + (url.indexOf('?') > -1 ? '&' : '?') + 'frameId=preview';
+    if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+  });
+  document.getElementById('prev-x').addEventListener('click', function(){
+    pf.src = 'about:blank';
+    if(dlg.close) dlg.close(); else dlg.removeAttribute('open');
+  });
+  dlg.addEventListener('close', function(){ pf.src = 'about:blank'; });
+
+  /* The preview frame gets the same treatment the embeds get, so
+     what you see here is what Kajabi will do. */
+  window.addEventListener('message', function(e){
+    var d = e.data;
+    if(!d || d.type !== 'resize' || !d.height) return;
+    if(e.source !== pf.contentWindow) return;
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    pf.style.height = Math.min(h, Math.round(window.innerHeight * 0.74)) + 'px';
+  }, false);
+
+  /* ---------- the documented receiver ---------- */
+  document.getElementById('pre-receiver').textContent = receiverSrc('f');
+  document.getElementById('pre-solo').textContent = soloEmbed();
+
+  renderChips();
+  renderGrid();
+}());
+</script>
+</body>
+</html>

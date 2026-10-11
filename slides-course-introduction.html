@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 004 &middot; How This Course Works</title>
+<meta name="description" content="Day one for BIO 004 Human Anatomy at Solano Community College. How the course works, the evidence behind it, and what to do first.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#08101F; --navy-chip:#1E2A47; --terra:#8B1D1D; --terra-dark:#6B1616;
+  --gold:#DCB45C; --gold-ink:#6B5214; --teal:#2C5F66;
+  --white:#FFFFFF; --offwhite:#FAFAF9; --muted:#3D4860; --rule:#DCE0E6; --light:#D9DEE8; --faint:#9AA5B8;
+  --radius:8px;
+  --shadow:0 3px 10px rgba(8,16,31,0.08);
+  --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--font);background:var(--offwhite);color:var(--navy);-webkit-font-smoothing:antialiased}
+
+/* ---------- page header ---------- */
+.site-header{background:var(--navy);color:var(--white);padding:26px 20px}
+.site-header .wrap{max-width:1060px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+.site-header h1{font-size:clamp(20px,3.4vw,28px);font-weight:800;margin:0}
+.presentbtn{background:var(--gold);color:var(--navy);border:0;border-radius:999px;padding:11px 22px;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer}
+.presentbtn:hover{filter:brightness(1.05)}
+.keys{max-width:1060px;margin:10px auto 0;font-size:12px;color:var(--faint)}
+.keys kbd{background:var(--navy-chip);border-radius:4px;padding:1px 7px;font-family:var(--font);font-size:11px;color:var(--light)}
+
+/* ---------- deck (scroll mode) ---------- */
+.deck{max-width:1060px;margin:0 auto;padding:26px 20px 70px;display:flex;flex-direction:column;gap:26px}
+.slide{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(24px,4vw,48px);position:relative}
+.slide.dark{background:var(--navy);border-color:var(--navy);color:var(--white)}
+.slide.paper{background:var(--offwhite)}
+.snum{position:absolute;top:14px;right:18px;font-size:11px;font-weight:700;color:var(--faint);letter-spacing:1px}
+.slide.dark .snum{color:#54627F}
+
+.kicker{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--terra);margin:0 0 8px}
+.slide.dark .kicker{color:var(--gold)}
+.tc{color:#C9553A}
+.hl{color:var(--terra)}
+.slide.dark .hl{color:var(--gold)}
+h2.stitle{font-size:clamp(24px,3.6vw,36px);font-weight:800;margin:0 0 14px;line-height:1.15}
+.lede{font-size:clamp(14.5px,1.7vw,16.5px);color:var(--muted);line-height:1.65;max-width:62em;margin:0 0 18px}
+.slide.dark .lede{color:var(--light)}
+.bigline{font-size:clamp(14.5px,1.7vw,16px);font-weight:700;color:var(--navy);line-height:1.55;margin:20px 0 0}
+.bigline.terra{color:var(--terra)}
+.slide.dark .bigline{color:var(--gold)}
+.srcline{font-size:12px;color:var(--muted);margin:16px 0 0}
+
+/* cards & grids */
+.grid2{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:6px}
+.grid4{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:6px}
+.card{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+.card .label{font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-ink);margin:0 0 8px}
+.card .label.terra{color:var(--terra)}
+.card .label.teal{color:var(--teal)}
+.card .big{font-size:clamp(40px,6vw,58px);font-weight:800;color:var(--terra);line-height:1;margin:0 0 8px}
+.card p{font-size:14px;color:var(--muted);line-height:1.6;margin:0}
+.card h3{font-size:17px;font-weight:800;margin:0 0 8px}
+.darkpanel{background:var(--navy);border-radius:var(--radius);color:var(--white);padding:24px}
+.darkpanel .big{color:var(--gold)}
+.darkpanel .label{color:var(--white)}
+.darkpanel p{color:var(--light)}
+.darkpanel .srcnote{font-size:11px;color:var(--faint);margin:12px 0 0}
+
+/* icon rows */
+.rows{display:flex;flex-direction:column;gap:18px;margin-top:6px}
+.row{display:flex;gap:16px;align-items:flex-start}
+.dot{flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px}
+.dot.navy{background:var(--navy);color:var(--gold)}
+.row h3{font-size:17px;font-weight:800;margin:0 0 5px}
+.row p{font-size:14px;color:var(--muted);line-height:1.6;margin:0;max-width:60em}
+
+/* steps (TBL) */
+.step .n{font-size:34px;font-weight:800;color:var(--gold);line-height:1;margin:0 0 8px}
+
+/* grade bar */
+.gradebar-wrap{margin:26px 0 8px}
+.gradebar-scale{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.gradebar{display:flex;height:74px;border-radius:6px;overflow:hidden}
+.gseg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--white);border-right:2px solid var(--white)}
+.gseg:last-child{border-right:0}
+.gseg .gname{font-size:clamp(10px,1.3vw,13px);font-weight:700}
+.gseg .gpct{font-size:clamp(15px,2.2vw,22px);font-weight:800}
+.gcallouts{display:flex;justify-content:flex-end;gap:18px;font-size:12.5px;font-weight:700;margin-top:8px;color:var(--navy)}
+.gcallouts span i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;font-style:normal}
+.legend{display:grid;gap:12px 26px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:20px}
+.leg{display:flex;gap:10px}
+.leg i{flex:0 0 auto;width:16px;height:16px;border-radius:3px;margin-top:3px;font-style:normal}
+.leg b{display:block;font-size:14px}
+.leg span{font-size:12px;color:var(--muted)}
+
+/* activity slides */
+.badges{display:flex;gap:10px;align-items:center;margin:0 0 14px;flex-wrap:wrap}
+.badge{background:var(--terra);color:var(--white);border-radius:999px;padding:7px 18px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.badge.time{background:var(--navy);color:var(--gold)}
+.roundnum{position:absolute;top:6px;right:22px;font-size:clamp(70px,10vw,120px);font-weight:800;color:var(--gold);line-height:1;opacity:0.95}
+.checkcard{margin-top:20px}
+.checkcard ul{margin:8px 0 0;padding-left:20px}
+.checkcard li{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:6px}
+
+/* generic list */
+ul.plain{margin:8px 0 0;padding-left:20px}
+ul.plain li{font-size:14px;line-height:1.6;color:var(--muted);margin-bottom:7px}
+.slide.dark ul.plain li{color:var(--light)}
+
+/* QR block */
+.qrblock{display:flex;gap:18px;align-items:center;background:var(--white);border-radius:var(--radius);padding:16px 20px;max-width:520px;margin-top:26px}
+.qrblock img{width:118px;height:118px;border-radius:4px}
+.grid3q{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:22px}
+.qrblock.qrcol{flex-direction:column;text-align:center;max-width:none;margin-top:0;padding:18px 14px}
+.qrblock.qrcol img{width:170px;height:170px}
+.qrblock.qrcol .qt b{font-size:17px}
+.qrblock .qt b{display:block;color:var(--navy);font-size:15px;margin-bottom:4px}
+.qrblock .qt span{font-size:12.5px;color:var(--muted);line-height:1.5;display:block}
+
+/* sources */
+.refs{margin:10px 0 0;padding-left:20px}
+.refs li{font-size:13.5px;color:var(--light);line-height:1.6;margin-bottom:9px}
+
+/* ---------- present mode ---------- */
+body.present{background:var(--navy)}
+body.present .site-header,body.present .keys{display:none}
+body.present .deck{max-width:none;padding:0;gap:0}
+body.present .slide{display:none;border-radius:0;border:0;box-shadow:none;min-height:100vh;min-height:100dvh;padding:5vh 7vw}
+body.present .slide.is-current{display:flex;flex-direction:column;justify-content:center}
+body.present .snum{display:none}
+.present-bar{display:none;position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:50;gap:10px;align-items:center}
+body.present .present-bar{display:flex}
+.pbtn{background:var(--terra);color:var(--white);border:0;border-radius:999px;padding:12px 20px;font-family:var(--font);font-weight:800;font-size:15px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.25)}
+.pbtn:hover{background:#A02B25}
+.pcount{color:var(--muted);font-size:13px;font-weight:700;padding:0 8px;min-width:4.5em;text-align:center}
+.slide.dark ~ .present-bar .pcount{color:var(--light)}
+.progress{display:none;position:fixed;top:0;left:0;height:3px;background:var(--gold);z-index:60;transition:width 200ms ease}
+body.present .progress{display:block}
+
+
+/* ---------- floating clock ---------- */
+.clock{position:fixed;top:14px;right:16px;z-index:70;display:none;flex-direction:column;align-items:flex-end;gap:6px;font-family:var(--font)}
+.clock.show{display:flex}
+.clock-face{background:rgba(8,16,31,0.92);color:var(--white);border:1px solid #2C3A5C;border-radius:14px;padding:8px 14px 8px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 18px rgba(0,0,0,0.35);cursor:move;user-select:none}
+.clock-time{font-size:34px;font-weight:800;letter-spacing:1px;font-variant-numeric:tabular-nums;line-height:1;min-width:2.5em;text-align:right}
+.clock.warn .clock-time{color:var(--gold)}
+.clock.done .clock-time{color:#E88A78;animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.45}}
+.clock-btns{display:flex;gap:6px}
+.cbtn{background:var(--navy-chip);color:var(--white);border:0;border-radius:999px;padding:7px 11px;font-family:var(--font);font-weight:700;font-size:12.5px;cursor:pointer;line-height:1}
+.cbtn.go{background:var(--gold);color:var(--navy);padding:7px 14px}
+.cbtn:hover{filter:brightness(1.12)}
+.clock-done-msg{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#E88A78;display:none}
+.clock.done .clock-done-msg{display:block}
+.clock-hint{font-size:10.5px;color:var(--faint);text-align:right}
+body.present .clock-hint{display:none}
+
+
+/* ---------- click-to-reveal (Prezi-style builds) ---------- */
+.rv{cursor:pointer;position:relative;transition:transform 260ms ease,box-shadow 260ms ease,opacity 260ms ease}
+.rv .rv-body{display:none}
+.rv.open .rv-body{display:block;animation:rvin 280ms ease}
+@keyframes rvin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.rv:not(.open)::after{content:'Tap to open';position:absolute;right:12px;bottom:10px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-ink);opacity:0.75}
+.row.rv:not(.open)::after{right:0;bottom:-2px}
+.slide.dark .rv:not(.open)::after,.darkpanel.rv:not(.open)::after{color:var(--gold)}
+.card.rv.open{transform:scale(1.02);box-shadow:0 10px 26px rgba(8,16,31,0.16);z-index:2}
+.slide.has-open .rv:not(.open){opacity:0.55}
+.slide.has-open .rv:not(.open):hover{opacity:0.85}
+.row.rv:not(.open) h3{margin-bottom:0}
+.rvhint{position:fixed;left:50%;transform:translateX(-50%);bottom:76px;z-index:50;font-size:11.5px;color:var(--faint);display:none;white-space:nowrap}
+body.present .rvhint{display:block}
+
+
+/* ---------- keywords + zoom stage ---------- */
+.kw{font-size:clamp(17px,2vw,21px);font-weight:600;line-height:1.35;color:var(--navy);margin:0 0 8px}
+.kw b{color:var(--terra);font-weight:800}
+.slide.dark .kw,.darkpanel .kw{color:var(--white)}
+.slide.dark .kw b,.darkpanel .kw b{color:var(--gold)}
+.rv .rv-body>p:not(.kw),.rv .rv-body>ul,.rv .rv-body>.srcline{font-size:13px;color:var(--muted)}
+.darkpanel.rv .rv-body>p:not(.kw),.darkpanel.rv .rv-body>ul,.slide.dark .rv .rv-body>p:not(.kw),.slide.dark .rv .rv-body>ul,.slide.dark .rv .rv-body>.srcline{color:var(--light)}
+.darkpanel.rv .rv-body>ul li,.slide.dark .rv .rv-body>ul li{color:var(--light)}
+.rv.seen:not(.open) .label,.rv.seen:not(.open) h3{color:var(--terra)}
+.rv.seen:not(.open)::after{content:'\2713 opened';color:var(--teal)}
+.zoom-back{position:fixed;inset:0;background:rgba(8,16,31,0.55);z-index:80;opacity:0;transition:opacity 260ms ease;pointer-events:none}
+.zoom-back.on{opacity:1;pointer-events:auto}
+.zoom{position:fixed;z-index:81;background:var(--white);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,0.45);padding:0;overflow:hidden;transition:all 420ms cubic-bezier(.2,.8,.2,1);transform-origin:center;pointer-events:none;opacity:0}
+.zoom.on{pointer-events:auto;opacity:1}
+.zoom.dark{background:var(--navy);color:var(--white)}
+.zoom-inner{padding:clamp(24px,4vw,44px)}
+.zoom .dot{width:56px;height:56px;font-size:22px;margin-bottom:14px}
+.zoom h3,.zoom .label{font-size:clamp(20px,2.6vw,30px);font-weight:800;margin:0 0 14px;letter-spacing:0;text-transform:none;color:var(--terra)}
+.zoom.dark h3,.zoom.dark .label{color:var(--gold)}
+.zoom .big{font-size:clamp(56px,9vw,96px);color:var(--terra);margin:0 0 6px}
+.zoom.dark .big{color:var(--gold)}
+.zoom .n{font-size:clamp(40px,6vw,64px);color:var(--gold);font-weight:800;margin:0 0 6px}
+.zoom .kw{font-size:clamp(28px,4.2vw,46px);font-weight:700;line-height:1.2;margin:0 0 22px}
+.zoom .kw b{color:var(--terra)}
+.zoom.dark .kw{color:var(--white)}
+.zoom.dark .kw b{color:var(--gold)}
+.zoom .rv-body{display:block}
+.zoom .rv-body>p:not(.kw),.zoom .rv-body>ul,.zoom .rv-body>.srcline,.zoom .srcnote{font-size:clamp(14px,1.5vw,17px);color:var(--muted);line-height:1.6;max-width:56em}
+.zoom.dark .rv-body>p:not(.kw),.zoom.dark .rv-body>ul,.zoom.dark .srcnote{color:var(--light)}
+.zoom .rv-body>ul{padding-left:20px}
+.zoom-close{position:absolute;top:12px;right:14px;background:transparent;border:0;font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);cursor:pointer}
+
+
+/* ---------- persistent survey QR badge on the opening slides ---------- */
+.qrbadge{display:none;position:fixed;left:18px;top:18px;z-index:65;background:#fff;border-radius:12px;padding:8px 10px 6px;box-shadow:0 8px 24px rgba(0,0,0,.35);text-align:center}
+.qrbadge img{width:96px;height:96px;display:block}
+.qrbadge span{display:block;font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--terra);margin-top:4px}
+body.present .qrbadge.show{display:block}
+
+
+.secbig{display:inline-block;font-size:clamp(44px,8vw,96px);font-weight:800;letter-spacing:.06em;line-height:1;color:var(--gold);margin:6px 0 10px;cursor:pointer;user-select:none}
+.secbig small{display:block;font-size:clamp(13px,1.6vw,18px);letter-spacing:3px;font-weight:700;color:var(--light);margin-top:8px}
+
+
+.secpills{display:inline-flex;gap:6px;background:var(--navy-chip);border:1px solid #2C3A5C;border-radius:999px;padding:4px;margin:0 0 6px}
+.secpills button{font-family:var(--font);font-weight:800;font-size:13px;border:0;border-radius:999px;padding:8px 14px;background:transparent;color:var(--light);cursor:pointer}
+.secpills button[aria-pressed=true]{background:var(--gold);color:var(--navy)}
+
+@media print{.site-header,.keys,.present-bar,.progress{display:none}.slide{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">BIO 004 &middot; Human Anatomy &middot; Solano Community College &middot; Fall 2026</p>
+      <h1>How This Course Works</h1>
+    </div>
+    <button type="button" class="presentbtn" id="presentBtn">Present</button>
+  </div>
+  <p class="keys"><kbd>T</kbd> clock &nbsp; <kbd>Q</kbd> survey code &nbsp; <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> pick class &nbsp; <kbd>&rarr;</kbd> or <kbd>Space</kbd> or click to advance &nbsp; <kbd>&larr;</kbd> back &nbsp; <kbd>Esc</kbd> exit &nbsp;&middot;&nbsp; On a phone, just scroll.</p>
+</header>
+
+
+<!-- Digital Atlas, added by bio004-atlas-tile-add.py. Click or scan, opens in a second tab. -->
+<style>
+  .atl-wrap{max-width:900px;margin:22px auto;padding:0 26px}
+  .atl-tile{display:grid;grid-template-columns:52px 1fr 124px;gap:18px;align-items:center;
+    background:#0B1530;border-radius:16px;padding:16px 20px;text-decoration:none;color:#fff;
+    box-shadow:0 0 0 2px #C9A14A,0 8px 18px -12px rgba(8,16,31,.4);
+    transition:transform .2s ease,box-shadow .2s ease}
+  .atl-tile:hover{transform:translateY(-2px);box-shadow:0 0 0 2px #C9A14A,0 12px 22px -12px rgba(8,16,31,.55)}
+  .atl-tile:focus-visible{outline:3px solid #C9A14A;outline-offset:3px}
+  .atl-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
+    background:linear-gradient(145deg,#5C7FA8,#2F4C7D);box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
+  .atl-ic svg{width:26px;height:26px;stroke:#0B1530;fill:none;stroke-width:2.1;
+    stroke-linecap:round;stroke-linejoin:round}
+  .atl-tag{font-family:'DM Sans',system-ui,sans-serif;font-size:10.5px;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;color:#E8C97E;margin:0}
+  .atl-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:19px;font-weight:800;
+    letter-spacing:-.015em;color:#EBCE86;margin:2px 0 0;line-height:1.2}
+  .atl-d{font-size:12.5px;color:#E9EDF3;margin:3px 0 0;line-height:1.4}
+  /* 124px, not 92. At 92 a phone camera has under three pixels per module and
+     hunts for the code. */
+  .atl-qr{width:124px;height:124px;background:#fff;border-radius:11px;padding:6px}
+  .atl-qr-svg{width:100%;height:100%;display:block;shape-rendering:crispEdges}
+  .atl-qr-line{stroke:#0B1530}
+  @media (prefers-reduced-motion:reduce){.atl-tile:hover{transform:none}}
+  @media (max-width:640px){
+    .atl-tile{grid-template-columns:1fr;justify-items:center;text-align:center;gap:12px}
+  }
+  @media print{
+    .atl-wrap{margin:14pt auto;padding:0}
+    .atl-tile{break-inside:avoid;grid-template-columns:34pt 1fr 68pt;gap:12pt;padding:10pt 13pt;
+      border-radius:10pt;box-shadow:0 0 0 1.2pt #C9A14A;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .atl-ic{width:34pt;height:34pt;border-radius:9pt}
+    .atl-ic svg{width:17pt;height:17pt}
+    .atl-tag{font-size:6.6pt}
+    .atl-h{font-size:12.5pt}
+    .atl-d{font-size:8.4pt}
+    .atl-qr{width:68pt;height:68pt;padding:3.5pt;border-radius:7pt}
+  }
+</style>
+<div class="atl-wrap">
+  <a class="atl-tile" href="https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo" target="_blank" rel="noopener"
+     aria-label="Open the Digital Atlas in a new tab">
+    <span class="atl-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
+    <span>
+      <span class="atl-tag" style="display:block">Open it beside this page</span>
+      <span class="atl-h" style="display:block">Digital Atlas</span>
+      <span class="atl-d" style="display:block">Turn the structures around while you read. Click here, or scan the code with your phone, and it opens in a second window.</span>
+    </span>
+    <span class="atl-qr"><svg viewBox="0 0 35 35" preserveAspectRatio="xMidYMid meet" class="atl-qr-svg" aria-hidden="true" focusable="false"><path class="atl-qr-line" stroke="#08101f" d="M1 1.5h7m1 0h6m2 0h1m1 0h1m4 0h2m1 0h7m-33 1h1m5 0h1m3 0h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h1m2 0h2m1 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m6 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m2 0h1m2 0h1m2 0h1m1 0h3m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h2m4 0h1m2 0h7m-24 1h1m3 0h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m2 0h10m2 0h1m-31 1h1m6 0h2m1 0h1m1 0h2m1 0h1m5 0h1m1 0h1m3 0h3m-32 1h1m1 0h1m3 0h1m1 0h2m3 0h3m2 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m-27 1h1m4 0h2m1 0h1m1 0h1m4 0h2m3 0h1m5 0h1m-32 1h3m2 0h2m4 0h3m1 0h2m2 0h2m1 0h1m3 0h1m1 0h2m2 0h1m-33 1h1m2 0h1m4 0h1m1 0h1m3 0h1m3 0h3m1 0h1m3 0h2m1 0h2m-31 1h2m2 0h1m1 0h1m5 0h1m1 0h2m1 0h2m2 0h3m1 0h4m2 0h1m-31 1h1m2 0h1m2 0h11m3 0h1m2 0h3m1 0h2m-28 1h2m1 0h3m3 0h1m1 0h1m3 0h1m1 0h1m1 0h3m2 0h1m1 0h2m1 0h1m-31 1h2m1 0h1m4 0h2m1 0h1m1 0h3m1 0h1m3 0h2m5 0h4m-33 1h4m1 0h2m2 0h1m3 0h1m1 0h1m1 0h1m2 0h2m1 0h3m1 0h1m1 0h1m1 0h1m-29 1h1m3 0h1m2 0h1m1 0h3m2 0h3m1 0h3m3 0h1m-28 1h3m1 0h1m1 0h2m1 0h1m3 0h3m2 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m-32 1h3m1 0h2m4 0h2m1 0h2m1 0h1m2 0h2m2 0h1m1 0h3m2 0h2m-30 1h6m2 0h2m4 0h3m3 0h2m3 0h1m2 0h2m-30 1h1m4 0h1m1 0h4m1 0h1m2 0h3m1 0h6m1 0h1m3 0h1m-33 1h4m2 0h1m1 0h3m1 0h4m1 0h6m1 0h6m1 0h2m-25 1h5m1 0h5m3 0h1m1 0h1m3 0h1m1 0h3m-33 1h7m1 0h2m4 0h2m2 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m-32 1h1m5 0h1m3 0h4m2 0h1m4 0h1m2 0h1m3 0h1m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m4 0h1m4 0h1m2 0h6m-30 1h1m1 0h3m1 0h1m2 0h1m1 0h3m3 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-31 1h1m1 0h3m1 0h1m2 0h1m2 0h4m2 0h1m2 0h1m1 0h2m1 0h4m-30 1h1m5 0h1m2 0h1m2 0h2m1 0h3m3 0h2m1 0h1m4 0h1m-30 1h7m1 0h3m1 0h1m4 0h1m1 0h4m1 0h1m4 0h1m2 0h1"/></svg></span>
+  </a>
+</div>
+
+<main class="deck" id="deck">
+
+
+<!-- 0 WELCOME / SURVEY (on screen as students arrive) -->
+<section class="slide dark" id="welcomeSlide"><span class="snum">0</span>
+  <p class="kicker">BIO 004 &middot; Human Anatomy &middot; Solano Community College &middot; Fall 2026</p>
+  <h2 class="stitle" style="font-size:clamp(30px,5.2vw,50px)">Welcome to <span class="tc">Human Anatomy</span>.</h2>
+  <div class="secbig" id="secBig" title="Click to switch class">MON / WED</div>
+  <div class="secpills" id="secPills" role="group" aria-label="Which class is in the room">
+    <button type="button" data-sec="mw">Class 1 · Mon/Wed</button><button type="button" data-sec="tr-am">Class 2 · Tue/Thu AM</button><button type="button" data-sec="tr-eve">Class 3 · Tue/Thu Eve</button>
+  </div>
+  <div class="grid2" style="align-items:center;margin-top:8px">
+    <div>
+      <p class="lede">If you are enrolled, please take three minutes and complete the team survey while we get started. Once you have an add code, you may complete it too. It helps me build balanced teams, there are no wrong answers, and it is used for nothing else.</p>
+      <p class="bigline">Already did it from the class page? You are set. No phone? Raise a hand and I will bring you a paper copy.</p>
+    </div>
+    <div class="qrblock qrcol" style="max-width:340px;margin:0 auto"><img class="secqr" src="data:image/png;base64,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" alt="QR code for the team survey" style="width:260px;height:260px"><div class="qt"><b>Team survey</b><span class="seclabel">all three classes</span></div></div>
+  </div>
+</section>
+
+<!-- 1 TITLE -->
+<section class="slide dark"><span class="snum">1</span>
+  <p class="kicker">BIO 004 &middot; Human Anatomy &middot; Solano Community College &middot; Fall 2026</p>
+  <h2 class="stitle" style="font-size:clamp(34px,6vw,58px)">Anatomy is not<br><span class="tc">a spectator sport.</span></h2>
+  <p class="lede">Welcome. Today I want to walk you through how this course works and the evidence behind why we do it this way, because every choice in this class has a reason, and you deserve to know what those reasons are.</p>
+  <div class="qrblock">
+    <img src="data:image/png;base64,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" alt="QR code linking to these slides">
+    <div class="qt"><b>Follow along on your phone</b><span>Scan the code, or go to the course home and open How This Course Works. These slides stay posted all term.</span></div>
+  </div>
+  <p class="lede" style="margin-top:22px;color:var(--faint);font-size:14px"><b style="color:var(--white)">Dr. Sharilyn Rennie</b> &nbsp;&middot;&nbsp; Professor of Anatomy &amp; Physiology &nbsp;&middot;&nbsp; srennie@solano.edu</p>
+</section>
+
+<!-- 2 PROFESSOR -->
+<section class="slide"><span class="snum">2</span>
+  <p class="kicker">Who is teaching you</p>
+  <h2 class="stitle">Three careers, <span class="hl">one classroom</span></h2>
+  <div class="rows">
+    <div class="row"><div class="dot">1</div><div><h3>United States Air Force</h3><p class="kw"><b>Air Force medic.</b> Lives depended on it.</p><p>Critical Care Medical Technician and Aerospace Medicine Technician. I learned this material because lives depended on it.</p></div></div>
+    <div class="row"><div class="dot">2</div><div><h3>Doctor of Naturopathic Medicine</h3><p class="kw"><b>Clinician.</b> Anatomy used on <b>real patients</b>.</p><p>Clinical training and practice. For me, anatomy was never trivia. It was the working knowledge I used with real patients.</p></div></div>
+    <div class="row"><div class="dot">3</div><div><h3>Professor of Anatomy &amp; Physiology</h3><p class="kw"><b>Years</b> teaching this course. Kept what <b>works</b>.</p><p>I have taught this course for years, and along the way I have kept what genuinely helps students learn and let go of what does not.</p></div></div>
+  </div>
+  <p class="bigline terra">Everything in this course is here because I have watched it work in the field, in the clinic, and in this classroom.</p>
+</section>
+
+<!-- 3 EVIDENCE -->
+<section class="slide"><span class="snum">3</span>
+  <p class="kicker">How I chose this format</p>
+  <h2 class="stitle">The evidence behind <span class="hl">active learning</span></h2>
+  <div class="grid2">
+    <div class="card"><p class="big">+6%</p><p class="label">Higher exam scores</p><p class="kw">About <b>half a letter grade</b> higher on exams.</p><p>Active learning raised average exam performance by about 6 percentage points, which works out to roughly half a letter grade, across STEM disciplines.</p></div>
+    <div class="card"><p class="big">1 in 3</p><p class="label">Fewer students failing</p><p class="kw">Failure rate <b>33.8% &rarr; 21.8%</b>.</p><p>Roughly one in three failures disappeared when courses added active learning, with failure rates falling from 33.8% to 21.8%.</p></div>
+  </div>
+  <p class="srcline">Source: Freeman et al. (2014), Proceedings of the National Academy of Sciences. Meta-analysis of 225 studies of undergraduate STEM courses.</p>
+  <p class="bigline">There is great teaching in every format, and this is simply the approach with the strongest evidence for a course like ours. That is why I built our class time around it.</p>
+</section>
+
+<!-- 4 FULL LECTURE -->
+<section class="slide"><span class="snum">4</span>
+  <p class="kicker">More instruction, not less</p>
+  <h2 class="stitle">You still get the <span class="hl">full lecture</span></h2>
+  <p class="lede">Nothing has been cut. You get guided lecture in person all term, and on top of that you get the concept lecture videos online as your preparation. That is more instruction than a lecture-only course, not less, and the online half comes with some real advantages.</p>
+  <div class="rows">
+    <div class="row"><div class="dot navy">1</div><div><h3>Watch on your terms</h3><p class="kw"><b>Pause. Rewind. Replay.</b> Your speed.</p><p>Pause when you need a minute, rewind the part that went by too fast, and replay anything as many times as it takes. A live lecture moves at one speed. Yours moves at your speed.</p></div></div>
+    <div class="row"><div class="dot navy">2</div><div><h3>Work in the order that helps you learn</h3><p class="kw"><b>Sheet first, video second.</b> You control the order.</p><p>You control the sequence. Work the pre-work sheet with your notes and reading open first, then watch the video as your check. The lecture lands differently when you have already wrestled with the material.</p></div></div>
+    <div class="row"><div class="dot navy">3</div><div><h3>Go back to exactly the concept you need</h3><p class="kw"><b>Jump to the concept</b> you need. No rewatching everything.</p><p>The lectures are organized by topic, so when exam review comes you can jump straight to the one concept you are shaky on instead of listening to a whole recording again to find it.</p></div></div>
+  </div>
+  <p class="bigline terra">So the lecture is all still here, and it stays here all term, on demand, whenever you need it back.</p>
+</section>
+
+<!-- 5 SHEET BEFORE VIDEO -->
+<section class="slide"><span class="snum">5</span>
+  <p class="kicker">The order is on purpose</p>
+  <h2 class="stitle">Why the <span class="hl">worksheet comes before the video</span></h2>
+  <p class="lede">The pre-work asks you to work the sheet first and watch the video second, and that order comes straight out of two lines of learning research, one for each kind of thing anatomy asks of you.</p>
+  <div class="grid2">
+    <div class="card"><p class="label terra">For ideas you can reason through</p><p class="kw"><b>Struggle first, explanation second</b> = deeper understanding.</p><p>What a plane actually cuts, how directional terms behave, why structures sit where they sit. Wrestling with problems before you hear the explanation builds deeper understanding than hearing the explanation first, and it carries over better to new problems.</p><p class="srcline">Sinha &amp; Kapur (2021), a meta-analysis of this exact question</p></div>
+    <div class="card"><p class="label terra">For names you simply have to learn</p><p class="kw"><b>Guessing before the answer</b> makes names stick. Even wrong guesses.</p><p>There is nothing to reason out about why the styloid process is called that. But even guessing before you see the answer helps the name stick better than reading it cold. Researchers call this the pretesting effect, and it holds even when your guesses are wrong.</p><p class="srcline">Richland, Kornell &amp; Kao (2009); Journal of Cognition (2025)</p></div>
+  </div>
+  <p class="bigline">Two instructions matter as much as the order. Keep your notes and reading open while you work the sheet, because supported effort is what works. And watch the video soon after you finish, because the video is your answer key, and answer keys help most while your attempt is still fresh.</p>
+</section>
+
+<!-- 6 RETRIEVAL -->
+<section class="slide"><span class="snum">6</span>
+  <p class="kicker">How memory actually works</p>
+  <h2 class="stitle">Your brain saves what it <span class="hl">retrieves</span>, not what it rereads</h2>
+  <div class="grid2">
+    <div class="card">
+      <p class="label terra">Feels productive, fades fast</p>
+      <p class="kw"><b>Retrieve</b>, don&rsquo;t reread.</p><ul class="plain"><li>Rereading the chapter</li><li>Highlighting everything</li><li>Recopying your notes</li></ul>
+      <p class="label teal" style="margin-top:18px">Actually builds memory</p>
+      <ul class="plain"><li>Writing out what you know before you feel ready</li><li>Explaining a structure out loud from memory</li><li>Short practice sessions spaced over days</li></ul>
+    </div>
+    <div class="darkpanel">
+      <p class="big" style="font-size:clamp(40px,6vw,56px);font-weight:800;margin:0 0 8px">~50%</p>
+      <p class="label" style="font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px">More remembered one week later</p>
+      <p class="kw"><b>61% vs 40%</b> recall one week later.</p><p>Students who practiced recalling material retained far more after a week than students who spent the same time restudying it (about 61% vs 40% recall).</p>
+      <p class="srcnote">Roediger &amp; Karpicke (2006), Psychological Science; Cepeda et al. (2006) on spaced practice.</p>
+    </div>
+  </div>
+  <p class="bigline">This is why the course is full of brain dumps, readiness quizzes, and daily recall cards. Each one gives your memory another round of practice at retrieving.</p>
+</section>
+
+<!-- 7 TBL -->
+<section class="slide"><span class="snum">7</span>
+  <p class="kicker">The method</p>
+  <h2 class="stitle">Team-Based Learning: <span class="hl">one cycle, four steps</span></h2>
+  <div class="grid4">
+    <div class="card step"><p class="n">1</p><h3>Prepare</h3><p class="kw"><b>Sheet</b>, then <b>video</b>. Before class.</p><p>Before class, you work through the pre-work sheet with your notes open, then watch the video to check yourself.</p></div>
+    <div class="card step"><p class="n">2</p><h3>iRAT</h3><p class="kw"><b>Short quiz, alone.</b> Your prep earns it.</p><p>The Individual Readiness Assurance Test, a short quiz you take on your own. Your preparation is what earns this score.</p></div>
+    <div class="card step"><p class="n">3</p><h3>tRAT</h3><p class="kw"><b>Same quiz, with your team.</b> Instant feedback. Argue it out.</p><p>The same quiz again, this time with your team and with instant feedback, so you can talk it through and make your case.</p></div>
+    <div class="card step"><p class="n">4</p><h3>Apply</h3><p class="kw"><b>Real cases, together.</b> Where anatomy sticks.</p><p>Your team works cases and application problems together. It is not graded, but it is where the anatomy really settles in.</p></div>
+  </div>
+  <p class="bigline">We will do nine TBL sessions this term, worth 30% of your grade, with no make-ups or drops, so preparing becomes a habit. Notice that the whole cycle is built from retrieval, feedback, and application.</p>
+</section>
+
+<!-- 8 TEAMS -->
+<section class="slide"><span class="snum">8</span>
+  <p class="kicker">Why teams, not just groups</p>
+  <h2 class="stitle">The team almost always <span class="hl">beats its best member</span></h2>
+  <div class="grid2">
+    <div class="darkpanel">
+      <p class="big" style="font-size:clamp(40px,6vw,56px);font-weight:800;margin:0 0 8px">97%+</p>
+      <p class="label" style="font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px">Of teams outscore their own best member</p>
+      <p class="kw">The <b>team beats its best member</b>, almost every time.</p><p>In classic TBL research, teams retaking the same test nearly always scored higher than the strongest individual on that team.</p>
+      <p class="srcnote">Watson, Michaelsen &amp; Sharp (1991)</p>
+    </div>
+    <div>
+      <div class="rows">
+        <div class="row"><div class="dot">1</div><div><h3>Struggling students gain the most</h3><p class="kw">Biggest gains: <b>students who came in struggling</b>.</p><p>In medical school TBL courses, the biggest exam gains went to students in the lowest academic quartile (Koles et al., 2010, Academic Medicine).</p></div></div>
+        <div class="row"><div class="dot">2</div><div><h3>Healthcare is a team job</h3><p class="kw"><b>Nobody cares for a patient alone.</b></p><p>In healthcare, nobody cares for a patient alone. Working problems with a steady team is practice for the job itself.</p></div></div>
+        <div class="row"><div class="dot">3</div><div><h3>Same team all term</h3><p class="kw"><b>5&ndash;7 people, balanced by survey.</b> Same team all term.</p><p>Your team of five to seven comes from a Week 1 survey, so every team starts out balanced. Nobody gets picked last, and the same team stays with you all semester.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="bigline terra">If you are worried you are not "the smart one," this format was practically built for you.</p>
+</section>
+
+
+<!-- 8b TEAM SURVEY -->
+<section class="slide dark"><span class="snum">8b</span>
+  <p class="kicker">Three minutes, right now</p>
+  <h2 class="stitle">Help me build <span class="hl">your team</span></h2>
+  <div class="grid2" style="align-items:center;margin-top:18px">
+    <div>
+      <p class="lede">Scan the code and answer twelve quick questions. There are no wrong answers and nothing is graded. I use them to make sure every team starts balanced, and you will meet your team before we leave today.</p>
+      <p class="bigline">Pick your class on the first screen. No phone? Raise a hand and I will bring you a paper copy.</p>
+    </div>
+    <div class="qrblock qrcol" style="max-width:340px;margin:0 auto"><img class="secqr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaCAIAAAC5ZBI0AAAJOElEQVR4nO3dMXIruxFAUculxKF34P2v6u/ghw7pDbxCYKgLwNU5OYdDSryFoDH4+nw+/wB43z9P3wDAz5AzIELOgAg5AyLkDIiQMyBCzoAIOQMi5AyIkDMgQs6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyBCzoCI750X/+vf//mh27jFf//+6/9+7c63sX7fuSuvnXrftfVdzX2Ta3Pf86lPdMrON2l1BkTIGRAhZ0CEnAERcgZEyBkQIWdAhJwBEXIGRGztClibmwvfcedc+NyV79yrsDY3JX/qf/LU7P5v+w1anQERcgZEyBkQIWdAhJwBEXIGRMgZECFnQIScARGDuwLWXpzOn5s4n5vd35mhPzVh39uNcKcXf4NrVmdAhJwBEXIGRMgZECFnQIScARFyBkTIGRAhZ0DEsV0BPXMz9C8+8f3OPQM7c/C9GfoeqzMgQs6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyDCroAfszOtfuq1a6fm7+d2UJzaybB25129yOoMiJAzIELOgAg5AyLkDIiQMyBCzoAIOQMi5AyIOLYroDfrPPcs+VNOTfbfuYPi1Cea0/sNWp0BEXIGRMgZECFnQIScARFyBkTIGRAhZ0CEnAERg7sCelPya3PP7J/z4oT9ne78ru78r5tjdQZEyBkQIWdAhJwBEXIGRMgZECFnQIScARFyBkRs7QrozXbPmfuu5ia/5/Y5zL32t+1VePGe51idARFyBkTIGRAhZ0CEnAERcgZEyBkQIWdAhJwBEVu7Aubms09Z3/Opyf47nzT/4pV3nNp9sfbi72iO1RkQIWdAhJwBEXIGRMgZECFnQIScARFyBkTIGRDx9fl8jrzxnXPwO3bms+d2UMx9k3fe1dqL/zmnPu+Lv1CrMyBCzoAIOQMi5AyIkDMgQs6ACDkDIuQMiJAzIGJrV8Bvm4PfMfeJ5t53R2/ifO3O38KLdv6CVmdAhJwBEXIGRMgZECFnQIScARFyBkTIGRAhZ0DEpWcFrN05Nd6bC39xN8LanX/9tVP/G6e+K7sCAOQMqJAzIELOgAg5AyLkDIiQMyBCzoAIOQMivnde/OLk99zs/ouT/Tt3defz/uc+0dqpsxHWdq585697zeoMiJAzIELOgAg5AyLkDIiQMyBCzoAIOQMi5AyI2Dor4MW54TvPGVi78/SDO59hf+fui7U7dyO8yOoMiJAzIELOgAg5AyLkDIiQMyBCzoAIOQMi5AyI2NoVsOPUJPSd5mbK73wO/am7mtP7Jtfu/AtanQERcgZEyBkQIWdAhJwBEXIGRMgZECFnQIScARHfOy8+Nft757Pz1158pvvO+869duevcOo/tjf3fyerMyBCzoAIOQMi5AyIkDMgQs6ACDkDIuQMiJAzIGJrV8DanXPwL+5kmJuDv/N7Xjs1Jf/iN9nbX7FmdQZEyBkQIWdAhJwBEXIGRMgZECFnQIScARFyBkR8fT6f0/fwB3fO7s/5bfe84879BneeffHbTiGwOgMi5AyIkDMgQs6ACDkDIuQMiJAzIELOgAg5AyIGzwqYMzfNfOek+9xdnfq8ay/O/Z/am3HnORLrK8+9r9UZECFnQIScARFyBkTIGRAhZ0CEnAERcgZEyBkQMbgr4NSc9NqdT+U/9ZT6tTv3KszN7t/5iXaufMqpHRRWZ0CEnAERcgZEyBkQIWdAhJwBEXIGRMgZECFnQMTX5/M5fQ9/cOop5qeufGoHxZ3f5I47/wqn9qK8+Hl3WJ0BEXIGRMgZECFnQIScARFyBkTIGRAhZ0CEnAERW2cFnJrA/m3PVl+bm+1+8cqnzhnYcer/+c5zFXZYnQERcgZEyBkQIWdAhJwBEXIGRMgZECFnQIScARFbZwWcmht+8Rnnd97znXe1dueekDv3Ocy585QJqzMgQs6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyBia1fA2txz2e98TvmOU7PdPXMz9HdO5885tYPCrgAAOQMq5AyIkDMgQs6ACDkDIuQMiJAzIELOgIjvuUvfOfd/5zPdT712x51Piz915R0v7je4866szoAIOQMi5AyIkDMgQs6ACDkDIuQMiJAzIELOgIitswJOTQa/uN/gzvMN7pzOv/OuTl15x2/7vFZnQIScARFyBkTIGRAhZ0CEnAERcgZEyBkQIWdAxKVnBcy5c5r5ztMAdq5858kJc9/ki1eeM/d516zOgAg5AyLkDIiQMyBCzoAIOQMi5AyIkDMgQs6AiMFdAWs7s853TqvPufNMhjn2Odxw5bW5cwZ2WJ0BEXIGRMgZECFnQIScARFyBkTIGRAhZ0CEnAERx3YF7Dg1Cb02N0N/agL7xd0Id87Qzzn1/zx3YsMOqzMgQs6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyDi6/P5nL6HZ5iS/6nXrp3aBXHn8+/nZuhPfVdzrM6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyBCzoCIrbMC7nx6+o65Z5zPfVdzpwH0Tj84tb9i58o7r925q7ldHzvvu2Z1BkTIGRAhZ0CEnAERcgZEyBkQIWdAhJwBEXIGRGztCli782nicxPYa3fuKDg1939qN8LaqXMVdpw6SeDO/2erMyBCzoAIOQMi5AyIkDMgQs6ACDkDIuQMiJAzIGJwV8Dai5PuO+976pnua6cmv+98hv3clU+9dsep73mH1RkQIWdAhJwBEXIGRMgZECFnQIScARFyBkTIGRBxbFdAz6mnxc9Njd85+X3qif5zU/Jz7pzsn/ulWJ0BEXIGRMgZECFnQIScARFyBkTIGRAhZ0CEnAERdgX8mLk5+DsnsO/04ue985SJud0Xc6zOgAg5AyLkDIiQMyBCzoAIOQMi5AyIkDMgQs6AiGO7Au6cz1479eT1O08hePH0gzk7f8FTn3fufU/tGbA6AyLkDIiQMyBCzoAIOQMi5AyIkDMgQs6ACDkDIgZ3Bbw42712akp+7nnwO6+de5b83NkIc69de3EPzNqdv26rMyBCzoAIOQMi5AyIkDMgQs6ACDkDIuQMiJAzIOLr8/mcvgeAH2B1BkTIGRAhZ0CEnAERcgZEyBkQIWdAhJwBEXIGRMgZECFnQIScARFyBkTIGRAhZ0CEnAERcgZEyBkQIWdAxP8ADxfEhN8wpBgAAAAASUVORK5CYII=" alt="QR code for the team survey" style="width:260px;height:260px"><div class="qt"><b>Team survey</b><span class="seclabel">all three classes</span></div></div>
+  </div>
+</section>
+
+<!-- 9 RHYTHM -->
+<section class="slide"><span class="snum">9</span>
+  <p class="kicker">The rhythm</p>
+  <h2 class="stitle">What a <span class="hl">week</span> feels like</h2>
+  <div class="grid4">
+    <div class="card"><p class="label">Night before</p><p class="kw"><b>Sheet &rarr; video &rarr; lab structures.</b></p><p>Work the pre-work sheet with your notes and reading open, watch the video to check yourself, and look over the lab structures.</p></div>
+    <div class="card"><p class="label">Class day</p><p class="kw"><b>Brain dump</b> first (for points) &rarr; active learning &rarr; lab.</p><p>We open with a brain dump, a few minutes of writing down what you remember from the pre-work, and it counts for points. Then active learning, then lab.</p></div>
+    <div class="card"><p class="label">TBL and exam days</p><p class="kw"><b>iRAT &rarr; tRAT &rarr; cases.</b> Exam days: <b>practical + lecture exam</b>.</p><p>On TBL days you take the iRAT, then the tRAT, then work cases together. On exam days you sit the lab practical and the lecture exam, one pair per module.</p></div>
+    <div class="card"><p class="label">After class</p><p class="kw"><b>A few minutes a day.</b> Recall cards + Loops.</p><p>Spend a few minutes a day in Mastery OS with your Recall cards, and use the Loops videos to rehearse for lab.</p></div>
+  </div>
+  <p class="bigline">The cycle is the curriculum. Keep the rhythm each week and the grade tends to follow, because anatomy builds on itself and steady practice beats cramming every time.</p>
+</section>
+
+<!-- 10 GRADE -->
+<section class="slide"><span class="snum">10</span>
+  <p class="kicker">No mystery grades</p>
+  <h2 class="stitle">How your <span class="hl">grade</span> is built</h2>
+  <div class="gradebar-wrap">
+    <div class="gradebar-scale"><span>0%</span><span>100%</span></div>
+    <div class="gradebar">
+      <div class="gseg" style="width:30%;background:var(--terra)"><span class="gname">TBL</span><span class="gpct">30%</span></div>
+      <div class="gseg" style="width:30%;background:var(--navy)"><span class="gname">Lecture Exams</span><span class="gpct">30%</span></div>
+      <div class="gseg" style="width:30%;background:var(--teal)"><span class="gname">Lab Practicals</span><span class="gpct">30%</span></div>
+      <div class="gseg" style="width:5%;background:var(--gold)"></div>
+      <div class="gseg" style="width:5%;background:#3D4860"></div>
+    </div>
+    <div class="gcallouts"><span><i style="background:var(--gold)"></i>Lab Quizzes 5%</span><span><i style="background:#3D4860"></i>Brain Dumps 5%</span></div>
+  </div>
+  <div class="legend">
+    <div class="leg"><i style="background:var(--terra)"></i><div><b>TBL, 30%</b><span>9 sessions, iRAT + tRAT, no drops.</span></div></div>
+    <div class="leg"><i style="background:var(--navy)"></i><div><b>Lecture Exams, 30%</b><span>5 exams, one per module.</span></div></div>
+    <div class="leg"><i style="background:var(--teal)"></i><div><b>Lab Practicals, 30%</b><span>5 station-based practicals, one per module.</span></div></div>
+    <div class="leg"><i style="background:var(--gold)"></i><div><b>Lab Quizzes, 5%</b><span>End-of-day checks in lab.</span></div></div>
+    <div class="leg"><i style="background:#3D4860"></i><div><b>Brain Dumps, 5%</b><span>Real effort earns full credit.</span></div></div>
+  </div>
+  <p class="bigline terra">Scholar Points add up to another 3% at the end of the term for verified study hours, the habits that genuinely predict success here. And the grade calculator shows you exactly where you stand, any day of the term.</p>
+</section>
+
+<!-- 11-14 ACTIVITY ROUNDS -->
+<section class="slide paper" data-timer="180"><span class="snum">11</span>
+  <div class="badges"><span class="badge">Activity 1</span><span class="badge time">2&ndash;3 min</span></div>
+  <p class="roundnum">1</p>
+  <p class="kicker">Your first brain dump: the team charter</p>
+  <h2 class="stitle">The <span class="hl">best team</span> you were ever on</h2>
+  <p class="lede" style="max-width:44em">Think of the best team you have ever been part of. Any team counts: work, sports, family, or a group project that actually worked. Write down every behavior that made it good, focusing on what people did rather than how it felt.</p>
+  <div class="card checkcard"><p class="label terra">What your page needs</p>
+    <p class="kw"><b>Six+ behaviors.</b> Actions, not feelings.</p><ul><li>At least six behaviors, written as specific actions, like showed up on time or said when they were lost</li><li>What people did, not how it felt, so nothing vague like good vibes or we clicked</li><li>Name or briefly describe the team at the top</li></ul>
+  </div>
+  <p class="bigline terra">Private writing, no talking yet. Your points today come from real effort on this page.</p>
+</section>
+
+<section class="slide paper" data-timer="180"><span class="snum">12</span>
+  <div class="badges"><span class="badge">Activity 1</span><span class="badge time">2&ndash;3 min</span></div>
+  <p class="roundnum">2</p>
+  <p class="kicker">Your first brain dump: the team charter</p>
+  <h2 class="stitle">The <span class="hl">worst team</span> you were ever on</h2>
+  <p class="lede" style="max-width:44em">Now think of the worst team you were ever part of. Write down the behaviors that hurt it, and then go back and turn each one into the rule that would have prevented it, phrased as something to do rather than something to avoid.</p>
+  <div class="card checkcard"><p class="label terra">What your page needs</p>
+    <p class="kw"><b>Five+ behaviors</b>, each flipped into a <b>rule</b>.</p><ul><li>At least five behaviors that caused damage</li><li>Each one flipped into a rule, written as a do rather than a do not</li><li>Behaviors only, no names and no personalities, including anything you did yourself</li></ul>
+  </div>
+  <p class="bigline terra">Still private writing. Honesty here is what makes the charter worth signing later.</p>
+</section>
+
+<section class="slide paper" data-timer="300"><span class="snum">13</span>
+  <div class="badges"><span class="badge">Activity 1</span><span class="badge time">5 min</span></div>
+  <p class="roundnum">3</p>
+  <p class="kicker">Your first brain dump: the team charter</p>
+  <h2 class="stitle">Compare and <span class="hl">find the repeats</span></h2>
+  <p class="lede" style="max-width:44em">Now talk. Read your lists to your team, both the good and the bad, and mark every behavior that shows up on more than one list. Those repeats are the things your team already agrees about, and they become the raw material for your charter.</p>
+  <div class="card checkcard"><p class="label terra">What your page needs</p>
+    <p class="kw"><b>Everyone reads.</b> Mark the <b>repeats</b>.</p><ul><li>Everyone reads, nobody skips their worst-team list</li><li>Mark each behavior that appears on more than one list</li><li>Keep a shared running list of the repeats where everyone can see it</li></ul>
+  </div>
+  <p class="bigline terra">Listen for the overlaps. Agreement you did not plan is the strongest kind.</p>
+</section>
+
+<section class="slide paper" data-timer="420"><span class="snum">14</span>
+  <div class="badges"><span class="badge">Activity 1</span><span class="badge time">5&ndash;7 min</span></div>
+  <p class="roundnum">4</p>
+  <p class="kicker">Your first brain dump: the team charter</p>
+  <h2 class="stitle">Write and <span class="hl">sign your charter</span></h2>
+  <p class="lede" style="max-width:44em">Together, turn your repeats into five to seven rules, written in your own words, that you would actually keep for a whole semester on a team you cannot leave. Write nothing you would break by week three. When the rules feel real, every member signs the page.</p>
+  <div class="card checkcard"><p class="label terra">What your page needs</p>
+    <p class="kw"><b>5&ndash;7 rules. Everyone signs.</b></p><ul><li>Five to seven rules, numbered, in your team&rsquo;s own words</li><li>Each rule specific enough that you could tell whether someone kept it</li><li>Every member&rsquo;s signature at the bottom, and your team name at the top</li></ul>
+  </div>
+  <p class="bigline terra">This page is what your team holds each other to all semester. I will collect a photo of it today.</p>
+</section>
+
+<!-- 15 TOOLS -->
+<section class="slide"><span class="snum">15</span>
+  <p class="kicker">Your tools</p>
+  <h2 class="stitle">Everything you need, <span class="hl">in one place</span></h2>
+  <div class="grid2">
+    <div class="card"><h3>Start Here</h3><p class="kw"><b>Day-one page.</b> Week 1 checklist.</p><p>Your day-one page, with a short Week 1 checklist that walks you through your accounts, your tools, your team, and what to do first.</p></div>
+    <div class="card"><h3>Mastery OS</h3><p class="kw"><b>Your study app.</b> Recall, weak spots, teach an AI.</p><p>The free study app that runs in your browser. It tracks your competencies, runs your spaced recall, shows you your weak spots, and lets you teach a concept to an AI to see whether you really have it.</p></div>
+    <div class="card"><h3>Recall cards &amp; Loops videos</h3><p class="kw"><b>A few minutes a day.</b> Nothing slips away.</p><p>Daily practice questions built straight from the retrieval research. A few minutes a day is the whole habit, and everything you have rated stays in your practice queue so nothing slips away.</p></div>
+    <div class="card"><h3>Digital Atlas &amp; grade calculator</h3><p class="kw"><b>Atlas</b> for recall. <b>Calculator</b> so your grade is never a mystery.</p><p>Curated anatomy references built for active recall, along with a calculator that shows your standing whenever you want to check, so your grade is never a mystery.</p></div>
+  </div>
+  <p class="bigline">Bookmark four pages today: Start Here, the course calendar, Mastery OS, and your section&rsquo;s syllabus. I built every one of these for this course, so please use them.</p>
+</section>
+
+<!-- 16 SCAVENGER -->
+<section class="slide paper" data-timer="600"><span class="snum">16</span>
+  <div class="badges"><span class="badge">Activity 2</span><span class="badge time">10 min</span></div>
+  <p class="kicker">Learn the course site</p>
+  <h2 class="stitle">Team <span class="hl">scavenger hunt</span></h2>
+  <div class="grid2">
+    <div class="card"><p class="label terra">Your team&rsquo;s mission: find and write down</p>
+      <p class="kw"><b>Find five things</b> on the course site.</p><ul class="plain"><li>The Week 1 checklist on Start Here: name two things on it</li><li>What TBL is worth in your final grade, and how many TBLs there are</li><li>One way to earn Scholar Points, and the maximum bonus</li><li>Where the Recall cards live and how often to use them</li><li>The 20-minute attendance rule, in your own words</li></ul>
+    </div>
+    <div class="darkpanel"><p class="label" style="font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:0 0 10px">Rules</p>
+      <p class="kw"><b>10 minutes.</b> Any device. First correct team wins.</p><ul class="plain"><li>10 minutes on the clock</li><li>Any device, any teammate</li><li>First team fully correct wins, and gets announced with full honors</li><li>Every fully correct team gets bragging rights</li></ul>
+    </div>
+  </div>
+  <p class="bigline terra">The point of this one is simple: on day one, your team learns to find answers together before asking me, and that habit is half of TBL.</p>
+</section>
+
+<!-- 17 MY AI -->
+<section class="slide"><span class="snum">17</span>
+  <p class="kicker">Full transparency</p>
+  <h2 class="stitle">Yes, I use AI to build this course. <span class="hl">Here is how.</span></h2>
+  <div class="rows">
+    <div class="row"><div class="dot navy">1</div><div><h3>What I use it for</h3><p class="kw"><b>Drafts and builds.</b> Not a substitute for expertise.</p><p>Drafting practice questions, building the study tools you just met, and turning my materials into cleaner formats. It is a power tool for building, not a substitute for expertise.</p></div></div>
+    <div class="row"><div class="dot navy">2</div><div><h3>What happens before you see it</h3><p class="kw"><b>AI drafts. I verify. I decide.</b></p><p>Every fact, question, and answer key gets checked against the textbook and my own clinical and teaching experience before it ever reaches you. The AI may draft, but I do the verifying and the deciding.</p></div></div>
+    <div class="row"><div class="dot navy">3</div><div><h3>Why I am telling you</h3><p class="kw">You deserve to know. And <b>watching responsible use is part of your education</b>.</p><p>You deserve to know how your course materials are made. And you are entering a field where AI tools are everywhere, so watching someone use them responsibly is part of your education.</p></div></div>
+  </div>
+  <p class="bigline terra">The rule I follow is the same one I will ask of you: let AI help with the labor, but never hand it the thinking, and never trust it unverified.</p>
+</section>
+
+<!-- 18 YOUR AI -->
+<section class="slide"><span class="snum">18</span>
+  <p class="kicker">Your turn in this course</p>
+  <h2 class="stitle">AI: <span class="hl">encouraged for studying</span>, strict for grades</h2>
+  <div class="grid2">
+    <div class="card"><p class="label teal">For studying: encouraged</p>
+      <p class="kw"><b>Quiz me. Explain it differently. Check my explanation.</b></p><ul class="plain"><li>Use the Teach it to an AI feature in Mastery OS to test whether you really have a concept</li><li>Have it quiz you, and answer before it shows you anything</li><li>Ask it to explain a concept a different way than the book</li></ul>
+    </div>
+    <div class="card"><p class="label terra">For graded work: strict</p>
+      <p class="kw"><b>Only on marked assignments.</b> Never on exams or graded TBL.</p><ul class="plain"><li>Generative AI only on assignments specifically marked as AI assignments</li><li>No AI on exams or on any graded part of a TBL</li><li>Be careful about trusting it blindly, because it can be confidently and fluently wrong</li></ul>
+    </div>
+  </div>
+  <p class="bigline">Here is a simple test for every use: when you finish, can you do it without the AI? If yes, it helped you learn. If not, it did the retrieving for you, and retrieval you skip is memory you never build.</p>
+  <p class="srcline">When you are not sure where the line is, ask me. Asking is always the cheaper option.</p>
+</section>
+
+<!-- 19 FACT CHECK -->
+<section class="slide paper" data-timer="900"><span class="snum">19</span>
+  <div class="badges"><span class="badge">Activity 3</span><span class="badge time">15 min</span></div>
+  <p class="kicker">Catch the AI</p>
+  <h2 class="stitle">The <span class="hl">fact-check</span> drill</h2>
+  <div class="grid2">
+    <div class="card"><p class="label terra">Step 1 &middot; Ask</p><p class="kw"><b>Ask</b> an AI five anatomy questions.</p><p>As a team, ask an AI tool five factual anatomy questions. Start with body regions, directional terms, or anything you remember from prior classes.</p></div>
+    <div class="card"><p class="label terra">Step 2 &middot; Verify</p><p class="kw"><b>Verify</b> every answer against the source.</p><p>Check every answer against OpenStax or the course pages. Write down the section that confirms or contradicts each one.</p></div>
+    <div class="card"><p class="label terra">Step 3 &middot; Judge</p><p class="kw"><b>Judge:</b> correct, misleading, or wrong.</p><p>Grade each answer as fully correct, technically true but misleading, or wrong. Keep pushing into more precise territory until you catch one that is not quite right.</p></div>
+    <div class="card"><p class="label terra">Step 4 &middot; Report</p><p class="kw"><b>Report</b> your best catch.</p><p>Each team shares its best catch with the class: what the AI said, what the source says, and why the difference matters.</p></div>
+  </div>
+  <p class="bigline terra">The point of this one is that verification is the real skill. In healthcare, an unverified answer becomes a patient safety problem, so we start the habit now.</p>
+</section>
+
+<!-- 20 THE DEAL -->
+<section class="slide dark"><span class="snum">20</span>
+  <p class="kicker">The deal</p>
+  <h2 class="stitle">What I promise. <span class="hl">What I ask.</span></h2>
+  <div class="grid2">
+    <div><p class="label" style="font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:0 0 10px">I promise</p>
+      <ul class="plain"><li>Every method backed by evidence, and I will show you the evidence</li><li>No mystery grades, no gotcha exams</li><li>Tools built specifically for this course, free to you</li><li>A professor who has done this job in the real world</li></ul>
+    </div>
+    <div><p class="label" style="font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:0 0 10px">I ask</p>
+      <ul class="plain"><li>Do the pre-work, because your team is counting on you</li><li>Practice retrieving before you review, even when it feels hard</li><li>Use AI to build your brain, never to replace it</li><li>Ask questions early, because small confusions grow in a cumulative course</li></ul>
+    </div>
+  </div>
+  <p class="lede" style="margin-top:22px">Tonight, bookmark Start Here, set up your accounts, and start the Week 1 pre-work. Have your gloves and lab coat ready by Week 5.</p>
+  <p class="bigline" style="font-size:clamp(22px,3.5vw,30px)">Let&rsquo;s get to work.</p>
+</section>
+
+<!-- 21 SOURCES -->
+<section class="slide dark"><span class="snum">21</span>
+  <p class="kicker">Check my work</p>
+  <h2 class="stitle">The <span class="hl">research</span> this course is built on</h2>
+  <ul class="refs">
+    <li>Freeman et al. (2014). Active learning increases student performance in science, engineering, and mathematics. Proceedings of the National Academy of Sciences.</li>
+    <li>Roediger &amp; Karpicke (2006). Test-enhanced learning: Taking memory tests improves long-term retention. Psychological Science.</li>
+    <li>Cepeda et al. (2006). Distributed practice in verbal recall tasks. Psychological Bulletin.</li>
+    <li>Watson, Michaelsen &amp; Sharp (1991). Member competence, group interaction, and group decision making. Journal of Applied Psychology.</li>
+    <li>Koles et al. (2010). The impact of team-based learning on medical students&rsquo; academic performance. Academic Medicine.</li>
+    <li>Sinha &amp; Kapur (2021). When problem solving followed by instruction works: Evidence for productive failure. Review of Educational Research.</li>
+    <li>Richland, Kornell &amp; Kao (2009). The pretesting effect: Do unsuccessful retrieval attempts enhance learning? Journal of Experimental Psychology: Applied.</li>
+    <li>The pretesting effect: Exploring the impact of feedback and final test timing (2025). Journal of Cognition.</li>
+  </ul>
+  <p class="bigline">All of these are real, and most are free to read. Looking things up before you believe them is a habit this course is trying to build in you, so feel welcome to start with mine.</p>
+</section>
+
+</main>
+
+
+<div class="qrbadge" id="qrbadge"><img class="secqr" src="data:image/png;base64,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" alt="Team survey QR code"><span>Team survey</span></div>
+<div class="clock" id="clock" aria-live="polite">
+  <div class="clock-face" id="clockFace">
+    <span class="clock-time" id="clockTime">5:00</span>
+    <span class="clock-btns">
+      <button type="button" class="cbtn" id="cMinus" title="Minus 30 seconds">&minus;30</button>
+      <button type="button" class="cbtn" id="cPlus" title="Plus 30 seconds">+30</button>
+      <button type="button" class="cbtn go" id="cStart">Start</button>
+      <button type="button" class="cbtn" id="cReset" title="Reset">&#8635;</button>
+    </span>
+  </div>
+  <span class="clock-done-msg">Pencils down</span>
+  <span class="clock-hint">Drag to move &middot; T hides &middot; activity slides preload their time</span>
+</div>
+
+<div class="zoom-back" id="zoomBack"></div>
+<div class="zoom" id="zoom" role="dialog" aria-modal="true"><button type="button" class="zoom-close" id="zoomClose">Close &middot; Esc</button><div class="zoom-inner" id="zoomInner"></div></div>
+<div class="rvhint">Click a box and it zooms out &middot; arrow opens the next box, then advances &middot; <b style="color:#D9DEE8">A</b> marks all seen</div>
+<div class="present-bar">
+  <button type="button" class="pbtn" id="prevBtn" aria-label="Previous slide">&larr;</button>
+  <span class="pcount" id="pcount">1 / 21</span>
+  <button type="button" class="pbtn" id="nextBtn" aria-label="Next slide">&rarr;</button>
+  <button type="button" class="pbtn" id="clockBtn" title="Show or hide the clock (T)">Clock</button>
+  <button type="button" class="pbtn" id="exitBtn">Exit</button>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var on = false, idx = 0;
+  var progress = document.getElementById('progress');
+  var pcount = document.getElementById('pcount');
+
+  function show(i){
+    if (i < 0) i = 0;
+    if (i > slides.length - 1) i = slides.length - 1;
+    idx = i;
+    if (window.__zoomOpen && window.__zoomOpen()) window.__zoomClose();
+    slides.forEach(function(s, k){ s.classList.toggle('is-current', k === idx); });
+    pcount.textContent = (idx + 1) + ' / ' + slides.length;
+    var lastQR = Array.prototype.findIndex.call(slides, function(s){ return s.querySelector('.snum') && s.querySelector('.snum').textContent === '8b'; });
+    var qb = document.getElementById('qrbadge'); var bigHere = !!slides[idx].querySelector('.qrblock.qrcol'); if (qb && !qb.dataset.userHidden) qb.classList.toggle('show', idx <= lastQR && !bigHere);
+    progress.style.width = (((idx + 1) / slides.length) * 100) + '%';
+  }
+  function enter(i){
+    on = true;
+    document.body.classList.add('present');
+    show(i || 0);
+    if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(function(){});
+  }
+  function exit(){
+    on = false;
+    document.body.classList.remove('present');
+    slides.forEach(function(s){ s.classList.remove('is-current'); });
+    if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function(){});
+  }
+
+  document.getElementById('presentBtn').addEventListener('click', function(){ enter(0); });
+  document.getElementById('prevBtn').addEventListener('click', function(){ show(idx - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function(){ show(idx + 1); });
+  document.getElementById('exitBtn').addEventListener('click', exit);
+
+  document.getElementById('deck').addEventListener('click', function(e){
+    if (!on) return;
+    if (e.target.closest('button,a,input,label,select,.present-bar,.clock,.rv,.secbig,.secpills')) return;
+    if (!(window.__rvNext && window.__rvNext())) show(idx + 1);
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (!on) return;
+    var tag = (e.target && e.target.tagName ? e.target.tagName : '').toLowerCase();
+    if (e.key === 'q' || e.key === 'Q'){ e.preventDefault(); var qb=document.getElementById('qrbadge'); qb.dataset.userHidden = qb.classList.contains('show') ? '1' : ''; qb.classList.toggle('show'); return; }
+    if (e.key === 'ArrowRight' || e.key === 'PageDown'){ e.preventDefault(); if (!(window.__rvNext && window.__rvNext())) show(idx + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace'){ e.preventDefault(); if (window.__zoomOpen && window.__zoomOpen()) { window.__zoomClose(); } else show(idx - 1); }
+    else if (e.key === ' ' && tag !== 'button'){ e.preventDefault(); if (!(window.__rvNext && window.__rvNext())) show(idx + 1); }
+    else if (e.key === 'Escape'){ if (!(window.__zoomOpen && window.__zoomOpen())) exit(); }
+  });
+  document.addEventListener('fullscreenchange', function(){ if (!document.fullscreenElement && on){ exit(); } });
+  if (/[?#&]present/.test(location.href)) enter(0);
+})();
+
+/* ---------- floating clock ---------- */
+(function(){
+  var clock = document.getElementById('clock');
+  var face = document.getElementById('clockFace');
+  var timeEl = document.getElementById('clockTime');
+  var startBtn = document.getElementById('cStart');
+  var total = 300, left = 300, running = false, tick = null, lastSlide = null;
+
+  function fmt(s){ var m = Math.floor(s/60), r = s%60; return m + ':' + (r<10?'0':'') + r; }
+  function paint(){
+    timeEl.textContent = fmt(left);
+    clock.classList.toggle('warn', running && left > 0 && left <= 30);
+    clock.classList.toggle('done', left === 0);
+    startBtn.textContent = running ? 'Pause' : (left === total || left === 0 ? 'Start' : 'Resume');
+  }
+  function stop(){ running = false; if (tick){ clearInterval(tick); tick = null; } paint(); }
+  function start(){
+    if (left === 0){ left = total; }
+    running = true;
+    tick = setInterval(function(){
+      left = Math.max(0, left - 1);
+      if (left === 0){ stop(); }
+      paint();
+    }, 1000);
+    paint();
+  }
+  function setTotal(s){ total = Math.max(30, s); left = total; stop(); }
+  function toggle(){ clock.classList.toggle('show'); }
+
+  startBtn.addEventListener('click', function(){ running ? stop() : start(); });
+  document.getElementById('cReset').addEventListener('click', function(){ left = total; stop(); });
+  document.getElementById('cPlus').addEventListener('click', function(){ left += 30; if (!running) total = left; paint(); });
+  document.getElementById('cMinus').addEventListener('click', function(){ left = Math.max(0, left - 30); if (!running) total = Math.max(30, left); paint(); });
+  document.getElementById('clockBtn').addEventListener('click', toggle);
+
+  document.addEventListener('keydown', function(e){
+    var tag = (e.target && e.target.tagName ? e.target.tagName : '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea') return;
+    if (e.key === 't' || e.key === 'T'){ e.preventDefault(); toggle(); }
+    else if (clock.classList.contains('show')){
+      if (e.key === 'Enter'){ e.preventDefault(); running ? stop() : start(); }
+      else if (e.key === '+' || e.key === '='){ e.preventDefault(); document.getElementById('cPlus').click(); }
+      else if (e.key === '-' || e.key === '_'){ e.preventDefault(); document.getElementById('cMinus').click(); }
+      else if (e.key === '0'){ e.preventDefault(); document.getElementById('cReset').click(); }
+    }
+  });
+
+  /* when an activity slide becomes current in present mode, preload its time and show the clock */
+  var obs = new MutationObserver(function(){
+    var cur = document.querySelector('.slide.is-current');
+    if (!cur || cur === lastSlide) return;
+    lastSlide = cur;
+    var s = parseInt(cur.getAttribute('data-timer') || '', 10);
+    if (s){ setTotal(s); clock.classList.add('show'); }
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.slide'), function(s){
+    obs.observe(s, { attributes: true, attributeFilter: ['class'] });
+  });
+
+  /* drag anywhere on the face */
+  var dragging = false, ox = 0, oy = 0;
+  face.addEventListener('pointerdown', function(e){
+    if (e.target.closest('button')) return;
+    dragging = true; ox = e.clientX - clock.getBoundingClientRect().left; oy = e.clientY - clock.getBoundingClientRect().top;
+    face.setPointerCapture(e.pointerId);
+  });
+  face.addEventListener('pointermove', function(e){
+    if (!dragging) return;
+    clock.style.left = (e.clientX - ox) + 'px'; clock.style.top = (e.clientY - oy) + 'px'; clock.style.right = 'auto';
+  });
+  face.addEventListener('pointerup', function(){ dragging = false; });
+
+  paint();
+})();
+
+/* ---------- click-to-reveal ---------- */
+(function(){
+  var HEAD = 'H3,.label,.big,.n,.dot,.rl,.srcnote';
+  function makeReveal(el){
+    // move everything that is not a heading-ish element into a body wrapper
+    var body = document.createElement('div'); body.className = 'rv-body';
+    var kids = Array.prototype.slice.call(el.childNodes);
+    var movable = kids.filter(function(k){
+      if (k.nodeType !== 1) return k.nodeType === 3 && k.textContent.trim() !== '';
+      return !k.matches(HEAD);
+    });
+    if (!movable.length) return;
+    // a row: dot stays, the inner div holds h3 + p; handle that shape
+    movable.forEach(function(k){ body.appendChild(k); });
+    el.appendChild(body);
+    el.classList.add('rv');
+    el.setAttribute('tabindex','0');
+    el.setAttribute('role','button');
+    el.setAttribute('aria-expanded','false');
+  }
+  // rows: the h3+p live inside a nested div; treat that div as the reveal unit but keep h3 visible
+  document.querySelectorAll('.slide .row').forEach(function(row){
+    var inner = row.querySelector(':scope > div:not(.dot)');
+    if (!inner) return;
+    var parts = Array.prototype.slice.call(inner.children).filter(function(c){ return c.tagName !== 'H3'; });
+    if (!parts.length) return;
+    var body = document.createElement('div'); body.className='rv-body';
+    parts.forEach(function(c){ body.appendChild(c); });
+    inner.appendChild(body);
+    row.classList.add('rv'); row.setAttribute('tabindex','0'); row.setAttribute('role','button'); row.setAttribute('aria-expanded','false');
+  });
+  // cards and dark panels, except on slides that should stay static
+  document.querySelectorAll('.slide .card, .slide .darkpanel').forEach(function(el){
+    var slide = el.closest('.slide');
+    if (slide.querySelector('.qrblock') || slide.querySelector('.gradebar') || slide.querySelector('.refs')) return;
+    if (el.classList.contains('checkcard')) { /* activity checklists: reveal whole list */ }
+    makeReveal(el);
+  });
+
+  var zoom = document.getElementById('zoom'), zoomBack = document.getElementById('zoomBack'), zoomInner = document.getElementById('zoomInner');
+  var zoomEl = null;
+  function inPresent(){ return document.body.classList.contains('present'); }
+  function placeAt(r){ zoom.style.left=r.left+'px'; zoom.style.top=r.top+'px'; zoom.style.width=r.width+'px'; zoom.style.height=r.height+'px'; }
+  function openZoom(el){
+    if (zoomEl) { closeZoom(true); }
+    zoomEl = el;
+    var isDark = !!el.closest('.slide.dark') || el.classList.contains('darkpanel');
+    zoom.classList.toggle('dark', isDark);
+    zoomInner.innerHTML = el.innerHTML;
+    var r = el.getBoundingClientRect();
+    zoom.style.transition = 'none'; placeAt(r); zoom.style.opacity = '0';
+    zoom.getBoundingClientRect();
+    zoom.style.transition = '';
+    var W = Math.min(window.innerWidth*0.86, 980);
+    /* measure natural height at the target width, then animate to it */
+    zoom.style.transition = 'none'; zoom.style.width = W + 'px'; zoom.style.height = 'auto';
+    var H = Math.min(Math.max(zoomInner.offsetHeight, 240), window.innerHeight*0.82);
+    placeAt(r); zoom.getBoundingClientRect(); zoom.style.transition = '';
+    zoom.classList.add('on'); zoomBack.classList.add('on');
+    placeAt({left:(window.innerWidth-W)/2, top:(window.innerHeight-H)/2, width:W, height:H});
+    zoom.style.opacity = '1';
+    el.classList.add('seen','open'); el.setAttribute('aria-expanded','true');
+    el.closest('.slide').classList.add('has-open');
+  }
+  function closeZoom(instant){
+    if (!zoomEl) return;
+    var el = zoomEl; zoomEl = null;
+    el.classList.remove('open'); el.setAttribute('aria-expanded','false');
+    var s = el.closest('.slide'); s.classList.toggle('has-open', !!s.querySelector('.rv.open'));
+    if (instant){ zoom.classList.remove('on'); zoomBack.classList.remove('on'); zoom.style.opacity='0'; return; }
+    var r = el.getBoundingClientRect(); placeAt(r); zoom.style.opacity = '0';
+    zoom.classList.remove('on'); zoomBack.classList.remove('on');
+  }
+  zoomBack.addEventListener('click', function(){ closeZoom(); });
+  document.getElementById('zoomClose').addEventListener('click', function(){ closeZoom(); });
+  window.__zoomOpen = function(){ return !!zoomEl; };
+  window.__zoomClose = function(){ closeZoom(); };
+
+  function setState(el, open){
+    if (inPresent()){
+      if (open) openZoom(el); else if (zoomEl === el) closeZoom(); else { el.classList.remove('open'); }
+      return;
+    }
+    el.classList.toggle('open', open);
+    if (open) el.classList.add('seen');
+    el.setAttribute('aria-expanded', open ? 'true' : 'false');
+    var s = el.closest('.slide');
+    s.classList.toggle('has-open', !!s.querySelector('.rv.open'));
+  }
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('.rv');
+    if (!el) return;
+    if (e.target.closest('a,button')) return;
+    e.stopPropagation();
+    setState(el, !el.classList.contains('open'));
+  }, true);
+  document.addEventListener('keydown', function(e){
+    var el = document.activeElement && document.activeElement.closest ? document.activeElement.closest('.rv') : null;
+    if (el && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); e.stopPropagation(); setState(el, !el.classList.contains('open')); }
+  }, true);
+
+  // present-mode: A opens all on the current slide; arrow/space opens the next unopened box before advancing
+  window.__rvNext = function(){
+    var cur = document.querySelector('.slide.is-current'); if (!cur) return false;
+    var next = cur.querySelector('.rv:not(.seen)');
+    if (next){ setState(next, true); return true; }
+    if (zoomEl){ closeZoom(); return true; }
+    return false;
+  };
+  window.__rvAll = function(open){
+    var cur = document.querySelector('.slide.is-current'); if (!cur) return;
+    closeZoom(true);
+    cur.querySelectorAll('.rv').forEach(function(el){ el.classList.toggle('seen', open); el.classList.remove('open'); });
+    cur.classList.remove('has-open');
+  };
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && zoomEl){ e.preventDefault(); e.stopPropagation(); closeZoom(); }
+  }, true);
+  document.addEventListener('keydown', function(e){
+    if (!document.body.classList.contains('present')) return;
+    if (e.key === 'a' || e.key === 'A'){ e.preventDefault(); var cur=document.querySelector('.slide.is-current'); var any = cur && cur.querySelector('.rv:not(.seen)'); window.__rvAll(!!any); }
+  });
+})();
+
+/* ---------- which class is in the room ---------- */
+(function(){
+  var SEC = {
+    'mw':    { big:'MON / WED',       small:'CLASS 1', label:'Class 1 · Mon/Wed',          qr:'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' },
+    'tr-am': { big:'TUE / THU',       small:'CLASS 2 · MORNING', label:'Class 2 · Tue/Thu morning', qr:'iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaCAIAAAC5ZBI0AAAJPUlEQVR4nO3dMZLDxBZAUUyREP4dsP9VsQNCQpH+gOpgeprXunNOLlu27FsdvJY+z/P8AvB+v06fAMD3kDMgQs6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyBCzoAIOQMi5AyIkDMgQs6ACDkDIuQMiJAzIELOgIjfdg7+/X9/fNNp3OLvv/489Mrr72r9vue+553Pe+4TTR27485v8o12vkmrMyBCzoAIOQMi5AyIkDMgQs6ACDkDIuQMiJAzIGJrV8DauQn7HeemqHdmu6dMnfOdewbOmZrdf+OvbofVGRAhZ0CEnAERcgZEyBkQIWdAhJwBEXIGRMgZEHFwV8DanXdtX7tzWv3cXerPnfOdd8e/86zOeeN/cM3qDIiQMyBCzoAIOQMi5AyIkDMgQs6ACDkDIuQMiBjbFdCzM2M9td9g55XPve/auXNe683Q91idARFyBkTIGRAhZ0CEnAERcgZEyBkQIWdAhJwBEXYF/EfuvLP+1J6Btak9A1PT+Xee1RtZnQERcgZEyBkQIWdAhJwBEXIGRMgZECFnQIScARFjuwJ6s87n5v53jp3ajbBjahdE75tc6/0Hrc6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyBCzoCIg7sCdibde3qT7mt3zsGfc+c1+mn/QaszIELOgAg5AyLkDIiQMyBCzoAIOQMi5AyIkDMgYmtXQG+2e8e5Cew3zu7vzMGv3Tl/P+WN53yO1RkQIWdAhJwBEXIGRMgZECFnQIScARFyBkTIGRCxtSvg3Hz2lPU5T921fefYqXM+t6Ng7dzv6s5dH2/8H51jdQZEyBkQIWdAhJwBEXIGRMgZECFnQIScARFyBkRs7Qq40xvn4HdeeX3O5z7R1Pz9zs6NO6/v1Oe989gdVmdAhJwBEXIGRMgZECFnQIScARFyBkTIGRAhZ0DE53meLx88dff0N84rr905vb2jtzdj7Y27L+60cwWtzoAIOQMi5AyIkDMgQs6ACDkDIuQMiJAzIELOgIitZwWcm/y+c7/Bufddm9rJ8MZzvnPXx1pvX8fauXO2OgMi5AyIkDMgQs6ACDkDIuQMiJAzIELOgAg5AyK2dgWcszMJ/cY56XOf943z91PPGZi63/+5uf87/0fnWJ0BEXIGRMgZECFnQIScARFyBkTIGRAhZ0CEnAERn+d5vnzwuXnlHeem1c/Ndp87dscb72E/Ncs+tZPhzl/OFKszIELOgAg5AyLkDIiQMyBCzoAIOQMi5AyIkDMgYuxZAb0J+zc+o+DOc77z2QhrU5P9O+48550raHUGRMgZECFnQIScARFyBkTIGRAhZ0CEnAERcgZEjO0K2LEzNzy132CtN5+9802+8XveOfaNz2S4k9UZECFnQIScARFyBkTIGRAhZ0CEnAERcgZEyBkQcXBXwBvvgH7OnXPhU3P/d+4ZWJt6RsGdO0amfnVrVmdAhJwBEXIGRMgZECFnQIScARFyBkTIGRAhZ0DEK58VsGNqpnzt3H3o1+6c7b7zKtx5Vmt3PoXgHKszIELOgAg5AyLkDIiQMyBCzoAIOQMi5AyIkDMg4vM8z5cPvvMu9TveeEf/qXvYn/PTru/ane+7NlUGqzMgQs6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyDi0mcF3HkP+zdO2O84t9/g3Pz9nTsopnaMTJnayWB1BkTIGRAhZ0CEnAERcgZEyBkQIWdAhJwBEXIGRGw9K2DtjTPlO6Y+Ue+Vd/y038bO+975eXdYnQERcgZEyBkQIWdAhJwBEXIGRMgZECFnQIScARGXPitgbWfmeOo+9Gt33kt+akfBjjuv79rU9b3zuQo7rM6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyBCzoCIrWcFvHFafeqcp5ybZd9x573zd9y5z+GcO3ebWJ0BEXIGRMgZECFnQIScARFyBkTIGRAhZ0CEnAERW88K2JlXnroT+Z0z1mtvfArBztXf0dsT8sa5/ylWZ0CEnAERcgZEyBkQIWdAhJwBEXIGRMgZECFnQMTWroA33rP/3Dnf+Xl33LmD4tw1WnvjToZz7jwrqzMgQs6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyDi8zzPlw9+46T72tRM+Run1dfeeFZ3vvKOn/Z5rc6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyBCzoCIg7sCpmbK33jn9TunxnfcefWn3veNr7x25y/H6gyIkDMgQs6ACDkDIuQMiJAzIELOgAg5AyLkDIj4bfoE/t3OJPSd90c/N0U9tc/hzpnyc++7c32nfs87r7x257M+rM6ACDkDIuQMiJAzIELOgAg5AyLkDIiQMyBCzoCIS3cFnLMzY31uEvrcToZzs/t33i3+zhn6c6auwrnv2bMCAOQMqJAzIELOgAg5AyLkDIiQMyBCzoAIOQMiPs/zTJ/Da9w5B7925/MN1qaeQnDn0w+mfhtrnhUAcJCcARFyBkTIGRAhZ0CEnAERcgZEyBkQIWdAxNazAu68e/qOnWcF7HwbU3deP3fX9nPunPuf2lEw9ZSJO3dBWJ0BEXIGRMgZECFnQIScARFyBkTIGRAhZ0CEnAERW7sC1noz5VMz9L25/95ZTX2iO391O6+8w+oMiJAzIELOgAg5AyLkDIiQMyBCzoAIOQMi5AyI+DzP8+WDz01R75i6s37P1Bz8ndP5rv7/m3piw5rVGRAhZ0CEnAERcgZEyBkQIWdAhJwBEXIGRMgZEHHwWQE/jV0Q33Xs1CdaH/vGHSNTk/3rVz63c8PqDIiQMyBCzoAIOQMi5AyIkDMgQs6ACDkDIuQMiLAr4Nucm3Xeed9zx577RDumrsKOqacfTL3vOVZnQIScARFyBkTIGRAhZ0CEnAERcgZEyBkQIWdAxNiugDunitd2znnqnv07pq7RnffdXzt37/xz7nx+xQ6rMyBCzoAIOQMi5AyIkDMgQs6ACDkDIuQMiJAzIOLgroA3znav3TmdP7Xf4Nz7ntt9ce7YtTfugVm7899tdQZEyBkQIWdAhJwBEXIGRMgZECFnQIScARFyBkR8nueZPgeAb2B1BkTIGRAhZ0CEnAERcgZEyBkQIWdAhJwBEXIGRMgZECFnQIScARFyBkTIGRAhZ0CEnAERcgZEyBkQIWdAxD9l7tzKnHAwyQAAAABJRU5ErkJggg==' },
+    'tr-eve':{ big:'TUE / THU',       small:'CLASS 3 · EVENING', label:'Class 3 · Tue/Thu evening', qr:'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' }
+  };
+  var order = ['mw','tr-am','tr-eve'];
+  var params = new URLSearchParams(location.search);
+  var cur = params.get('sec');
+  if (!SEC[cur]) { try { cur = localStorage.getItem('bio004-section'); } catch(e){} }
+  if (!SEC[cur]) cur = null;
+  function paint(){
+    var big = document.getElementById('secBig');
+    document.querySelectorAll('#secPills button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.sec===cur ? 'true':'false'); });
+    if (cur){
+      big.innerHTML = SEC[cur].big + '<small>' + SEC[cur].small + '</small>';
+      document.querySelectorAll('img.secqr').forEach(function(im){ im.src = 'data:image/png;base64,' + SEC[cur].qr; });
+      document.querySelectorAll('.seclabel').forEach(function(el){ el.textContent = SEC[cur].label; });
+    } else {
+      big.innerHTML = 'ALL CLASSES<small>CLICK TO PICK YOUR CLASS</small>';
+      document.querySelectorAll('img.secqr').forEach(function(im){ im.src = 'data:image/png;base64,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'; });
+      document.querySelectorAll('.seclabel').forEach(function(el){ el.textContent = 'all three classes'; });
+    }
+  }
+  function setSec(s){ cur = s; try { localStorage.setItem('bio004-section', cur); } catch(err){} paint(); }
+  document.querySelectorAll('#secPills button').forEach(function(b){ b.addEventListener('click', function(e){ e.stopPropagation(); setSec(b.dataset.sec); }); });
+  document.addEventListener('keydown', function(e){
+    if (e.target && /input|textarea/i.test(e.target.tagName)) return;
+    if (e.key === '1') setSec('mw'); else if (e.key === '2') setSec('tr-am'); else if (e.key === '3') setSec('tr-eve');
+  });
+  document.getElementById('secBig').addEventListener('click', function(e){
+    e.stopPropagation();
+    var i = cur ? order.indexOf(cur) : -1; cur = order[(i+1) % order.length];
+    try { localStorage.setItem('bio004-section', cur); } catch(err){}
+    paint();
+  });
+  paint();
+})();
+</script>
+<script>
+/* Height sender, the same block every other page carries. Without it this
+   deck cannot tell a Kajabi frame how tall it is. */
+(function(){
+  var FRAME_ID = 'bio004-course-introduction';
+  function sendHeight(){ var h = (window.BIO004_CONTENT_HEIGHT ? window.BIO004_CONTENT_HEIGHT() : document.body.scrollHeight); if (window.parent && window.parent!==window) parent.postMessage({type:'resize', id:FRAME_ID, height:h}, '*'); }
+  window.addEventListener('load', sendHeight); window.addEventListener('resize', sendHeight);
+  if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+  [200,600,1200,2400].forEach(function(t){ setTimeout(sendHeight, t); });
+})();
+</script>
+</body>
+</html>

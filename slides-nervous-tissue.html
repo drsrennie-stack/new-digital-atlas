@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nervous Tissue · Human Anatomy · Dr. Sharilyn Rennie</title>
+<style>
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Arial,sans-serif;background:#FAFAF9;color:#060A18;font-size:16px;line-height:1.5}
+button{font-family:inherit} a{color:#8B3A2E}
+:focus-visible{outline:3px solid #8B3A2E;outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;position:fixed;background:#060A18;color:#fff;padding:10px 14px;border-radius:4px;z-index:80}
+.site-header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px max(16px,3vw);background:#fff;border-bottom:1px solid rgba(11,21,48,.14)}
+.site-header .id{flex:1;min-width:240px;display:flex;align-items:center;gap:14px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8B3A2E;display:block;margin-bottom:2px}
+.site-header h1{font-size:18px;font-weight:800;margin:0;color:#0B1530}
+.site-header h1 .ac{color:#8B3A2E}
+.btn{font-weight:700;font-size:13px;letter-spacing:.04em;border:1px solid #060A18;background:#060A18;color:#fff;padding:10px 16px;border-radius:6px;cursor:pointer}
+.btn:hover{background:#16213d}
+.deck{max-width:1180px;margin:0 auto;padding:24px max(16px,3vw) 40px}
+.slide{background:#fff;border:1px solid rgba(11,21,48,.14);border-radius:12px;box-shadow:0 1px 3px rgba(11,21,48,.06);margin-bottom:22px;overflow:hidden}
+.slide-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:15px 20px;background:#FAFAF9;border-bottom:1px solid rgba(11,21,48,.14)}
+.slide-num{font-size:28px;font-weight:800;color:#8B3A2E;min-width:46px}
+.slide-eyebrow{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#060A18;opacity:.6;margin:0 0 3px}
+.slide-title{font-size:clamp(18px,2.2vw,24px);font-weight:800;margin:0}
+.slide-meta{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8B3A2E}
+.slide-body{padding:22px}
+.lead-in{font-size:17px;font-weight:600;margin:0 0 14px}
+.slide-content h3{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8B3A2E;margin:0 0 14px}
+.slide-content ul{margin:0;padding:0;list-style:none}
+.slide-content li{font-size:15.5px;line-height:1.5;padding:5px 0 5px 18px;position:relative}
+.slide-content li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;background:#8B3A2E;border-radius:50%}
+.slide-content li strong{font-weight:800}
+.split{display:grid;grid-template-columns:minmax(260px,1fr) minmax(280px,1.05fr);gap:22px;align-items:center}
+.takeaway{margin-top:16px;padding:14px 16px;background:#FAFAF9;border-left:3px solid #8B3A2E;border-radius:6px;font-size:15px}
+.takeaway strong{color:#8B3A2E}
+.figcol{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0}
+.slidefig{width:100%;height:auto;max-width:620px;border-radius:8px;background:#fff;cursor:zoom-in}
+.figcap{font-size:12.5px;color:#060A18;opacity:.78;text-align:center;margin:8px 0 0}
+.figcap strong{color:#8B3A2E;opacity:1}
+.divider .slide-header{display:none}
+.divider .slide-body{padding:0}
+.divhero{background:#060A18;color:#fff;padding:9vh 6vw;min-height:46vh;display:flex;flex-direction:column;justify-content:center}
+.divhero .dn{font-size:13px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#DCB45C;margin:0 0 10px}
+.divhero h2{font-size:clamp(26px,4vw,46px);font-weight:800;margin:0 0 10px;line-height:1.06}
+.divhero p{font-size:clamp(15px,1.6vw,20px);opacity:.9;margin:0;max-width:64ch}
+.q{border:1px solid rgba(11,21,48,.14);border-left:4px solid #8B3A2E;background:#fff;border-radius:8px;padding:16px 18px;margin:0 0 14px}
+.q .lab{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8B3A2E;margin:0 0 8px}
+.q .prompt2{font-weight:700;font-size:16px;margin:0 0 12px}
+.choices{display:flex;gap:10px;flex-wrap:wrap}
+.choice{font-weight:700;font-size:15px;border-radius:6px;cursor:pointer;border:1px solid #060A18;background:#fff;color:#060A18;padding:10px 15px}
+.choice:hover{background:#EAEEF4}
+.choice.right{background:#EAEEF4;border-color:#0B1530;color:#0B1530}
+.choice.wrong{border-color:rgba(11,21,48,.14);opacity:.55}
+.reveal{margin:12px 0 0;border:1px solid rgba(11,21,48,.14);background:#FAFAF9;border-radius:6px;padding:12px 14px}
+.reveal[hidden]{display:none}.reveal .rlab{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6E5018;margin:0 0 6px}.reveal p{margin:0}
+.foot{margin:8px max(16px,3vw) 30px;font-size:12px;color:#060A18;opacity:.6;border-top:1px solid rgba(11,21,48,.14);padding-top:12px;max-width:1180px}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+body.present{overflow:hidden;background:#060A18}
+body.present .site-header,body.present .foot{display:none}
+body.present .deck{max-width:none;margin:0;padding:0}
+body.present .slide{display:none}
+body.present .slide.is-current{display:flex;flex-direction:column;position:fixed;inset:0;margin:0;border:0;border-radius:0;box-shadow:none;overflow:auto;background:#fff}
+body.present .slide.is-current .slide-body{flex:1;max-width:1280px;width:100%;margin:0 auto;padding:2.5vh 5vw;display:flex;flex-direction:column;justify-content:center}
+body.present .slide-content li{font-size:clamp(16px,1.7vw,25px);padding:7px 0 7px 26px}
+body.present .slide-content li::before{top:15px;width:9px;height:9px}
+body.present .slide-content h3{font-size:clamp(15px,1.5vw,20px)!important}
+body.present .lead-in{font-size:clamp(18px,2vw,28px)}
+body.present .slidefig{max-width:100%;max-height:70vh;width:auto;height:auto}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(6,10,24,.93);display:flex;align-items:center;justify-content:center;padding:3vh 3vw;cursor:zoom-out}
+.lightbox[hidden]{display:none}
+.lightbox .lb-img{max-width:96vw;max-height:94vh;width:auto;height:auto;border-radius:6px;background:#fff;cursor:default}
+.lightbox .lb-close{position:fixed;top:16px;right:20px;background:#8B3A2E;color:#fff;border:0;border-radius:8px;font-size:24px;line-height:1;width:46px;height:46px;cursor:pointer}
+body.present .q .prompt2{font-size:clamp(18px,1.8vw,25px)}
+body.present .choice{font-size:clamp(16px,1.6vw,21px);padding:13px 19px}
+body.present .reveal{font-size:clamp(15px,1.5vw,21px)}
+.present-bar{position:fixed;z-index:70;left:50%;bottom:18px;transform:translateX(-50%);display:none;align-items:center;gap:10px;background:rgba(11,21,48,.92);color:#fff;padding:8px 12px;border-radius:999px}
+body.present .present-bar{display:flex}
+.present-bar button{font-weight:700;font-size:16px;border:0;border-radius:999px;background:#8B3A2E;color:#fff;width:42px;height:42px;cursor:pointer}
+.present-bar button:disabled{background:#3a4357}.present-bar .count{font-size:13px;font-weight:700;min-width:62px;text-align:center}
+.present-bar .exit{width:auto;padding:0 14px;background:transparent;border:1px solid rgba(255,255,255,.4)}
+@media print{.site-header,.present-bar,.foot,#presentBtn{display:none}.slide{break-inside:avoid;page-break-after:always;box-shadow:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.tkey{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;align-items:start;margin-top:4px}
+.tkey .tcol{border:1px solid rgba(11,21,48,.18);border-radius:10px;overflow:hidden;background:#fff}
+.tkey .th{padding:8px 12px;font-weight:800;font-size:14px;letter-spacing:.02em}
+.tkey .th small{display:block;font-weight:600;font-size:11px;opacity:.95}
+.tkey .th.ep{background:#C9A14A;color:#0B1530}
+.tkey .th.ct{background:#8B3A2E;color:#fff}
+.tkey .th.mu{background:#0B1530;color:#fff}
+.tkey .th.ne{background:#142a36;color:#fff}
+.tkey .sub{padding:9px 12px}
+.tkey .grp{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8B3A2E;margin:9px 0 4px}
+.tkey .grp:first-child{margin-top:0}
+.tkey .it{font-size:12.5px;line-height:1.34;margin:0 0 7px;color:#1d2733}
+.tkey .it b{color:#0B1530}
+.tkey .it .tell{color:#3a4658}
+@media (max-width:760px){.tkey{grid-template-columns:1fr}}
+@media print{.tkey{grid-template-columns:repeat(2,1fr)}.tkey .tcol{break-inside:avoid}}
+.imgph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:200px;border:2px dashed #B8924A;border-radius:10px;background:#FAFAF9;color:#8B3A2E;text-align:center;padding:18px}.imgph .ph-t{font-weight:800;font-size:14px}.imgph .ph-s{font-weight:600;font-size:12px;color:#5a6573}.dtable{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}.dtable caption{text-align:left;font-weight:700;color:#8B3A2E;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}.dtable th,.dtable td{border:1px solid rgba(11,21,48,.18);padding:8px 10px;text-align:left;vertical-align:top}.dtable thead th{background:#0B1530;color:#fff}.dtable tbody th{background:#FAFAF9;color:#0B1530;white-space:nowrap}.dtable tbody tr:nth-child(even) td{background:#FAFAF9}@media print{.imgph{min-height:120px}.dtable{font-size:10.5px}}
+
+/* --- image-slide deck additions --- */
+.imgslide .slide-body{padding:0;background:#fff}
+.imgslide img{display:block;width:100%;height:auto}
+body.present .imgslide .slide-body{padding:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#fff}
+body.present .imgslide img{max-width:100%;max-height:100vh;width:auto;height:auto;object-fit:contain}
+</style></head><body>
+<a href="#deck" class="skip">Skip to slides</a>
+<header class="site-header"><div class="id"><svg viewBox="40 10 125 148" role="img" aria-label="Human Anatomy logo" focusable="false" style="height:46px;width:auto"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#0B1530"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#8B3A2E"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/></g></g></svg><div><span class="eyebrow">Focus: Human Anatomy</span><h1>Human <span class="ac">Anatomy</span> · Nervous Tissue</h1></div></div><div class="hero-actions"><button class="btn" id="backBtn" type="button" hidden>← Back</button> <button class="btn" id="presentBtn" type="button">Present</button> <button class="btn" id="printBtn" type="button">Print / Save PDF</button></div></header>
+
+<!-- Digital Atlas, added by bio004-atlas-tile-add.py. Click or scan, opens in a second tab. -->
+<style>
+  .atl-wrap{max-width:900px;margin:22px auto;padding:0 26px}
+  .atl-tile{display:grid;grid-template-columns:52px 1fr 124px;gap:18px;align-items:center;
+    background:#0B1530;border-radius:16px;padding:16px 20px;text-decoration:none;color:#fff;
+    box-shadow:0 0 0 2px #C9A14A,0 8px 18px -12px rgba(8,16,31,.4);
+    transition:transform .2s ease,box-shadow .2s ease}
+  .atl-tile:hover{transform:translateY(-2px);box-shadow:0 0 0 2px #C9A14A,0 12px 22px -12px rgba(8,16,31,.55)}
+  .atl-tile:focus-visible{outline:3px solid #C9A14A;outline-offset:3px}
+  .atl-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
+    background:linear-gradient(145deg,#5C7FA8,#2F4C7D);box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
+  .atl-ic svg{width:26px;height:26px;stroke:#0B1530;fill:none;stroke-width:2.1;
+    stroke-linecap:round;stroke-linejoin:round}
+  .atl-tag{font-family:'DM Sans',system-ui,sans-serif;font-size:10.5px;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;color:#E8C97E;margin:0}
+  .atl-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:19px;font-weight:800;
+    letter-spacing:-.015em;color:#EBCE86;margin:2px 0 0;line-height:1.2}
+  .atl-d{font-size:12.5px;color:#E9EDF3;margin:3px 0 0;line-height:1.4}
+  /* 124px, not 92. At 92 a phone camera has under three pixels per module and
+     hunts for the code. */
+  .atl-qr{width:124px;height:124px;background:#fff;border-radius:11px;padding:6px}
+  .atl-qr-svg{width:100%;height:100%;display:block;shape-rendering:crispEdges}
+  .atl-qr-line{stroke:#0B1530}
+  @media (prefers-reduced-motion:reduce){.atl-tile:hover{transform:none}}
+  @media (max-width:640px){
+    .atl-tile{grid-template-columns:1fr;justify-items:center;text-align:center;gap:12px}
+  }
+  @media print{
+    .atl-wrap{margin:14pt auto;padding:0}
+    .atl-tile{break-inside:avoid;grid-template-columns:34pt 1fr 68pt;gap:12pt;padding:10pt 13pt;
+      border-radius:10pt;box-shadow:0 0 0 1.2pt #C9A14A;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .atl-ic{width:34pt;height:34pt;border-radius:9pt}
+    .atl-ic svg{width:17pt;height:17pt}
+    .atl-tag{font-size:6.6pt}
+    .atl-h{font-size:12.5pt}
+    .atl-d{font-size:8.4pt}
+    .atl-qr{width:68pt;height:68pt;padding:3.5pt;border-radius:7pt}
+  }
+</style>
+<div class="atl-wrap">
+  <a class="atl-tile" href="https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo" target="_blank" rel="noopener"
+     aria-label="Open the Digital Atlas in a new tab">
+    <span class="atl-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
+    <span>
+      <span class="atl-tag" style="display:block">Open it beside this page</span>
+      <span class="atl-h" style="display:block">Digital Atlas</span>
+      <span class="atl-d" style="display:block">Turn the structures around while you read. Click here, or scan the code with your phone, and it opens in a second window.</span>
+    </span>
+    <span class="atl-qr"><svg viewBox="0 0 35 35" preserveAspectRatio="xMidYMid meet" class="atl-qr-svg" aria-hidden="true" focusable="false"><path class="atl-qr-line" stroke="#08101f" d="M1 1.5h7m1 0h6m2 0h1m1 0h1m4 0h2m1 0h7m-33 1h1m5 0h1m3 0h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h1m2 0h2m1 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m6 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m2 0h1m2 0h1m2 0h1m1 0h3m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h2m4 0h1m2 0h7m-24 1h1m3 0h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m2 0h10m2 0h1m-31 1h1m6 0h2m1 0h1m1 0h2m1 0h1m5 0h1m1 0h1m3 0h3m-32 1h1m1 0h1m3 0h1m1 0h2m3 0h3m2 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m-27 1h1m4 0h2m1 0h1m1 0h1m4 0h2m3 0h1m5 0h1m-32 1h3m2 0h2m4 0h3m1 0h2m2 0h2m1 0h1m3 0h1m1 0h2m2 0h1m-33 1h1m2 0h1m4 0h1m1 0h1m3 0h1m3 0h3m1 0h1m3 0h2m1 0h2m-31 1h2m2 0h1m1 0h1m5 0h1m1 0h2m1 0h2m2 0h3m1 0h4m2 0h1m-31 1h1m2 0h1m2 0h11m3 0h1m2 0h3m1 0h2m-28 1h2m1 0h3m3 0h1m1 0h1m3 0h1m1 0h1m1 0h3m2 0h1m1 0h2m1 0h1m-31 1h2m1 0h1m4 0h2m1 0h1m1 0h3m1 0h1m3 0h2m5 0h4m-33 1h4m1 0h2m2 0h1m3 0h1m1 0h1m1 0h1m2 0h2m1 0h3m1 0h1m1 0h1m1 0h1m-29 1h1m3 0h1m2 0h1m1 0h3m2 0h3m1 0h3m3 0h1m-28 1h3m1 0h1m1 0h2m1 0h1m3 0h3m2 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m-32 1h3m1 0h2m4 0h2m1 0h2m1 0h1m2 0h2m2 0h1m1 0h3m2 0h2m-30 1h6m2 0h2m4 0h3m3 0h2m3 0h1m2 0h2m-30 1h1m4 0h1m1 0h4m1 0h1m2 0h3m1 0h6m1 0h1m3 0h1m-33 1h4m2 0h1m1 0h3m1 0h4m1 0h6m1 0h6m1 0h2m-25 1h5m1 0h5m3 0h1m1 0h1m3 0h1m1 0h3m-33 1h7m1 0h2m4 0h2m2 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m-32 1h1m5 0h1m3 0h4m2 0h1m4 0h1m2 0h1m3 0h1m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m4 0h1m4 0h1m2 0h6m-30 1h1m1 0h3m1 0h1m2 0h1m1 0h3m3 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-31 1h1m1 0h3m1 0h1m2 0h1m2 0h4m2 0h1m2 0h1m1 0h2m1 0h4m-30 1h1m5 0h1m2 0h1m2 0h2m1 0h3m3 0h2m1 0h1m4 0h1m-30 1h7m1 0h3m1 0h1m4 0h1m1 0h4m1 0h1m4 0h1m2 0h1"/></svg></span>
+  </a>
+</div>
+
+<main class="deck" id="deck">
+<section class="slide divider" aria-label="Title"><div class="slide-body"><div class="divhero"><div style="margin:0 0 14px"><svg viewBox="40 10 125 148" role="img" aria-label="Human Anatomy logo" focusable="false" style="height:64px;width:auto;display:block"><g transform="translate(0,18)"><g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#FFFFFF"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#FFFFFF"/></g><g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#C2734D"/><path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#C2734D"/></g><g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/></g></g></svg></div><p class="dn">Focus: Human Anatomy</p><h2>Nervous Tissue</h2><p>Nervous tissue is the body's communication network: neurons carry the signals, neuroglia support and protect them. This deck builds the structure of the neuron, the types of neuroglia in the CNS and PNS, and the organization of the nervous system. Dr. Sharilyn Rennie</p></div></div></section>
+<section class="slide imgslide" aria-label="Slide 1"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-01.jpg" alt="Nervous Tissue lecture, slide 1 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 2"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-02.jpg" alt="Nervous Tissue lecture, slide 2 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 3"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-03.jpg" alt="Nervous Tissue lecture, slide 3 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 4"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-04.jpg" alt="Nervous Tissue lecture, slide 4 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 5"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-05.jpg" alt="Nervous Tissue lecture, slide 5 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 6"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-06.jpg" alt="Nervous Tissue lecture, slide 6 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 7"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-07.jpg" alt="Nervous Tissue lecture, slide 7 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 8"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-08.jpg" alt="Nervous Tissue lecture, slide 8 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 9"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-09.jpg" alt="Nervous Tissue lecture, slide 9 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 10"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-10.jpg" alt="Nervous Tissue lecture, slide 10 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 11"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-11.jpg" alt="Nervous Tissue lecture, slide 11 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 12"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-12.jpg" alt="Nervous Tissue lecture, slide 12 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 13"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-13.jpg" alt="Nervous Tissue lecture, slide 13 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 14"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-14.jpg" alt="Nervous Tissue lecture, slide 14 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 15"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-15.jpg" alt="Nervous Tissue lecture, slide 15 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 16"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-16.jpg" alt="Nervous Tissue lecture, slide 16 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 17"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-17.jpg" alt="Nervous Tissue lecture, slide 17 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 18"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-18.jpg" alt="Nervous Tissue lecture, slide 18 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 19"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-19.jpg" alt="Nervous Tissue lecture, slide 19 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 20"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-20.jpg" alt="Nervous Tissue lecture, slide 20 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 21"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-21.jpg" alt="Nervous Tissue lecture, slide 21 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 22"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-22.jpg" alt="Nervous Tissue lecture, slide 22 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 23"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-23.jpg" alt="Nervous Tissue lecture, slide 23 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 24"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-24.jpg" alt="Nervous Tissue lecture, slide 24 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 25"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-25.jpg" alt="Nervous Tissue lecture, slide 25 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 26"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-26.jpg" alt="Nervous Tissue lecture, slide 26 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 27"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-27.jpg" alt="Nervous Tissue lecture, slide 27 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 28"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-28.jpg" alt="Nervous Tissue lecture, slide 28 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 29"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-29.jpg" alt="Nervous Tissue lecture, slide 29 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 30"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-30.jpg" alt="Nervous Tissue lecture, slide 30 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 31"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-31.jpg" alt="Nervous Tissue lecture, slide 31 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 32"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-32.jpg" alt="Nervous Tissue lecture, slide 32 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 33"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-33.jpg" alt="Nervous Tissue lecture, slide 33 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 34"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-34.jpg" alt="Nervous Tissue lecture, slide 34 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 35"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-35.jpg" alt="Nervous Tissue lecture, slide 35 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 36"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-36.jpg" alt="Nervous Tissue lecture, slide 36 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 37"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-37.jpg" alt="Nervous Tissue lecture, slide 37 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 38"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-38.jpg" alt="Nervous Tissue lecture, slide 38 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 39"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-39.jpg" alt="Nervous Tissue lecture, slide 39 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 40"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-40.jpg" alt="Nervous Tissue lecture, slide 40 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 41"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-41.jpg" alt="Nervous Tissue lecture, slide 41 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 42"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-42.jpg" alt="Nervous Tissue lecture, slide 42 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 43"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-12.jpg" alt="Nervous Tissue lecture, slide 43 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 44"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-43.jpg" alt="Nervous Tissue lecture, slide 44 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 45"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-44.jpg" alt="Nervous Tissue lecture, slide 45 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 46"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-45.jpg" alt="Nervous Tissue lecture, slide 46 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 47"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-46.jpg" alt="Nervous Tissue lecture, slide 47 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 48"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-47.jpg" alt="Nervous Tissue lecture, slide 48 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 49"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-48.jpg" alt="Nervous Tissue lecture, slide 49 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 50"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-49.jpg" alt="Nervous Tissue lecture, slide 50 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 51"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-50.jpg" alt="Nervous Tissue lecture, slide 51 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 52"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-51.jpg" alt="Nervous Tissue lecture, slide 52 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 53"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-52.jpg" alt="Nervous Tissue lecture, slide 53 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 54"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-53.jpg" alt="Nervous Tissue lecture, slide 54 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 55"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-54.jpg" alt="Nervous Tissue lecture, slide 55 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 56"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-55.jpg" alt="Nervous Tissue lecture, slide 56 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 57"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-56.jpg" alt="Nervous Tissue lecture, slide 57 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 58"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-57.jpg" alt="Nervous Tissue lecture, slide 58 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 59"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-58.jpg" alt="Nervous Tissue lecture, slide 59 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 60"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-59.jpg" alt="Nervous Tissue lecture, slide 60 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 61"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-60.jpg" alt="Nervous Tissue lecture, slide 61 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 62"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-61.jpg" alt="Nervous Tissue lecture, slide 62 of 63" loading="lazy"></div></section>
+<section class="slide imgslide" aria-label="Slide 63"><div class="slide-body"><img src="slides-nervous-tissue-img/fig-62.jpg" alt="Nervous Tissue lecture, slide 63 of 63" loading="lazy"></div></section>
+</main>
+<p class="foot">Dr. Sharilyn Rennie · Focus: Human Anatomy · Cardiovascular System: The Heart. Need a PDF? Use Print / Save PDF above, or download the accessible PDF from Canvas.</p>
+<div class="present-bar"><button type="button" class="prev" aria-label="Previous slide">&#8249;</button><span class="count" id="presentCount">1 / 1</span><button type="button" class="next" aria-label="Next slide">&#8250;</button><button type="button" class="exit">Exit</button></div>
+<script>
+(function(){document.querySelectorAll('.deck .slide').forEach(function(s,i){var n=s.querySelector('.slide-num');if(n)n.textContent=(i<10?'0':'')+i;});})();
+(function(){document.querySelectorAll('.decision').forEach(function(g){var r=g.querySelector('.reveal');g.querySelectorAll('.choice').forEach(function(b){b.addEventListener('click',function(){g.querySelectorAll('.choice').forEach(function(x){x.classList.remove('right','wrong');x.classList.add(x.getAttribute('data-correct')==='true'?'right':'wrong');});if(r)r.hidden=false;});});});})();
+(function(){var pr=document.getElementById('printBtn');if(pr)pr.addEventListener('click',function(){window.print();});})();
+(function(){var slides=[].slice.call(document.querySelectorAll('.deck .slide'));if(!slides.length)return;var idx=0,on=false;var bar=document.querySelector('.present-bar'),countEl=document.getElementById('presentCount');var prev=bar.querySelector('.prev'),next=bar.querySelector('.next'),exitB=bar.querySelector('.exit');
+function show(i){idx=Math.max(0,Math.min(slides.length-1,i));slides.forEach(function(s,k){s.classList.toggle('is-current',k===idx);});countEl.textContent=(idx+1)+' / '+slides.length;prev.disabled=idx===0;next.disabled=idx===slides.length-1;}
+function enter(i){on=true;document.body.classList.add('present');show(i||0);if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(function(){});}
+function exit(){on=false;document.body.classList.remove('present');slides.forEach(function(s){s.classList.remove('is-current');});if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(function(){});}
+var pb=document.getElementById('presentBtn');if(pb)pb.addEventListener('click',function(){enter(0);});
+prev.addEventListener('click',function(){show(idx-1);});next.addEventListener('click',function(){show(idx+1);});exitB.addEventListener('click',exit);
+document.addEventListener('keydown',function(e){if(!on)return;if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();show(idx+1);}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(idx-1);}else if(e.key==='Escape'){exit();}});
+document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&on)exit();});
+})();
+</script>
+<div class="lightbox" id="lightbox" hidden><img class="lb-img" src="" alt=""><button type="button" class="lb-close" aria-label="Close enlarged image">&times;</button></div>
+<script>
+(function(){var lb=document.getElementById('lightbox');if(!lb)return;var img=lb.querySelector('.lb-img');var cb=lb.querySelector('.lb-close');
+document.querySelectorAll('.slidefig').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();img.src=el.currentSrc||el.src;img.alt=el.alt||'';lb.hidden=false;});});
+function close(){lb.hidden=true;img.removeAttribute('src');}
+lb.addEventListener('click',function(e){if(e.target!==img)close();});
+cb.addEventListener('click',function(e){e.stopPropagation();close();});
+document.addEventListener('keydown',function(e){if(!lb.hidden&&e.key==='Escape')close();});})();
+</script>
+<script>(function(){var b=document.getElementById("backBtn");if(!b)return;if(document.referrer||window.history.length>1){b.hidden=false;}b.addEventListener("click",function(){if(history.length>1)history.back();else if(document.referrer)location.href=document.referrer;});})();</script>
+
+<script src="bio004-dock.js"></script>
+<script src="dock-coachmark.js"></script>
+</body></html>

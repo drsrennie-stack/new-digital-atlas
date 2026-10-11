@@ -1,0 +1,881 @@
+BIO 004 HUMAN ANATOMY, FALL 2026
+KAJABI EMBED SNIPPETS
+Dr. Sharilyn Rennie, Solano Community College
+
+HOW TO USE
+  1. In Kajabi, add a Custom Code block where the tool should sit.
+  2. Copy one block below, paste it in, save.
+  3. Nothing else to configure. Each block carries its own height
+     receiver, so several tools can share one Kajabi page.
+
+WHAT THE RECEIVER DOES
+  An iframe has a fixed height; the page inside does not. Every
+  page on the course site posts its height to the parent as the
+  content changes. The receiver listens and resizes the frame, so
+  the tool never scrolls inside itself or gets clipped.
+
+  It matches on the window the message came from rather than on an
+  id, because the course site grew two id conventions and matching
+  on the source is immune to both.
+
+  A page has to be live on GitHub Pages before its frame shows
+  anything. Anything not yet uploaded renders as a 404 in the frame.
+
+==================================================================
+
+
+------------------------------------------------------------------
+INDEX
+------------------------------------------------------------------
+
+### Course home
+
+<!-- Course home. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/welcome.html?frameId=course-home"
+        title="Course home"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Course tools dock
+
+<!-- Course tools dock. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/course-index.html?frameId=course-tools-dock"
+        title="Course tools dock"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### All course materials
+
+<!-- All course materials. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/course-materials.html?frameId=all-course-materials"
+        title="All course materials"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+------------------------------------------------------------------
+THIS WEEK
+------------------------------------------------------------------
+
+### Today
+
+<!-- Today. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/today.html?frameId=today"
+        title="Today"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Course calendar
+
+<!-- Course calendar. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/bio004-course-calendar.html?frameId=course-calendar"
+        title="Course calendar"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Study With Me
+
+<!-- Study With Me. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/study-session-signup.html?frameId=study-with-me"
+        title="Study With Me"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+------------------------------------------------------------------
+MATERIALS
+------------------------------------------------------------------
+
+### Notes
+
+<!-- Notes. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/course-materials.html?show=notes&frameId=notes"
+        title="Notes"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Pre-work sheets
+
+<!-- Pre-work sheets. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/course-materials.html?show=sheets&frameId=pre-work-sheets"
+        title="Pre-work sheets"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Concept videos
+
+<!-- Concept videos. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/course-materials.html?show=videos&frameId=concept-videos"
+        title="Concept videos"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Lab sprints
+
+<!-- Lab sprints. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/lab-sprints.html?frameId=lab-sprints"
+        title="Lab sprints"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Exam modules
+
+<!-- Exam modules. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/bio004-exam-modules.html?frameId=exam-modules"
+        title="Exam modules"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+------------------------------------------------------------------
+STUDY TOOLS
+------------------------------------------------------------------
+
+### Practice exam
+
+<!-- Practice exam. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/practice-lecture-exam.html?frameId=practice-exam"
+        title="Practice exam"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Brain dump practice
+
+<!-- Brain dump practice. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/brain-dump-practice.html?frameId=brain-dump-practice"
+        title="Brain dump practice"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Mastery OS
+
+<!-- Mastery OS. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/mastery-os-fall-2026.html?frameId=mastery-os"
+        title="Mastery OS"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Weak spot board
+
+<!-- Weak spot board. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/mastery-os-fall-2026.html#s-weak?frameId=weak-spot-board"
+        title="Weak spot board"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Recall cards
+
+<!-- Recall cards. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/mastery-os-fall-2026.html#s-recall?frameId=recall-cards"
+        title="Recall cards"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Draw it from memory
+
+<!-- Draw it from memory. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/mastery-canvas.html?frameId=draw-it-from-memory"
+        title="Draw it from memory"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### What I got done today
+
+<!-- What I got done today. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/bio004-day-review.html?frameId=what-i-got-done-today"
+        title="What I got done today"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+------------------------------------------------------------------
+COURSE
+------------------------------------------------------------------
+
+### Syllabus, Mon / Wed
+
+<!-- Syllabus, Mon / Wed. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/syllabus-class1.html?frameId=syllabus-mon-wed"
+        title="Syllabus, Mon / Wed"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Syllabus, Tue / Thu AM
+
+<!-- Syllabus, Tue / Thu AM. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/syllabus-class2.html?frameId=syllabus-tue-thu-am"
+        title="Syllabus, Tue / Thu AM"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Syllabus, Tue / Thu PM
+
+<!-- Syllabus, Tue / Thu PM. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/syllabus-class3.html?frameId=syllabus-tue-thu-pm"
+        title="Syllabus, Tue / Thu PM"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Start here
+
+<!-- Start here. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/start-here.html?frameId=start-here"
+        title="Start here"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### How this course works
+
+<!-- How this course works. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/how-this-course-works.html?frameId=how-this-course-works"
+        title="How this course works"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Virtual Office
+
+<!-- Virtual Office. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/virtual-office.html?frameId=virtual-office"
+        title="Virtual Office"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+### Required materials
+
+<!-- Required materials. BIO 004 Fall 2026. Height syncs automatically. -->
+<iframe src="https://drsrennie-stack.github.io/new-build-bio4-solano/required-materials.html?frameId=required-materials"
+        title="Required materials"
+        loading="lazy"
+        style="display:block;width:100%;height:1200px;border:0;background:transparent"
+        scrolling="no"></iframe>
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>
+
+------------------------------------------------------------------
+ELSEWHERE
+------------------------------------------------------------------
+
+### Digital AtlasOFF SITE
+
+<!-- Digital Atlas. Hosted elsewhere, so no height message arrives.
+     Fixed frame; adjust the height to taste. -->
+<iframe src="https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo"
+        title="Digital Atlas"
+        loading="lazy"
+        style="display:block;width:100%;height:900px;border:0;border-radius:12px;background:#fff"
+        allowfullscreen></iframe>
+
+### LoopsOFF SITE
+
+<!-- Loops. Hosted elsewhere, so no height message arrives.
+     Fixed frame; adjust the height to taste. -->
+<iframe src="https://drsrennie-stack.github.io/loops/"
+        title="Loops"
+        loading="lazy"
+        style="display:block;width:100%;height:900px;border:0;border-radius:12px;background:#fff"
+        allowfullscreen></iframe>
+
+### Muscle charts, I O AOFF SITE
+
+<!-- Muscle charts, I O A. Hosted elsewhere, so no height message arrives.
+     Fixed frame; adjust the height to taste. -->
+<iframe src="https://www.medmasterscollaborative.com/muscle-charts-i-o-a-inn"
+        title="Muscle charts, I O A"
+        loading="lazy"
+        style="display:block;width:100%;height:900px;border:0;border-radius:12px;background:#fff"
+        allowfullscreen></iframe>
+
+==================================================================
+THE RECEIVER ON ITS OWN, for reference
+==================================================================
+
+<script>
+/* Grows the frame to fit the page inside it.
+   Matches on the window the message came from, not on an id,
+   because the course site uses two id conventions and this is
+   immune to both. */
+(function(){
+  var f = document.currentScript.previousElementSibling;
+  if(!f || f.tagName !== "IFRAME"){
+    f = document.currentScript.parentNode.querySelector("iframe");
+  }
+  if(!f) return;
+  window.addEventListener("message", function(e){
+    var d = e.data;
+    if(!d || d.type !== "resize" || !d.height) return;
+    if(e.source !== f.contentWindow) return;   /* not our frame */
+    /* A dealt practice exam runs past 25,000px. The ceiling is
+       only here to ignore a nonsense number, not to trim a page. */
+    var h = Math.max(320, Math.min(80000, parseInt(d.height, 10) || 0));
+    f.style.height = h + "px";
+  }, false);
+}());
+</script>

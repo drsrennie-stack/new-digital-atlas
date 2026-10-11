@@ -1,0 +1,15 @@
+BIO 004 course site: Digital Atlas link swap
+Drag every file in this folder into the repo root of new-build-bio4-solano. Each file replaces the copy already there.
+
+What changed: every link to the old Articulate atlas (share.articulate.com/UOHEe3p6DmTC4nXuUTE02) now opens the new Anatomy Atlas (https://claude.ai/artifact/88nmVMHdWVZGXf3ShnSURo). Nothing else in these files changed.
+
+- slides-*.html (51 slide decks): Digital Atlas link in the slide nav
+- week-*-hub.html, week-1-mw.html (18 week pages): Digital Atlas link
+- module-1 to module-5-structure-list.html: Digital Atlas link
+- syllabus-class1/2/3.html, welcome.html: Digital Atlas link
+- bio004-launchpad.html, bio004-launchpad-overlay.js, bio004-dock.js, bio004-faculty-dock.js, course-links.js: the course tools (launchpad door, dock button, shared link list)
+- bio004-digital-atlas.html: the old iframe wrapper now sends students straight to the new atlas, with a tap-here link as backup
+- kajabi-embed-kit.html, kajabi-embed-snippets.txt, canvas-links.md: link lists and embed kits
+- bio004-atlas-tile-add.py, bio004-apps-flyer-build.py: build scripts, so a rebuild keeps the new link
+
+Before students click: open the atlas, use its Share menu and turn on link sharing, or students will see a sign-in page.
