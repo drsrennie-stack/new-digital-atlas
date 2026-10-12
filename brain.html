@@ -53,6 +53,7 @@ dialog.zoom::backdrop{background:rgba(11,21,48,.6)}
 .zwrap.big{place-items:start}
 .zwrap.big svg{max-width:none;max-height:none}
 .plate svg{display:block;width:100%;height:auto;background:#fff;border-radius:8px;user-select:none}
+.fix .mine{margin-left:8px;border:1px solid var(--line,#D5D9E2);background:#fff;color:#256B3A;border-radius:8px;padding:3px 9px;font:700 13px var(--f-body);cursor:pointer}
 .pin{cursor:pointer;transition:opacity .15s}
 .pin:hover{opacity:.18}
 @media (hover:none){.pin:hover{opacity:1}}
@@ -259,7 +260,10 @@ function drawList(){
       inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const nx=$('in'+(n+1));nx?nx.focus():check()}};
       box.appendChild(inp);
       if(st.result!=null||st.shown){const f=document.createElement('div');
-        f.className='fix'+(st.shown?' cmp':st.result?' ok':'');f.textContent=st.shown?'Compare with: '+ans:st.result?ans:'Answer: '+ans;box.appendChild(f)}
+        f.className='fix'+(st.shown?' cmp':st.result?' ok':'');f.textContent=st.shown?'Compare with: '+ans:st.result?ans:'Answer: '+ans;box.appendChild(f);
+        if(st.result===false){const m=document.createElement('button');m.type='button';m.className='mine';m.textContent='I had it right';
+          m.onclick=()=>{st.result=true;const REC='atlasRec_'+DECK.id,rec=store.get(REC,{}),k=c.img+'|'+c.title+'#'+(u.it?'q'+u.key:u.p.lab),r=rec[k];
+            if(r){r.ok=true;r.w=Math.max(0,r.w-1);r.r=(r.r||0)+1;store.set(REC,rec)}window.dispatchEvent(new Event('atlas-rec'));drawFig();drawList()};f.append(' ',m)}}
     }else if(mode==='reveal'){
       const b=document.createElement('button');b.className='reveal'+(st.open?' open':'');
       b.textContent=st.open?ans:(u.it?'Tap to show the answer':'Tap to show '+u.lab);b.setAttribute('aria-expanded',!!st.open);

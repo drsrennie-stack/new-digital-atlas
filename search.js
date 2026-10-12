@@ -117,6 +117,7 @@
   #wkDlg .tag{font-size:12px;font-weight:700;border-radius:99px;padding:3px 9px;white-space:nowrap}
   #wkDlg .t-miss{background:#F7E3E0;color:#8B3A2E}#wkDlg .t-new{background:#EEF0F4;color:#4F576A}#wkDlg .t-ok{background:#E2F1E6;color:#256B3A}
   #wkDlg .go a{font-size:14px;font-weight:700;color:#0B1530}
+  #wkDlg .mine{border:1px solid #D5D9E2;background:#fff;color:#256B3A;border-radius:8px;padding:4px 9px;font:700 13px inherit;font-family:inherit;cursor:pointer}
   #wkDlg .empty{background:#F3F4F7;border-radius:12px;padding:16px;color:#4F576A}
   #wkDlg .foot{margin-top:18px;font-size:13px;color:#4F576A;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
   #wkDlg .foot button{border:1px solid #D5D9E2;background:#fff;border-radius:8px;padding:6px 10px;font-family:inherit;font-size:13px;cursor:pointer;color:#0B1530}
@@ -155,7 +156,7 @@
       if(!miss.length&&!ok.length&&!freshRows.length)return;any=true;
       h+=`<h3><span>${esc(c.title)}</span><a href="${c.id}.html">Open chapter</a></h3><ul>`;
       const row=(e,name,sub,tag)=>`<li><span class="nm">${esc(name)}</span><span class="ct">${sub}</span><span class="go">${tag}<a href="${e.d}.html#c${e.c}" data-go>Practice this card</a></span></li>`;
-      miss.forEach(i=>{h+=row(i.e,i.e.show,`Card ${i.e.c}${i.e.lab?', number '+i.e.lab:''}: ${esc(i.e.ct)}`,`<span class="tag t-miss">Missed${i.r.w>1?' '+i.r.w+' times':''}</span>`)});
+      miss.forEach(i=>{h+=row(i.e,i.e.show,`Card ${i.e.c}${i.e.lab?', number '+i.e.lab:''}: ${esc(i.e.ct)}`,`<span class="tag t-miss">Missed${i.r.w>1?' '+i.r.w+' times':''}</span><button type="button" class="mine" data-d="${i.e.d}" data-k="${esc(key(i.e))}">I had it right</button>`)});
       freshRows.forEach(f=>{h+=row(f.e,'Card '+f.e.c+': '+f.e.ct,`${f.n} ${f.n===1?'structure':'structures'} you haven't tried`,'<span class="tag t-new">Not tried</span>')});
       ok.forEach(i=>{h+=row(i.e,i.e.show,`Card ${i.e.c}${i.e.lab?', number '+i.e.lab:''}: ${esc(i.e.ct)}`,'<span class="tag t-ok">Got it</span>')});
       h+='</ul>'});
@@ -170,6 +171,8 @@
       s.innerHTML=`Clear everything saved for Module ${prefs.mod}? <button type="button" id="wkYes">Yes, clear it</button> <button type="button" id="wkNo">Keep it</button>`;
       s.querySelector('#wkYes').onclick=()=>{chs.forEach(c=>del('atlasRec_'+c.id));render()};s.querySelector('#wkNo').onclick=render};
     dlg.querySelectorAll('a[data-go]').forEach(a=>a.onclick=()=>{dlg.close()});
+    dlg.querySelectorAll('button.mine').forEach(b=>b.onclick=()=>{const R=get('atlasRec_'+b.dataset.d)||{},r=R[b.dataset.k];
+      if(r){r.ok=true;r.w=Math.max(0,r.w-1);r.r=(r.r||0)+1;set('atlasRec_'+b.dataset.d,R)}render()});
   }
   function esc(s){return String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]))}
   function save(){set('atlasWeakPrefs',prefs)}
