@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Vertebrae, Pelvis and Lower Limb Bones Practice Cards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: specimen on a lifted white plate at left, answer sheet at right, card strip across the top. Single light look: white page, navy ink, maroon terra cotta, small gold accents. */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --ink:#0B1530; --muted:#4F576A; --line:rgba(11,21,48,.15);
+  --navy:#0B1530; --maroon:#8B3A2E; --maroon-soft:#F3F4F7; --gold:#8B3A2E; --gold-soft:#F3F4F7;
+  --good:#2b7a34; --good-soft:#e5f2e4; --bad:#c0392b; --bad-soft:#fbe9e7;
+  --shadow:0 0 0 .5px rgba(11,21,48,.15);
+  --f-display:"Open Sans","Plus Jakarta Sans",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;font-style:normal}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.45;margin:0}
+a{color:var(--maroon)}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px;padding-block:18px 48px;display:grid;gap:16px}
+.home{font-weight:700;text-decoration:none;font-size:15px;display:inline-flex;gap:6px;align-items:center}
+.home:hover{text-decoration:underline}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4vw,40px);line-height:1.05;margin:4px 0 0;color:var(--navy);text-wrap:balance}
+.sets{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible,.pin:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 14px;font-size:15px}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.strip{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+.strip button{flex:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-variant-numeric:tabular-nums;position:relative}
+.strip button[aria-current="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.strip .dot{position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:50%}
+.strip .dot.done{background:var(--good)} .strip .dot.part{background:var(--gold)}
+.stage{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,1fr);gap:22px;align-items:start}
+@media (max-width:860px){.stage{grid-template-columns:1fr}}
+.plate{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:14px;min-width:0}
+.plate{position:relative}
+.zbtn{position:absolute;top:22px;right:22px;z-index:2;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:rgba(255,255,255,.94);border-radius:99px;padding:7px 13px;font:700 13px/1 var(--f-body);color:var(--navy);cursor:pointer;box-shadow:0 2px 8px rgba(11,21,48,.12)}
+.zbtn:hover{border-color:var(--maroon);color:var(--maroon)}
+.plate svg{cursor:zoom-in}
+dialog.zoom{border:0;padding:0;width:100vw;height:100vh;max-width:100vw;max-height:100vh;background:#0B1530}
+dialog.zoom::backdrop{background:rgba(11,21,48,.6)}
+.zbar{position:fixed;top:0;left:0;right:0;display:flex;gap:10px;align-items:center;padding:12px 16px;color:#fff;font-weight:700;z-index:3}
+.zbar .zt{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zbar button{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;border-radius:99px;padding:8px 14px;font:700 13px/1 var(--f-body);cursor:pointer}
+.zbar button:hover{background:rgba(255,255,255,.22)}
+.zwrap{position:absolute;inset:58px 0 0 0;overflow:auto;display:grid;place-items:center;padding:8px 16px 24px}
+.zwrap svg{display:block;background:#fff;border-radius:8px;max-width:calc(100vw - 32px);max-height:calc(100vh - 92px);width:auto;height:auto}
+.zwrap.big{place-items:start}
+.zwrap.big svg{max-width:none;max-height:none}
+.plate svg{display:block;width:100%;height:auto;background:#fff;border-radius:8px;user-select:none}
+.pin{cursor:pointer}
+.pin circle{fill:var(--navy);stroke:#fff;stroke-width:3}
+.pin text{fill:#fff;font-family:var(--f-body);font-weight:700}
+.pin.hot circle{fill:var(--maroon)}
+.ring{fill:none;stroke:#DCB45C;stroke-width:7;pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.ring{animation:ring 1.4s ease-out infinite}@keyframes ring{0%{stroke-opacity:1;stroke-width:9}100%{stroke-opacity:.15;stroke-width:3}}}
+.lbl.found{fill:var(--maroon)}
+.found-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--gold-soft);border-radius:10px;padding:10px 14px;font-weight:700}
+.found-bar span{color:var(--maroon)}
+.found-bar button{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 12px;font-weight:700;color:var(--navy)}
+.dsearch{position:relative;min-width:0;flex:1 1 280px;max-width:420px}
+.dsearch input{width:100%;font:inherit;font-size:16px;padding:9px 12px;border:2px solid var(--navy);border-radius:10px}
+.dres{position:absolute;z-index:5;left:0;right:0;top:calc(100% + 4px);background:#fff;border-radius:10px;box-shadow:var(--shadow);max-height:360px;overflow:auto}
+.dres a{display:block;padding:9px 12px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+.dres a:hover,.dres a:focus{background:var(--gold-soft)}
+.dres b{color:var(--navy)} .dres small{color:var(--muted);display:block}
+.pin.right circle{fill:var(--good)} .pin.wrong circle{fill:var(--bad)}
+.lbl{font-family:var(--f-body);font-weight:700;fill:var(--navy);paint-order:stroke;stroke:#fff;stroke-width:7px;stroke-linejoin:round;pointer-events:none}
+.lbl.hot{fill:var(--maroon)}
+.sheet{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:18px 18px 16px;display:grid;gap:14px;min-width:0}
+.cardhead h2{font-family:var(--f-display);font-weight:600;font-size:24px;line-height:1.15;margin:2px 0 0;color:var(--navy);text-wrap:balance}
+.depth{margin:0 0 12px}
+.depth button{display:inline-flex;align-items:center;gap:12px;border:0;background:none;padding:4px 0;font:600 15px/1.3 var(--f-body);color:var(--navy);cursor:pointer;text-align:left}
+.depth .track{flex:none;width:46px;height:26px;border-radius:99px;background:#C9CDD8;position:relative;transition:background .2s}
+.depth .knob{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(11,21,48,.3);transition:left .2s}
+.depth button[aria-checked="true"] .track{background:var(--navy)}
+.depth button[aria-checked="true"] .knob{left:23px}
+.more{margin-top:26px;background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:18px}
+.more h2{font-family:var(--f-display);font-size:20px;margin:0 0 10px;color:var(--navy)}
+.more a{display:block;padding:10px 0;border-top:1px solid var(--line);color:var(--maroon);font-weight:700;text-decoration:none}
+.more a:hover{text-decoration:underline}
+.more a small{display:block;color:var(--muted);font-weight:500}
+.modes{display:flex;background:var(--maroon-soft);border-radius:10px;padding:4px;gap:4px}
+.modes button{flex:1;border:0;background:transparent;border-radius:7px;padding:8px 6px;font-size:15px;font-weight:700;color:var(--maroon)}
+.modes button[aria-pressed="true"]{background:var(--maroon);color:#fff}
+.hint{font-size:15px;color:var(--muted);margin:0}
+ol.answers{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.answers li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:center;border-radius:4px;padding:4px 6px}
+ol.answers li.hot{background:var(--gold-soft)}
+.num{width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px;font-variant-numeric:tabular-nums}
+.num.right{background:var(--good)} .num.wrong{background:var(--bad)}
+.q{font-weight:700;margin-bottom:4px}
+.field input{width:100%;font:inherit;font-size:17px;padding:8px 10px;border:1.5px solid var(--line);border-radius:8px;background:#fbfbfc;color:var(--ink)}
+.field input.right{border-color:var(--good);background:var(--good-soft)}
+.field input.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.field input.self{border-color:var(--gold);background:var(--gold-soft)}
+.fix{font-size:15px;margin-top:3px;color:var(--bad);font-weight:700}
+.fix.ok{color:var(--good)} .fix.cmp{color:var(--navy)}
+.reveal{width:100%;text-align:left;border:1.5px dashed var(--line);background:transparent;border-radius:8px;padding:8px 10px;color:var(--muted);font-size:16px}
+.reveal.open{border-style:solid;border-color:transparent;background:var(--gold-soft);color:var(--ink);font-weight:700}
+.ans{font-weight:700;padding:6px 2px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:9px 16px;font-weight:700;font-size:16px;color:var(--navy)}
+.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.score{font-weight:700;font-variant-numeric:tabular-nums;color:var(--maroon)}
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+footer.note{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.pin circle,.num,.reveal{transition:fill .15s,background .15s}}
+.vids h2{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,3vw,28px);margin:8px 0 2px;color:var(--navy)}
+.vids-sub{color:var(--muted);margin:0 0 12px;font-size:15px}
+</style>
+
+<div class="wrap">
+  <a class="home" href="atlas.html">&larr; Atlas index</a>
+  <header class="top">
+    <div>
+      <div class="eyebrow">Anatomy Atlas &middot; BIO 004 Human Anatomy</div>
+      <h1>Vertebrae, Pelvis and Lower Limb Bones Practice Cards</h1>
+    </div>
+      </header>
+  <div class="sets" id="sets" role="group" aria-label="Which cards to practice"></div>
+  <div class="depth" id="depth" hidden><button id="dSw" type="button" role="switch" aria-checked="true"><span class="track"><span class="knob"></span></span><span class="dl">Also ask origin, insertion and action</span></button></div>
+  <nav class="strip" id="strip" aria-label="Cards"></nav>
+  <main class="stage">
+    <div class="plate"><button class="zbtn" id="zoomBtn" type="button" aria-label="Zoom in on this image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg>Zoom</button><svg id="fig" role="img" aria-label="Practice image"></svg></div>
+    <dialog class="zoom" id="zoom" aria-label="Enlarged image">
+      <div class="zbar"><span class="zt" id="zTitle"></span><button type="button" id="zPrev" aria-label="Previous card">&larr;</button><button type="button" id="zNext" aria-label="Next card">&rarr;</button><button type="button" id="zSize">Bigger</button><button type="button" id="zClose">Close</button></div>
+      <div class="zwrap" id="zWrap"></div>
+    </dialog>
+    <section class="sheet">
+      <div class="cardhead"><div class="eyebrow" id="cardEyebrow"></div><h2 id="cardTitle"></h2></div>
+      <div class="modes" role="group" aria-label="How to practice">
+        <button id="mType" aria-pressed="true">Type answers</button>
+        <button id="mReveal" aria-pressed="false">Tap to reveal</button>
+        <button id="mStudy" aria-pressed="false">Show all</button>
+      </div>
+      <div class="found-bar" id="found" hidden></div>
+      <p class="hint" id="hint"></p>
+      <ol class="answers" id="answers"></ol>
+      <div class="row" id="actions"></div>
+      <div class="nav">
+        <button class="btn" id="prev">&larr; Previous card</button>
+        <button class="btn" id="shuffle">Shuffle cards</button>
+        <button class="btn" id="next">Next card &rarr;</button>
+      </div>
+    </section>
+  </main>
+  <section class="vids" id="vids" data-videos="skeleton" hidden aria-labelledby="vidsH"><h2 id="vidsH">Walk-through videos</h2><p class="vids-sub">Watch the structures pointed out, then practice them on the cards above.</p></section>
+  <section class="more" id="more" hidden><h2>Further study</h2><div id="moreLinks"></div></section>
+  <footer class="note"><b>Spelling counts on the lab exam.</b> Practice here accepts close spellings, but on the exam the only abbreviations allowed are R. (right), L. (left), A. (artery), V. (vein) and N. (nerve). Spell everything else out. Your progress stays on this device. Cadaver images courtesy of BlueLink, University of Michigan Medical School. Histology images courtesy of Duke University Virtual Microscopy. Black-and-white brain images from Duane E. Haines's neuroanatomy atlas.</footer>
+</div>
+
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="videos-data.js"></script>
+<script src="videos.js"></script>
+<script>
+const DECK={"id": "skeleton", "title": "Vertebrae, Pelvis and Lower Limb Bones", "sets": {"spine": "Vertebral column", "pelvis": "Pelvis", "limb": "Lower limb bones"}, "cards": [{"id": "01", "title": "Atlas (C1, left) and axis (C2, right), superior view", "set": "spine", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Spinous process", "x": 1508, "y": 414, "box": [1503, 409, 1513, 419], "q": "Name this bone feature.", "acc": [], "tags": ["Spinous process"]}, {"n": 2, "lab": "2", "a": "Vertebral foramen", "x": 392, "y": 432, "box": [387, 427, 397, 437], "q": "Name this bone feature.", "acc": [], "tags": ["Vertebral foramen"]}, {"n": 3, "lab": "3", "a": "Posterior tubercle", "x": 550, "y": 458, "box": [545, 453, 555, 463], "q": "Name this bone feature.", "acc": [], "tags": ["Posterior tubercle"]}, {"n": 4, "lab": "4", "a": "Posterior arch", "x": 606, "y": 498, "box": [601, 493, 611, 503], "q": "Name this bone feature.", "acc": [], "tags": ["Posterior arch"]}, {"n": 5, "lab": "5", "a": "Facet for the dens", "x": 290, "y": 525, "box": [285, 520, 295, 530], "q": "Name this bone feature.", "acc": [], "tags": ["Facet for the dens"]}, {"n": 6, "lab": "6", "a": "Transverse foramen", "x": 755, "y": 560, "box": [750, 555, 760, 565], "q": "Name this bone feature.", "acc": [], "tags": ["Transverse foramen"]}, {"n": 7, "lab": "7", "a": "Vertebral foramen", "x": 1508, "y": 560, "box": [1503, 555, 1513, 565], "q": "Name this bone feature.", "acc": [], "tags": ["Vertebral foramen"]}, {"n": 8, "lab": "8", "a": "Transverse process", "x": 806, "y": 626, "box": [801, 621, 811, 631], "q": "Name this bone feature.", "acc": [], "tags": ["Transverse process"]}, {"n": 9, "lab": "9", "a": "Inferior articular process and facet", "x": 1710, "y": 636, "box": [1705, 631, 1715, 641], "q": "Name this bone feature.", "acc": ["inferior articular process", "inferior articular facet", "inferior articular process & facet"], "tags": ["Inferior articular process and facet"]}, {"n": 10, "lab": "10", "a": "Transverse process", "x": 1062, "y": 760, "box": [1057, 755, 1067, 765], "q": "Name this bone feature.", "acc": [], "tags": ["Transverse process"]}, {"n": 11, "lab": "11", "a": "Anterior arch", "x": 330, "y": 884, "box": [325, 879, 335, 889], "q": "Name this bone feature.", "acc": [], "tags": ["Anterior arch"]}, {"n": 12, "lab": "12", "a": "Anterior tubercle", "x": 527, "y": 874, "box": [522, 869, 532, 879], "q": "Name this bone feature.", "acc": [], "tags": ["Anterior tubercle"]}, {"n": 13, "lab": "13", "a": "Superior articular process and facet", "x": 1152, "y": 905, "box": [1147, 900, 1157, 910], "q": "Name this bone feature.", "acc": ["superior articular process", "superior articular facet", "superior articular process & facet"], "tags": ["Superior articular process and facet"]}, {"n": 14, "lab": "14", "a": "Dens", "x": 1488, "y": 920, "box": [1483, 915, 1493, 925], "q": "Name this bone feature.", "acc": ["odontoid process"], "tags": ["Dens"]}, {"n": 15, "lab": "15", "a": "Body", "x": 1398, "y": 992, "box": [1393, 987, 1403, 997], "q": "Name this bone feature.", "acc": [], "tags": ["Body"]}], "items": [], "img": "img/skeleton-01.jpg", "n": 1}, {"id": "02", "title": "Typical cervical vertebra: superior and lateral views", "set": "spine", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Spinous process", "x": 1080, "y": 178, "box": [1075, 173, 1085, 183], "q": "Name this bone feature.", "acc": [], "tags": ["Spinous process"]}, {"n": 2, "lab": "2", "a": "Superior articular process and facet", "x": 1355, "y": 155, "box": [1350, 150, 1360, 160], "q": "Name this bone feature.", "acc": ["superior articular process", "superior articular facet", "superior articular process & facet"], "tags": ["Superior articular process and facet"]}, {"n": 3, "lab": "3", "a": "Lamina", "x": 888, "y": 362, "box": [883, 357, 893, 367], "q": "Name this bone feature.", "acc": [], "tags": ["Lamina"]}, {"n": 4, "lab": "4", "a": "Superior articular process and facet", "x": 262, "y": 492, "box": [257, 487, 267, 497], "q": "Name this bone feature.", "acc": ["superior articular process", "superior articular facet", "superior articular process & facet"], "tags": ["Superior articular process and facet"]}, {"n": 5, "lab": "5", "a": "Transverse process", "x": 1745, "y": 530, "box": [1740, 525, 1750, 535], "q": "Name this bone feature.", "acc": [], "tags": ["Transverse process"]}, {"n": 6, "lab": "6", "a": "Vertebral arch", "x": 530, "y": 540, "box": [525, 535, 535, 545], "q": "Name this bone feature.", "acc": [], "tags": ["Vertebral arch"]}, {"n": 7, "lab": "7", "a": "Vertebral foramen", "x": 702, "y": 558, "box": [697, 553, 707, 563], "q": "Name this bone feature.", "acc": [], "tags": ["Vertebral foramen"]}, {"n": 8, "lab": "8", "a": "Inferior articular process", "x": 1330, "y": 645, "box": [1325, 640, 1335, 650], "q": "Name this bone feature.", "acc": [], "tags": ["Inferior articular process"]}, {"n": 9, "lab": "9", "a": "Inferior articular facet", "x": 1450, "y": 664, "box": [1445, 659, 1455, 669], "q": "Name this bone feature.", "acc": [], "tags": ["Inferior articular facet"]}, {"n": 10, "lab": "10", "a": "Pedicle", "x": 395, "y": 812, "box": [390, 807, 400, 817], "q": "Name this bone feature.", "acc": [], "tags": ["Pedicle"]}, {"n": 11, "lab": "11", "a": "Transverse process", "x": 1112, "y": 838, "box": [1107, 833, 1117, 843], "q": "Name this bone feature.", "acc": [], "tags": ["Transverse process"]}, {"n": 12, "lab": "12", "a": "Transverse foramen", "x": 908, "y": 878, "box": [903, 873, 913, 883], "q": "Name this bone feature.", "acc": ["transverse forament"], "tags": ["Transverse foramen"]}, {"n": 13, "lab": "13", "a": "Body", "x": 630, "y": 918, "box": [625, 913, 635, 923], "q": "Name this bone feature.", "acc": [], "tags": ["Body"]}], "items": [], "img": "img/skeleton-02.jpg", "n": 2}, {"id": "03", "title": "Typical thoracic vertebra: superior and lateral views", "set": "spine", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Spinous process", "x": 560, "y": 196, "box": [555, 191, 565, 201], "q": "Name this bone feature.", "acc": [], "tags": ["Spinous process"]}, {"n": 2, "lab": "2", "a": "Superior articular facet and process", "x": 1252, "y": 342, "box": [1247, 337, 1257, 347], "q": "Name this bone feature.", "acc": ["superior articular process", "superior articular facet"], "tags": ["Superior articular facet and process"]}, {"n": 3, "lab": "3", "a": "Lamina", "x": 652, "y": 420, "box": [647, 415, 657, 425], "q": "Name this bone feature.", "acc": [], "tags": ["Lamina"]}, {"n": 4, "lab": "4", "a": "Vertebral arch", "x": 440, "y": 424, "box": [435, 419, 445, 429], "q": "Name this bone feature.", "acc": [], "tags": ["Vertebral arch"]}, {"n": 5, "lab": "5", "a": "Vertebral foramen", "x": 560, "y": 572, "box": [555, 567, 565, 577], "q": "Name this bone feature.", "acc": [], "tags": ["Vertebral foramen"]}, {"n": 6, "lab": "6", "a": "Transverse process", "x": 820, "y": 578, "box": [815, 573, 825, 583], "q": "Name this bone feature.", "acc": [], "tags": ["Transverse process"]}, {"n": 7, "lab": "7", "a": "Body", "x": 1710, "y": 616, "box": [1705, 611, 1715, 621], "q": "Name this bone feature.", "acc": [], "tags": ["Body"]}, {"n": 8, "lab": "8", "a": "Pedicle", "x": 342, "y": 650, "box": [337, 645, 347, 655], "q": "Name this bone feature.", "acc": [], "tags": ["Pedicle"]}, {"n": 9, "lab": "9", "a": "Body", "x": 538, "y": 688, "box": [533, 683, 543, 693], "q": "Name this bone feature.", "acc": [], "tags": ["Body"]}, {"n": 10, "lab": "10", "a": "Costal facet", "x": 1310, "y": 698, "box": [1305, 693, 1315, 703], "q": "Name this bone feature.", "acc": [], "tags": ["Costal facet"]}, {"n": 11, "lab": "11", "a": "Transverse process", "x": 1410, "y": 722, "box": [1405, 717, 1415, 727], "q": "Name this bone feature.", "acc": [], "tags": ["Transverse process"]}, {"n": 12, "lab": "12", "a": "Spinous process", "x": 1105, "y": 742, "box": [1100, 737, 1110, 747], "q": "Name this bone feature.", "acc": [], "tags": ["Spinous process"]}, {"n": 13, "lab": "13", "a": "Inferior articular facet and process", "x": 1630, "y": 757, "box": [1625, 752, 1635, 762], "q": "Name this bone feature.", "acc": ["inferior articular process", "inferior articular facet"], "tags": ["Inferior articular facet and process"]}], "items": [], "img": "img/skeleton-03.jpg", "n": 3}, {"id": "04", "title": "Typical lumbar vertebra: superior and lateral views", "set": "spine", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Spinous process", "x": 552, "y": 212, "box": [547, 207, 557, 217], "q": "Name this bone feature.", "acc": [], "tags": ["Spinous process"]}, {"n": 2, "lab": "2", "a": "Vertebral arch", "x": 440, "y": 420, "box": [435, 415, 445, 425], "q": "Name this bone feature.", "acc": [], "tags": ["Vertebral arch"]}, {"n": 3, "lab": "3", "a": "Superior articular facet and process", "x": 1160, "y": 380, "box": [1155, 375, 1165, 385], "q": "Name this bone feature.", "acc": ["superior articular process", "superior articular facet"], "tags": ["Superior articular facet and process"]}, {"n": 4, "lab": "4", "a": "Lamina", "x": 614, "y": 432, "box": [609, 427, 619, 437], "q": "Name this bone feature.", "acc": [], "tags": ["Lamina"]}, {"n": 5, "lab": "5", "a": "Transverse process", "x": 810, "y": 556, "box": [805, 551, 815, 561], "q": "Name this bone feature.", "acc": [], "tags": ["Transverse process"]}, {"n": 6, "lab": "6", "a": "Vertebral foramen", "x": 536, "y": 592, "box": [531, 587, 541, 597], "q": "Name this bone feature.", "acc": [], "tags": ["Vertebral foramen"]}, {"n": 7, "lab": "7", "a": "Pedicle", "x": 342, "y": 648, "box": [337, 643, 347, 653], "q": "Name this bone feature.", "acc": [], "tags": ["Pedicle"]}, {"n": 8, "lab": "8", "a": "Body", "x": 1680, "y": 690, "box": [1675, 685, 1685, 695], "q": "Name this bone feature.", "acc": [], "tags": ["Body"]}, {"n": 9, "lab": "9", "a": "Body", "x": 537, "y": 774, "box": [532, 769, 542, 779], "q": "Name this bone feature.", "acc": [], "tags": ["Body"]}, {"n": 10, "lab": "10", "a": "Spinous process", "x": 920, "y": 882, "box": [915, 877, 925, 887], "q": "Name this bone feature.", "acc": [], "tags": ["Spinous process"]}, {"n": 11, "lab": "11", "a": "Transverse process", "x": 1328, "y": 908, "box": [1323, 903, 1333, 913], "q": "Name this bone feature.", "acc": [], "tags": ["Transverse process"]}, {"n": 12, "lab": "12", "a": "Inferior articular facet and process", "x": 1160, "y": 940, "box": [1155, 935, 1165, 945], "q": "Name this bone feature.", "acc": ["inferior articular process", "inferior articular facet"], "tags": ["Inferior articular facet and process"]}], "items": [], "img": "img/skeleton-04.jpg", "n": 4}, {"id": "05", "title": "Sacrum, anterior view", "set": "spine", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Base of sacrum", "x": 946, "y": 124, "box": [941, 119, 951, 129], "q": "Name this bone feature.", "acc": ["base"], "tags": ["Base of sacrum"]}, {"n": 2, "lab": "2", "a": "Superior articular process", "x": 1232, "y": 110, "box": [1227, 105, 1237, 115], "q": "Name this bone feature.", "acc": [], "tags": ["Superior articular process"]}, {"n": 3, "lab": "3", "a": "Sacral ala", "x": 1315, "y": 190, "box": [1310, 185, 1320, 195], "q": "Name this bone feature.", "acc": ["ala"], "tags": ["Sacral ala"]}, {"n": 4, "lab": "4", "a": "Sacral promontory", "x": 566, "y": 352, "box": [561, 347, 571, 357], "q": "Name this bone feature.", "acc": ["promontory", "sacral promontary"], "tags": ["Sacral promontory"]}, {"n": 5, "lab": "5", "a": "Anterior sacral foramen", "x": 552, "y": 500, "box": [547, 495, 557, 505], "q": "Name this bone feature.", "acc": ["anterior sacral foramina"], "tags": ["Anterior sacral foramen"]}], "items": [], "img": "img/skeleton-05.jpg", "n": 5}, {"id": "06", "title": "Sacrum, posterior view", "set": "spine", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Sacral canal", "x": 968, "y": 92, "box": [963, 87, 973, 97], "q": "Name this bone feature.", "acc": [], "tags": ["Sacral canal"]}, {"n": 2, "lab": "2", "a": "Superior articular facet", "x": 502, "y": 352, "box": [497, 347, 507, 357], "q": "Name this bone feature.", "acc": [], "tags": ["Superior articular facet"]}, {"n": 3, "lab": "3", "a": "Auricular surface", "x": 1300, "y": 388, "box": [1295, 383, 1305, 393], "q": "Name this bone feature.", "acc": [], "tags": ["Auricular surface"]}, {"n": 4, "lab": "4", "a": "Posterior sacral foramen", "x": 617, "y": 652, "box": [612, 647, 622, 657], "q": "Name this bone feature.", "acc": ["posterior sacral foramina"], "tags": ["Posterior sacral foramen"]}, {"n": 5, "lab": "5", "a": "Lateral sacral crest", "x": 1218, "y": 664, "box": [1213, 659, 1223, 669], "q": "Name this bone feature.", "acc": [], "tags": ["Lateral sacral crest"]}, {"n": 6, "lab": "6", "a": "Median sacral crest", "x": 1136, "y": 814, "box": [1131, 809, 1141, 819], "q": "Name this bone feature.", "acc": [], "tags": ["Median sacral crest"]}, {"n": 7, "lab": "7", "a": "Sacral hiatus", "x": 974, "y": 934, "box": [969, 929, 979, 939], "q": "Name this bone feature.", "acc": [], "tags": ["Sacral hiatus"]}, {"n": 8, "lab": "8", "a": "Sacral cornu", "x": 1095, "y": 936, "box": [1090, 931, 1100, 941], "q": "Name this bone feature.", "acc": ["sacral cornua"], "tags": ["Sacral cornu"]}], "items": [], "img": "img/skeleton-06.jpg", "n": 6}, {"id": "07", "title": "Coxal bone (os coxae), lateral view", "set": "pelvis", "type": "label", "w": 1920, "h": 1080, "r": 18, "pins": [{"n": 1, "lab": "1", "a": "Iliac crest", "x": 853, "y": 52, "box": [848, 47, 858, 57], "q": "Name this bone feature.", "acc": [], "tags": ["Iliac crest"]}, {"n": 2, "lab": "2", "a": "Anterior superior iliac spine", "x": 1068, "y": 126, "box": [1063, 121, 1073, 131], "q": "Name this bone feature.", "acc": ["ASIS"], "tags": ["Anterior superior iliac spine"]}, {"n": 3, "lab": "3", "a": "Anterior inferior iliac spine", "x": 1090, "y": 325, "box": [1085, 320, 1095, 330], "q": "Name this bone feature.", "acc": ["AIIS"], "tags": ["Anterior inferior iliac spine"]}, {"n": 4, "lab": "4", "a": "Posterior superior iliac spine", "x": 432, "y": 472, "box": [427, 467, 437, 477], "q": "Name this bone feature.", "acc": ["PSIS"], "tags": ["Posterior superior iliac spine"]}, {"n": 5, "lab": "5", "a": "Pubic tubercle", "x": 1293, "y": 535, "box": [1288, 530, 1298, 540], "q": "Name this bone feature.", "acc": [], "tags": ["Pubic tubercle"]}, {"n": 6, "lab": "6", "a": "Posterior inferior iliac spine", "x": 528, "y": 553, "box": [523, 548, 533, 558], "q": "Name this bone feature.", "acc": ["PIIS"], "tags": ["Posterior inferior iliac spine"]}, {"n": 7, "lab": "7", "a": "Greater sciatic notch", "x": 555, "y": 858, "box": [550, 853, 560, 863], "q": "Name this bone feature.", "acc": [], "tags": ["Greater sciatic notch"]}, {"n": 8, "lab": "8", "a": "Ischial spine", "x": 538, "y": 922, "box": [533, 917, 543, 927], "q": "Name this bone feature.", "acc": [], "tags": ["Ischial spine"]}, {"n": 9, "lab": "9", "a": "Acetabulum", "x": 760, "y": 918, "box": [755, 913, 765, 923], "q": "Name this bone feature.", "acc": [], "tags": ["Acetabulum"]}, {"n": 10, "lab": "10", "a": "Lesser sciatic notch", "x": 566, "y": 950, "box": [561, 945, 571, 955], "q": "Name this bone feature.", "acc": [], "tags": ["Lesser sciatic notch"]}, {"n": 11, "lab": "11", "a": "Obturator foramen", "x": 897, "y": 985, "box": [892, 980, 902, 990], "q": "Name this bone feature.", "acc": [], "tags": ["Obturator foramen"]}], "items": [], "img": "img/skeleton-07.jpg", "n": 7}, {"id": "08", "title": "Complete pelvis, anterior view", "set": "pelvis", "type": "label", "w": 1920, "h": 1080, "r": 22, "pins": [{"n": 1, "lab": "1", "a": "Iliac crest", "x": 640, "y": 46, "box": [635, 41, 645, 51], "q": "Name this bone feature.", "acc": [], "tags": ["Iliac crest"]}, {"n": 2, "lab": "2", "a": "Sacroiliac joint", "x": 890, "y": 122, "box": [885, 117, 895, 127], "q": "Name this bone feature.", "acc": [], "tags": ["Sacroiliac joint"]}, {"n": 3, "lab": "3", "a": "Sacroiliac joint", "x": 1262, "y": 122, "box": [1257, 117, 1267, 127], "q": "Name this bone feature.", "acc": [], "tags": ["Sacroiliac joint"]}, {"n": 4, "lab": "4", "a": "Anterior superior iliac spine", "x": 1690, "y": 112, "box": [1685, 107, 1695, 117], "q": "Name this bone feature.", "acc": ["ASIS"], "tags": ["Anterior superior iliac spine"]}, {"n": 5, "lab": "5", "a": "Sacrum", "x": 1076, "y": 148, "box": [1071, 143, 1081, 153], "q": "Name this bone feature.", "acc": [], "tags": ["Sacrum"]}, {"n": 6, "lab": "6", "a": "Anterior inferior iliac spine", "x": 1660, "y": 365, "box": [1655, 360, 1665, 370], "q": "Name this bone feature.", "acc": ["AIIS"], "tags": ["Anterior inferior iliac spine"]}, {"n": 7, "lab": "7", "a": "Superior pubic ramus", "x": 548, "y": 444, "box": [543, 439, 553, 449], "q": "Name this bone feature.", "acc": [], "tags": ["Superior pubic ramus"]}, {"n": 8, "lab": "8", "a": "Acetabulum", "x": 535, "y": 570, "box": [530, 565, 540, 575], "q": "Name this bone feature.", "acc": [], "tags": ["Acetabulum"]}, {"n": 9, "lab": "9", "a": "Ischial spine", "x": 515, "y": 665, "box": [510, 660, 520, 670], "q": "Name this bone feature.", "acc": [], "tags": ["Ischial spine"]}, {"n": 10, "lab": "10", "a": "Obturator foramen", "x": 550, "y": 700, "box": [545, 695, 555, 705], "q": "Name this bone feature.", "acc": [], "tags": ["Obturator foramen"]}, {"n": 11, "lab": "11", "a": "Inferior pubic ramus", "x": 600, "y": 760, "box": [595, 755, 605, 765], "q": "Name this bone feature.", "acc": [], "tags": ["Inferior pubic ramus"]}, {"n": 12, "lab": "12", "a": "Pubic symphysis", "x": 1100, "y": 782, "box": [1095, 777, 1105, 787], "q": "Name this bone feature.", "acc": [], "tags": ["Pubic symphysis"]}], "items": [], "img": "img/skeleton-08.jpg", "n": 8}, {"id": "09", "title": "Bones of the coxal bone", "set": "pelvis", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Wing of ilium", "x": 1100, "y": 192, "box": [1095, 187, 1105, 197], "q": "Name this bone feature.", "acc": ["ala of ilium", "iliac wing", "ilium wing"], "tags": ["Wing of ilium"]}, {"n": 2, "lab": "2", "a": "Body of ilium", "x": 736, "y": 442, "box": [731, 437, 741, 447], "q": "Name this bone feature.", "acc": ["ilium body"], "tags": ["Body of ilium"]}, {"n": 3, "lab": "3", "a": "Greater sciatic notch", "x": 1142, "y": 622, "box": [1137, 617, 1147, 627], "q": "Name this bone feature.", "acc": [], "tags": ["Greater sciatic notch"]}, {"n": 4, "lab": "4", "a": "Acetabulum", "x": 1098, "y": 672, "box": [1093, 667, 1103, 677], "q": "Name this bone feature.", "acc": [], "tags": ["Acetabulum"]}, {"n": 5, "lab": "5", "a": "Superior pubic ramus", "x": 462, "y": 712, "box": [457, 707, 467, 717], "q": "Name this bone feature.", "acc": [], "tags": ["Superior pubic ramus"]}, {"n": 6, "lab": "6", "a": "Body of ischium", "x": 1166, "y": 750, "box": [1161, 745, 1171, 755], "q": "Name this bone feature.", "acc": ["ischium body", "body ischium"], "tags": ["Body of ischium"]}, {"n": 7, "lab": "7", "a": "Ischial ramus", "x": 1240, "y": 815, "box": [1235, 810, 1245, 820], "q": "Name this bone feature.", "acc": [], "tags": ["Ischial ramus"]}, {"n": 8, "lab": "8", "a": "Obturator foramen", "x": 842, "y": 887, "box": [837, 882, 847, 892], "q": "Name this bone feature.", "acc": [], "tags": ["Obturator foramen"]}, {"n": 9, "lab": "9", "a": "Inferior pubic ramus", "x": 458, "y": 908, "box": [453, 903, 463, 913], "q": "Name this bone feature.", "acc": [], "tags": ["Inferior pubic ramus"]}], "items": [], "img": "img/skeleton-09.jpg", "n": 9}, {"id": "10", "title": "Which bone is which color?", "set": "pelvis", "type": "qa", "w": 1920, "h": 1080, "r": 0, "pins": [], "img": "img/skeleton-10.jpg", "items": [{"q": "Which bone is shaded blue?", "a": "Ilium", "self": false, "acc": []}, {"q": "Which bone is shaded orange?", "a": "Ischium", "self": false, "acc": []}, {"q": "Which bone is shaded green?", "a": "Pubis", "self": false, "acc": ["pubic bone"]}], "n": 10}, {"id": "11", "title": "Femur, posterior view", "set": "limb", "type": "label", "w": 1920, "h": 1080, "r": 22, "pins": [{"n": 1, "lab": "1", "a": "Greater trochanter", "x": 410, "y": 90, "box": [405, 85, 415, 95], "q": "Name this bone feature.", "acc": [], "tags": ["Greater trochanter"]}, {"n": 2, "lab": "2", "a": "Fovea capitis", "x": 196, "y": 116, "box": [191, 111, 201, 121], "q": "Name this bone feature.", "acc": ["fovea", "fovea (capitis)"], "tags": ["Fovea capitis"]}, {"n": 3, "lab": "3", "a": "Head of femur", "x": 203, "y": 164, "box": [198, 159, 208, 169], "q": "Name this bone feature.", "acc": ["head"], "tags": ["Head of femur"]}, {"n": 4, "lab": "4", "a": "Neck of femur", "x": 248, "y": 192, "box": [243, 187, 253, 197], "q": "Name this bone feature.", "acc": ["neck"], "tags": ["Neck of femur"]}, {"n": 5, "lab": "5", "a": "Intertrochanteric crest", "x": 432, "y": 205, "box": [427, 200, 437, 210], "q": "Name this bone feature.", "acc": [], "tags": ["Intertrochanteric crest"]}, {"n": 6, "lab": "6", "a": "Lesser trochanter", "x": 290, "y": 240, "box": [285, 235, 295, 245], "q": "Name this bone feature.", "acc": [], "tags": ["Lesser trochanter"]}, {"n": 7, "lab": "7", "a": "Gluteal tuberosity", "x": 430, "y": 302, "box": [425, 297, 435, 307], "q": "Name this bone feature.", "acc": ["gluteal tubersity"], "tags": ["Gluteal tuberosity"]}, {"n": 8, "lab": "8", "a": "Lateral supracondylar line", "x": 1615, "y": 318, "box": [1610, 313, 1620, 323], "q": "Name this bone feature.", "acc": [], "tags": ["Lateral supracondylar line"]}, {"n": 9, "lab": "9", "a": "Medial supracondylar line", "x": 1396, "y": 375, "box": [1391, 370, 1401, 380], "q": "Name this bone feature.", "acc": [], "tags": ["Medial supracondylar line"]}, {"n": 10, "lab": "10", "a": "Popliteal surface", "x": 1610, "y": 500, "box": [1605, 495, 1615, 505], "q": "Name this bone feature.", "acc": [], "tags": ["Popliteal surface"]}, {"n": 11, "lab": "11", "a": "Linea aspera", "x": 446, "y": 530, "box": [441, 525, 451, 535], "q": "Name this bone feature.", "acc": [], "tags": ["Linea aspera"]}, {"n": 12, "lab": "12", "a": "Lateral epicondyle", "x": 1772, "y": 618, "box": [1767, 613, 1777, 623], "q": "Name this bone feature.", "acc": [], "tags": ["Lateral epicondyle"]}, {"n": 13, "lab": "13", "a": "Medial epicondyle", "x": 1222, "y": 744, "box": [1217, 739, 1227, 749], "q": "Name this bone feature.", "acc": [], "tags": ["Medial epicondyle"]}, {"n": 14, "lab": "14", "a": "Intercondylar fossa", "x": 1575, "y": 934, "box": [1570, 929, 1580, 939], "q": "Name this bone feature.", "acc": ["intercondylar notch"], "tags": ["Intercondylar fossa"]}, {"n": 15, "lab": "15", "a": "Lateral condyle", "x": 1735, "y": 920, "box": [1730, 915, 1740, 925], "q": "Name this bone feature.", "acc": [], "tags": ["Lateral condyle"]}, {"n": 16, "lab": "16", "a": "Medial condyle", "x": 1395, "y": 980, "box": [1390, 975, 1400, 985], "q": "Name this bone feature.", "acc": [], "tags": ["Medial condyle"]}], "items": [], "img": "img/skeleton-11.jpg", "n": 11}, {"id": "12", "title": "Patella and femur, anterior view", "set": "limb", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Greater trochanter", "x": 1325, "y": 132, "box": [1320, 127, 1330, 137], "q": "Name this bone feature.", "acc": [], "tags": ["Greater trochanter"]}, {"n": 2, "lab": "2", "a": "Head of femur", "x": 1560, "y": 155, "box": [1555, 150, 1565, 160], "q": "Name this bone feature.", "acc": ["head"], "tags": ["Head of femur"]}, {"n": 3, "lab": "3", "a": "Intertrochanteric crest", "x": 1364, "y": 245, "box": [1359, 240, 1369, 250], "q": "Name this bone feature.", "acc": ["intertrochanteric line"], "tags": ["Intertrochanteric crest"]}, {"n": 4, "lab": "4", "a": "Neck of femur", "x": 1510, "y": 232, "box": [1505, 227, 1515, 237], "q": "Name this bone feature.", "acc": ["neck"], "tags": ["Neck of femur"]}, {"n": 5, "lab": "5", "a": "Lesser trochanter", "x": 1512, "y": 305, "box": [1507, 300, 1517, 310], "q": "Name this bone feature.", "acc": [], "tags": ["Lesser trochanter"]}, {"n": 6, "lab": "6", "a": "Patella", "x": 574, "y": 566, "box": [569, 561, 579, 571], "q": "Name this bone feature.", "acc": ["kneecap"], "tags": ["Patella"]}, {"n": 7, "lab": "7", "a": "Patella", "x": 190, "y": 584, "box": [185, 579, 195, 589], "q": "Name this bone feature.", "acc": ["kneecap"], "tags": ["Patella"]}, {"n": 8, "lab": "8", "a": "Lateral epicondyle", "x": 1316, "y": 818, "box": [1311, 813, 1321, 823], "q": "Name this bone feature.", "acc": [], "tags": ["Lateral epicondyle"]}, {"n": 9, "lab": "9", "a": "Medial epicondyle", "x": 1515, "y": 840, "box": [1510, 835, 1520, 845], "q": "Name this bone feature.", "acc": [], "tags": ["Medial epicondyle"]}, {"n": 10, "lab": "10", "a": "Lateral condyle", "x": 1318, "y": 955, "box": [1313, 950, 1323, 960], "q": "Name this bone feature.", "acc": [], "tags": ["Lateral condyle"]}, {"n": 11, "lab": "11", "a": "Medial condyle", "x": 1565, "y": 962, "box": [1560, 957, 1570, 967], "q": "Name this bone feature.", "acc": [], "tags": ["Medial condyle"]}], "items": [], "img": "img/skeleton-12.jpg", "n": 12}, {"id": "13", "title": "Right tibia, anterior and superior views", "set": "limb", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Lateral condyle", "x": 500, "y": 140, "box": [495, 135, 505, 145], "q": "Name this bone feature.", "acc": [], "tags": ["Lateral condyle"]}, {"n": 2, "lab": "2", "a": "Medial condyle", "x": 832, "y": 140, "box": [827, 135, 837, 145], "q": "Name this bone feature.", "acc": [], "tags": ["Medial condyle"]}, {"n": 3, "lab": "3", "a": "Tibial tuberosity", "x": 602, "y": 290, "box": [597, 285, 607, 295], "q": "Name this bone feature.", "acc": [], "tags": ["Tibial tuberosity"]}, {"n": 4, "lab": "4", "a": "Tibial tuberosity", "x": 1295, "y": 325, "box": [1290, 320, 1300, 330], "q": "Name this bone feature.", "acc": [], "tags": ["Tibial tuberosity"]}, {"n": 5, "lab": "5", "a": "Anterior crest", "x": 585, "y": 565, "box": [580, 560, 590, 570], "q": "Name this bone feature.", "acc": ["anterior border", "tibial crest"], "tags": ["Anterior crest"]}, {"n": 6, "lab": "6", "a": "Intercondylar eminence", "x": 1088, "y": 780, "box": [1083, 775, 1093, 785], "q": "Name this bone feature.", "acc": ["intercondylar eminience"], "tags": ["Intercondylar eminence"]}, {"n": 7, "lab": "7", "a": "Fibular notch", "x": 576, "y": 888, "box": [571, 883, 581, 893], "q": "Name this bone feature.", "acc": [], "tags": ["Fibular notch"]}, {"n": 8, "lab": "8", "a": "Medial malleolus", "x": 800, "y": 992, "box": [795, 987, 805, 997], "q": "Name this bone feature.", "acc": [], "tags": ["Medial malleolus"]}], "items": [], "img": "img/skeleton-13.jpg", "n": 13}, {"id": "14", "title": "Fibula", "set": "limb", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Head of fibula", "x": 1004, "y": 102, "box": [999, 97, 1009, 107], "q": "Name this bone feature.", "acc": ["head"], "tags": ["Head of fibula"]}, {"n": 2, "lab": "2", "a": "Lateral malleolus", "x": 995, "y": 911, "box": [990, 906, 1000, 916], "q": "Name this bone feature.", "acc": [], "tags": ["Lateral malleolus"]}], "items": [], "img": "img/skeleton-14.jpg", "n": 14}, {"id": "15", "title": "Bones of the foot, superior view", "set": "limb", "type": "label", "w": 1920, "h": 1080, "r": 20, "pins": [{"n": 1, "lab": "1", "a": "Calcaneus", "x": 700, "y": 158, "box": [695, 153, 705, 163], "q": "Name this bone (or group of bones).", "acc": [], "tags": ["Calcaneus"]}, {"n": 2, "lab": "2", "a": "Talus", "x": 662, "y": 323, "box": [657, 318, 667, 328], "q": "Name this bone (or group of bones).", "acc": [], "tags": ["Talus"]}, {"n": 3, "lab": "3", "a": "Cuboid", "x": 1005, "y": 412, "box": [1000, 407, 1010, 417], "q": "Name this bone (or group of bones).", "acc": [], "tags": ["Cuboid"]}, {"n": 4, "lab": "4", "a": "Navicular", "x": 632, "y": 457, "box": [627, 452, 637, 462], "q": "Name this bone (or group of bones).", "acc": [], "tags": ["Navicular"]}, {"n": 5, "lab": "5", "a": "Lateral cuneiform", "x": 703, "y": 489, "box": [698, 484, 708, 494], "q": "Name this bone (or group of bones).", "acc": [], "tags": ["Lateral cuneiform"]}, {"n": 6, "lab": "6", "a": "Middle cuneiform", "x": 655, "y": 526, "box": [650, 521, 660, 531], "q": "Name this bone (or group of bones).", "acc": ["intermediate cuneiform"], "tags": ["Middle cuneiform"]}, {"n": 7, "lab": "7", "a": "Medial cuneiform", "x": 618, "y": 574, "box": [613, 569, 623, 579], "q": "Name this bone (or group of bones).", "acc": [], "tags": ["Medial cuneiform"]}, {"n": 8, "lab": "8", "a": "Metatarsals", "x": 1012, "y": 540, "box": [1007, 535, 1017, 545], "q": "Name this bone (or group of bones).", "acc": ["metatarsal"], "tags": ["Metatarsals"]}, {"n": 9, "lab": "9", "a": "Metatarsals", "x": 668, "y": 667, "box": [663, 662, 673, 672], "q": "Name this bone (or group of bones).", "acc": ["metatarsal"], "tags": ["Metatarsals"]}, {"n": 10, "lab": "10", "a": "Proximal phalanx", "x": 1010, "y": 745, "box": [1005, 740, 1015, 750], "q": "Name this bone (or group of bones).", "acc": ["proximal phalanges"], "tags": ["Proximal phalanx"]}, {"n": 11, "lab": "11", "a": "Middle phalanx", "x": 1005, "y": 830, "box": [1000, 825, 1010, 835], "q": "Name this bone (or group of bones).", "acc": ["middle phalanges"], "tags": ["Middle phalanx"]}, {"n": 12, "lab": "12", "a": "Proximal phalanx", "x": 668, "y": 866, "box": [663, 861, 673, 871], "q": "Name this bone (or group of bones).", "acc": ["proximal phalanges"], "tags": ["Proximal phalanx"]}, {"n": 13, "lab": "13", "a": "Distal phalanx", "x": 1005, "y": 874, "box": [1000, 869, 1010, 879], "q": "Name this bone (or group of bones).", "acc": ["distal phalanges"], "tags": ["Distal phalanx"]}, {"n": 14, "lab": "14", "a": "Distal phalanx", "x": 668, "y": 960, "box": [663, 955, 673, 965], "q": "Name this bone (or group of bones).", "acc": ["distal phalanges"], "tags": ["Distal phalanx"]}], "items": [], "img": "img/skeleton-15.jpg", "n": 15}]};
+const SETS=DECK.sets, CARDS=DECK.cards;
+if(DECK.links&&DECK.links.length){const m=document.getElementById('more');m.hidden=false;DECK.links.forEach(l=>{const a=document.createElement('a');a.href=l.u;a.target='_blank';a.rel='noopener';a.textContent=l.t;const sm=document.createElement('small');sm.textContent=l.d;a.appendChild(sm);document.getElementById('moreLinks').appendChild(a)})}
+const SYN={"anterior interventricular artery": ["lad", "left anterior descending", "left anterior descending artery"], "bicuspid valve": ["mitral valve", "mitral", "left atrioventricular valve"], "tricuspid valve": ["right atrioventricular valve"], "pulmonary semilunar valve": ["pulmonic valve", "pulmonary valve"], "pulmonic valve": ["pulmonary semilunar valve", "pulmonary valve"], "aortic semilunar valve": ["aortic valve"], "sinoatrial node": ["sa node"], "atrioventricular node": ["av node"], "bundle of his": ["av bundle", "atrioventricular bundle"], "epicardium": ["visceral pericardium"], "fibrous pericardium": ["parietal pericardium", "fibrous parietal pericardium"], "purkinje fibers": ["purkinje"], "thymus": ["thymus gland"], "brachiocephalic trunk": ["brachiocephalic artery"], "transverse tubule": ["t tubule"], "z disc": ["z line", "z disk"], "intercalated disc": ["intercalated disk"], "terminal cistern": ["terminal cisterna", "terminal cisternae"], "skeletal muscle tissue": ["skeletal muscle", "striated muscle"], "cardiac muscle tissue": ["cardiac muscle", "heart muscle", "myocardium"], "smooth muscle tissue": ["smooth muscle", "visceral muscle"], "coronary sulcus": ["atrioventricular groove"]};
+const ABBR={a:'artery',aa:'arteries',art:'artery',v:'vein',vv:'veins',r:'right',rt:'right',l:'left',lt:'left',
+ svc:'superior vena cava',ivc:'inferior vena cava',m:'muscle',ant:'anterior',post:'posterior',sr:'sarcoplasmic reticulum'};
+const DROP=new Set(['the','of','for','to','opening','openings','space','an']);
+function norm(s){
+  return s.toLowerCase().replace(/[\/,.;:()"'+-]/g,' ').split(/\s+/).filter(Boolean)
+   .map(w=>ABBR[w]||w).join(' ').split(' ').filter(w=>!DROP.has(w))
+   .map(w=>w.length>4?w.replace(/(es|s)$/,''):w).join(' ');
+}
+function shortForms(a){
+  const base=a.split(':')[0].replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').trim();
+  const out=base.split(' / ').map(s=>s.trim()); const extra=[];
+  out.forEach(o=>{const k=o.toLowerCase();Object.keys(SYN).forEach(s=>{if(k.includes(s))SYN[s].forEach(x=>extra.push(k.replace(s,x)))})});
+  return {show:out.join(' / '),accept:[...out,...extra].map(norm)};
+}
+function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=[...Array(n+1).keys()];
+ for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]==b[j-1]?0:1));p=c}return p[n]}
+function close(g,list){g=norm(g);if(!g)return false;
+  return list.some(t=>{const tol=t.length<5?0:Math.max(1,Math.floor(t.length/7));return lev(g,t)<=tol})}
+CARDS.forEach(c=>{c.pins.forEach(p=>{p.sf=shortForms(p.a);(p.acc||[]).forEach(x=>p.sf.accept.push(norm(x)))});c.items.forEach(it=>it.accN=[it.a,...it.acc].map(norm))});
+
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const BEST_KEY='atlasBest_'+DECK.id;
+let best=store.get(BEST_KEY,{});
+let set='all', order=CARDS.map((_,i)=>i), pos=0, mode='type', state={}, hotPin=null;
+const $=id=>document.getElementById(id);
+const visible=()=>order.filter(i=>set==='all'||CARDS[i].set===set);
+const cur=()=>CARDS[visible()[pos]];
+const HAS_DETAIL=CARDS.some(c=>c.items.some(it=>it.self&&/origin/i.test(it.q)));
+let nameOnly=HAS_DETAIL&&store.get('atlasNameOnly_'+DECK.id,false);
+const units=c=>c.type==='qa'?c.items.map((it,i)=>({key:i+1,lab:String(i+1),it})).filter(u=>!(nameOnly&&u.it.self)):c.pins.map(p=>({key:p.n,lab:p.lab,p}));
+const autoUnits=c=>units(c).filter(u=>!(u.it&&u.it.self));
+
+function renderSets(){const el=$('sets');el.innerHTML='';
+  [['all','All cards'],...Object.entries(SETS)].forEach(([k,name])=>{const b=document.createElement('button');b.className='chip';b.textContent=name;
+    b.setAttribute('aria-pressed',set===k);b.onclick=()=>{set=k;pos=0;renderSets();load()};el.appendChild(b)})}
+function renderStrip(){const el=$('strip');el.innerHTML='';
+  visible().forEach((i,j)=>{const c=CARDS[i];const b=document.createElement('button');b.textContent=c.n;b.title=c.title;
+    b.setAttribute('aria-label',`Card ${c.n}: ${c.title}`);if(j===pos)b.setAttribute('aria-current','true');
+    const s=best[c.id];if(s!=null){const d=document.createElement('span');d.className='dot '+(s>=autoUnits(c).length?'done':'part');b.appendChild(d)}
+    b.onclick=()=>{pos=j;load()};el.appendChild(b)});
+  const a=el.querySelector('[aria-current]');if(a)a.scrollIntoView({block:'nearest',inline:'nearest'})}
+const NS='http://www.w3.org/2000/svg';
+function svgEl(t,attrs,parent){const e=document.createElementNS(NS,t);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e}
+function drawFig(){
+  const c=cur(),svg=$('fig');svg.innerHTML='';svg.setAttribute('viewBox',`0 0 ${c.w} ${c.h}`);
+  svg.setAttribute('aria-label',c.type==='qa'?`Microscope image for ${c.title}`:`${c.title}, with ${c.pins.length} marked structures`);
+  svgEl('image',{href:c.img,x:0,y:0,width:c.w,height:c.h},svg);
+  if(c.type==='qa'){syncZoom();return}
+  const fs=Math.round(Math.max(26,c.r*1.0));
+  c.pins.forEach(p=>{const st=state[p.n]||{};
+    if(mode==='study'||st.open||(mode==='type'&&st.result!=null)||hotPin===p.n&&st.open){
+      const bx=(p.box[0]+p.box[2])/2;let x,y=p.y+fs*0.35+(p.dy||0),anchor;
+      if(Math.abs(p.x-bx)<6){x=p.x;y=p.y-c.r-10;anchor='middle'}else if(p.x>bx){x=p.x-c.r-6;anchor='end'}else{x=p.x+c.r+6;anchor='start'}
+      const t=svgEl('text',{x,y,'text-anchor':anchor,'font-size':fs,class:'lbl'+(hotPin===p.n?' found':'')},svg);t.textContent=p.sf.show}});
+  const fp=c.pins.find(p=>p.n===hotPin);if(fp)svgEl('circle',{cx:fp.x,cy:fp.y,r:c.r*1.9,class:'ring'},svg);
+  c.pins.forEach(p=>{const st=state[p.n]||{};
+    const g=svgEl('g',{class:'pin'+(st.result===true?' right':st.result===false?' wrong':'')+(hotPin===p.n?' hot':''),'data-n':p.n,tabindex:0,role:'button','aria-label':'Structure '+p.lab},svg);
+    svgEl('circle',{cx:p.x,cy:p.y,r:c.r},g);
+    const t=svgEl('text',{x:p.x,y:p.y+c.r*0.42,'text-anchor':'middle','font-size':Math.round(c.r*1.2)},g);t.textContent=p.lab;
+    g.onclick=()=>pinAct(p.n);g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pinAct(p.n)}};
+    g.onmouseenter=()=>hot(p.n,true);g.onmouseleave=()=>hot(p.n,false)});
+  syncZoom()}
+function syncZoom(){const d=$('zoom');if(!d||!d.open)return;const c=cur(),w=$('zWrap'),big=w.classList.contains('big');
+  const k=$('fig').cloneNode(true);k.removeAttribute('id');k.setAttribute('aria-label',c.title);
+  if(big){k.setAttribute('width',Math.max(c.w,Math.round(window.innerWidth*1.6)));k.removeAttribute('height')}else{const sc=Math.min((innerWidth-32)/c.w,(innerHeight-92)/c.h);k.setAttribute('width',Math.round(c.w*sc));k.setAttribute('height',Math.round(c.h*sc))}
+  w.innerHTML='';w.appendChild(k);$('zTitle').textContent=c.title;$('zSize').textContent=big?'Fit to screen':'Bigger'}
+function openZoom(){const d=$('zoom');$('zWrap').classList.remove('big');if(!d.open)d.showModal();syncZoom()}
+function hot(n,on){document.querySelectorAll(`[data-n="${n}"]`).forEach(e=>e.classList.toggle('hot',on))}
+function pinAct(n){if(mode==='type'){const i=$('in'+n);if(i)i.focus()}
+  else if(mode==='reveal'){state[n]=state[n]||{};state[n].open=!state[n].open;drawFig();drawList()}}
+function drawList(){
+  const c=cur(),ol=$('answers');ol.innerHTML='';
+  units(c).forEach(u=>{const n=u.key,st=state[n]||{},ans=u.it?u.it.a:u.p.a;
+    const li=document.createElement('li');li.dataset.n=n;li.onmouseenter=()=>hot(n,true);li.onmouseleave=()=>hot(n,false);
+    const num=document.createElement('span');num.className='num'+(st.result===true?' right':st.result===false?' wrong':'');num.textContent=u.lab;li.appendChild(num);
+    const box=document.createElement('div');box.className='field';
+    const qq=u.it?u.it.q:(u.p.q||'');if(qq){const q=document.createElement('div');q.className='q';q.textContent=qq;box.appendChild(q)}
+    if(mode==='type'){
+      const inp=document.createElement('input');inp.id='in'+n;inp.autocomplete='off';inp.spellcheck=false;
+      inp.setAttribute('aria-label',u.it?u.it.q:'Answer for '+u.lab);inp.value=st.typed||'';
+      if(st.result!=null)inp.className=st.result?'right':'wrong'; else if(st.shown)inp.className='self';
+      inp.oninput=()=>{state[n]=Object.assign(state[n]||{},{typed:inp.value})};
+      inp.onfocus=()=>hot(n,true);inp.onblur=()=>hot(n,false);
+      inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const nx=$('in'+(n+1));nx?nx.focus():check()}};
+      box.appendChild(inp);
+      if(st.result!=null||st.shown){const f=document.createElement('div');
+        f.className='fix'+(st.shown?' cmp':st.result?' ok':'');f.textContent=st.shown?'Compare with: '+ans:st.result?ans:'Answer: '+ans;box.appendChild(f)}
+    }else if(mode==='reveal'){
+      const b=document.createElement('button');b.className='reveal'+(st.open?' open':'');
+      b.textContent=st.open?ans:(u.it?'Tap to show the answer':'Tap to show '+u.lab);b.setAttribute('aria-expanded',!!st.open);
+      b.onclick=()=>{state[n]=state[n]||{};state[n].open=!state[n].open;drawFig();drawList()};box.appendChild(b);
+    }else{const s=document.createElement('div');s.className='ans';s.textContent=ans;box.appendChild(s)}
+    li.appendChild(box);ol.appendChild(li)});
+  const act=$('actions');act.innerHTML='';
+  if(mode==='type'){
+    const b=document.createElement('button');b.className='btn primary';b.textContent='Check my answers';b.onclick=check;act.appendChild(b);
+    const r=document.createElement('button');r.className='btn';r.textContent='Clear and try again';r.onclick=()=>{state={};drawFig();drawList()};act.appendChild(r);
+    const au=autoUnits(c);if(au.some(u=>(state[u.key]||{}).result!=null)){const s=document.createElement('span');s.className='score';
+      s.setAttribute('aria-live','polite');s.textContent=`${au.filter(u=>(state[u.key]||{}).result===true).length} of ${au.length} correct`;act.appendChild(s)}
+  }else if(mode==='reveal'){const b=document.createElement('button');b.className='btn';b.textContent='Hide all again';
+    b.onclick=()=>{Object.values(state).forEach(s=>s.open=false);drawFig();drawList()};act.appendChild(b)}
+}
+function check(){const c=cur();let right=0;
+  units(c).forEach(u=>{const st=state[u.key]=state[u.key]||{};
+    if(u.it&&u.it.self){st.shown=true;return}
+    st.result=u.it?close(st.typed||'',u.it.accN):close(st.typed||'',u.p.sf.accept);if(st.result)right++});
+  if(best[c.id]==null||right>best[c.id]){best[c.id]=right;store.set(BEST_KEY,best)}
+  drawFig();drawList();renderStrip()}
+const HINTS={type:'Type each answer, then check. Press Enter to jump to the next blank. Questions about function and location show the answer so you can compare.',
+ reveal:'Say each answer out loud first, then tap to see if you were right.',
+ study:'Everything is labeled. Study the card, then switch back to Type answers to test yourself.'};
+function setMode(m){mode=m;[['type','mType'],['reveal','mReveal'],['study','mStudy']].forEach(([k,id])=>$(id).setAttribute('aria-pressed',k===m));
+  $('hint').textContent=HINTS[m];drawFig();drawList()}
+function load(keep){const v=visible();if(pos>=v.length)pos=0;if(pos<0)pos=v.length-1;
+  const c=cur();if(!keep){state={};hotPin=null}
+  $('cardEyebrow').textContent=`Card ${c.n} · ${SETS[c.set]}`;showFound();$('cardTitle').textContent=c.title;renderStrip();setMode(mode)}
+function showFound(){const c=cur(),fb=$('found'),p=c.pins.find(p=>p.n===hotPin);
+  if(!p){fb.hidden=true;return}
+  fb.hidden=false;fb.innerHTML='';fb.append('Found: ');const sp=document.createElement('span');sp.textContent=p.sf.show;fb.append(sp,` (number ${p.lab}, circled in gold)`);
+  const b=document.createElement('button');b.textContent='Clear';b.onclick=()=>{hotPin=null;state={};history.replaceState(null,'',location.pathname);setMode('type');showFound()};fb.append(b);
+  document.querySelector('.plate').scrollIntoView({block:'start',behavior:'smooth'})}
+function fromHash(){const m=/^#c(\d+)(?:-p(\d+))?$/.exec(location.hash);if(!m)return false;
+  const idx=CARDS.findIndex(c=>c.n===+m[1]);if(idx<0)return false;
+  set='all';order=CARDS.map((_,i)=>i);pos=idx;state={};hotPin=null;
+  if(m[2]){hotPin=+m[2];state[hotPin]={open:true};mode='reveal'}
+  renderSets();load(true);return true}
+$('mType').onclick=()=>setMode('type');$('mReveal').onclick=()=>setMode('reveal');$('mStudy').onclick=()=>setMode('study');
+$('prev').onclick=()=>{pos--;load()};$('next').onclick=()=>{pos++;load()};
+$('shuffle').onclick=()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}pos=0;load()};
+$('zoomBtn').onclick=openZoom;
+$('fig').addEventListener('click',e=>{if(!e.target.closest('.pin'))openZoom()});
+$('zClose').onclick=()=>$('zoom').close();
+$('zSize').onclick=()=>{$('zWrap').classList.toggle('big');syncZoom()};
+$('zPrev').onclick=()=>{pos--;hotPin=null;load()};$('zNext').onclick=()=>{pos++;hotPin=null;load()};
+$('zoom').addEventListener('click',e=>{if(e.target.id==='zWrap'||e.target.id==='zoom'){$('zoom').close();return}
+  const g=e.target.closest('.pin');if(!g)return;const n=+g.dataset.n;
+  if(mode==='type'){$('zoom').close();const i=$('in'+n);if(i)i.focus()}else pinAct(n)});
+addEventListener('resize',syncZoom);
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight'){pos++;hotPin=null;load()}if(e.key==='ArrowLeft'){pos--;hotPin=null;load()}});
+window.addEventListener('hashchange',fromHash);
+function renderDepth(){if(!HAS_DETAIL)return;$('depth').hidden=false;$('dSw').setAttribute('aria-checked',!nameOnly)}
+$('dSw').onclick=()=>{nameOnly=!nameOnly;store.set('atlasNameOnly_'+DECK.id,nameOnly);state={};renderDepth();load()};
+renderDepth();
+if(!fromHash()){renderSets();load()}
+</script>
+
+</html>

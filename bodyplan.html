@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Body Regions, Planes and Cavities Practice Cards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: specimen on a lifted white plate at left, answer sheet at right, card strip across the top. Single light look: white page, navy ink, maroon terra cotta, small gold accents. */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --ink:#0B1530; --muted:#4F576A; --line:rgba(11,21,48,.15);
+  --navy:#0B1530; --maroon:#8B3A2E; --maroon-soft:#F3F4F7; --gold:#8B3A2E; --gold-soft:#F3F4F7;
+  --good:#2b7a34; --good-soft:#e5f2e4; --bad:#c0392b; --bad-soft:#fbe9e7;
+  --shadow:0 0 0 .5px rgba(11,21,48,.15);
+  --f-display:"Open Sans","Plus Jakarta Sans",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;font-style:normal}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.45;margin:0}
+a{color:var(--maroon)}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px;padding-block:18px 48px;display:grid;gap:16px}
+.home{font-weight:700;text-decoration:none;font-size:15px;display:inline-flex;gap:6px;align-items:center}
+.home:hover{text-decoration:underline}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4vw,40px);line-height:1.05;margin:4px 0 0;color:var(--navy);text-wrap:balance}
+.sets{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible,.pin:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 14px;font-size:15px}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.strip{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+.strip button{flex:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-variant-numeric:tabular-nums;position:relative}
+.strip button[aria-current="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.strip .dot{position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:50%}
+.strip .dot.done{background:var(--good)} .strip .dot.part{background:var(--gold)}
+.stage{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,1fr);gap:22px;align-items:start}
+@media (max-width:860px){.stage{grid-template-columns:1fr}}
+.plate{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:14px;min-width:0}
+.plate{position:relative}
+.zbtn{position:absolute;top:22px;right:22px;z-index:2;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:rgba(255,255,255,.94);border-radius:99px;padding:7px 13px;font:700 13px/1 var(--f-body);color:var(--navy);cursor:pointer;box-shadow:0 2px 8px rgba(11,21,48,.12)}
+.zbtn:hover{border-color:var(--maroon);color:var(--maroon)}
+.plate svg{cursor:zoom-in}
+dialog.zoom{border:0;padding:0;width:100vw;height:100vh;max-width:100vw;max-height:100vh;background:#0B1530}
+dialog.zoom::backdrop{background:rgba(11,21,48,.6)}
+.zbar{position:fixed;top:0;left:0;right:0;display:flex;gap:10px;align-items:center;padding:12px 16px;color:#fff;font-weight:700;z-index:3}
+.zbar .zt{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zbar button{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;border-radius:99px;padding:8px 14px;font:700 13px/1 var(--f-body);cursor:pointer}
+.zbar button:hover{background:rgba(255,255,255,.22)}
+.zwrap{position:absolute;inset:58px 0 0 0;overflow:auto;display:grid;place-items:center;padding:8px 16px 24px}
+.zwrap svg{display:block;background:#fff;border-radius:8px;max-width:calc(100vw - 32px);max-height:calc(100vh - 92px);width:auto;height:auto}
+.zwrap.big{place-items:start}
+.zwrap.big svg{max-width:none;max-height:none}
+.plate svg{display:block;width:100%;height:auto;background:#fff;border-radius:8px;user-select:none}
+.pin{cursor:pointer}
+.pin circle{fill:var(--navy);stroke:#fff;stroke-width:3}
+.pin text{fill:#fff;font-family:var(--f-body);font-weight:700}
+.pin.hot circle{fill:var(--maroon)}
+.ring{fill:none;stroke:#DCB45C;stroke-width:7;pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.ring{animation:ring 1.4s ease-out infinite}@keyframes ring{0%{stroke-opacity:1;stroke-width:9}100%{stroke-opacity:.15;stroke-width:3}}}
+.lbl.found{fill:var(--maroon)}
+.found-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--gold-soft);border-radius:10px;padding:10px 14px;font-weight:700}
+.found-bar span{color:var(--maroon)}
+.found-bar button{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 12px;font-weight:700;color:var(--navy)}
+.dsearch{position:relative;min-width:0;flex:1 1 280px;max-width:420px}
+.dsearch input{width:100%;font:inherit;font-size:16px;padding:9px 12px;border:2px solid var(--navy);border-radius:10px}
+.dres{position:absolute;z-index:5;left:0;right:0;top:calc(100% + 4px);background:#fff;border-radius:10px;box-shadow:var(--shadow);max-height:360px;overflow:auto}
+.dres a{display:block;padding:9px 12px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+.dres a:hover,.dres a:focus{background:var(--gold-soft)}
+.dres b{color:var(--navy)} .dres small{color:var(--muted);display:block}
+.pin.right circle{fill:var(--good)} .pin.wrong circle{fill:var(--bad)}
+.lbl{font-family:var(--f-body);font-weight:700;fill:var(--navy);paint-order:stroke;stroke:#fff;stroke-width:7px;stroke-linejoin:round;pointer-events:none}
+.lbl.hot{fill:var(--maroon)}
+.sheet{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:18px 18px 16px;display:grid;gap:14px;min-width:0}
+.cardhead h2{font-family:var(--f-display);font-weight:600;font-size:24px;line-height:1.15;margin:2px 0 0;color:var(--navy);text-wrap:balance}
+.depth{margin:0 0 12px}
+.depth button{display:inline-flex;align-items:center;gap:12px;border:0;background:none;padding:4px 0;font:600 15px/1.3 var(--f-body);color:var(--navy);cursor:pointer;text-align:left}
+.depth .track{flex:none;width:46px;height:26px;border-radius:99px;background:#C9CDD8;position:relative;transition:background .2s}
+.depth .knob{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(11,21,48,.3);transition:left .2s}
+.depth button[aria-checked="true"] .track{background:var(--navy)}
+.depth button[aria-checked="true"] .knob{left:23px}
+.more{margin-top:26px;background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:18px}
+.more h2{font-family:var(--f-display);font-size:20px;margin:0 0 10px;color:var(--navy)}
+.more a{display:block;padding:10px 0;border-top:1px solid var(--line);color:var(--maroon);font-weight:700;text-decoration:none}
+.more a:hover{text-decoration:underline}
+.more a small{display:block;color:var(--muted);font-weight:500}
+.modes{display:flex;background:var(--maroon-soft);border-radius:10px;padding:4px;gap:4px}
+.modes button{flex:1;border:0;background:transparent;border-radius:7px;padding:8px 6px;font-size:15px;font-weight:700;color:var(--maroon)}
+.modes button[aria-pressed="true"]{background:var(--maroon);color:#fff}
+.hint{font-size:15px;color:var(--muted);margin:0}
+ol.answers{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.answers li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:center;border-radius:4px;padding:4px 6px}
+ol.answers li.hot{background:var(--gold-soft)}
+.num{width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px;font-variant-numeric:tabular-nums}
+.num.right{background:var(--good)} .num.wrong{background:var(--bad)}
+.q{font-weight:700;margin-bottom:4px}
+.field input{width:100%;font:inherit;font-size:17px;padding:8px 10px;border:1.5px solid var(--line);border-radius:8px;background:#fbfbfc;color:var(--ink)}
+.field input.right{border-color:var(--good);background:var(--good-soft)}
+.field input.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.field input.self{border-color:var(--gold);background:var(--gold-soft)}
+.fix{font-size:15px;margin-top:3px;color:var(--bad);font-weight:700}
+.fix.ok{color:var(--good)} .fix.cmp{color:var(--navy)}
+.reveal{width:100%;text-align:left;border:1.5px dashed var(--line);background:transparent;border-radius:8px;padding:8px 10px;color:var(--muted);font-size:16px}
+.reveal.open{border-style:solid;border-color:transparent;background:var(--gold-soft);color:var(--ink);font-weight:700}
+.ans{font-weight:700;padding:6px 2px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:9px 16px;font-weight:700;font-size:16px;color:var(--navy)}
+.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.score{font-weight:700;font-variant-numeric:tabular-nums;color:var(--maroon)}
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+footer.note{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.pin circle,.num,.reveal{transition:fill .15s,background .15s}}
+.vids h2{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,3vw,28px);margin:8px 0 2px;color:var(--navy)}
+.vids-sub{color:var(--muted);margin:0 0 12px;font-size:15px}
+</style>
+
+<div class="wrap">
+  <a class="home" href="atlas.html">&larr; Atlas index</a>
+  <header class="top">
+    <div>
+      <div class="eyebrow">Anatomy Atlas &middot; BIO 004 Human Anatomy</div>
+      <h1>Body Regions, Planes and Cavities Practice Cards</h1>
+    </div>
+      </header>
+  <div class="sets" id="sets" role="group" aria-label="Which cards to practice"></div>
+  <div class="depth" id="depth" hidden><button id="dSw" type="button" role="switch" aria-checked="true"><span class="track"><span class="knob"></span></span><span class="dl">Also ask origin, insertion and action</span></button></div>
+  <nav class="strip" id="strip" aria-label="Cards"></nav>
+  <main class="stage">
+    <div class="plate"><button class="zbtn" id="zoomBtn" type="button" aria-label="Zoom in on this image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg>Zoom</button><svg id="fig" role="img" aria-label="Practice image"></svg></div>
+    <dialog class="zoom" id="zoom" aria-label="Enlarged image">
+      <div class="zbar"><span class="zt" id="zTitle"></span><button type="button" id="zPrev" aria-label="Previous card">&larr;</button><button type="button" id="zNext" aria-label="Next card">&rarr;</button><button type="button" id="zSize">Bigger</button><button type="button" id="zClose">Close</button></div>
+      <div class="zwrap" id="zWrap"></div>
+    </dialog>
+    <section class="sheet">
+      <div class="cardhead"><div class="eyebrow" id="cardEyebrow"></div><h2 id="cardTitle"></h2></div>
+      <div class="modes" role="group" aria-label="How to practice">
+        <button id="mType" aria-pressed="true">Type answers</button>
+        <button id="mReveal" aria-pressed="false">Tap to reveal</button>
+        <button id="mStudy" aria-pressed="false">Show all</button>
+      </div>
+      <div class="found-bar" id="found" hidden></div>
+      <p class="hint" id="hint"></p>
+      <ol class="answers" id="answers"></ol>
+      <div class="row" id="actions"></div>
+      <div class="nav">
+        <button class="btn" id="prev">&larr; Previous card</button>
+        <button class="btn" id="shuffle">Shuffle cards</button>
+        <button class="btn" id="next">Next card &rarr;</button>
+      </div>
+    </section>
+  </main>
+  <section class="vids" id="vids" data-videos="bodyplan" hidden aria-labelledby="vidsH"><h2 id="vidsH">Walk-through videos</h2><p class="vids-sub">Watch the structures pointed out, then practice them on the cards above.</p></section>
+  <section class="more" id="more" hidden><h2>Further study</h2><div id="moreLinks"></div></section>
+  <footer class="note"><b>Spelling counts on the lab exam.</b> Practice here accepts close spellings, but on the exam the only abbreviations allowed are R. (right), L. (left), A. (artery), V. (vein) and N. (nerve). Spell everything else out. Your progress stays on this device. Cadaver images courtesy of BlueLink, University of Michigan Medical School. Histology images courtesy of Duke University Virtual Microscopy. Black-and-white brain images from Duane E. Haines's neuroanatomy atlas.</footer>
+</div>
+
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="videos-data.js"></script>
+<script src="videos.js"></script>
+<script>
+const DECK={"id": "bodyplan", "title": "Body Regions, Planes and Cavities", "sets": {"regions": "Body regions", "planes": "Planes and directions", "cavities": "Cavities and membranes"}, "cards": [{"id": "01", "title": "Anterior body regions", "set": "regions", "type": "label", "w": 1920, "h": 1080, "r": 18, "pins": [{"n": 1, "lab": "1", "a": "Cranial (cephalic)", "x": 292, "y": 103, "box": [287, 98, 297, 108], "q": "Name this body region.", "acc": ["cranial", "cephalic", "cranial or cephalic"], "tags": ["Cranial", "cephalic"]}, {"n": 2, "lab": "2", "a": "Frontal", "x": 1180, "y": 186, "box": [1175, 181, 1185, 191], "q": "Name this body region.", "acc": [], "tags": ["Frontal"]}, {"n": 3, "lab": "3", "a": "Acromial", "x": 296, "y": 234, "box": [291, 229, 301, 239], "q": "Name this body region.", "acc": [], "tags": ["Acromial"]}, {"n": 4, "lab": "4", "a": "Orbital (ocular)", "x": 1176, "y": 231, "box": [1171, 226, 1181, 236], "q": "Name this body region.", "acc": ["orbital", "ocular", "orbital/ocular"], "tags": ["Orbital", "ocular"]}, {"n": 5, "lab": "5", "a": "Deltoid", "x": 260, "y": 274, "box": [255, 269, 265, 279], "q": "Name this body region.", "acc": [], "tags": ["Deltoid"]}, {"n": 6, "lab": "6", "a": "Nasal", "x": 1170, "y": 263, "box": [1165, 258, 1175, 268], "q": "Name this body region.", "acc": [], "tags": ["Nasal"]}, {"n": 7, "lab": "7", "a": "Axillary", "x": 286, "y": 310, "box": [281, 305, 291, 315], "q": "Name this body region.", "acc": [], "tags": ["Axillary"]}, {"n": 8, "lab": "8", "a": "Buccal", "x": 1188, "y": 304, "box": [1183, 299, 1193, 309], "q": "Name this body region.", "acc": [], "tags": ["Buccal"]}, {"n": 9, "lab": "9", "a": "Oral (oris)", "x": 1206, "y": 336, "box": [1201, 331, 1211, 341], "q": "Name this body region.", "acc": ["oral", "oris"], "tags": ["Oral", "oris"]}, {"n": 10, "lab": "10", "a": "Brachial", "x": 246, "y": 358, "box": [241, 353, 251, 363], "q": "Name this body region.", "acc": [], "tags": ["Brachial"]}, {"n": 11, "lab": "11", "a": "Mental", "x": 1165, "y": 379, "box": [1160, 374, 1170, 384], "q": "Name this body region.", "acc": [], "tags": ["Mental"]}, {"n": 12, "lab": "12", "a": "Antecubital", "x": 244, "y": 401, "box": [239, 396, 249, 406], "q": "Name this body region.", "acc": [], "tags": ["Antecubital"]}, {"n": 13, "lab": "13", "a": "Umbilical", "x": 236, "y": 444, "box": [231, 439, 241, 449], "q": "Name this body region.", "acc": [], "tags": ["Umbilical"]}, {"n": 14, "lab": "14", "a": "Cervical", "x": 1195, "y": 436, "box": [1190, 431, 1200, 441], "q": "Name this body region.", "acc": [], "tags": ["Cervical"]}, {"n": 15, "lab": "15", "a": "Antebrachial", "x": 225, "y": 486, "box": [220, 481, 230, 491], "q": "Name this body region.", "acc": [], "tags": ["Antebrachial"]}, {"n": 16, "lab": "16", "a": "Acromial", "x": 1005, "y": 487, "box": [1000, 482, 1010, 492], "q": "Name this body region.", "acc": [], "tags": ["Acromial"]}, {"n": 17, "lab": "17", "a": "Carpal", "x": 221, "y": 544, "box": [216, 539, 226, 549], "q": "Name this body region.", "acc": [], "tags": ["Carpal"]}, {"n": 18, "lab": "18", "a": "Deltoid", "x": 1026, "y": 542, "box": [1021, 537, 1031, 547], "q": "Name this body region.", "acc": [], "tags": ["Deltoid"]}, {"n": 19, "lab": "19", "a": "Digital", "x": 214, "y": 588, "box": [209, 583, 219, 593], "q": "Name this body region.", "acc": [], "tags": ["Digital"]}, {"n": 20, "lab": "20", "a": "Mammary", "x": 996, "y": 634, "box": [991, 629, 1001, 639], "q": "Name this body region.", "acc": [], "tags": ["Mammary"]}, {"n": 21, "lab": "21", "a": "Axillary", "x": 978, "y": 669, "box": [973, 664, 983, 674], "q": "Name this body region.", "acc": [], "tags": ["Axillary"]}, {"n": 22, "lab": "22", "a": "Sternal", "x": 1026, "y": 766, "box": [1021, 761, 1031, 771], "q": "Name this body region.", "acc": [], "tags": ["Sternal"]}, {"n": 23, "lab": "23", "a": "Abdominal", "x": 1017, "y": 844, "box": [1012, 839, 1022, 849], "q": "Name this body region.", "acc": [], "tags": ["Abdominal"]}, {"n": 24, "lab": "24", "a": "Umbilical", "x": 990, "y": 977, "box": [985, 972, 995, 982], "q": "Name this body region.", "acc": [], "tags": ["Umbilical"]}], "items": [], "img": "img/bodyplan-01.jpg", "n": 1}, {"id": "02", "title": "Anterior body regions: pelvis and lower limb", "set": "regions", "type": "label", "w": 1920, "h": 1080, "r": 22, "pins": [{"n": 1, "lab": "1", "a": "Cranial (cephalic)", "x": 458, "y": 103, "box": [453, 98, 463, 108], "q": "Name this body region.", "acc": ["cranial", "cephalic", "cranial or cephalic"], "tags": ["Cranial", "cephalic"]}, {"n": 2, "lab": "2", "a": "Pelvic", "x": 1134, "y": 146, "box": [1129, 141, 1139, 151], "q": "Name this body region.", "acc": [], "tags": ["Pelvic"]}, {"n": 3, "lab": "3", "a": "Inguinal", "x": 1261, "y": 194, "box": [1256, 189, 1266, 199], "q": "Name this body region.", "acc": [], "tags": ["Inguinal"]}, {"n": 4, "lab": "4", "a": "Pubic", "x": 1232, "y": 233, "box": [1227, 228, 1237, 238], "q": "Name this body region.", "acc": [], "tags": ["Pubic"]}, {"n": 5, "lab": "5", "a": "Pollex (thumb)", "x": 1188, "y": 304, "box": [1183, 299, 1193, 309], "q": "Name this body region.", "acc": ["pollex"], "tags": ["Pollex", "thumb"]}, {"n": 6, "lab": "6", "a": "Coxal", "x": 1782, "y": 322, "box": [1777, 317, 1787, 327], "q": "Name the region inside the white outline.", "acc": [], "tags": ["Coxal"]}, {"n": 7, "lab": "7", "a": "Femoral", "x": 1185, "y": 436, "box": [1180, 431, 1190, 441], "q": "Name this body region.", "acc": [], "tags": ["Femoral"]}, {"n": 8, "lab": "8", "a": "Coxal", "x": 892, "y": 526, "box": [887, 521, 897, 531], "q": "Name the region inside the white outline.", "acc": [], "tags": ["Coxal"]}, {"n": 9, "lab": "9", "a": "Patellar", "x": 1248, "y": 563, "box": [1243, 558, 1253, 568], "q": "Name this body region.", "acc": [], "tags": ["Patellar"]}, {"n": 10, "lab": "10", "a": "Femoral", "x": 500, "y": 655, "box": [495, 650, 505, 660], "q": "Name this body region.", "acc": [], "tags": ["Femoral"]}, {"n": 11, "lab": "11", "a": "Fibular", "x": 1285, "y": 676, "box": [1280, 671, 1290, 681], "q": "Name this body region.", "acc": [], "tags": ["Fibular"]}, {"n": 12, "lab": "12", "a": "Patellar", "x": 497, "y": 725, "box": [492, 720, 502, 730], "q": "Name this body region.", "acc": [], "tags": ["Patellar"]}, {"n": 13, "lab": "13", "a": "Crural", "x": 1174, "y": 725, "box": [1169, 720, 1179, 730], "q": "Name this body region.", "acc": [], "tags": ["Crural"]}, {"n": 14, "lab": "14", "a": "Crural", "x": 489, "y": 849, "box": [484, 844, 494, 854], "q": "Name this body region.", "acc": [], "tags": ["Crural"]}, {"n": 15, "lab": "15", "a": "Tarsal", "x": 497, "y": 963, "box": [492, 958, 502, 968], "q": "Name this body region.", "acc": [], "tags": ["Tarsal"]}, {"n": 16, "lab": "16", "a": "Digital (toes)", "x": 1218, "y": 973, "box": [1213, 968, 1223, 978], "q": "Name this body region.", "acc": ["digital"], "tags": ["Digital", "toes"]}, {"n": 17, "lab": "17", "a": "Digital (hallux)", "x": 535, "y": 1011, "box": [530, 1006, 540, 1016], "q": "Name this body region.", "acc": ["digital", "hallux", "digital/hallux"], "tags": ["Digital", "hallux"]}, {"n": 18, "lab": "18", "a": "Hallux (big toe)", "x": 1258, "y": 1045, "box": [1253, 1040, 1263, 1050], "q": "Name this body region.", "acc": ["hallux"], "tags": ["Hallux", "big toe"]}], "items": [], "img": "img/bodyplan-02.jpg", "n": 2}, {"id": "03", "title": "Posterior body regions", "set": "regions", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Occipital", "x": 462, "y": 109, "box": [457, 104, 467, 114], "q": "Name this body region.", "acc": [], "tags": ["Occipital"]}, {"n": 2, "lab": "2", "a": "Cranial (cephalic)", "x": 768, "y": 116, "box": [763, 111, 773, 121], "q": "Name this body region.", "acc": ["cranial", "cephalic", "cranial or cephalic"], "tags": ["Cranial", "cephalic"]}, {"n": 3, "lab": "3", "a": "Cervical", "x": 440, "y": 194, "box": [435, 189, 445, 199], "q": "Name this body region.", "acc": [], "tags": ["Cervical"]}, {"n": 4, "lab": "4", "a": "Scapular", "x": 398, "y": 279, "box": [393, 274, 403, 284], "q": "Name this body region.", "acc": [], "tags": ["Scapular"]}, {"n": 5, "lab": "5", "a": "Otic (auris)", "x": 1175, "y": 306, "box": [1170, 301, 1180, 311], "q": "Name this body region.", "acc": ["otic", "auris", "otic/auris"], "tags": ["Otic", "auris"]}, {"n": 6, "lab": "6", "a": "Occipital", "x": 1644, "y": 306, "box": [1639, 301, 1649, 311], "q": "Name this body region.", "acc": [], "tags": ["Occipital"]}, {"n": 7, "lab": "7", "a": "Vertebral", "x": 450, "y": 343, "box": [445, 338, 455, 348], "q": "Name this body region.", "acc": [], "tags": ["Vertebral"]}, {"n": 8, "lab": "8", "a": "Buccal", "x": 1135, "y": 363, "box": [1130, 358, 1140, 368], "q": "Name this body region.", "acc": [], "tags": ["Buccal"]}, {"n": 9, "lab": "9", "a": "Lumbar", "x": 412, "y": 420, "box": [407, 415, 417, 425], "q": "Name this body region.", "acc": [], "tags": ["Lumbar"]}, {"n": 10, "lab": "10", "a": "Sacral", "x": 429, "y": 498, "box": [424, 493, 434, 503], "q": "Name this body region.", "acc": [], "tags": ["Sacral"]}, {"n": 11, "lab": "11", "a": "Cervical", "x": 1198, "y": 519, "box": [1193, 514, 1203, 524], "q": "Name this body region.", "acc": [], "tags": ["Cervical"]}, {"n": 12, "lab": "12", "a": "Gluteal", "x": 405, "y": 580, "box": [400, 575, 410, 585], "q": "Name this body region.", "acc": [], "tags": ["Gluteal"]}, {"n": 13, "lab": "13", "a": "Femoral", "x": 438, "y": 644, "box": [433, 639, 443, 649], "q": "Name this body region.", "acc": [], "tags": ["Femoral"]}, {"n": 14, "lab": "14", "a": "Popliteal", "x": 442, "y": 760, "box": [437, 755, 447, 765], "q": "Name this body region.", "acc": [], "tags": ["Popliteal"]}, {"n": 15, "lab": "15", "a": "Sural", "x": 396, "y": 835, "box": [391, 830, 401, 840], "q": "Name this body region.", "acc": [], "tags": ["Sural"]}, {"n": 16, "lab": "16", "a": "Tarsal", "x": 400, "y": 978, "box": [395, 973, 405, 983], "q": "Name this body region.", "acc": [], "tags": ["Tarsal"]}, {"n": 17, "lab": "17", "a": "Calcaneal", "x": 446, "y": 1040, "box": [441, 1035, 451, 1045], "q": "Name this body region.", "acc": [], "tags": ["Calcaneal"]}], "items": [], "img": "img/bodyplan-03.jpg", "n": 3}, {"id": "04", "title": "Anatomical position and body planes", "set": "planes", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Frontal (coronal) plane", "x": 1062, "y": 75, "box": [1057, 70, 1067, 80], "q": "Name this plane.", "acc": ["coronal plane", "frontal plane", "coronal", "frontal", "coronal/frontal plane"], "tags": ["Frontal plane", "coronal"]}, {"n": 2, "lab": "2", "a": "Transverse (horizontal) plane", "x": 1100, "y": 370, "box": [1095, 365, 1105, 375], "q": "Name this plane.", "acc": ["transverse plane", "horizontal plane", "cross-sectional plane", "transverse", "horizontal"], "tags": ["Transverse plane", "horizontal"]}, {"n": 3, "lab": "3", "a": "Oblique plane", "x": 418, "y": 727, "box": [413, 722, 423, 732], "q": "Name this plane.", "acc": ["oblique"], "tags": ["Oblique plane"]}, {"n": 4, "lab": "4", "a": "Midsagittal (median) plane", "x": 1029, "y": 856, "box": [1024, 851, 1034, 861], "q": "Name this plane.", "acc": ["midsagittal plane", "median plane", "midsagittal", "median"], "tags": ["Midsagittal plane", "median"]}, {"n": 5, "lab": "5", "a": "Parasagittal plane", "x": 1033, "y": 964, "box": [1028, 959, 1038, 969], "q": "Name this plane.", "acc": ["parasagittal"], "tags": ["Parasagittal plane"]}, {"n": 6, "lab": "6", "a": "Midsagittal (median) plane", "x": 934, "y": 1045, "box": [929, 1040, 939, 1050], "q": "Name this plane.", "acc": ["midsagittal plane", "median plane", "midsagittal", "median"], "tags": ["Midsagittal plane", "median"]}], "items": [], "img": "img/bodyplan-04.jpg", "n": 4}, {"id": "05", "title": "Directional terms", "set": "planes", "type": "label", "w": 1920, "h": 1080, "r": 21, "pins": [{"n": 1, "lab": "1", "a": "Superior", "x": 878, "y": 37, "box": [873, 32, 883, 42], "q": "Name this direction.", "acc": ["cephalic", "cranial"], "tags": ["Superior"]}, {"n": 2, "lab": "2", "a": "Superior", "x": 1416, "y": 45, "box": [1411, 40, 1421, 50], "q": "Name this direction.", "acc": ["cephalic", "cranial"], "tags": ["Superior"]}, {"n": 3, "lab": "3", "a": "Cephalic", "x": 1415, "y": 92, "box": [1410, 87, 1420, 97], "q": "Name this direction.", "acc": ["superior", "cranial"], "tags": ["Cephalic"]}, {"n": 4, "lab": "4", "a": "Proximal", "x": 972, "y": 220, "box": [967, 215, 977, 225], "q": "Name this direction.", "acc": [], "tags": ["Proximal"]}, {"n": 5, "lab": "5", "a": "Lateral", "x": 616, "y": 398, "box": [611, 393, 621, 403], "q": "Name this direction.", "acc": [], "tags": ["Lateral"]}, {"n": 6, "lab": "6", "a": "Medial", "x": 918, "y": 398, "box": [913, 393, 923, 403], "q": "Name this direction.", "acc": [], "tags": ["Medial"]}, {"n": 7, "lab": "7", "a": "Anterior (ventral)", "x": 1216, "y": 416, "box": [1211, 411, 1221, 421], "q": "Name this direction.", "acc": ["anterior", "ventral"], "tags": ["Anterior", "ventral"]}, {"n": 8, "lab": "8", "a": "Posterior (dorsal)", "x": 1588, "y": 416, "box": [1583, 411, 1593, 421], "q": "Name this direction.", "acc": ["posterior", "dorsal"], "tags": ["Posterior", "dorsal"]}, {"n": 9, "lab": "9", "a": "Proximal", "x": 839, "y": 534, "box": [834, 529, 844, 539], "q": "Name this direction.", "acc": [], "tags": ["Proximal"]}, {"n": 10, "lab": "10", "a": "Caudal", "x": 1415, "y": 539, "box": [1410, 534, 1420, 544], "q": "Name this direction.", "acc": ["inferior"], "tags": ["Caudal"]}, {"n": 11, "lab": "11", "a": "Distal", "x": 1053, "y": 620, "box": [1048, 615, 1058, 625], "q": "Name this direction.", "acc": [], "tags": ["Distal"]}, {"n": 12, "lab": "12", "a": "Distal", "x": 837, "y": 996, "box": [832, 991, 842, 1001], "q": "Name this direction.", "acc": [], "tags": ["Distal"]}, {"n": 13, "lab": "13", "a": "Inferior", "x": 872, "y": 1046, "box": [867, 1041, 877, 1051], "q": "Name this direction.", "acc": ["caudal"], "tags": ["Inferior"]}, {"n": 14, "lab": "14", "a": "Inferior", "x": 1402, "y": 1037, "box": [1397, 1032, 1407, 1042], "q": "Name this direction.", "acc": ["caudal"], "tags": ["Inferior"]}], "items": [], "img": "img/bodyplan-05.jpg", "n": 5}, {"id": "06", "title": "Serous membranes", "set": "cavities", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Parietal layer", "x": 218, "y": 449, "box": [213, 444, 223, 454], "q": "Name the outer layer of the serous membrane.", "acc": ["parietal", "parietal serous membrane"], "tags": ["Parietal layer"]}, {"n": 2, "lab": "2", "a": "Visceral layer", "x": 514, "y": 449, "box": [509, 444, 519, 454], "q": "Name the inner layer, on the organ.", "acc": ["visceral", "visceral serous membrane"], "tags": ["Visceral layer"]}, {"n": 3, "lab": "3", "a": "Serous cavity (fluid-filled)", "x": 310, "y": 528, "box": [305, 523, 315, 533], "q": "Name the space between the layers.", "acc": ["serous cavity", "cavity"], "tags": ["Serous cavity", "fluid-filled"]}, {"n": 4, "lab": "4", "a": "Pleural cavity", "x": 1478, "y": 622, "box": [1473, 617, 1483, 627], "q": "Name this space.", "acc": [], "tags": ["Pleural cavity"]}, {"n": 5, "lab": "5", "a": "Parietal pleura", "x": 1386, "y": 729, "box": [1381, 724, 1391, 734], "q": "Name this layer.", "acc": [], "tags": ["Parietal pleura"]}, {"n": 6, "lab": "6", "a": "Visceral pleura", "x": 1585, "y": 719, "box": [1580, 714, 1590, 724], "q": "Name this layer.", "acc": [], "tags": ["Visceral pleura"]}], "items": [], "img": "img/bodyplan-06.jpg", "n": 6}, {"id": "07", "title": "Peritoneal and retroperitoneal spaces", "set": "cavities", "type": "label", "w": 1160, "h": 550, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Peritoneal cavity", "x": 398, "y": 105, "box": [393, 100, 403, 110], "q": "Name this space.", "acc": [], "tags": ["Peritoneal cavity"]}, {"n": 2, "lab": "2", "a": "Peritoneal cavity", "x": 786, "y": 166, "box": [781, 161, 791, 171], "q": "Name this space.", "acc": [], "tags": ["Peritoneal cavity"]}, {"n": 3, "lab": "3", "a": "Retroperitoneal space", "x": 410, "y": 325, "box": [405, 320, 415, 330], "q": "Name this space.", "acc": ["retroperitoneal cavity", "retroperitoneum"], "tags": ["Retroperitoneal space"]}], "items": [], "img": "img/bodyplan-07.jpg", "n": 7}, {"id": "08", "title": "Abdominal quadrants", "set": "cavities", "type": "label", "w": 1920, "h": 1080, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Left upper quadrant", "x": 1512, "y": 489, "box": [1507, 484, 1517, 494], "q": "Name this quadrant.", "acc": ["LUQ"], "tags": ["Left upper quadrant"]}, {"n": 2, "lab": "2", "a": "Right upper quadrant", "x": 436, "y": 511, "box": [431, 506, 441, 516], "q": "Name this quadrant.", "acc": ["RUQ", "right upper quadrant"], "tags": ["Right upper quadrant"]}, {"n": 3, "lab": "3", "a": "Right lower quadrant", "x": 442, "y": 739, "box": [437, 734, 447, 744], "q": "Name this quadrant.", "acc": ["RLQ"], "tags": ["Right lower quadrant"]}, {"n": 4, "lab": "4", "a": "Left lower quadrant", "x": 1598, "y": 753, "box": [1593, 748, 1603, 758], "q": "Name this quadrant.", "acc": ["LLQ"], "tags": ["Left lower quadrant"]}], "items": [], "img": "img/bodyplan-08.jpg", "n": 8}, {"id": "09", "title": "Which quadrant?", "set": "cavities", "type": "qa", "w": 1030, "h": 1080, "r": 0, "pins": [], "img": "img/bodyplan-09.jpg", "items": [{"q": "Which quadrant holds the gallbladder?", "a": "Right upper quadrant", "self": false, "acc": ["RUQ"]}, {"q": "Which quadrant holds the spleen?", "a": "Left upper quadrant", "self": false, "acc": ["LUQ"]}, {"q": "Which quadrant holds the appendix?", "a": "Right lower quadrant", "self": false, "acc": ["RLQ"]}, {"q": "Which quadrant holds the sigmoid colon?", "a": "Left lower quadrant", "self": false, "acc": ["LLQ"]}], "n": 9}, {"id": "10", "title": "Mediastinum (outlined in orange)", "set": "cavities", "type": "qa", "w": 990, "h": 955, "r": 0, "pins": [], "img": "img/bodyplan-10.jpg", "items": [{"q": "Name the region outlined in orange.", "a": "Mediastinum", "self": false, "acc": []}, {"q": "What are its borders?", "a": "Superior: first rib. Inferior: diaphragm. Lateral: right and left lungs. Anterior: sternum. Posterior: vertebrae", "self": true, "acc": []}, {"q": "What does it contain?", "a": "Heart, great vessels, thymus, trachea, esophagus, and nerves (vagus nerve, sympathetic chain)", "self": true, "acc": []}], "n": 10}, {"id": "11", "title": "Body plan: quick check", "set": "cavities", "type": "qa", "w": 740, "h": 560, "r": 0, "pins": [], "img": "img/bodyplan-11.jpg", "items": [{"q": "How is a person standing in anatomical position?", "a": "Standing upright, facing forward, eyes forward, arms at the sides with palms facing forward", "self": true, "acc": []}, {"q": "Name the retroperitoneal organs (SADPUCKER).", "a": "Suprarenal (adrenal) glands, aorta and IVC, duodenum (most), pancreas (most), ureters, colon (ascending and descending), kidneys, esophagus (abdominal part), rectum", "self": true, "acc": []}, {"q": "Name the three serous membranes and what they cover.", "a": "Pericardium (heart), pleura (lungs), peritoneum (abdominal organs)", "self": true, "acc": []}], "n": 11}]};
+const SETS=DECK.sets, CARDS=DECK.cards;
+if(DECK.links&&DECK.links.length){const m=document.getElementById('more');m.hidden=false;DECK.links.forEach(l=>{const a=document.createElement('a');a.href=l.u;a.target='_blank';a.rel='noopener';a.textContent=l.t;const sm=document.createElement('small');sm.textContent=l.d;a.appendChild(sm);document.getElementById('moreLinks').appendChild(a)})}
+const SYN={"anterior interventricular artery": ["lad", "left anterior descending", "left anterior descending artery"], "bicuspid valve": ["mitral valve", "mitral", "left atrioventricular valve"], "tricuspid valve": ["right atrioventricular valve"], "pulmonary semilunar valve": ["pulmonic valve", "pulmonary valve"], "pulmonic valve": ["pulmonary semilunar valve", "pulmonary valve"], "aortic semilunar valve": ["aortic valve"], "sinoatrial node": ["sa node"], "atrioventricular node": ["av node"], "bundle of his": ["av bundle", "atrioventricular bundle"], "epicardium": ["visceral pericardium"], "fibrous pericardium": ["parietal pericardium", "fibrous parietal pericardium"], "purkinje fibers": ["purkinje"], "thymus": ["thymus gland"], "brachiocephalic trunk": ["brachiocephalic artery"], "transverse tubule": ["t tubule"], "z disc": ["z line", "z disk"], "intercalated disc": ["intercalated disk"], "terminal cistern": ["terminal cisterna", "terminal cisternae"], "skeletal muscle tissue": ["skeletal muscle", "striated muscle"], "cardiac muscle tissue": ["cardiac muscle", "heart muscle", "myocardium"], "smooth muscle tissue": ["smooth muscle", "visceral muscle"], "coronary sulcus": ["atrioventricular groove"]};
+const ABBR={a:'artery',aa:'arteries',art:'artery',v:'vein',vv:'veins',r:'right',rt:'right',l:'left',lt:'left',
+ svc:'superior vena cava',ivc:'inferior vena cava',m:'muscle',ant:'anterior',post:'posterior',sr:'sarcoplasmic reticulum'};
+const DROP=new Set(['the','of','for','to','opening','openings','space','an']);
+function norm(s){
+  return s.toLowerCase().replace(/[\/,.;:()"'+-]/g,' ').split(/\s+/).filter(Boolean)
+   .map(w=>ABBR[w]||w).join(' ').split(' ').filter(w=>!DROP.has(w))
+   .map(w=>w.length>4?w.replace(/(es|s)$/,''):w).join(' ');
+}
+function shortForms(a){
+  const base=a.split(':')[0].replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').trim();
+  const out=base.split(' / ').map(s=>s.trim()); const extra=[];
+  out.forEach(o=>{const k=o.toLowerCase();Object.keys(SYN).forEach(s=>{if(k.includes(s))SYN[s].forEach(x=>extra.push(k.replace(s,x)))})});
+  return {show:out.join(' / '),accept:[...out,...extra].map(norm)};
+}
+function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=[...Array(n+1).keys()];
+ for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]==b[j-1]?0:1));p=c}return p[n]}
+function close(g,list){g=norm(g);if(!g)return false;
+  return list.some(t=>{const tol=t.length<5?0:Math.max(1,Math.floor(t.length/7));return lev(g,t)<=tol})}
+CARDS.forEach(c=>{c.pins.forEach(p=>{p.sf=shortForms(p.a);(p.acc||[]).forEach(x=>p.sf.accept.push(norm(x)))});c.items.forEach(it=>it.accN=[it.a,...it.acc].map(norm))});
+
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const BEST_KEY='atlasBest_'+DECK.id;
+let best=store.get(BEST_KEY,{});
+let set='all', order=CARDS.map((_,i)=>i), pos=0, mode='type', state={}, hotPin=null;
+const $=id=>document.getElementById(id);
+const visible=()=>order.filter(i=>set==='all'||CARDS[i].set===set);
+const cur=()=>CARDS[visible()[pos]];
+const HAS_DETAIL=CARDS.some(c=>c.items.some(it=>it.self&&/origin/i.test(it.q)));
+let nameOnly=HAS_DETAIL&&store.get('atlasNameOnly_'+DECK.id,false);
+const units=c=>c.type==='qa'?c.items.map((it,i)=>({key:i+1,lab:String(i+1),it})).filter(u=>!(nameOnly&&u.it.self)):c.pins.map(p=>({key:p.n,lab:p.lab,p}));
+const autoUnits=c=>units(c).filter(u=>!(u.it&&u.it.self));
+
+function renderSets(){const el=$('sets');el.innerHTML='';
+  [['all','All cards'],...Object.entries(SETS)].forEach(([k,name])=>{const b=document.createElement('button');b.className='chip';b.textContent=name;
+    b.setAttribute('aria-pressed',set===k);b.onclick=()=>{set=k;pos=0;renderSets();load()};el.appendChild(b)})}
+function renderStrip(){const el=$('strip');el.innerHTML='';
+  visible().forEach((i,j)=>{const c=CARDS[i];const b=document.createElement('button');b.textContent=c.n;b.title=c.title;
+    b.setAttribute('aria-label',`Card ${c.n}: ${c.title}`);if(j===pos)b.setAttribute('aria-current','true');
+    const s=best[c.id];if(s!=null){const d=document.createElement('span');d.className='dot '+(s>=autoUnits(c).length?'done':'part');b.appendChild(d)}
+    b.onclick=()=>{pos=j;load()};el.appendChild(b)});
+  const a=el.querySelector('[aria-current]');if(a)a.scrollIntoView({block:'nearest',inline:'nearest'})}
+const NS='http://www.w3.org/2000/svg';
+function svgEl(t,attrs,parent){const e=document.createElementNS(NS,t);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e}
+function drawFig(){
+  const c=cur(),svg=$('fig');svg.innerHTML='';svg.setAttribute('viewBox',`0 0 ${c.w} ${c.h}`);
+  svg.setAttribute('aria-label',c.type==='qa'?`Microscope image for ${c.title}`:`${c.title}, with ${c.pins.length} marked structures`);
+  svgEl('image',{href:c.img,x:0,y:0,width:c.w,height:c.h},svg);
+  if(c.type==='qa'){syncZoom();return}
+  const fs=Math.round(Math.max(26,c.r*1.0));
+  c.pins.forEach(p=>{const st=state[p.n]||{};
+    if(mode==='study'||st.open||(mode==='type'&&st.result!=null)||hotPin===p.n&&st.open){
+      const bx=(p.box[0]+p.box[2])/2;let x,y=p.y+fs*0.35+(p.dy||0),anchor;
+      if(Math.abs(p.x-bx)<6){x=p.x;y=p.y-c.r-10;anchor='middle'}else if(p.x>bx){x=p.x-c.r-6;anchor='end'}else{x=p.x+c.r+6;anchor='start'}
+      const t=svgEl('text',{x,y,'text-anchor':anchor,'font-size':fs,class:'lbl'+(hotPin===p.n?' found':'')},svg);t.textContent=p.sf.show}});
+  const fp=c.pins.find(p=>p.n===hotPin);if(fp)svgEl('circle',{cx:fp.x,cy:fp.y,r:c.r*1.9,class:'ring'},svg);
+  c.pins.forEach(p=>{const st=state[p.n]||{};
+    const g=svgEl('g',{class:'pin'+(st.result===true?' right':st.result===false?' wrong':'')+(hotPin===p.n?' hot':''),'data-n':p.n,tabindex:0,role:'button','aria-label':'Structure '+p.lab},svg);
+    svgEl('circle',{cx:p.x,cy:p.y,r:c.r},g);
+    const t=svgEl('text',{x:p.x,y:p.y+c.r*0.42,'text-anchor':'middle','font-size':Math.round(c.r*1.2)},g);t.textContent=p.lab;
+    g.onclick=()=>pinAct(p.n);g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pinAct(p.n)}};
+    g.onmouseenter=()=>hot(p.n,true);g.onmouseleave=()=>hot(p.n,false)});
+  syncZoom()}
+function syncZoom(){const d=$('zoom');if(!d||!d.open)return;const c=cur(),w=$('zWrap'),big=w.classList.contains('big');
+  const k=$('fig').cloneNode(true);k.removeAttribute('id');k.setAttribute('aria-label',c.title);
+  if(big){k.setAttribute('width',Math.max(c.w,Math.round(window.innerWidth*1.6)));k.removeAttribute('height')}else{const sc=Math.min((innerWidth-32)/c.w,(innerHeight-92)/c.h);k.setAttribute('width',Math.round(c.w*sc));k.setAttribute('height',Math.round(c.h*sc))}
+  w.innerHTML='';w.appendChild(k);$('zTitle').textContent=c.title;$('zSize').textContent=big?'Fit to screen':'Bigger'}
+function openZoom(){const d=$('zoom');$('zWrap').classList.remove('big');if(!d.open)d.showModal();syncZoom()}
+function hot(n,on){document.querySelectorAll(`[data-n="${n}"]`).forEach(e=>e.classList.toggle('hot',on))}
+function pinAct(n){if(mode==='type'){const i=$('in'+n);if(i)i.focus()}
+  else if(mode==='reveal'){state[n]=state[n]||{};state[n].open=!state[n].open;drawFig();drawList()}}
+function drawList(){
+  const c=cur(),ol=$('answers');ol.innerHTML='';
+  units(c).forEach(u=>{const n=u.key,st=state[n]||{},ans=u.it?u.it.a:u.p.a;
+    const li=document.createElement('li');li.dataset.n=n;li.onmouseenter=()=>hot(n,true);li.onmouseleave=()=>hot(n,false);
+    const num=document.createElement('span');num.className='num'+(st.result===true?' right':st.result===false?' wrong':'');num.textContent=u.lab;li.appendChild(num);
+    const box=document.createElement('div');box.className='field';
+    const qq=u.it?u.it.q:(u.p.q||'');if(qq){const q=document.createElement('div');q.className='q';q.textContent=qq;box.appendChild(q)}
+    if(mode==='type'){
+      const inp=document.createElement('input');inp.id='in'+n;inp.autocomplete='off';inp.spellcheck=false;
+      inp.setAttribute('aria-label',u.it?u.it.q:'Answer for '+u.lab);inp.value=st.typed||'';
+      if(st.result!=null)inp.className=st.result?'right':'wrong'; else if(st.shown)inp.className='self';
+      inp.oninput=()=>{state[n]=Object.assign(state[n]||{},{typed:inp.value})};
+      inp.onfocus=()=>hot(n,true);inp.onblur=()=>hot(n,false);
+      inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const nx=$('in'+(n+1));nx?nx.focus():check()}};
+      box.appendChild(inp);
+      if(st.result!=null||st.shown){const f=document.createElement('div');
+        f.className='fix'+(st.shown?' cmp':st.result?' ok':'');f.textContent=st.shown?'Compare with: '+ans:st.result?ans:'Answer: '+ans;box.appendChild(f)}
+    }else if(mode==='reveal'){
+      const b=document.createElement('button');b.className='reveal'+(st.open?' open':'');
+      b.textContent=st.open?ans:(u.it?'Tap to show the answer':'Tap to show '+u.lab);b.setAttribute('aria-expanded',!!st.open);
+      b.onclick=()=>{state[n]=state[n]||{};state[n].open=!state[n].open;drawFig();drawList()};box.appendChild(b);
+    }else{const s=document.createElement('div');s.className='ans';s.textContent=ans;box.appendChild(s)}
+    li.appendChild(box);ol.appendChild(li)});
+  const act=$('actions');act.innerHTML='';
+  if(mode==='type'){
+    const b=document.createElement('button');b.className='btn primary';b.textContent='Check my answers';b.onclick=check;act.appendChild(b);
+    const r=document.createElement('button');r.className='btn';r.textContent='Clear and try again';r.onclick=()=>{state={};drawFig();drawList()};act.appendChild(r);
+    const au=autoUnits(c);if(au.some(u=>(state[u.key]||{}).result!=null)){const s=document.createElement('span');s.className='score';
+      s.setAttribute('aria-live','polite');s.textContent=`${au.filter(u=>(state[u.key]||{}).result===true).length} of ${au.length} correct`;act.appendChild(s)}
+  }else if(mode==='reveal'){const b=document.createElement('button');b.className='btn';b.textContent='Hide all again';
+    b.onclick=()=>{Object.values(state).forEach(s=>s.open=false);drawFig();drawList()};act.appendChild(b)}
+}
+function check(){const c=cur();let right=0;
+  units(c).forEach(u=>{const st=state[u.key]=state[u.key]||{};
+    if(u.it&&u.it.self){st.shown=true;return}
+    st.result=u.it?close(st.typed||'',u.it.accN):close(st.typed||'',u.p.sf.accept);if(st.result)right++});
+  if(best[c.id]==null||right>best[c.id]){best[c.id]=right;store.set(BEST_KEY,best)}
+  drawFig();drawList();renderStrip()}
+const HINTS={type:'Type each answer, then check. Press Enter to jump to the next blank. Questions about function and location show the answer so you can compare.',
+ reveal:'Say each answer out loud first, then tap to see if you were right.',
+ study:'Everything is labeled. Study the card, then switch back to Type answers to test yourself.'};
+function setMode(m){mode=m;[['type','mType'],['reveal','mReveal'],['study','mStudy']].forEach(([k,id])=>$(id).setAttribute('aria-pressed',k===m));
+  $('hint').textContent=HINTS[m];drawFig();drawList()}
+function load(keep){const v=visible();if(pos>=v.length)pos=0;if(pos<0)pos=v.length-1;
+  const c=cur();if(!keep){state={};hotPin=null}
+  $('cardEyebrow').textContent=`Card ${c.n} · ${SETS[c.set]}`;showFound();$('cardTitle').textContent=c.title;renderStrip();setMode(mode)}
+function showFound(){const c=cur(),fb=$('found'),p=c.pins.find(p=>p.n===hotPin);
+  if(!p){fb.hidden=true;return}
+  fb.hidden=false;fb.innerHTML='';fb.append('Found: ');const sp=document.createElement('span');sp.textContent=p.sf.show;fb.append(sp,` (number ${p.lab}, circled in gold)`);
+  const b=document.createElement('button');b.textContent='Clear';b.onclick=()=>{hotPin=null;state={};history.replaceState(null,'',location.pathname);setMode('type');showFound()};fb.append(b);
+  document.querySelector('.plate').scrollIntoView({block:'start',behavior:'smooth'})}
+function fromHash(){const m=/^#c(\d+)(?:-p(\d+))?$/.exec(location.hash);if(!m)return false;
+  const idx=CARDS.findIndex(c=>c.n===+m[1]);if(idx<0)return false;
+  set='all';order=CARDS.map((_,i)=>i);pos=idx;state={};hotPin=null;
+  if(m[2]){hotPin=+m[2];state[hotPin]={open:true};mode='reveal'}
+  renderSets();load(true);return true}
+$('mType').onclick=()=>setMode('type');$('mReveal').onclick=()=>setMode('reveal');$('mStudy').onclick=()=>setMode('study');
+$('prev').onclick=()=>{pos--;load()};$('next').onclick=()=>{pos++;load()};
+$('shuffle').onclick=()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}pos=0;load()};
+$('zoomBtn').onclick=openZoom;
+$('fig').addEventListener('click',e=>{if(!e.target.closest('.pin'))openZoom()});
+$('zClose').onclick=()=>$('zoom').close();
+$('zSize').onclick=()=>{$('zWrap').classList.toggle('big');syncZoom()};
+$('zPrev').onclick=()=>{pos--;hotPin=null;load()};$('zNext').onclick=()=>{pos++;hotPin=null;load()};
+$('zoom').addEventListener('click',e=>{if(e.target.id==='zWrap'||e.target.id==='zoom'){$('zoom').close();return}
+  const g=e.target.closest('.pin');if(!g)return;const n=+g.dataset.n;
+  if(mode==='type'){$('zoom').close();const i=$('in'+n);if(i)i.focus()}else pinAct(n)});
+addEventListener('resize',syncZoom);
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight'){pos++;hotPin=null;load()}if(e.key==='ArrowLeft'){pos--;hotPin=null;load()}});
+window.addEventListener('hashchange',fromHash);
+function renderDepth(){if(!HAS_DETAIL)return;$('depth').hidden=false;$('dSw').setAttribute('aria-checked',!nameOnly)}
+$('dSw').onclick=()=>{nameOnly=!nameOnly;store.set('atlasNameOnly_'+DECK.id,nameOnly);state={};renderDepth();load()};
+renderDepth();
+if(!fromHash()){renderSets();load()}
+</script>
+
+</html>
