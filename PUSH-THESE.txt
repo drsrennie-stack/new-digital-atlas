@@ -1,94 +1,31 @@
-MODULES 1 AND 2 UPDATE
+Upper limb model slides + Blood Vessels chapter
+Repo: new-digital-atlas
+This zip replaces Atlas-upper-limb-drawings-update.zip. If you already pushed that one, push this on top.
 
-Goes to the same two places as before:
-1) GitHub new-digital-atlas: Add file > Upload files, drag everything in (img and pdf as FOLDERS), commit.
-2) Canvas Anatomy-Atlas folder: upload this zip and expand it there, replacing files.
+GitHub new-digital-atlas: Add file > Upload files, drag everything in (img and pdf as FOLDERS), commit.
+Canvas: skip for now. The final Canvas package will include this.
 
-New chapters: bodyplan, tissues, bonetissue, skeleton, joints
+What changed
+- Upper Limb Bones and Sternum: your own model slides are now the main cards (pectoral girdle, joints, clavicle, scapula x3, humerus x2, ulna, radius, hand, carpals).
+- New chapter: Blood Vessels (Module 3), from your histology slides and the vessel model photos.
+- Every chapter page: credit line names OpenStax. Cards with the same picture share one image file.
 
-Files:
-atlas.html
-bodyplan.html
-bonetissue.html
-img/bodyplan-01.jpg
-img/bodyplan-02.jpg
-img/bodyplan-03.jpg
-img/bodyplan-04.jpg
-img/bodyplan-05.jpg
-img/bodyplan-06.jpg
-img/bodyplan-07.jpg
-img/bodyplan-08.jpg
-img/bodyplan-09.jpg
-img/bodyplan-10.jpg
-img/bodyplan-11.jpg
-img/bonetissue-01.jpg
-img/bonetissue-02.jpg
-img/bonetissue-03.jpg
-img/bonetissue-04.jpg
-img/bonetissue-05.jpg
-img/bonetissue-06.jpg
-img/bonetissue-07.jpg
-img/bonetissue-08.jpg
-img/bonetissue-09.jpg
-img/bonetissue-10.jpg
-img/bonetissue-11.jpg
-img/joints-01.jpg
-img/joints-02.jpg
-img/joints-03.jpg
-img/joints-04.jpg
-img/joints-05.jpg
-img/joints-06.jpg
-img/joints-07.jpg
-img/joints-08.jpg
-img/joints-09.jpg
-img/joints-10.jpg
-img/joints-11.jpg
-img/joints-12.jpg
-img/joints-13.jpg
-img/skeleton-01.jpg
-img/skeleton-02.jpg
-img/skeleton-03.jpg
-img/skeleton-04.jpg
-img/skeleton-05.jpg
-img/skeleton-06.jpg
-img/skeleton-07.jpg
-img/skeleton-08.jpg
-img/skeleton-09.jpg
-img/skeleton-10.jpg
-img/skeleton-11.jpg
-img/skeleton-12.jpg
-img/skeleton-13.jpg
-img/skeleton-14.jpg
-img/skeleton-15.jpg
-img/tissues-01.jpg
-img/tissues-02.jpg
-img/tissues-03.jpg
-img/tissues-04.jpg
-img/tissues-05.jpg
-img/tissues-06.jpg
-img/tissues-07.jpg
-img/tissues-08.jpg
-img/tissues-09.jpg
-img/tissues-10.jpg
-img/tissues-11.jpg
-img/tissues-12.jpg
-img/tissues-13.jpg
-img/tissues-14.jpg
-img/tissues-15.jpg
-img/tissues-16.jpg
-img/tissues-17.jpg
-img/tissues-18.jpg
-img/tissues-19.jpg
-img/tissues-20.jpg
-img/tissues-21.jpg
-index.html
-joints.html
-pdf/bodyplan-cards.pdf
-pdf/bonetissue-cards.pdf
-pdf/joints-cards.pdf
-pdf/skeleton-cards.pdf
-pdf/tissues-cards.pdf
-search-data.js
-skeleton.html
-tissues.html
-welcome.html
+Optional: these old image files are no longer used. Delete them from img/ if you like; leaving them does no harm:
+img/back-01.jpg
+img/back-04.jpg
+img/back-06.jpg
+img/back-08.jpg
+img/back-12.jpg
+img/back-17.jpg
+img/back-18.jpg
+img/back-19.jpg
+img/back-22.jpg
+img/brain-15.jpg
+img/brain-16.jpg
+img/headneck-10.jpg
+img/spinal-05.jpg
+img/spinal-06.jpg
+img/ulbones-20.jpg
+img/ulbones-21.jpg
+img/ulbones-22.jpg
+img/upper-63.jpg
