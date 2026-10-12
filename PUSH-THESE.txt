@@ -10,6 +10,7 @@ What changed
 - New chapter: Blood Vessels (Module 3).
 - Back and Thorax: pectoralis minor card and rhomboids / levator scapulae card; serratus pin fixed.
 - All chapters: pins fade when you hover over them; OpenStax credit line.
+- New: My weak spots button on every page (dashboard by module, saved on each student's device). search.js and search-data.js must be pushed with the pages.
 
 Optional: these old image files are no longer used. Delete them from img/ if you like; leaving them does no harm:
 img/back-01.jpg

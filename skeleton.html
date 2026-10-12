@@ -182,8 +182,14 @@ function shortForms(a){
 }
 function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=[...Array(n+1).keys()];
  for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]==b[j-1]?0:1));p=c}return p[n]}
+let ALLN=null;
 function close(g,list){g=norm(g);if(!g)return false;
-  return list.some(t=>{const tol=t.length<5?0:Math.max(1,Math.floor(t.length/7));return lev(g,t)<=tol})}
+  if(!ALLN){ALLN=new Set();CARDS.forEach(c=>{c.pins.forEach(p=>p.sf.accept.forEach(x=>ALLN.add(x)));c.items.forEach(it=>it.accN.forEach(x=>ALLN.add(x)))})}
+  let best=Infinity,ok=false;
+  list.forEach(t=>{const d=lev(g,t),tol=t.length<5?0:Math.max(1,Math.floor(t.length/7));if(d<=tol)ok=true;if(d<best)best=d});
+  if(!ok)return false;if(best===0)return true;
+  for(const o of ALLN){if(!list.includes(o)&&lev(g,o)<best)return false}  // closer to a different answer, e.g. granulocyte vs agranulocyte
+  return true}
 CARDS.forEach(c=>{c.pins.forEach(p=>{p.sf=shortForms(p.a);(p.acc||[]).forEach(x=>p.sf.accept.push(norm(x)))});c.items.forEach(it=>it.accN=[it.a,...it.acc].map(norm))});
 
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
@@ -273,6 +279,10 @@ function check(){const c=cur();let right=0;
   units(c).forEach(u=>{const st=state[u.key]=state[u.key]||{};
     if(u.it&&u.it.self){st.shown=true;return}
     st.result=u.it?close(st.typed||'',u.it.accN):close(st.typed||'',u.p.sf.accept);if(st.result)right++});
+  const REC='atlasRec_'+DECK.id, rec=store.get(REC,{});
+  units(c).forEach(u=>{if(u.it&&u.it.self)return;const st=state[u.key];if(!st||!(st.typed||'').trim())return;
+    const k=c.img+'|'+c.title+'#'+(u.it?'q'+u.key:u.p.lab), r=rec[k]||{r:0,w:0};r.ok=!!st.result;st.result?r.r++:r.w++;r.t=Date.now();rec[k]=r});
+  store.set(REC,rec);window.dispatchEvent(new Event('atlas-rec'));
   if(best[c.id]==null||right>best[c.id]){best[c.id]=right;store.set(BEST_KEY,best)}
   drawFig();drawList();renderStrip()}
 const HINTS={type:'Type each answer, then check. Press Enter to jump to the next blank. Questions about function and location show the answer so you can compare.',

@@ -73,3 +73,108 @@
       const t=document.createElement('div');t.className='ss-tiles';g.items.forEach(e=>t.appendChild(tile(e)));sec.appendChild(t);out.appendChild(sec)})}
   window.atlasSearch={open,close};
 })();
+
+/* Weak spots dashboard: reads what this device has saved on each chapter page */
+(function(){
+  if(!window.ATLAS_INDEX||!window.ATLAS_CHAPTERS||window.__weakReady)return;window.__weakReady=true;
+  const IDX=window.ATLAS_INDEX, CH=window.ATLAS_CHAPTERS;
+  const get=k=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):null}catch(e){return null}};
+  const set=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+  const del=k=>{try{localStorage.removeItem(k)}catch(e){}};
+  const prefs=get('atlasWeakPrefs')||{mod:null,untried:false,right:false};
+  const css=`
+  #wkBtn{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:9998;
+    background:#0B1530;color:#fff;border:0;border-radius:999px;padding:12px 18px;font:700 15px/1 inherit;font-family:inherit;
+    box-shadow:0 6px 18px rgba(11,21,48,.35);cursor:pointer;display:flex;gap:8px;align-items:center}
+  #wkBtn .n{background:#8B3A2E;border-radius:999px;padding:3px 8px;font-size:13px}
+  #wkBtn:focus-visible,#wkDlg button:focus-visible,#wkDlg a:focus-visible,#wkDlg input:focus-visible{outline:3px solid #DCB45C;outline-offset:2px}
+  #wkDlg{border:0;border-radius:16px;padding:0;width:min(760px,calc(100vw - 32px));max-height:min(86vh,900px);
+    box-shadow:0 20px 60px rgba(11,21,48,.4);color:#0B1530;background:#fff;font-family:inherit}
+  #wkDlg::backdrop{background:rgba(11,21,48,.45)}
+  #wkDlg .top{position:sticky;top:0;background:#fff;padding:18px 20px 12px;border-bottom:1px solid #E3E6EC;z-index:1}
+  #wkDlg h2{margin:0;font-size:22px;line-height:1.2}
+  #wkDlg .sub{margin:4px 0 12px;color:#4F576A;font-size:15px}
+  #wkDlg .x{position:absolute;right:12px;top:12px;border:0;background:#F3F4F7;border-radius:999px;width:38px;height:38px;font-size:20px;cursor:pointer;color:#0B1530}
+  #wkDlg .mods{display:flex;flex-wrap:wrap;gap:8px}
+  #wkDlg .mods button{border:1px solid #D5D9E2;background:#fff;color:#0B1530;border-radius:999px;padding:8px 14px;font:700 15px inherit;font-family:inherit;cursor:pointer}
+  #wkDlg .mods button[aria-pressed=true]{background:#0B1530;color:#fff;border-color:#0B1530}
+  #wkDlg .tog{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:15px}
+  #wkDlg .tog label{display:flex;gap:8px;align-items:center;cursor:pointer}
+  #wkDlg .tog input{width:20px;height:20px;accent-color:#0B1530}
+  #wkDlg .body{padding:14px 20px 20px;overflow:auto}
+  #wkDlg .sum{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+  #wkDlg .sum div{background:#F3F4F7;border-radius:10px;padding:8px 12px;font-size:14px;color:#4F576A}
+  #wkDlg .sum b{display:block;font-size:22px;color:#0B1530;font-variant-numeric:tabular-nums}
+  #wkDlg .bar{height:8px;background:#E3E6EC;border-radius:99px;overflow:hidden;display:flex;margin-bottom:16px}
+  #wkDlg .bar i{display:block;height:100%}
+  #wkDlg h3{font-size:16px;margin:18px 0 6px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+  #wkDlg h3 a{font-size:14px;color:#8B3A2E;font-weight:700}
+  #wkDlg ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+  #wkDlg li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;background:#fff;border:1px solid #E3E6EC;border-radius:10px;padding:9px 12px}
+  #wkDlg li .nm{font-weight:700;min-width:0}
+  #wkDlg li .ct{grid-column:1;color:#4F576A;font-size:13px;min-width:0}
+  #wkDlg li .go{grid-row:1/3;grid-column:2;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+  #wkDlg .tag{font-size:12px;font-weight:700;border-radius:99px;padding:3px 9px;white-space:nowrap}
+  #wkDlg .t-miss{background:#F7E3E0;color:#8B3A2E}#wkDlg .t-new{background:#EEF0F4;color:#4F576A}#wkDlg .t-ok{background:#E2F1E6;color:#256B3A}
+  #wkDlg .go a{font-size:14px;font-weight:700;color:#0B1530}
+  #wkDlg .empty{background:#F3F4F7;border-radius:12px;padding:16px;color:#4F576A}
+  #wkDlg .foot{margin-top:18px;font-size:13px;color:#4F576A;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  #wkDlg .foot button{border:1px solid #D5D9E2;background:#fff;border-radius:8px;padding:6px 10px;font-family:inherit;font-size:13px;cursor:pointer;color:#0B1530}
+  @media (max-width:520px){#wkBtn .lbl{display:none}}`;
+  const st=document.createElement('style');st.textContent=css+'body{padding-bottom:84px}';document.head.appendChild(st);
+  const btn=document.createElement('button');btn.id='wkBtn';btn.type='button';btn.innerHTML='<span class="lbl">My weak spots</span><span class="n" id="wkN">0</span>';
+  btn.setAttribute('aria-label','Open my weak spots');document.body.appendChild(btn);
+  const dlg=document.createElement('dialog');dlg.id='wkDlg';dlg.setAttribute('aria-labelledby','wkH');document.body.appendChild(dlg);
+  const recs={};CH.forEach(c=>recs[c.id]=get('atlasRec_'+c.id)||{});
+  const key=e=>e.img+'|'+e.ct+'#'+e.k;
+  const status=e=>{const r=(recs[e.d]||{})[key(e)];if(!r)return{s:'new'};return{s:r.ok?'ok':'miss',r}};
+  const mods=[...new Set(CH.map(c=>c.module))].sort();
+  function totalMiss(){let n=0;IDX.forEach(e=>{if(status(e).s==='miss')n++});return n}
+  function refreshCount(){CH.forEach(c=>recs[c.id]=get('atlasRec_'+c.id)||{});document.getElementById('wkN').textContent=totalMiss()}
+  if(prefs.mod==null||!mods.includes(prefs.mod)){const here=CH.find(c=>location.pathname.endsWith('/'+c.id+'.html'));prefs.mod=here?here.module:mods[0]}
+  function render(){
+    refreshCount();
+    const chs=CH.filter(c=>c.module===prefs.mod);const ids=new Set(chs.map(c=>c.id));
+    const items=IDX.filter(e=>ids.has(e.d)).map(e=>({e,...status(e)}));
+    const nMiss=items.filter(i=>i.s==='miss').length,nOk=items.filter(i=>i.s==='ok').length,nNew=items.filter(i=>i.s==='new').length,tot=items.length||1;
+    let h=`<div class="top"><button class="x" type="button" aria-label="Close">✕</button><h2 id="wkH">My weak spots</h2>
+      <p class="sub">Pick a module. You'll see what you missed the last time you checked your answers on this device.</p>
+      <div class="mods" role="group" aria-label="Module">${mods.map(m=>`<button type="button" data-m="${m}" aria-pressed="${m===prefs.mod}">Module ${m}</button>`).join('')}</div>
+      <div class="tog"><label><input type="checkbox" id="wkNew" ${prefs.untried?'checked':''}> Also show ones I haven't tried</label>
+      <label><input type="checkbox" id="wkOk" ${prefs.right?'checked':''}> Also show ones I got right</label></div></div><div class="body">
+      <div class="sum"><div><b>${nMiss}</b>Missed</div><div><b>${nOk}</b>Got right</div><div><b>${nNew}</b>Not tried yet</div></div>
+      <div class="bar" aria-hidden="true"><i style="width:${nOk/tot*100}%;background:#3E8E57"></i><i style="width:${nMiss/tot*100}%;background:#8B3A2E"></i></div>`;
+    let any=false;
+    const order=chs.slice().sort((a,b)=>items.filter(i=>i.e.d===b.id&&i.s==='miss').length-items.filter(i=>i.e.d===a.id&&i.s==='miss').length);
+    order.forEach(c=>{
+      const mine=items.filter(i=>i.e.d===c.id);
+      const miss=mine.filter(i=>i.s==='miss').sort((a,b)=>a.e.c-b.e.c);
+      const ok=prefs.right?mine.filter(i=>i.s==='ok').sort((a,b)=>a.e.c-b.e.c):[];
+      const fresh={};if(prefs.untried)mine.filter(i=>i.s==='new').forEach(i=>{(fresh[i.e.c]=fresh[i.e.c]||{e:i.e,n:0}).n++});
+      const freshRows=Object.values(fresh).sort((a,b)=>a.e.c-b.e.c);
+      if(!miss.length&&!ok.length&&!freshRows.length)return;any=true;
+      h+=`<h3><span>${esc(c.title)}</span><a href="${c.id}.html">Open chapter</a></h3><ul>`;
+      const row=(e,name,sub,tag)=>`<li><span class="nm">${esc(name)}</span><span class="ct">${sub}</span><span class="go">${tag}<a href="${e.d}.html#c${e.c}" data-go>Practice this card</a></span></li>`;
+      miss.forEach(i=>{h+=row(i.e,i.e.show,`Card ${i.e.c}${i.e.lab?', number '+i.e.lab:''}: ${esc(i.e.ct)}`,`<span class="tag t-miss">Missed${i.r.w>1?' '+i.r.w+' times':''}</span>`)});
+      freshRows.forEach(f=>{h+=row(f.e,'Card '+f.e.c+': '+f.e.ct,`${f.n} ${f.n===1?'structure':'structures'} you haven't tried`,'<span class="tag t-new">Not tried</span>')});
+      ok.forEach(i=>{h+=row(i.e,i.e.show,`Card ${i.e.c}${i.e.lab?', number '+i.e.lab:''}: ${esc(i.e.ct)}`,'<span class="tag t-ok">Got it</span>')});
+      h+='</ul>'});
+    if(!any)h+=`<p class="empty">${nOk+nMiss===0?'Nothing saved for this module yet. Open a chapter, type your answers, and press Check my answers. Anything you miss will show up here.':nMiss===0?'No misses in this module right now. Turn on "Also show ones I haven\'t tried" to find new cards to practice.':'Nothing to show with these settings.'}</p>`;
+    h+=`<div class="foot"><span>Saved only in this browser on this device.</span><span id="wkClr"><button type="button" id="wkClear">Clear my record for Module ${prefs.mod}</button></span></div></div>`;
+    dlg.innerHTML=h;
+    dlg.querySelector('.x').onclick=()=>dlg.close();
+    dlg.querySelectorAll('.mods button').forEach(b=>b.onclick=()=>{prefs.mod=b.dataset.m;save();render()});
+    dlg.querySelector('#wkNew').onchange=e=>{prefs.untried=e.target.checked;save();render()};
+    dlg.querySelector('#wkOk').onchange=e=>{prefs.right=e.target.checked;save();render()};
+    dlg.querySelector('#wkClear').onclick=()=>{const s=dlg.querySelector('#wkClr');
+      s.innerHTML=`Clear everything saved for Module ${prefs.mod}? <button type="button" id="wkYes">Yes, clear it</button> <button type="button" id="wkNo">Keep it</button>`;
+      s.querySelector('#wkYes').onclick=()=>{chs.forEach(c=>del('atlasRec_'+c.id));render()};s.querySelector('#wkNo').onclick=render};
+    dlg.querySelectorAll('a[data-go]').forEach(a=>a.onclick=()=>{dlg.close()});
+  }
+  function esc(s){return String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]))}
+  function save(){set('atlasWeakPrefs',prefs)}
+  dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+  btn.onclick=()=>{render();if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','')};
+  window.addEventListener('atlas-rec',refreshCount);window.addEventListener('storage',refreshCount);
+  refreshCount();
+})();
