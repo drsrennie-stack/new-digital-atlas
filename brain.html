@@ -53,7 +53,9 @@ dialog.zoom::backdrop{background:rgba(11,21,48,.6)}
 .zwrap.big{place-items:start}
 .zwrap.big svg{max-width:none;max-height:none}
 .plate svg{display:block;width:100%;height:auto;background:#fff;border-radius:8px;user-select:none}
-.pin{cursor:pointer}
+.pin{cursor:pointer;transition:opacity .15s}
+.pin:hover{opacity:.18}
+@media (hover:none){.pin:hover{opacity:1}}
 .pin circle{fill:var(--navy);stroke:#fff;stroke-width:3}
 .pin text{fill:#fff;font-family:var(--f-body);font-weight:700}
 .pin.hot circle{fill:var(--maroon)}

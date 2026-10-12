@@ -1,14 +1,15 @@
-Upper limb model slides + Blood Vessels chapter
+Atlas update, Oct 12
 Repo: new-digital-atlas
-This zip replaces Atlas-upper-limb-drawings-update.zip. If you already pushed that one, push this on top.
+This one zip covers everything since your last push (upper limb bones). Ignore the earlier Oct 11 and Oct 12 zips.
 
 GitHub new-digital-atlas: Add file > Upload files, drag everything in (img and pdf as FOLDERS), commit.
 Canvas: skip for now. The final Canvas package will include this.
 
 What changed
-- Upper Limb Bones and Sternum: your own model slides are now the main cards (pectoral girdle, joints, clavicle, scapula x3, humerus x2, ulna, radius, hand, carpals).
-- New chapter: Blood Vessels (Module 3), from your histology slides and the vessel model photos.
-- Every chapter page: credit line names OpenStax. Cards with the same picture share one image file.
+- Upper Limb Bones: your model slides are the main cards; OpenStax forearm drawing; carpals quick check.
+- New chapter: Blood Vessels (Module 3).
+- Back and Thorax: pectoralis minor card and rhomboids / levator scapulae card; serratus pin fixed.
+- All chapters: pins fade when you hover over them; OpenStax credit line.
 
 Optional: these old image files are no longer used. Delete them from img/ if you like; leaving them does no harm:
 img/back-01.jpg
@@ -25,7 +26,4 @@ img/brain-16.jpg
 img/headneck-10.jpg
 img/spinal-05.jpg
 img/spinal-06.jpg
-img/ulbones-20.jpg
-img/ulbones-21.jpg
-img/ulbones-22.jpg
 img/upper-63.jpg
