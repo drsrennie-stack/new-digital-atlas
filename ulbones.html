@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Upper Limb Bones and Sternum Practice Cards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: specimen on a lifted white plate at left, answer sheet at right, card strip across the top. Single light look: white page, navy ink, maroon terra cotta, small gold accents. */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --ink:#0B1530; --muted:#4F576A; --line:rgba(11,21,48,.15);
+  --navy:#0B1530; --maroon:#8B3A2E; --maroon-soft:#F3F4F7; --gold:#8B3A2E; --gold-soft:#F3F4F7;
+  --good:#2b7a34; --good-soft:#e5f2e4; --bad:#c0392b; --bad-soft:#fbe9e7;
+  --shadow:0 0 0 .5px rgba(11,21,48,.15);
+  --f-display:"Open Sans","Plus Jakarta Sans",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;font-style:normal}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.45;margin:0}
+a{color:var(--maroon)}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px;padding-block:18px 48px;display:grid;gap:16px}
+.home{font-weight:700;text-decoration:none;font-size:15px;display:inline-flex;gap:6px;align-items:center}
+.home:hover{text-decoration:underline}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4vw,40px);line-height:1.05;margin:4px 0 0;color:var(--navy);text-wrap:balance}
+.sets{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible,.pin:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 14px;font-size:15px}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.strip{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+.strip button{flex:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-variant-numeric:tabular-nums;position:relative}
+.strip button[aria-current="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.strip .dot{position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:50%}
+.strip .dot.done{background:var(--good)} .strip .dot.part{background:var(--gold)}
+.stage{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,1fr);gap:22px;align-items:start}
+@media (max-width:860px){.stage{grid-template-columns:1fr}}
+.plate{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:14px;min-width:0}
+.plate{position:relative}
+.zbtn{position:absolute;top:22px;right:22px;z-index:2;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:rgba(255,255,255,.94);border-radius:99px;padding:7px 13px;font:700 13px/1 var(--f-body);color:var(--navy);cursor:pointer;box-shadow:0 2px 8px rgba(11,21,48,.12)}
+.zbtn:hover{border-color:var(--maroon);color:var(--maroon)}
+.plate svg{cursor:zoom-in}
+dialog.zoom{border:0;padding:0;width:100vw;height:100vh;max-width:100vw;max-height:100vh;background:#0B1530}
+dialog.zoom::backdrop{background:rgba(11,21,48,.6)}
+.zbar{position:fixed;top:0;left:0;right:0;display:flex;gap:10px;align-items:center;padding:12px 16px;color:#fff;font-weight:700;z-index:3}
+.zbar .zt{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zbar button{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;border-radius:99px;padding:8px 14px;font:700 13px/1 var(--f-body);cursor:pointer}
+.zbar button:hover{background:rgba(255,255,255,.22)}
+.zwrap{position:absolute;inset:58px 0 0 0;overflow:auto;display:grid;place-items:center;padding:8px 16px 24px}
+.zwrap svg{display:block;background:#fff;border-radius:8px;max-width:calc(100vw - 32px);max-height:calc(100vh - 92px);width:auto;height:auto}
+.zwrap.big{place-items:start}
+.zwrap.big svg{max-width:none;max-height:none}
+.plate svg{display:block;width:100%;height:auto;background:#fff;border-radius:8px;user-select:none}
+.pin{cursor:pointer}
+.pin circle{fill:var(--navy);stroke:#fff;stroke-width:3}
+.pin text{fill:#fff;font-family:var(--f-body);font-weight:700}
+.pin.hot circle{fill:var(--maroon)}
+.ring{fill:none;stroke:#DCB45C;stroke-width:7;pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.ring{animation:ring 1.4s ease-out infinite}@keyframes ring{0%{stroke-opacity:1;stroke-width:9}100%{stroke-opacity:.15;stroke-width:3}}}
+.lbl.found{fill:var(--maroon)}
+.found-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--gold-soft);border-radius:10px;padding:10px 14px;font-weight:700}
+.found-bar span{color:var(--maroon)}
+.found-bar button{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 12px;font-weight:700;color:var(--navy)}
+.dsearch{position:relative;min-width:0;flex:1 1 280px;max-width:420px}
+.dsearch input{width:100%;font:inherit;font-size:16px;padding:9px 12px;border:2px solid var(--navy);border-radius:10px}
+.dres{position:absolute;z-index:5;left:0;right:0;top:calc(100% + 4px);background:#fff;border-radius:10px;box-shadow:var(--shadow);max-height:360px;overflow:auto}
+.dres a{display:block;padding:9px 12px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+.dres a:hover,.dres a:focus{background:var(--gold-soft)}
+.dres b{color:var(--navy)} .dres small{color:var(--muted);display:block}
+.pin.right circle{fill:var(--good)} .pin.wrong circle{fill:var(--bad)}
+.lbl{font-family:var(--f-body);font-weight:700;fill:var(--navy);paint-order:stroke;stroke:#fff;stroke-width:7px;stroke-linejoin:round;pointer-events:none}
+.lbl.hot{fill:var(--maroon)}
+.sheet{background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:18px 18px 16px;display:grid;gap:14px;min-width:0}
+.cardhead h2{font-family:var(--f-display);font-weight:600;font-size:24px;line-height:1.15;margin:2px 0 0;color:var(--navy);text-wrap:balance}
+.depth{margin:0 0 12px}
+.depth button{display:inline-flex;align-items:center;gap:12px;border:0;background:none;padding:4px 0;font:600 15px/1.3 var(--f-body);color:var(--navy);cursor:pointer;text-align:left}
+.depth .track{flex:none;width:46px;height:26px;border-radius:99px;background:#C9CDD8;position:relative;transition:background .2s}
+.depth .knob{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(11,21,48,.3);transition:left .2s}
+.depth button[aria-checked="true"] .track{background:var(--navy)}
+.depth button[aria-checked="true"] .knob{left:23px}
+.more{margin-top:26px;background:var(--surface);border-radius:8px;box-shadow:var(--shadow);padding:18px}
+.more h2{font-family:var(--f-display);font-size:20px;margin:0 0 10px;color:var(--navy)}
+.more a{display:block;padding:10px 0;border-top:1px solid var(--line);color:var(--maroon);font-weight:700;text-decoration:none}
+.more a:hover{text-decoration:underline}
+.more a small{display:block;color:var(--muted);font-weight:500}
+.modes{display:flex;background:var(--maroon-soft);border-radius:10px;padding:4px;gap:4px}
+.modes button{flex:1;border:0;background:transparent;border-radius:7px;padding:8px 6px;font-size:15px;font-weight:700;color:var(--maroon)}
+.modes button[aria-pressed="true"]{background:var(--maroon);color:#fff}
+.hint{font-size:15px;color:var(--muted);margin:0}
+ol.answers{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.answers li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:center;border-radius:4px;padding:4px 6px}
+ol.answers li.hot{background:var(--gold-soft)}
+.num{width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px;font-variant-numeric:tabular-nums}
+.num.right{background:var(--good)} .num.wrong{background:var(--bad)}
+.q{font-weight:700;margin-bottom:4px}
+.field input{width:100%;font:inherit;font-size:17px;padding:8px 10px;border:1.5px solid var(--line);border-radius:8px;background:#fbfbfc;color:var(--ink)}
+.field input.right{border-color:var(--good);background:var(--good-soft)}
+.field input.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.field input.self{border-color:var(--gold);background:var(--gold-soft)}
+.fix{font-size:15px;margin-top:3px;color:var(--bad);font-weight:700}
+.fix.ok{color:var(--good)} .fix.cmp{color:var(--navy)}
+.reveal{width:100%;text-align:left;border:1.5px dashed var(--line);background:transparent;border-radius:8px;padding:8px 10px;color:var(--muted);font-size:16px}
+.reveal.open{border-style:solid;border-color:transparent;background:var(--gold-soft);color:var(--ink);font-weight:700}
+.ans{font-weight:700;padding:6px 2px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:9px 16px;font-weight:700;font-size:16px;color:var(--navy)}
+.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.score{font-weight:700;font-variant-numeric:tabular-nums;color:var(--maroon)}
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+footer.note{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.pin circle,.num,.reveal{transition:fill .15s,background .15s}}
+.vids h2{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,3vw,28px);margin:8px 0 2px;color:var(--navy)}
+.vids-sub{color:var(--muted);margin:0 0 12px;font-size:15px}
+</style>
+
+<div class="wrap">
+  <a class="home" href="atlas.html">&larr; Atlas index</a>
+  <header class="top">
+    <div>
+      <div class="eyebrow">Anatomy Atlas &middot; BIO 004 Human Anatomy</div>
+      <h1>Upper Limb Bones and Sternum Practice Cards</h1>
+    </div>
+      </header>
+  <div class="sets" id="sets" role="group" aria-label="Which cards to practice"></div>
+  <div class="depth" id="depth" hidden><button id="dSw" type="button" role="switch" aria-checked="true"><span class="track"><span class="knob"></span></span><span class="dl">Also ask origin, insertion and action</span></button></div>
+  <nav class="strip" id="strip" aria-label="Cards"></nav>
+  <main class="stage">
+    <div class="plate"><button class="zbtn" id="zoomBtn" type="button" aria-label="Zoom in on this image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg>Zoom</button><svg id="fig" role="img" aria-label="Practice image"></svg></div>
+    <dialog class="zoom" id="zoom" aria-label="Enlarged image">
+      <div class="zbar"><span class="zt" id="zTitle"></span><button type="button" id="zPrev" aria-label="Previous card">&larr;</button><button type="button" id="zNext" aria-label="Next card">&rarr;</button><button type="button" id="zSize">Bigger</button><button type="button" id="zClose">Close</button></div>
+      <div class="zwrap" id="zWrap"></div>
+    </dialog>
+    <section class="sheet">
+      <div class="cardhead"><div class="eyebrow" id="cardEyebrow"></div><h2 id="cardTitle"></h2></div>
+      <div class="modes" role="group" aria-label="How to practice">
+        <button id="mType" aria-pressed="true">Type answers</button>
+        <button id="mReveal" aria-pressed="false">Tap to reveal</button>
+        <button id="mStudy" aria-pressed="false">Show all</button>
+      </div>
+      <div class="found-bar" id="found" hidden></div>
+      <p class="hint" id="hint"></p>
+      <ol class="answers" id="answers"></ol>
+      <div class="row" id="actions"></div>
+      <div class="nav">
+        <button class="btn" id="prev">&larr; Previous card</button>
+        <button class="btn" id="shuffle">Shuffle cards</button>
+        <button class="btn" id="next">Next card &rarr;</button>
+      </div>
+    </section>
+  </main>
+  <section class="vids" id="vids" data-videos="ulbones" hidden aria-labelledby="vidsH"><h2 id="vidsH">Walk-through videos</h2><p class="vids-sub">Watch the structures pointed out, then practice them on the cards above.</p></section>
+  <section class="more" id="more" hidden><h2>Further study</h2><div id="moreLinks"></div></section>
+  <footer class="note"><b>Spelling counts on the lab exam.</b> Practice here accepts close spellings, but on the exam the only abbreviations allowed are R. (right), L. (left), A. (artery), V. (vein) and N. (nerve). Spell everything else out. Your progress stays on this device. Cadaver images courtesy of BlueLink, University of Michigan Medical School. Histology images courtesy of Duke University Virtual Microscopy. Black-and-white brain images from Duane E. Haines's neuroanatomy atlas. Line drawings marked OpenStax are from OpenStax Anatomy and Physiology 2e (openstax.org), licensed CC BY 4.0, with labels replaced by numbers.</footer>
+</div>
+
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="videos-data.js"></script>
+<script src="videos.js"></script>
+<script>
+const DECK={"id": "ulbones", "title": "Upper Limb Bones and Sternum", "sets": {"girdle": "Pectoral girdle", "arm": "Humerus", "forearm": "Radius and ulna", "hand": "Hand", "thorax": "Sternum"}, "cards": [{"id": "01", "title": "Clavicle, superior view", "set": "girdle", "type": "label", "w": 917, "h": 307, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Acromial end", "x": 59, "y": 36, "box": [54, 31, 64, 41], "q": "Name this end of the clavicle.", "acc": ["lateral end"], "tags": ["Acromial end"]}, {"n": 2, "lab": "2", "a": "Sternal end", "x": 850, "y": 36, "box": [845, 31, 855, 41], "q": "Name this end of the clavicle.", "acc": ["medial end"], "tags": ["Sternal end"]}], "items": [], "img": "img/ulbones-01.jpg", "n": 1}, {"id": "02", "title": "Scapula, anterior view", "set": "girdle", "type": "label", "w": 765, "h": 734, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Acromion", "x": 36, "y": 75, "box": [31, 70, 41, 80], "q": "Name this bone feature.", "acc": ["acromion process"], "tags": ["Acromion"]}, {"n": 2, "lab": "2", "a": "Coracoid process", "x": 41, "y": 214, "box": [36, 209, 46, 219], "q": "Name this bone feature.", "acc": [], "tags": ["Coracoid process"]}], "items": [], "img": "img/ulbones-02.jpg", "n": 2}, {"id": "03", "title": "Scapula, posterior view", "set": "girdle", "type": "label", "w": 715, "h": 686, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Acromion", "x": 678, "y": 280, "box": [673, 275, 683, 285], "q": "Name this bone feature.", "acc": ["acromion process"], "tags": ["Acromion"]}, {"n": 2, "lab": "2", "a": "Spine of scapula", "x": 37, "y": 302, "box": [32, 297, 42, 307], "q": "Name this bone feature.", "acc": ["scapular spine"], "tags": ["Spine of scapula"]}], "items": [], "img": "img/ulbones-03.jpg", "n": 3}, {"id": "04", "title": "Scapula, lateral view", "set": "girdle", "type": "label", "w": 542, "h": 714, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Acromion", "x": 36, "y": 68, "box": [31, 63, 41, 73], "q": "Name this bone feature.", "acc": ["acromion process"], "tags": ["Acromion"]}, {"n": 2, "lab": "2", "a": "Coracoid process", "x": 506, "y": 191, "box": [501, 186, 511, 196], "q": "Name this bone feature.", "acc": [], "tags": ["Coracoid process"]}, {"n": 3, "lab": "3", "a": "Glenoid cavity (fossa)", "x": 59, "y": 288, "box": [54, 283, 64, 293], "q": "Name this bone feature.", "acc": ["glenoid fossa", "glenoid cavity"], "tags": ["Glenoid cavity", "fossa"]}], "items": [], "img": "img/ulbones-04.jpg", "n": 4}, {"id": "05", "title": "Scapula, anterior (OpenStax drawing)", "set": "girdle", "type": "label", "w": 520, "h": 473, "r": 22, "pins": [{"n": 1, "lab": "1", "a": "Acromion", "x": 132, "y": 31, "box": [127, 26, 137, 36], "q": "Name this feature of the scapula.", "acc": ["acromion process"], "tags": ["Acromion"]}, {"n": 2, "lab": "2", "a": "Suprascapular notch", "x": 263, "y": 42, "box": [258, 37, 268, 47], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Suprascapular notch"]}, {"n": 3, "lab": "3", "a": "Superior border", "x": 428, "y": 33, "box": [423, 28, 433, 38], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Superior border"]}, {"n": 4, "lab": "4", "a": "Coracoid process", "x": 39, "y": 110, "box": [34, 105, 44, 115], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Coracoid process"]}, {"n": 5, "lab": "5", "a": "Superior angle", "x": 450, "y": 102, "box": [445, 97, 455, 107], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Superior angle"]}, {"n": 6, "lab": "6", "a": "Glenoid cavity", "x": 34, "y": 186, "box": [29, 181, 39, 191], "q": "Name this feature of the scapula.", "acc": ["glenoid fossa"], "tags": ["Glenoid cavity"]}, {"n": 7, "lab": "7", "a": "Subscapular fossa", "x": 480, "y": 290, "box": [475, 285, 485, 295], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Subscapular fossa"]}, {"n": 8, "lab": "8", "a": "Lateral (axillary) border", "x": 60, "y": 335, "box": [55, 330, 65, 340], "q": "Name this feature of the scapula.", "acc": ["lateral border", "axillary border"], "tags": ["Lateral border", "axillary"]}, {"n": 9, "lab": "9", "a": "Medial (vertebral) border", "x": 435, "y": 338, "box": [430, 333, 440, 343], "q": "Name this feature of the scapula.", "acc": ["medial border", "vertebral border"], "tags": ["Medial border", "vertebral"]}, {"n": 10, "lab": "10", "a": "Inferior angle", "x": 435, "y": 422, "box": [430, 417, 440, 427], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Inferior angle"]}], "items": [], "img": "img/ulbones-05.jpg", "n": 5}, {"id": "06", "title": "Scapula, posterior (OpenStax drawing)", "set": "girdle", "type": "label", "w": 567, "h": 473, "r": 22, "pins": [{"n": 1, "lab": "1", "a": "Suprascapular notch", "x": 218, "y": 58, "box": [213, 53, 223, 63], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Suprascapular notch"]}, {"n": 2, "lab": "2", "a": "Coracoid process", "x": 360, "y": 33, "box": [355, 28, 365, 38], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Coracoid process"]}, {"n": 3, "lab": "3", "a": "Superior angle", "x": 74, "y": 102, "box": [69, 97, 79, 107], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Superior angle"]}, {"n": 4, "lab": "4", "a": "Acromion", "x": 526, "y": 110, "box": [521, 105, 531, 115], "q": "Name this feature of the scapula.", "acc": ["acromion process"], "tags": ["Acromion"]}, {"n": 5, "lab": "5", "a": "Supraspinous fossa", "x": 81, "y": 150, "box": [76, 145, 86, 155], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Supraspinous fossa"]}, {"n": 6, "lab": "6", "a": "Spine of scapula", "x": 48, "y": 196, "box": [43, 191, 53, 201], "q": "Name this feature of the scapula.", "acc": ["spine", "scapular spine"], "tags": ["Spine of scapula"]}, {"n": 7, "lab": "7", "a": "Glenoid cavity", "x": 522, "y": 194, "box": [517, 189, 527, 199], "q": "Name this feature of the scapula.", "acc": ["glenoid fossa"], "tags": ["Glenoid cavity"]}, {"n": 8, "lab": "8", "a": "Infraspinous fossa", "x": 76, "y": 244, "box": [71, 239, 81, 249], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Infraspinous fossa"]}, {"n": 9, "lab": "9", "a": "Medial (vertebral) border", "x": 102, "y": 338, "box": [97, 333, 107, 343], "q": "Name this feature of the scapula.", "acc": ["medial border", "vertebral border"], "tags": ["Medial border", "vertebral"]}, {"n": 10, "lab": "10", "a": "Lateral (axillary) border", "x": 456, "y": 332, "box": [451, 327, 461, 337], "q": "Name this feature of the scapula.", "acc": ["lateral border", "axillary border"], "tags": ["Lateral border", "axillary"]}, {"n": 11, "lab": "11", "a": "Inferior angle", "x": 97, "y": 422, "box": [92, 417, 102, 427], "q": "Name this feature of the scapula.", "acc": [], "tags": ["Inferior angle"]}], "items": [], "img": "img/ulbones-06.jpg", "n": 6}, {"id": "07", "title": "Humerus, posterior view: proximal end", "set": "arm", "type": "label", "w": 302, "h": 821, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Head", "x": 37, "y": 71, "box": [32, 66, 42, 76], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Head"]}, {"n": 2, "lab": "2", "a": "Anatomical neck", "x": 37, "y": 190, "box": [32, 185, 42, 195], "q": "Name this bone feature.", "acc": [], "tags": ["Anatomical neck"]}, {"n": 3, "lab": "3", "a": "Surgical neck", "x": 37, "y": 357, "box": [32, 352, 42, 362], "q": "Name this bone feature.", "acc": [], "tags": ["Surgical neck"]}], "items": [], "img": "img/ulbones-07.jpg", "n": 7}, {"id": "08", "title": "Humerus, anterior view: proximal end", "set": "arm", "type": "label", "w": 372, "h": 795, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Greater tubercle", "x": 36, "y": 93, "box": [31, 88, 41, 98], "q": "Name this bone feature.", "acc": [], "tags": ["Greater tubercle"]}, {"n": 2, "lab": "2", "a": "Lesser tubercle", "x": 336, "y": 96, "box": [331, 91, 341, 101], "q": "Name this bone feature.", "acc": [], "tags": ["Lesser tubercle"]}, {"n": 3, "lab": "3", "a": "Intertubercular sulcus", "x": 46, "y": 226, "box": [41, 221, 51, 231], "q": "Name this bone feature.", "acc": ["intertubercular groove", "bicipital groove"], "tags": ["Intertubercular sulcus"]}, {"n": 4, "lab": "4", "a": "Body (shaft) of humerus", "x": 295, "y": 327, "box": [290, 322, 300, 332], "q": "Name this bone feature.", "acc": ["shaft of humerus", "body of humerus", "shaft"], "tags": ["Body of humerus", "shaft"]}], "items": [], "img": "img/ulbones-08.jpg", "n": 8}, {"id": "09", "title": "Humerus, anterior view: distal end", "set": "arm", "type": "label", "w": 373, "h": 782, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Lateral epicondyle", "x": 60, "y": 514, "box": [55, 509, 65, 519], "q": "Name this bone feature.", "acc": [], "tags": ["Lateral epicondyle"]}, {"n": 2, "lab": "2", "a": "Medial epicondyle", "x": 313, "y": 517, "box": [308, 512, 318, 522], "q": "Name this bone feature.", "acc": [], "tags": ["Medial epicondyle"]}, {"n": 3, "lab": "3", "a": "Capitulum", "x": 36, "y": 698, "box": [31, 693, 41, 703], "q": "Name this bone feature.", "acc": [], "tags": ["Capitulum"]}, {"n": 4, "lab": "4", "a": "Trochlea", "x": 337, "y": 718, "box": [332, 713, 342, 723], "q": "Name this bone feature.", "acc": [], "tags": ["Trochlea"]}], "items": [], "img": "img/ulbones-09.jpg", "n": 9}, {"id": "10", "title": "Humerus, posterior view: distal end", "set": "arm", "type": "label", "w": 393, "h": 821, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Olecranon fossa", "x": 36, "y": 590, "box": [31, 585, 41, 595], "q": "Name this bone feature.", "acc": [], "tags": ["Olecranon fossa"]}], "items": [], "img": "img/ulbones-10.jpg", "n": 10}, {"id": "11", "title": "Humerus, anterior (OpenStax drawing)", "set": "arm", "type": "label", "w": 350, "h": 685, "r": 22, "pins": [{"n": 1, "lab": "1", "a": "Greater tubercle", "x": 36, "y": 53, "box": [31, 48, 41, 58], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Greater tubercle"]}, {"n": 2, "lab": "2", "a": "Anatomical neck", "x": 310, "y": 25, "box": [305, 20, 315, 30], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Anatomical neck"]}, {"n": 3, "lab": "3", "a": "Head", "x": 324, "y": 72, "box": [319, 67, 329, 77], "q": "Name this feature of the humerus.", "acc": ["head of humerus"], "tags": ["Head"]}, {"n": 4, "lab": "4", "a": "Lesser tubercle", "x": 36, "y": 126, "box": [31, 121, 41, 131], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Lesser tubercle"]}, {"n": 5, "lab": "5", "a": "Surgical neck", "x": 312, "y": 155, "box": [307, 150, 317, 160], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Surgical neck"]}, {"n": 6, "lab": "6", "a": "Intertubercular sulcus", "x": 66, "y": 186, "box": [61, 181, 71, 191], "q": "Name this feature of the humerus.", "acc": ["intertubercular groove", "bicipital groove"], "tags": ["Intertubercular sulcus"]}, {"n": 7, "lab": "7", "a": "Deltoid tuberosity", "x": 312, "y": 274, "box": [307, 269, 317, 279], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Deltoid tuberosity"]}, {"n": 8, "lab": "8", "a": "Body (shaft) of humerus", "x": 312, "y": 342, "box": [307, 337, 317, 347], "q": "Name this feature of the humerus.", "acc": ["shaft of humerus", "body of humerus", "shaft", "body"], "tags": ["Body of humerus", "shaft"]}, {"n": 9, "lab": "9", "a": "Lateral supracondylar ridge", "x": 62, "y": 411, "box": [57, 406, 67, 416], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Lateral supracondylar ridge"]}, {"n": 10, "lab": "10", "a": "Radial fossa", "x": 28, "y": 474, "box": [23, 469, 33, 479], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Radial fossa"]}, {"n": 11, "lab": "11", "a": "Coronoid fossa", "x": 324, "y": 482, "box": [319, 477, 329, 487], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Coronoid fossa"]}, {"n": 12, "lab": "12", "a": "Capitulum", "x": 44, "y": 522, "box": [39, 517, 49, 527], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Capitulum"]}, {"n": 13, "lab": "13", "a": "Medial epicondyle", "x": 312, "y": 538, "box": [307, 533, 317, 543], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Medial epicondyle"]}, {"n": 14, "lab": "14", "a": "Head of radius", "x": 36, "y": 564, "box": [31, 559, 41, 569], "q": "Name this feature of the radius.", "acc": ["head", "radial head"], "tags": ["Head of radius"]}, {"n": 15, "lab": "15", "a": "Trochlea", "x": 324, "y": 580, "box": [319, 575, 329, 585], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Trochlea"]}, {"n": 16, "lab": "16", "a": "Coronoid process", "x": 324, "y": 626, "box": [319, 621, 329, 631], "q": "Name this feature of the ulna.", "acc": ["coronoid process of ulna"], "tags": ["Coronoid process"]}], "items": [], "img": "img/ulbones-11.jpg", "n": 11}, {"id": "12", "title": "Humerus, posterior (OpenStax drawing)", "set": "arm", "type": "label", "w": 396, "h": 685, "r": 22, "pins": [{"n": 1, "lab": "1", "a": "Anatomical neck", "x": 78, "y": 25, "box": [73, 20, 83, 30], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Anatomical neck"]}, {"n": 2, "lab": "2", "a": "Greater tubercle", "x": 337, "y": 53, "box": [332, 48, 342, 58], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Greater tubercle"]}, {"n": 3, "lab": "3", "a": "Head", "x": 76, "y": 72, "box": [71, 67, 81, 77], "q": "Name this feature of the humerus.", "acc": ["head of humerus"], "tags": ["Head"]}, {"n": 4, "lab": "4", "a": "Surgical neck", "x": 58, "y": 155, "box": [53, 150, 63, 160], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Surgical neck"]}, {"n": 5, "lab": "5", "a": "Deltoid tuberosity", "x": 72, "y": 274, "box": [67, 269, 77, 279], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Deltoid tuberosity"]}, {"n": 6, "lab": "6", "a": "Body (shaft) of humerus", "x": 91, "y": 342, "box": [86, 337, 96, 347], "q": "Name this feature of the humerus.", "acc": ["shaft of humerus", "body of humerus", "shaft", "body"], "tags": ["Body of humerus", "shaft"]}, {"n": 7, "lab": "7", "a": "Olecranon fossa", "x": 78, "y": 441, "box": [73, 436, 83, 446], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Olecranon fossa"]}, {"n": 8, "lab": "8", "a": "Lateral epicondyle", "x": 348, "y": 463, "box": [343, 458, 353, 468], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Lateral epicondyle"]}, {"n": 9, "lab": "9", "a": "Medial epicondyle", "x": 79, "y": 538, "box": [74, 533, 84, 543], "q": "Name this feature of the humerus.", "acc": [], "tags": ["Medial epicondyle"]}, {"n": 10, "lab": "10", "a": "Olecranon process", "x": 346, "y": 523, "box": [341, 518, 351, 528], "q": "Name this feature of the ulna.", "acc": ["olecranon", "olecranon of ulna"], "tags": ["Olecranon process"]}, {"n": 11, "lab": "11", "a": "Head of radius", "x": 346, "y": 576, "box": [341, 571, 351, 581], "q": "Name this feature of the radius.", "acc": ["head", "radial head"], "tags": ["Head of radius"]}], "items": [], "img": "img/ulbones-12.jpg", "n": 12}, {"id": "13", "title": "Ulna, lateral view", "set": "forearm", "type": "label", "w": 393, "h": 781, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Olecranon", "x": 36, "y": 78, "box": [31, 73, 41, 83], "q": "Name this bone feature.", "acc": ["olecranon process"], "tags": ["Olecranon"]}, {"n": 2, "lab": "2", "a": "Trochlear notch", "x": 325, "y": 70, "box": [320, 65, 330, 75], "q": "Name this bone feature.", "acc": ["semilunar notch"], "tags": ["Trochlear notch"]}, {"n": 3, "lab": "3", "a": "Coronoid process", "x": 332, "y": 167, "box": [327, 162, 337, 172], "q": "Name this bone feature.", "acc": [], "tags": ["Coronoid process"]}, {"n": 4, "lab": "4", "a": "Radial notch", "x": 356, "y": 286, "box": [351, 281, 361, 291], "q": "Name this bone feature.", "acc": [], "tags": ["Radial notch"]}], "items": [], "img": "img/ulbones-13.jpg", "n": 13}, {"id": "14", "title": "Ulna, anterior view", "set": "forearm", "type": "label", "w": 412, "h": 765, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Radial notch", "x": 36, "y": 183, "box": [31, 178, 41, 188], "q": "Name this bone feature.", "acc": [], "tags": ["Radial notch"]}, {"n": 2, "lab": "2", "a": "Coronoid process", "x": 376, "y": 193, "box": [371, 188, 381, 198], "q": "Name this bone feature.", "acc": [], "tags": ["Coronoid process"]}], "items": [], "img": "img/ulbones-14.jpg", "n": 14}, {"id": "15", "title": "Radius, anterior view", "set": "forearm", "type": "label", "w": 421, "h": 786, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Head", "x": 36, "y": 95, "box": [31, 90, 41, 100], "q": "Name this feature of the radius.", "acc": [], "tags": ["Head"]}, {"n": 2, "lab": "2", "a": "Radial tuberosity", "x": 385, "y": 122, "box": [380, 117, 390, 127], "q": "Name this bone feature.", "acc": [], "tags": ["Radial tuberosity"]}], "items": [], "img": "img/ulbones-15.jpg", "n": 15}, {"id": "16", "title": "Radius and ulna, anterior (OpenStax drawing)", "set": "forearm", "type": "label", "w": 640, "h": 1435, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Radial notch", "x": 105, "y": 102, "box": [100, 97, 110, 107], "q": "Name this feature of the ulna.", "acc": ["radial notch of the ulna"], "tags": ["Radial notch"]}, {"n": 2, "lab": "2", "a": "Trochlear notch", "x": 606, "y": 178, "box": [601, 173, 611, 183], "q": "Name this feature of the ulna.", "acc": [], "tags": ["Trochlear notch"]}, {"n": 3, "lab": "3", "a": "Head of radius", "x": 67, "y": 212, "box": [62, 207, 72, 217], "q": "Name this feature of the radius.", "acc": ["head", "radial head"], "tags": ["Head of radius"]}, {"n": 4, "lab": "4", "a": "Coronoid process", "x": 606, "y": 296, "box": [601, 291, 611, 301], "q": "Name this feature of the ulna.", "acc": [], "tags": ["Coronoid process"]}, {"n": 5, "lab": "5", "a": "Neck of radius", "x": 65, "y": 318, "box": [60, 313, 70, 323], "q": "Name this feature of the radius.", "acc": ["neck", "radial neck"], "tags": ["Neck of radius"]}, {"n": 6, "lab": "6", "a": "Radial tuberosity", "x": 83, "y": 436, "box": [78, 431, 88, 441], "q": "Name this feature of the radius.", "acc": [], "tags": ["Radial tuberosity"]}, {"n": 7, "lab": "7", "a": "Proximal radioulnar joint", "x": 606, "y": 441, "box": [601, 436, 611, 446], "q": "Name this joint.", "acc": ["proximal radio-ulnar joint"], "tags": ["Proximal radioulnar joint"]}, {"n": 8, "lab": "8", "a": "Interosseous membrane", "x": 606, "y": 636, "box": [601, 631, 611, 641], "q": "Name this membrane.", "acc": [], "tags": ["Interosseous membrane"]}, {"n": 9, "lab": "9", "a": "Ulna", "x": 606, "y": 774, "box": [601, 769, 611, 779], "q": "Name this bone.", "acc": [], "tags": ["Ulna"]}, {"n": 10, "lab": "10", "a": "Radius", "x": 60, "y": 879, "box": [55, 874, 65, 884], "q": "Name this bone.", "acc": [], "tags": ["Radius"]}, {"n": 11, "lab": "11", "a": "Ulnar notch", "x": 572, "y": 930, "box": [567, 925, 577, 935], "q": "Name this feature of the radius.", "acc": ["ulnar notch of the radius"], "tags": ["Ulnar notch"]}, {"n": 12, "lab": "12", "a": "Head of ulna", "x": 572, "y": 1026, "box": [567, 1021, 577, 1031], "q": "Name this feature of the ulna.", "acc": ["head", "ulnar head"], "tags": ["Head of ulna"]}, {"n": 13, "lab": "13", "a": "Distal radioulnar joint", "x": 85, "y": 1099, "box": [80, 1094, 90, 1104], "q": "Name this joint.", "acc": ["distal radio-ulnar joint"], "tags": ["Distal radioulnar joint"]}, {"n": 14, "lab": "14", "a": "Styloid process of ulna", "x": 572, "y": 1223, "box": [567, 1218, 577, 1228], "q": "Name this feature of the ulna.", "acc": ["ulnar styloid process", "styloid process"], "tags": ["Styloid process of ulna"]}, {"n": 15, "lab": "15", "a": "Styloid process of radius", "x": 572, "y": 1327, "box": [567, 1322, 577, 1332], "q": "Name this feature of the radius.", "acc": ["radial styloid process", "styloid process"], "tags": ["Styloid process of radius"]}], "items": [], "img": "img/ulbones-16.jpg", "n": 16}, {"id": "17", "title": "Radius and ulna, posterior (OpenStax drawing)", "set": "forearm", "type": "label", "w": 571, "h": 1435, "r": 30, "pins": [{"n": 1, "lab": "1", "a": "Olecranon process", "x": 34, "y": 67, "box": [29, 62, 39, 72], "q": "Name this feature of the ulna.", "acc": ["olecranon"], "tags": ["Olecranon process"]}, {"n": 2, "lab": "2", "a": "Head of radius", "x": 505, "y": 174, "box": [500, 169, 510, 179], "q": "Name this feature of the radius.", "acc": ["head", "radial head"], "tags": ["Head of radius"]}, {"n": 3, "lab": "3", "a": "Neck of radius", "x": 505, "y": 326, "box": [500, 321, 510, 331], "q": "Name this feature of the radius.", "acc": ["neck", "radial neck"], "tags": ["Neck of radius"]}, {"n": 4, "lab": "4", "a": "Ulna", "x": 34, "y": 774, "box": [29, 769, 39, 779], "q": "Name this bone.", "acc": [], "tags": ["Ulna"]}, {"n": 5, "lab": "5", "a": "Ulnar notch", "x": 34, "y": 930, "box": [29, 925, 39, 935], "q": "Name this feature of the radius.", "acc": ["ulnar notch of the radius"], "tags": ["Ulnar notch"]}, {"n": 6, "lab": "6", "a": "Radius", "x": 494, "y": 1016, "box": [489, 1011, 499, 1021], "q": "Name this bone.", "acc": [], "tags": ["Radius"]}, {"n": 7, "lab": "7", "a": "Head of ulna", "x": 34, "y": 1026, "box": [29, 1021, 39, 1031], "q": "Name this feature of the ulna.", "acc": ["head", "ulnar head"], "tags": ["Head of ulna"]}, {"n": 8, "lab": "8", "a": "Styloid process of ulna", "x": 67, "y": 1223, "box": [62, 1218, 72, 1228], "q": "Name this feature of the ulna.", "acc": ["ulnar styloid process", "styloid process"], "tags": ["Styloid process of ulna"]}, {"n": 9, "lab": "9", "a": "Styloid process of radius", "x": 67, "y": 1327, "box": [62, 1322, 72, 1332], "q": "Name this feature of the radius.", "acc": ["radial styloid process", "styloid process"], "tags": ["Styloid process of radius"]}], "items": [], "img": "img/ulbones-17.jpg", "n": 17}, {"id": "18", "title": "Bones of the hand, anterior view", "set": "hand", "type": "label", "w": 604, "h": 718, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Carpals", "x": 494, "y": 37, "box": [489, 32, 499, 42], "q": "Name this group of bones.", "acc": ["carpal bones"], "tags": ["Carpals"]}, {"n": 2, "lab": "2", "a": "Pollex (thumb)", "x": 37, "y": 158, "box": [32, 153, 42, 163], "q": "Name this digit.", "acc": ["pollex", "thumb"], "tags": ["Pollex", "thumb"]}, {"n": 3, "lab": "3", "a": "Metacarpals", "x": 561, "y": 243, "box": [556, 238, 566, 248], "q": "Name this group of bones.", "acc": ["metacarpal bones"], "tags": ["Metacarpals"]}, {"n": 4, "lab": "4", "a": "Phalanges", "x": 568, "y": 506, "box": [563, 501, 573, 511], "q": "Name this group of bones.", "acc": ["phalanx"], "tags": ["Phalanges"]}], "items": [], "img": "img/ulbones-18.jpg", "n": 18}, {"id": "19", "title": "Hand, anterior view: one carpal bone", "set": "hand", "type": "label", "w": 468, "h": 804, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Scaphoid", "x": 144, "y": 37, "box": [139, 32, 149, 42], "q": "Name this carpal bone.", "acc": [], "tags": ["Scaphoid"]}], "items": [], "img": "img/ulbones-19.jpg", "n": 19}, {"id": "20", "title": "Wrist and hand, anterior (OpenStax drawing)", "set": "hand", "type": "label", "w": 1000, "h": 1243, "r": 26, "pins": [{"n": 1, "lab": "1", "a": "Distal phalanx", "x": 62, "y": 443, "box": [57, 438, 67, 448], "q": "Name this bone of the thumb.", "acc": ["distal phalanges"], "tags": ["Distal phalanx"]}, {"n": 2, "lab": "2", "a": "Proximal phalanx", "x": 88, "y": 486, "box": [83, 481, 93, 491], "q": "Name this bone of the thumb.", "acc": ["proximal phalanges"], "tags": ["Proximal phalanx"]}, {"n": 3, "lab": "3", "a": "Metacarpals", "x": 864, "y": 683, "box": [859, 678, 869, 688], "q": "Name this group of bones.", "acc": ["metacarpal bones", "metacarpal"], "tags": ["Metacarpals"]}, {"n": 4, "lab": "4", "a": "Trapezium", "x": 102, "y": 784, "box": [97, 779, 107, 789], "q": "Name this carpal bone.", "acc": [], "tags": ["Trapezium"]}, {"n": 5, "lab": "5", "a": "Hamate", "x": 912, "y": 805, "box": [907, 800, 917, 810], "q": "Name this carpal bone.", "acc": [], "tags": ["Hamate"]}, {"n": 6, "lab": "6", "a": "Trapezoid", "x": 102, "y": 826, "box": [97, 821, 107, 831], "q": "Name this carpal bone.", "acc": [], "tags": ["Trapezoid"]}, {"n": 7, "lab": "7", "a": "Capitate", "x": 912, "y": 846, "box": [907, 841, 917, 851], "q": "Name this carpal bone.", "acc": [], "tags": ["Capitate"]}, {"n": 8, "lab": "8", "a": "Scaphoid", "x": 92, "y": 868, "box": [87, 863, 97, 873], "q": "Name this carpal bone.", "acc": [], "tags": ["Scaphoid"]}, {"n": 9, "lab": "9", "a": "Pisiform", "x": 912, "y": 888, "box": [907, 883, 917, 893], "q": "Name this carpal bone.", "acc": [], "tags": ["Pisiform"]}, {"n": 10, "lab": "10", "a": "Triquetrum", "x": 912, "y": 930, "box": [907, 925, 917, 935], "q": "Name this carpal bone.", "acc": ["triquetral", "triangular"], "tags": ["Triquetrum"]}, {"n": 11, "lab": "11", "a": "Lunate", "x": 912, "y": 970, "box": [907, 965, 917, 975], "q": "Name this carpal bone.", "acc": [], "tags": ["Lunate"]}, {"n": 12, "lab": "12", "a": "Ulna", "x": 941, "y": 1025, "box": [936, 1020, 946, 1030], "q": "Name this bone.", "acc": [], "tags": ["Ulna"]}, {"n": 13, "lab": "13", "a": "Radius", "x": 921, "y": 1093, "box": [916, 1088, 926, 1098], "q": "Name this bone.", "acc": [], "tags": ["Radius"]}], "items": [], "img": "img/ulbones-20.jpg", "n": 20}, {"id": "21", "title": "Wrist and hand, posterior (OpenStax drawing)", "set": "hand", "type": "label", "w": 1019, "h": 1243, "r": 26, "pins": [{"n": 1, "lab": "1", "a": "Distal phalanx", "x": 656, "y": 104, "box": [651, 99, 661, 109], "q": "Name this bone.", "acc": ["distal phalanges"], "tags": ["Distal phalanx"]}, {"n": 2, "lab": "2", "a": "Middle phalanx", "x": 666, "y": 194, "box": [661, 189, 671, 199], "q": "Name this bone.", "acc": ["middle phalanges"], "tags": ["Middle phalanx"]}, {"n": 3, "lab": "3", "a": "Proximal phalanx", "x": 682, "y": 317, "box": [677, 312, 687, 322], "q": "Name this bone.", "acc": ["proximal phalanges"], "tags": ["Proximal phalanx"]}, {"n": 4, "lab": "4", "a": "Metacarpals", "x": 107, "y": 683, "box": [102, 678, 112, 688], "q": "Name this group of bones.", "acc": ["metacarpal bones", "metacarpal"], "tags": ["Metacarpals"]}, {"n": 5, "lab": "5", "a": "Hamate", "x": 69, "y": 805, "box": [64, 800, 74, 810], "q": "Name this carpal bone.", "acc": [], "tags": ["Hamate"]}, {"n": 6, "lab": "6", "a": "Capitate", "x": 69, "y": 846, "box": [64, 841, 74, 851], "q": "Name this carpal bone.", "acc": [], "tags": ["Capitate"]}, {"n": 7, "lab": "7", "a": "Trapezium", "x": 860, "y": 895, "box": [855, 890, 865, 900], "q": "Name this carpal bone.", "acc": [], "tags": ["Trapezium"]}, {"n": 8, "lab": "8", "a": "Triquetrum", "x": 109, "y": 930, "box": [104, 925, 114, 935], "q": "Name this carpal bone.", "acc": ["triquetral", "triangular"], "tags": ["Triquetrum"]}, {"n": 9, "lab": "9", "a": "Trapezoid", "x": 854, "y": 938, "box": [849, 933, 859, 943], "q": "Name this carpal bone.", "acc": [], "tags": ["Trapezoid"]}, {"n": 10, "lab": "10", "a": "Lunate", "x": 44, "y": 970, "box": [39, 965, 49, 975], "q": "Name this carpal bone.", "acc": [], "tags": ["Lunate"]}, {"n": 11, "lab": "11", "a": "Scaphoid", "x": 850, "y": 980, "box": [845, 975, 855, 985], "q": "Name this carpal bone.", "acc": [], "tags": ["Scaphoid"]}, {"n": 12, "lab": "12", "a": "Ulna", "x": 39, "y": 1025, "box": [34, 1020, 44, 1030], "q": "Name this bone.", "acc": [], "tags": ["Ulna"]}, {"n": 13, "lab": "13", "a": "Radius", "x": 59, "y": 1093, "box": [54, 1088, 64, 1098], "q": "Name this bone.", "acc": [], "tags": ["Radius"]}], "items": [], "img": "img/ulbones-21.jpg", "n": 21}, {"id": "22", "title": "Sternum, anterior view", "set": "thorax", "type": "label", "w": 536, "h": 802, "r": 24, "pins": [{"n": 1, "lab": "1", "a": "Jugular notch", "x": 112, "y": 37, "box": [107, 32, 117, 42], "q": "Name this bone feature.", "acc": ["suprasternal notch"], "tags": ["Jugular notch"]}, {"n": 2, "lab": "2", "a": "Clavicular notch", "x": 478, "y": 43, "box": [473, 38, 483, 48], "q": "Name this bone feature.", "acc": [], "tags": ["Clavicular notch"]}, {"n": 3, "lab": "3", "a": "Manubrium", "x": 500, "y": 186, "box": [495, 181, 505, 191], "q": "Name this part of the sternum.", "acc": [], "tags": ["Manubrium"]}, {"n": 4, "lab": "4", "a": "Sternal angle", "x": 36, "y": 379, "box": [31, 374, 41, 384], "q": "Name this bone feature.", "acc": ["angle of Louis"], "tags": ["Sternal angle"]}, {"n": 5, "lab": "5", "a": "Body of sternum", "x": 500, "y": 380, "box": [495, 375, 505, 385], "q": "Name this part of the sternum.", "acc": ["body", "gladiolus"], "tags": ["Body of sternum"]}, {"n": 6, "lab": "6", "a": "Xiphoid process", "x": 500, "y": 678, "box": [495, 673, 505, 683], "q": "Name this part of the sternum.", "acc": ["xiphoid"], "tags": ["Xiphoid process"]}], "items": [], "img": "img/ulbones-22.jpg", "n": 22}, {"id": "23", "title": "Upper limb bones: quick check", "set": "hand", "type": "qa", "r": 0, "pins": [], "img": "img/ulbones-18.jpg", "w": 604, "h": 718, "items": [{"q": "Which bone of the forearm is on the thumb side?", "a": "Radius", "self": false, "acc": []}, {"q": "Which part of the humerus meets the radius? Which meets the ulna?", "a": "Capitulum meets the radius; trochlea meets the ulna", "self": true, "acc": []}, {"q": "How many carpals, metacarpals and phalanges are in one hand?", "a": "8 carpals, 5 metacarpals, 14 phalanges", "self": true, "acc": []}, {"q": "Which part of the scapula forms the shoulder joint with the humerus?", "a": "Glenoid cavity (fossa)", "self": false, "acc": ["glenoid fossa", "glenoid cavity"]}], "n": 23}, {"id": "24", "title": "Carpals and digits: quick check", "set": "hand", "type": "qa", "r": 0, "pins": [], "img": "img/ulbones-20.jpg", "w": 1000, "h": 1243, "items": [{"q": "Name the proximal row of carpals, lateral to medial.", "a": "Scaphoid, lunate, triquetrum, pisiform (So Long To Pinky)", "self": true, "acc": []}, {"q": "Name the distal row of carpals, medial to lateral.", "a": "Hamate, capitate, trapezoid, trapezium (Here Comes The Thumb)", "self": true, "acc": []}, {"q": "Which digit has no middle phalanx?", "a": "Thumb (pollex)", "self": false, "acc": ["thumb", "pollex", "first digit", "digit 1"]}, {"q": "Metacarpals are numbered 1 to 5 starting on which side?", "a": "Lateral (thumb side)", "self": false, "acc": ["lateral", "thumb side", "thumb"]}], "n": 24}]};
+const SETS=DECK.sets, CARDS=DECK.cards;
+if(DECK.links&&DECK.links.length){const m=document.getElementById('more');m.hidden=false;DECK.links.forEach(l=>{const a=document.createElement('a');a.href=l.u;a.target='_blank';a.rel='noopener';a.textContent=l.t;const sm=document.createElement('small');sm.textContent=l.d;a.appendChild(sm);document.getElementById('moreLinks').appendChild(a)})}
+const SYN={"anterior interventricular artery": ["lad", "left anterior descending", "left anterior descending artery"], "bicuspid valve": ["mitral valve", "mitral", "left atrioventricular valve"], "tricuspid valve": ["right atrioventricular valve"], "pulmonary semilunar valve": ["pulmonic valve", "pulmonary valve"], "pulmonic valve": ["pulmonary semilunar valve", "pulmonary valve"], "aortic semilunar valve": ["aortic valve"], "sinoatrial node": ["sa node"], "atrioventricular node": ["av node"], "bundle of his": ["av bundle", "atrioventricular bundle"], "epicardium": ["visceral pericardium"], "fibrous pericardium": ["parietal pericardium", "fibrous parietal pericardium"], "purkinje fibers": ["purkinje"], "thymus": ["thymus gland"], "brachiocephalic trunk": ["brachiocephalic artery"], "transverse tubule": ["t tubule"], "z disc": ["z line", "z disk"], "intercalated disc": ["intercalated disk"], "terminal cistern": ["terminal cisterna", "terminal cisternae"], "skeletal muscle tissue": ["skeletal muscle", "striated muscle"], "cardiac muscle tissue": ["cardiac muscle", "heart muscle", "myocardium"], "smooth muscle tissue": ["smooth muscle", "visceral muscle"], "coronary sulcus": ["atrioventricular groove"]};
+const ABBR={a:'artery',aa:'arteries',art:'artery',v:'vein',vv:'veins',r:'right',rt:'right',l:'left',lt:'left',
+ svc:'superior vena cava',ivc:'inferior vena cava',m:'muscle',ant:'anterior',post:'posterior',sr:'sarcoplasmic reticulum'};
+const DROP=new Set(['the','of','for','to','opening','openings','space','an']);
+function norm(s){
+  return s.toLowerCase().replace(/[\/,.;:()"'+-]/g,' ').split(/\s+/).filter(Boolean)
+   .map(w=>ABBR[w]||w).join(' ').split(' ').filter(w=>!DROP.has(w))
+   .map(w=>w.length>4?w.replace(/(es|s)$/,''):w).join(' ');
+}
+function shortForms(a){
+  const base=a.split(':')[0].replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').trim();
+  const out=base.split(' / ').map(s=>s.trim()); const extra=[];
+  out.forEach(o=>{const k=o.toLowerCase();Object.keys(SYN).forEach(s=>{if(k.includes(s))SYN[s].forEach(x=>extra.push(k.replace(s,x)))})});
+  return {show:out.join(' / '),accept:[...out,...extra].map(norm)};
+}
+function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=[...Array(n+1).keys()];
+ for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]==b[j-1]?0:1));p=c}return p[n]}
+function close(g,list){g=norm(g);if(!g)return false;
+  return list.some(t=>{const tol=t.length<5?0:Math.max(1,Math.floor(t.length/7));return lev(g,t)<=tol})}
+CARDS.forEach(c=>{c.pins.forEach(p=>{p.sf=shortForms(p.a);(p.acc||[]).forEach(x=>p.sf.accept.push(norm(x)))});c.items.forEach(it=>it.accN=[it.a,...it.acc].map(norm))});
+
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const BEST_KEY='atlasBest_'+DECK.id;
+let best=store.get(BEST_KEY,{});
+let set='all', order=CARDS.map((_,i)=>i), pos=0, mode='type', state={}, hotPin=null;
+const $=id=>document.getElementById(id);
+const visible=()=>order.filter(i=>set==='all'||CARDS[i].set===set);
+const cur=()=>CARDS[visible()[pos]];
+const HAS_DETAIL=CARDS.some(c=>c.items.some(it=>it.self&&/origin/i.test(it.q)));
+let nameOnly=HAS_DETAIL&&store.get('atlasNameOnly_'+DECK.id,false);
+const units=c=>c.type==='qa'?c.items.map((it,i)=>({key:i+1,lab:String(i+1),it})).filter(u=>!(nameOnly&&u.it.self)):c.pins.map(p=>({key:p.n,lab:p.lab,p}));
+const autoUnits=c=>units(c).filter(u=>!(u.it&&u.it.self));
+
+function renderSets(){const el=$('sets');el.innerHTML='';
+  [['all','All cards'],...Object.entries(SETS)].forEach(([k,name])=>{const b=document.createElement('button');b.className='chip';b.textContent=name;
+    b.setAttribute('aria-pressed',set===k);b.onclick=()=>{set=k;pos=0;renderSets();load()};el.appendChild(b)})}
+function renderStrip(){const el=$('strip');el.innerHTML='';
+  visible().forEach((i,j)=>{const c=CARDS[i];const b=document.createElement('button');b.textContent=c.n;b.title=c.title;
+    b.setAttribute('aria-label',`Card ${c.n}: ${c.title}`);if(j===pos)b.setAttribute('aria-current','true');
+    const s=best[c.id];if(s!=null){const d=document.createElement('span');d.className='dot '+(s>=autoUnits(c).length?'done':'part');b.appendChild(d)}
+    b.onclick=()=>{pos=j;load()};el.appendChild(b)});
+  const a=el.querySelector('[aria-current]');if(a)a.scrollIntoView({block:'nearest',inline:'nearest'})}
+const NS='http://www.w3.org/2000/svg';
+function svgEl(t,attrs,parent){const e=document.createElementNS(NS,t);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e}
+function drawFig(){
+  const c=cur(),svg=$('fig');svg.innerHTML='';svg.setAttribute('viewBox',`0 0 ${c.w} ${c.h}`);
+  svg.setAttribute('aria-label',c.type==='qa'?`Microscope image for ${c.title}`:`${c.title}, with ${c.pins.length} marked structures`);
+  svgEl('image',{href:c.img,x:0,y:0,width:c.w,height:c.h},svg);
+  if(c.type==='qa'){syncZoom();return}
+  const fs=Math.round(Math.max(26,c.r*1.0));
+  c.pins.forEach(p=>{const st=state[p.n]||{};
+    if(mode==='study'||st.open||(mode==='type'&&st.result!=null)||hotPin===p.n&&st.open){
+      const bx=(p.box[0]+p.box[2])/2;let x,y=p.y+fs*0.35+(p.dy||0),anchor;
+      if(Math.abs(p.x-bx)<6){x=p.x;y=p.y-c.r-10;anchor='middle'}else if(p.x>bx){x=p.x-c.r-6;anchor='end'}else{x=p.x+c.r+6;anchor='start'}
+      const t=svgEl('text',{x,y,'text-anchor':anchor,'font-size':fs,class:'lbl'+(hotPin===p.n?' found':'')},svg);t.textContent=p.sf.show}});
+  const fp=c.pins.find(p=>p.n===hotPin);if(fp)svgEl('circle',{cx:fp.x,cy:fp.y,r:c.r*1.9,class:'ring'},svg);
+  c.pins.forEach(p=>{const st=state[p.n]||{};
+    const g=svgEl('g',{class:'pin'+(st.result===true?' right':st.result===false?' wrong':'')+(hotPin===p.n?' hot':''),'data-n':p.n,tabindex:0,role:'button','aria-label':'Structure '+p.lab},svg);
+    svgEl('circle',{cx:p.x,cy:p.y,r:c.r},g);
+    const t=svgEl('text',{x:p.x,y:p.y+c.r*0.42,'text-anchor':'middle','font-size':Math.round(c.r*1.2)},g);t.textContent=p.lab;
+    g.onclick=()=>pinAct(p.n);g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pinAct(p.n)}};
+    g.onmouseenter=()=>hot(p.n,true);g.onmouseleave=()=>hot(p.n,false)});
+  syncZoom()}
+function syncZoom(){const d=$('zoom');if(!d||!d.open)return;const c=cur(),w=$('zWrap'),big=w.classList.contains('big');
+  const k=$('fig').cloneNode(true);k.removeAttribute('id');k.setAttribute('aria-label',c.title);
+  if(big){k.setAttribute('width',Math.max(c.w,Math.round(window.innerWidth*1.6)));k.removeAttribute('height')}else{const sc=Math.min((innerWidth-32)/c.w,(innerHeight-92)/c.h);k.setAttribute('width',Math.round(c.w*sc));k.setAttribute('height',Math.round(c.h*sc))}
+  w.innerHTML='';w.appendChild(k);$('zTitle').textContent=c.title;$('zSize').textContent=big?'Fit to screen':'Bigger'}
+function openZoom(){const d=$('zoom');$('zWrap').classList.remove('big');if(!d.open)d.showModal();syncZoom()}
+function hot(n,on){document.querySelectorAll(`[data-n="${n}"]`).forEach(e=>e.classList.toggle('hot',on))}
+function pinAct(n){if(mode==='type'){const i=$('in'+n);if(i)i.focus()}
+  else if(mode==='reveal'){state[n]=state[n]||{};state[n].open=!state[n].open;drawFig();drawList()}}
+function drawList(){
+  const c=cur(),ol=$('answers');ol.innerHTML='';
+  units(c).forEach(u=>{const n=u.key,st=state[n]||{},ans=u.it?u.it.a:u.p.a;
+    const li=document.createElement('li');li.dataset.n=n;li.onmouseenter=()=>hot(n,true);li.onmouseleave=()=>hot(n,false);
+    const num=document.createElement('span');num.className='num'+(st.result===true?' right':st.result===false?' wrong':'');num.textContent=u.lab;li.appendChild(num);
+    const box=document.createElement('div');box.className='field';
+    const qq=u.it?u.it.q:(u.p.q||'');if(qq){const q=document.createElement('div');q.className='q';q.textContent=qq;box.appendChild(q)}
+    if(mode==='type'){
+      const inp=document.createElement('input');inp.id='in'+n;inp.autocomplete='off';inp.spellcheck=false;
+      inp.setAttribute('aria-label',u.it?u.it.q:'Answer for '+u.lab);inp.value=st.typed||'';
+      if(st.result!=null)inp.className=st.result?'right':'wrong'; else if(st.shown)inp.className='self';
+      inp.oninput=()=>{state[n]=Object.assign(state[n]||{},{typed:inp.value})};
+      inp.onfocus=()=>hot(n,true);inp.onblur=()=>hot(n,false);
+      inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const nx=$('in'+(n+1));nx?nx.focus():check()}};
+      box.appendChild(inp);
+      if(st.result!=null||st.shown){const f=document.createElement('div');
+        f.className='fix'+(st.shown?' cmp':st.result?' ok':'');f.textContent=st.shown?'Compare with: '+ans:st.result?ans:'Answer: '+ans;box.appendChild(f)}
+    }else if(mode==='reveal'){
+      const b=document.createElement('button');b.className='reveal'+(st.open?' open':'');
+      b.textContent=st.open?ans:(u.it?'Tap to show the answer':'Tap to show '+u.lab);b.setAttribute('aria-expanded',!!st.open);
+      b.onclick=()=>{state[n]=state[n]||{};state[n].open=!state[n].open;drawFig();drawList()};box.appendChild(b);
+    }else{const s=document.createElement('div');s.className='ans';s.textContent=ans;box.appendChild(s)}
+    li.appendChild(box);ol.appendChild(li)});
+  const act=$('actions');act.innerHTML='';
+  if(mode==='type'){
+    const b=document.createElement('button');b.className='btn primary';b.textContent='Check my answers';b.onclick=check;act.appendChild(b);
+    const r=document.createElement('button');r.className='btn';r.textContent='Clear and try again';r.onclick=()=>{state={};drawFig();drawList()};act.appendChild(r);
+    const au=autoUnits(c);if(au.some(u=>(state[u.key]||{}).result!=null)){const s=document.createElement('span');s.className='score';
+      s.setAttribute('aria-live','polite');s.textContent=`${au.filter(u=>(state[u.key]||{}).result===true).length} of ${au.length} correct`;act.appendChild(s)}
+  }else if(mode==='reveal'){const b=document.createElement('button');b.className='btn';b.textContent='Hide all again';
+    b.onclick=()=>{Object.values(state).forEach(s=>s.open=false);drawFig();drawList()};act.appendChild(b)}
+}
+function check(){const c=cur();let right=0;
+  units(c).forEach(u=>{const st=state[u.key]=state[u.key]||{};
+    if(u.it&&u.it.self){st.shown=true;return}
+    st.result=u.it?close(st.typed||'',u.it.accN):close(st.typed||'',u.p.sf.accept);if(st.result)right++});
+  if(best[c.id]==null||right>best[c.id]){best[c.id]=right;store.set(BEST_KEY,best)}
+  drawFig();drawList();renderStrip()}
+const HINTS={type:'Type each answer, then check. Press Enter to jump to the next blank. Questions about function and location show the answer so you can compare.',
+ reveal:'Say each answer out loud first, then tap to see if you were right.',
+ study:'Everything is labeled. Study the card, then switch back to Type answers to test yourself.'};
+function setMode(m){mode=m;[['type','mType'],['reveal','mReveal'],['study','mStudy']].forEach(([k,id])=>$(id).setAttribute('aria-pressed',k===m));
+  $('hint').textContent=HINTS[m];drawFig();drawList()}
+function load(keep){const v=visible();if(pos>=v.length)pos=0;if(pos<0)pos=v.length-1;
+  const c=cur();if(!keep){state={};hotPin=null}
+  $('cardEyebrow').textContent=`Card ${c.n} · ${SETS[c.set]}`;showFound();$('cardTitle').textContent=c.title;renderStrip();setMode(mode)}
+function showFound(){const c=cur(),fb=$('found'),p=c.pins.find(p=>p.n===hotPin);
+  if(!p){fb.hidden=true;return}
+  fb.hidden=false;fb.innerHTML='';fb.append('Found: ');const sp=document.createElement('span');sp.textContent=p.sf.show;fb.append(sp,` (number ${p.lab}, circled in gold)`);
+  const b=document.createElement('button');b.textContent='Clear';b.onclick=()=>{hotPin=null;state={};history.replaceState(null,'',location.pathname);setMode('type');showFound()};fb.append(b);
+  document.querySelector('.plate').scrollIntoView({block:'start',behavior:'smooth'})}
+function fromHash(){const m=/^#c(\d+)(?:-p(\d+))?$/.exec(location.hash);if(!m)return false;
+  const idx=CARDS.findIndex(c=>c.n===+m[1]);if(idx<0)return false;
+  set='all';order=CARDS.map((_,i)=>i);pos=idx;state={};hotPin=null;
+  if(m[2]){hotPin=+m[2];state[hotPin]={open:true};mode='reveal'}
+  renderSets();load(true);return true}
+$('mType').onclick=()=>setMode('type');$('mReveal').onclick=()=>setMode('reveal');$('mStudy').onclick=()=>setMode('study');
+$('prev').onclick=()=>{pos--;load()};$('next').onclick=()=>{pos++;load()};
+$('shuffle').onclick=()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}pos=0;load()};
+$('zoomBtn').onclick=openZoom;
+$('fig').addEventListener('click',e=>{if(!e.target.closest('.pin'))openZoom()});
+$('zClose').onclick=()=>$('zoom').close();
+$('zSize').onclick=()=>{$('zWrap').classList.toggle('big');syncZoom()};
+$('zPrev').onclick=()=>{pos--;hotPin=null;load()};$('zNext').onclick=()=>{pos++;hotPin=null;load()};
+$('zoom').addEventListener('click',e=>{if(e.target.id==='zWrap'||e.target.id==='zoom'){$('zoom').close();return}
+  const g=e.target.closest('.pin');if(!g)return;const n=+g.dataset.n;
+  if(mode==='type'){$('zoom').close();const i=$('in'+n);if(i)i.focus()}else pinAct(n)});
+addEventListener('resize',syncZoom);
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight'){pos++;hotPin=null;load()}if(e.key==='ArrowLeft'){pos--;hotPin=null;load()}});
+window.addEventListener('hashchange',fromHash);
+function renderDepth(){if(!HAS_DETAIL)return;$('depth').hidden=false;$('dSw').setAttribute('aria-checked',!nameOnly)}
+$('dSw').onclick=()=>{nameOnly=!nameOnly;store.set('atlasNameOnly_'+DECK.id,nameOnly);state={};renderDepth();load()};
+renderDepth();
+if(!fromHash()){renderSets();load()}
+</script>
+
+</html>
