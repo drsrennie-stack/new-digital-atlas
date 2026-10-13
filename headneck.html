@@ -54,6 +54,7 @@ dialog.zoom::backdrop{background:rgba(11,21,48,.6)}
 .zwrap.big svg{max-width:none;max-height:none}
 .plate svg{display:block;width:100%;height:auto;background:#fff;border-radius:8px;user-select:none}
 .fix .mine{margin-left:8px;border:1px solid var(--line,#D5D9E2);background:#fff;color:#256B3A;border-radius:8px;padding:3px 9px;font:700 13px var(--f-body);cursor:pointer}
+.report{display:inline-block;margin-top:6px;font-size:14px;font-weight:700;color:var(--maroon,#8B3A2E)}
 .pin{cursor:pointer;transition:opacity .15s}
 .pin:hover{opacity:.18}
 @media (hover:none){.pin:hover{opacity:1}}
@@ -136,7 +137,7 @@ footer.note{font-size:14px;color:var(--muted)}
       <div class="zwrap" id="zWrap"></div>
     </dialog>
     <section class="sheet">
-      <div class="cardhead"><div class="eyebrow" id="cardEyebrow"></div><h2 id="cardTitle"></h2></div>
+      <div class="cardhead"><div class="eyebrow" id="cardEyebrow"></div><h2 id="cardTitle"></h2><a id="report" class="report" target="_blank" rel="noopener">Report a problem with this card</a></div>
       <div class="modes" role="group" aria-label="How to practice">
         <button id="mType" aria-pressed="true">Type answers</button>
         <button id="mReveal" aria-pressed="false">Tap to reveal</button>
@@ -296,6 +297,7 @@ function setMode(m){mode=m;[['type','mType'],['reveal','mReveal'],['study','mStu
   $('hint').textContent=HINTS[m];drawFig();drawList()}
 function load(keep){const v=visible();if(pos>=v.length)pos=0;if(pos<0)pos=v.length-1;
   const c=cur();if(!keep){state={};hotPin=null}
+  $('report').href='https://docs.google.com/forms/d/e/1FAIpQLSe_5aNCIRbDDUX6UluXEmuKpdDsghVfCNeh-z64dielvxgiWw/viewform?usp=pp_url&entry.871380301='+encodeURIComponent(`${DECK.title}, card ${c.n}: ${c.title}`);
   $('cardEyebrow').textContent=`Card ${c.n} · ${SETS[c.set]}`;showFound();$('cardTitle').textContent=c.title;renderStrip();setMode(mode)}
 function showFound(){const c=cur(),fb=$('found'),p=c.pins.find(p=>p.n===hotPin);
   if(!p){fb.hidden=true;return}
