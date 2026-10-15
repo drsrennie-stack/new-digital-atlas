@@ -1,0 +1,10 @@
+Digital Atlas update (new-digital-atlas repo)
+
+Upload every file in this folder to the root of the new-digital-atlas repo, keeping the same names. They overwrite the old copies in place.
+
+What is in it:
+1. Name it mode on the chapter pages (atlas-name-it.js, atlas-competency-map.js and the chapter pages that load them).
+2. index.html: "My weak spots" now waits until the intro is finished or skipped, so it no longer covers Skip intro.
+3. compliance-notes-atlas-name-it.md: accessibility notes.
+
+If you already uploaded the earlier Name it zip, uploading this one again is fine. The files are the same apart from index.html and the notes.

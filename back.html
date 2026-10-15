@@ -329,4 +329,24 @@ renderDepth();
 if(!fromHash()){renderSets();load()}
 </script>
 
+<script src="atlas-competency-map.js"></script>
+<script src="atlas-name-it.js"></script>
+<script>
+/* Iframe height sender (Canvas, Kajabi and other embeds). Pass ?id= to name the frame. */
+(function () {
+  var FRAME_ID = (function () {
+    try { var m = window.location.search.match(/[?&]id=([^&]+)/); if (m) return decodeURIComponent(m[1]); } catch (e) {}
+    return 'back';
+  })();
+  function sendHeight() {
+    var h = (window.BIO004_CONTENT_HEIGHT ? window.BIO004_CONTENT_HEIGHT() : document.body.scrollHeight);
+    try { if (window.parent && window.parent !== window) window.parent.postMessage({ type: 'resize', id: FRAME_ID, height: h }, '*'); } catch (e) {}
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (window.ResizeObserver) { try { new ResizeObserver(sendHeight).observe(document.body); } catch (e) {} }
+  sendHeight();
+})();
+</script>
+</body>
 </html>

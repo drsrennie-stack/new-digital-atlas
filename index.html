@@ -25,6 +25,9 @@ a{color:inherit}
 /* ---------- opening film ---------- */
 #film{position:fixed;inset:0;z-index:20;background:var(--white);display:grid;place-items:center;overflow:hidden;transition:opacity .9s ease,visibility .9s}
 #film.done{opacity:0;visibility:hidden}
+/* My weak spots waits until the intro is over, so it never sits on Skip intro */
+#film:not(.done) ~ #wkBtn{opacity:0;visibility:hidden;pointer-events:none}
+#wkBtn{transition:opacity .6s ease .3s,visibility .6s ease .3s}
 .scene{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .8s ease}
 .scene.on{opacity:1}
 .hello svg{width:min(88vw,1100px);height:auto;overflow:visible}
@@ -112,15 +115,15 @@ footer{padding-block:36px 52px;border-top:.5px solid var(--navy-15);display:flex
 @media (prefers-reduced-motion:reduce){#film{display:none}}
 </style>
 
-<div id="film" aria-hidden="true">
-  <div class="scene hello" id="s1">
+<div id="film">
+  <div class="scene hello" id="s1" aria-hidden="true">
     <svg viewBox="0 0 1100 300"><text id="hw" x="550" y="225" text-anchor="middle">hello</text></svg>
     <div class="word" id="hl">Welcome</div>
   </div>
-  <div class="scene title-scene" id="s2">
+  <div class="scene title-scene" id="s2" aria-hidden="true">
     <div><div class="eb">BIO 004 Human Anatomy · Solano College</div><h2>The Anatomy <span>Atlas</span></h2></div>
   </div>
-  <div class="scene montage" id="s3"><figure><img src="img/heart-01.jpg" alt=""></figure><figure><img src="img/brain-hero.png" alt=""></figure><figure><img src="img/kidney-hero.png" alt=""></figure><figure><img src="img/heart-17.jpg" alt=""></figure><figure><img src="img/heart-07.jpg" alt=""></figure><figure><img src="img/heart-32.jpg" alt=""></figure></div>
+  <div class="scene montage" id="s3" aria-hidden="true"><figure><img src="img/heart-01.jpg" alt=""></figure><figure><img src="img/brain-hero.png" alt=""></figure><figure><img src="img/kidney-hero.png" alt=""></figure><figure><img src="img/heart-17.jpg" alt=""></figure><figure><img src="img/heart-07.jpg" alt=""></figure><figure><img src="img/heart-32.jpg" alt=""></figure></div>
   <button class="skip" id="skip" type="button">Skip intro</button>
 </div>
 
