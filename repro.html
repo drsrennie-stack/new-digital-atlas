@@ -58,6 +58,7 @@ dialog.zoom::backdrop{background:rgba(11,21,48,.6)}
 .pin{cursor:pointer;transition:opacity .15s}
 .pin:hover{opacity:.18}
 @media (hover:none){.pin:hover{opacity:1}}
+.pin.peek{opacity:.18}
 .pin circle{fill:var(--navy);stroke:#fff;stroke-width:3}
 .pin text{fill:#fff;font-family:var(--f-body);font-weight:700}
 .pin.hot circle{fill:var(--maroon)}
@@ -290,9 +291,11 @@ function check(){const c=cur();let right=0;
   store.set(REC,rec);window.dispatchEvent(new Event('atlas-rec'));
   if(best[c.id]==null||right>best[c.id]){best[c.id]=right;store.set(BEST_KEY,best)}
   drawFig();drawList();renderStrip()}
-const HINTS={type:'Type each answer, then check. Press Enter to jump to the next blank. Questions about function and location show the answer so you can compare.',
- reveal:'Say each answer out loud first, then tap to see if you were right.',
+const HINTS={type:'Type each answer, then check. Press Enter to jump to the next blank. Questions about function and location show the answer so you can compare. Can\u2019t see the structure under a pin? Hover over the pin and it fades away. On a phone or tablet, press and hold the pin.',
+ reveal:'Say each answer out loud first, then tap to see if you were right. Can\u2019t see the structure under a pin? Hover over the pin and it fades away. On a phone or tablet, press and hold the pin.',
  study:'Everything is labeled. Study the card, then switch back to Type answers to test yourself.'};
+document.addEventListener('touchstart',e=>{const p=e.target.closest&&e.target.closest('.pin');if(p)p.classList.add('peek')},{passive:true});
+['touchend','touchcancel'].forEach(ev=>document.addEventListener(ev,()=>document.querySelectorAll('.pin.peek').forEach(p=>p.classList.remove('peek')),{passive:true}));
 function setMode(m){mode=m;[['type','mType'],['reveal','mReveal'],['study','mStudy']].forEach(([k,id])=>$(id).setAttribute('aria-pressed',k===m));
   $('hint').textContent=HINTS[m];drawFig();drawList()}
 function load(keep){const v=visible();if(pos>=v.length)pos=0;if(pos<0)pos=v.length-1;
