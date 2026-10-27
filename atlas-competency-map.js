@@ -165,13 +165,13 @@
     ]},
 
     skeleton: { title: 'Vertebrae, Pelvis and Lower Limb Bones', groups: [
-      { cards: [1, 5, 6], comps: ['w2-regional-vertebrae'] },
+      { cards: [1, 5, 6, 19, 20, 21], comps: ['w2-regional-vertebrae'] },
       { cards: [2, 3, 4], comps: ['w2-typical-vertebra'] },
       { cards: [2, 3, 4], match: 'transverse foramen|costal facet', comps: ['w2-regional-vertebrae'] },
       { sets: ['pelvis'], exclude: 'joint|^sacrum$', comps: ['w2-pelvic-girdle'] },
       { cards: [11, 12], comps: ['w2-thigh-knee'] },
       { cards: [13, 14], comps: ['w2-leg-bones'] },
-      { cards: [15], comps: ['w2-foot-bones'] }
+      { cards: [15, 17, 18], comps: ['w2-foot-bones'] }
     ]},
 
     skin: { title: 'Integumentary System (Skin)', groups: [
