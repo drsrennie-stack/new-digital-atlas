@@ -1,224 +1,210 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Anatomy Atlas</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rounds</title>
+<meta name="description" content="Rounds: structure identification drills for anatomy lab, one module at a time.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* Layout: a short cinematic opening (greeting drawn on, title, specimen montage) that settles into a quiet editorial landing page. MedMasters house system: white ground, navy ink and boxes, terra as the one accent, hairline cards, a single gold word in the navy band. */
 :root{
-  --navy:#0B1530; --navy-72:#4F576A; --navy-15:rgba(11,21,48,.15); --navy-tint:#F3F4F7;
-  --terra:#8B3A2E; --gold:#DCB45C; --white:#FFFFFF;
-  --f-display:"Open Sans","Plus Jakarta Sans",system-ui,sans-serif;
-  --f-body:"Plus Jakarta Sans",system-ui,sans-serif;
-  color-scheme:light;
+  --navy:#02050F; --navy-2:#081026; --maroon:#8B2E2E; --maroon-2:#A33636; --gold:#E3B341; --gold-brushed:#B8924A;
+  --ink:#1A1F2E; --ink-soft:#4A5064; --line:#D9DCE3; --page:#FAFAF9; --card:#FFFFFF; --locked:#9AA0AE; --tint:#EDF1F3;
+  --shadow-rest:0 1px 3px rgba(0,0,0,.08); --shadow-hover:0 8px 16px rgba(0,0,0,.10);
 }
-*{box-sizing:border-box;font-style:normal}
-html,body{background:var(--white)}
-body{margin:0;color:var(--navy);font-family:var(--f-body);font-size:17px;line-height:1.55}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--page);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:16px;line-height:1.5}
+h1,h2,h3{font-family:"Plus Jakarta Sans",system-ui,sans-serif;margin:0;line-height:1.15}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--terra);outline-offset:3px}
+button{font:inherit;cursor:pointer}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:var(--navy);padding:10px 16px;font-weight:600;z-index:100}
+.skip:focus{left:12px;top:12px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
 /* ---------- opening film ---------- */
-#film{position:fixed;inset:0;z-index:20;background:var(--white);display:grid;place-items:center;overflow:hidden;transition:opacity .9s ease,visibility .9s}
+#film{position:fixed;inset:0;z-index:50;background:var(--navy);color:#fff;display:grid;place-items:center;overflow:hidden;transition:opacity .9s ease,visibility .9s}
 #film.done{opacity:0;visibility:hidden}
-/* My weak spots waits until the intro is over, so it never sits on Skip intro */
-#film:not(.done) ~ #wkBtn{opacity:0;visibility:hidden;pointer-events:none}
-#wkBtn{transition:opacity .6s ease .3s,visibility .6s ease .3s}
-.scene{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .8s ease}
-.scene.on{opacity:1}
+.scene{position:absolute;inset:0;display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .8s ease}
+.scene.on{opacity:1;pointer-events:auto}
+.begin{text-align:center;padding:0 24px}
+.begin .eb{font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;color:var(--gold)}
+.begin h2{font-family:"Plus Jakarta Sans";font-weight:800;font-size:clamp(56px,11vw,150px);line-height:.95;letter-spacing:-.03em;margin:.12em 0 .35em}
+.begin h2 span{color:var(--maroon)}
+.btn{display:inline-block;background:var(--navy);color:#fff;border:1px solid var(--navy);border-radius:8px;padding:12px 22px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;text-decoration:none}
+.btn.maroon{background:var(--maroon);border-color:var(--maroon);color:#fff;font-size:13px;padding:16px 30px}
+.btn.maroon:hover{background:var(--maroon-2);border-color:var(--maroon-2)}
+.btn.ghost{background:#fff;color:var(--navy)}
+.btn.ghost:hover{background:var(--tint)}
+.btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
 .hello svg{width:min(88vw,1100px);height:auto;overflow:visible}
-.hello text{font-family:var(--f-display);font-weight:800;font-size:200px;letter-spacing:-6px;fill:transparent;stroke:var(--navy);stroke-width:2.2;stroke-dasharray:1400;stroke-dashoffset:1400}
-.hello.on text{animation:draw 1.9s ease forwards,fill .7s ease 1.5s forwards}
+.hello text{font-family:"Plus Jakarta Sans";font-weight:800;font-size:200px;letter-spacing:-6px;fill:transparent;stroke:#fff;stroke-width:2.2;stroke-dasharray:1400;stroke-dashoffset:1400}
+.hello.on text{animation:draw 1.9s ease forwards,fillw .7s ease 1.5s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
-@keyframes fill{to{fill:var(--navy)}}
-.word{font-family:var(--f-body);font-weight:600;font-size:clamp(15px,2vw,20px);letter-spacing:.32em;text-transform:uppercase;color:var(--terra);position:absolute;bottom:22vh;left:0;right:0;text-align:center;opacity:0;transition:opacity .6s ease .9s}
+@keyframes fillw{to{fill:#fff}}
+.hello .word{font-weight:600;font-size:clamp(15px,2vw,20px);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);position:absolute;bottom:22vh;left:0;right:0;text-align:center;opacity:0;transition:opacity .8s ease 1.2s}
 .hello.on .word{opacity:1}
 .title-scene{text-align:center;padding:0 24px}
-.title-scene .eb{font-weight:700;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--terra);transform:translateY(12px);opacity:0;transition:all .8s ease .2s}
-.title-scene h2{font-family:var(--f-display);font-weight:800;font-size:clamp(46px,9vw,124px);line-height:.95;letter-spacing:-.03em;margin:.18em 0 0;transform:scale(1.08);opacity:0;transition:all 1.4s cubic-bezier(.2,.7,.1,1) .35s}
-.title-scene h2 span{color:var(--terra)}
+.title-scene .eb{font-weight:600;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);transform:translateY(12px);opacity:0;transition:all .8s ease .2s}
+.title-scene h2{font-family:"Plus Jakarta Sans";font-weight:800;font-size:clamp(36px,6vw,84px);line-height:1;letter-spacing:-.02em;margin:.25em 0 0;transform:scale(1.08);opacity:0;transition:all 1.4s cubic-bezier(.2,.7,.2,1) .3s}
+.title-scene h2 span{color:var(--gold)}
 .title-scene.on .eb,.title-scene.on h2{transform:none;opacity:1}
 .montage{grid-template-columns:repeat(3,1fr);gap:1.4vw;padding:6vh 6vw;place-items:stretch}
-.montage figure{margin:0;overflow:hidden;border-radius:8px;background:var(--white);border:.5px solid var(--navy-15)}
+.montage figure{margin:0;overflow:hidden;border-radius:8px;background:#fff;border:.5px solid rgba(255,255,255,.2)}
 .montage img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);opacity:0;transition:transform 4.2s ease,opacity 1s ease}
 .montage.on img{transform:scale(1);opacity:1}
 .montage.on figure:nth-child(2) img{transition-delay:.25s}.montage.on figure:nth-child(3) img{transition-delay:.5s}
-.montage.on figure:nth-child(4) img{transition-delay:.75s}.montage.on figure:nth-child(5) img{transition-delay:1s}.montage.on figure:nth-child(6) img{transition-delay:1.25s}
-.skip{position:absolute;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:3;font:600 12px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--navy);background:var(--white);border:.5px solid var(--navy-15);border-radius:4px;padding:11px 16px;cursor:pointer}
+.montage.on figure:nth-child(4) img{transition-delay:.75s}.montage.on figure:nth-child(5) img{transition-delay:1s}
+.skipfilm{position:absolute;right:20px;bottom:20px;z-index:3;font:600 12px/1 "DM Sans";letter-spacing:.2em;text-transform:uppercase;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.5);border-radius:4px;padding:12px 16px}
+.skipfilm:hover{background:rgba(255,255,255,.1)}
+@media (prefers-reduced-motion:reduce){#film{display:none}}
 
 /* ---------- landing ---------- */
-.wrap{max-width:1160px;margin:0 auto;padding-inline:max(20px,5vw)}
-header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;padding-right:190px}
-@media (max-width:600px){header.top{padding-right:52px}.top nav{display:none!important}}
-.brand{font-family:var(--f-display);font-weight:800;font-size:17px;letter-spacing:-.01em;text-decoration:none}
-.brand span{color:var(--terra)}
-.top nav{display:flex;gap:18px;flex-wrap:wrap}
-.top nav a{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--navy-72)}
-.top nav a:hover{color:var(--terra)}
-.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(24px,6vw,72px) clamp(40px,6vw,80px)}
-@media (max-width:860px){.hero{grid-template-columns:1fr}}
-.eyebrow{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--terra)}
-h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,7vw,92px);line-height:.98;letter-spacing:-.03em;margin:.2em 0 .3em;text-wrap:balance}
-h1 span{color:var(--terra)}
-.lede{font-size:clamp(17px,1.6vw,20px);color:var(--navy-72);max-width:34ch;margin:0 0 28px}
-.btns{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:16px 24px;border-radius:4px;border:1px solid var(--navy)}
-.btn.primary{background:var(--terra);border-color:var(--terra);color:var(--white)}
-.btn.primary:hover{background:#6F2C22;border-color:#6F2C22}
-.btn.ghost{background:var(--white);color:var(--navy)}
-.stage{position:relative;aspect-ratio:1/1;max-width:100%}
-.stage figure{position:absolute;margin:0}
-.stage img{display:block;width:100%;height:100%;object-fit:contain}
-.stage .a{left:0;top:4%;width:56%;height:64%;border-radius:8px;overflow:hidden}
-.stage .a img{object-fit:cover}
-.stage .b{right:0;top:0;width:44%;height:52%}
-.stage .c{right:2%;bottom:0;width:66%;height:50%}
-@media (prefers-reduced-motion:no-preference){.stage .a img{animation:drift 18s ease-in-out infinite alternate}.stage .c img{animation:float 9s ease-in-out infinite alternate}}
-@keyframes float{from{transform:translateY(0)}to{transform:translateY(-10px)}}
-@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-2%,-1%)}}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:.5px solid var(--navy-15);border-bottom:.5px solid var(--navy-15)}
-.stats div{padding:26px 8px;text-align:center}
-.stats div+div{border-left:.5px solid var(--navy-15)}
-.stats b{display:block;font-family:var(--f-display);font-weight:800;font-size:clamp(36px,5vw,58px);line-height:1;color:var(--navy);font-variant-numeric:tabular-nums}
-.stats span{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--navy-72)}
-section{padding-block:clamp(48px,7vw,88px)}
-h2.sec{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1.05;letter-spacing:-.02em;margin:.25em 0 .8em;text-wrap:balance}
-h2.sec span{color:var(--terra)}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-@media (max-width:760px){.steps{grid-template-columns:1fr}}
-.step{border:.5px solid var(--navy-15);border-radius:8px;padding:24px 22px;background:var(--white)}
-.step .n{font-family:var(--f-display);font-weight:800;font-size:56px;line-height:1;color:var(--terra)}
-.step h3{font-size:19px;font-weight:800;margin:10px 0 6px}
-.step p{margin:0;color:var(--navy-72);font-size:15.5px}
-.band{background:var(--navy);color:var(--white);border-radius:8px;padding:clamp(32px,5vw,56px);display:grid;gap:14px}
-.band .eyebrow{color:#E8CE85}
-.band p.big{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3.4vw,40px);line-height:1.15;margin:0;text-wrap:balance}
-.band p.big span{color:var(--gold)}
-.labnote-lead{margin:0;font-size:17px;color:#E6E9F0;max-width:62ch}
-.labnote{margin:0;padding-left:20px;display:grid;gap:8px;font-size:16px;color:#E6E9F0;max-width:68ch}
-.labnote b{color:var(--white)}
-.chapters{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
-.chap.mod small{color:var(--terra)}
-.chap.mod:hover{border-color:var(--terra)}
-.chap{border:.5px solid var(--navy-15);border-radius:8px;padding:18px;display:grid;gap:6px;text-decoration:none;background:var(--white)}
-.chap.live{border:2px solid var(--terra)}
-.chap b{font-size:16px}
-.chap small{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy-72)}
-.chap.live small{color:var(--terra)}
-.thanks{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:center;border:.5px solid var(--navy-15);border-radius:8px;padding:28px}
-@media (max-width:640px){.thanks{grid-template-columns:1fr}}
-.seal{width:84px;height:84px;border-radius:50%;background:var(--navy);display:grid;place-items:center;color:var(--gold);font-family:var(--f-display);font-weight:800;font-size:15px;letter-spacing:.06em;text-align:center;line-height:1.05}
-.thanks h3{margin:0 0 6px;font-size:21px;font-weight:800}
-.thanks p{margin:0;color:var(--navy-72)}
-footer{padding-block:36px 52px;border-top:.5px solid var(--navy-15);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:13px;color:var(--navy-72)}
-@media (prefers-reduced-motion:reduce){#film{display:none}}
+.band{background:var(--navy);color:#fff;padding:48px 24px 40px}
+.wrap{max-width:1180px;margin:0 auto}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gold)}
+.band h1{font-size:clamp(40px,7vw,84px);font-weight:800;margin-top:10px;letter-spacing:-.02em}
+.band h1 span{color:var(--gold)}
+.band .sub{margin-top:12px;color:#C8CCD6;font-size:18px;max-width:640px}
+.how{max-width:1180px;margin:-26px auto 0;padding:0 24px;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 12px 10px;box-shadow:var(--shadow-rest)}
+.step .num{font-family:"Plus Jakarta Sans";font-weight:800;font-size:26px;color:var(--maroon);line-height:1}
+.step .lab{display:block;font-weight:600;margin-top:6px;font-size:14px}
+.step .st{display:block;font-size:12px;color:var(--ink-soft);margin-top:2px}
+section.modules{max-width:1180px;margin:40px auto 60px;padding:0 24px}
+section.modules h2{font-size:28px;font-weight:800;color:var(--navy);margin-bottom:6px}
+section.modules h2 span{color:var(--maroon)}
+section.modules > p{color:var(--ink-soft);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.mod{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow-rest);transition:transform 200ms ease,box-shadow 200ms ease;display:flex;flex-direction:column;gap:10px}
+.mod:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+.mod .num{font-family:"Plus Jakarta Sans";font-weight:800;font-size:44px;color:var(--maroon);line-height:1}
+.mod h3{font-size:20px;color:var(--navy)}
+.mod .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);width:max-content}
+.mod .pill.open{border-color:var(--gold-brushed);color:var(--navy)}
+.mod.locked{border:1px dashed var(--locked);background:#F5F5F4}
+.mod.locked .num,.mod.locked h3{color:var(--locked)}
+.sets{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.sets li a{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-decoration:none;color:var(--navy);font-weight:600}
+.sets li a:hover{background:var(--tint)}
+.sets li a .n{font-family:"Plus Jakarta Sans";font-weight:800;color:var(--maroon);min-width:28px}
+.sets li a .grow{flex:1}
+.sets li a .ct{font-size:12px;color:var(--ink-soft);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.groups{margin-top:6px}
+.groups details.cat{border:1px solid var(--line);border-radius:10px;padding:0;margin-top:8px;background:#fff}
+.groups details.cat[open]{border-color:var(--gold-brushed)}
+.groups details.cat summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:12px 14px;font-weight:700;color:var(--navy)}
+.groups details.cat summary::-webkit-details-marker{display:none}
+.groups .cname{flex:1}
+.groups details.cat summary .ct{font-size:11px;color:var(--ink-soft);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.groups .chev{width:8px;height:8px;border-right:2px solid var(--maroon);border-bottom:2px solid var(--maroon);transform:rotate(45deg);transition:transform 200ms ease;margin-right:4px}
+.groups details.cat[open] .chev{transform:rotate(-135deg)}
+.groups details.cat .sets{margin:0;padding:4px 10px 10px;gap:6px}
+.groups details.cat .sets li a{padding:8px 10px}
+.groups details.cat .sets li a .ct{min-width:28px;text-align:right}
+.groups details.soon summary{color:var(--ink-soft)}
+.groups details.soon .small{padding:0 14px}
+@media (max-width:700px){.mod[style*="span 2"]{grid-column:span 1 !important}}
+footer{max-width:1180px;margin:0 auto;padding:0 24px 40px;color:var(--ink-soft);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media (max-width:900px){.how{grid-template-columns:repeat(3,1fr)}}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+.dot{display:inline-block;width:.17em;height:.17em;border-radius:50%;background:#8B2E2E;margin-left:.08em;vertical-align:baseline;transform:translateY(-.02em)}
+.mod .wip{font-size:14px;color:var(--ink-soft);margin:10px 0 4px;line-height:1.5}
 </style>
+</head>
+<body>
 
-<div id="film">
+<a class="skip" href="#main" target="_top">Skip to the modules</a>
+
+<div id="film" role="dialog" aria-modal="true" aria-label="Opening">
+  <div class="scene begin on" id="s0">
+    <div>
+      <div class="eb">BIO 004 Human Anatomy</div>
+      <h2>Rounds<span class="dot" aria-hidden="true"></span></h2>
+      <button class="btn maroon" id="beginBtn" type="button">Begin</button>
+    </div>
+  </div>
   <div class="scene hello" id="s1" aria-hidden="true">
     <svg viewBox="0 0 1100 300"><text id="hw" x="550" y="225" text-anchor="middle">hello</text></svg>
     <div class="word" id="hl">Welcome</div>
   </div>
   <div class="scene title-scene" id="s2" aria-hidden="true">
-    <div><div class="eb">BIO 004 Human Anatomy · Solano College</div><h2>The Anatomy <span>Atlas</span></h2></div>
+    <div><div class="eb">Lab structures, one round at a time</div><h2>Point. Name. <span>Know it.</span></h2></div>
   </div>
-  <div class="scene montage" id="s3" aria-hidden="true"><figure><img src="img/heart-01.jpg" alt=""></figure><figure><img src="img/brain-hero.png" alt=""></figure><figure><img src="img/kidney-hero.png" alt=""></figure><figure><img src="img/heart-17.jpg" alt=""></figure><figure><img src="img/heart-07.jpg" alt=""></figure><figure><img src="img/heart-32.jpg" alt=""></figure></div>
-  <button class="skip" id="skip" type="button">Skip intro</button>
+  <div class="scene montage" id="s3" aria-hidden="true">
+    <figure><img src="images/larynx-anterior.png" alt=""></figure>
+    <figure><img src="images/larynx-superior.png" alt=""></figure>
+    <figure><img src="images/bronchial-tree.png" alt=""></figure>
+  </div>
+  <button class="skipfilm" id="skipFilm" type="button">Skip intro</button>
 </div>
 
-<div class="wrap">
-  <header class="top">
-    <a class="brand" href="#top" id="top">BIO 004 <span>Human Anatomy</span> · Solano College</a>
-    <nav aria-label="Atlas"><a href="atlas.html">Index</a><a href="videos.html">Videos</a><a href="#chapters">Chapters</a><a href="#thanks">Thanks</a></nav>
-  </header>
-
-  <div class="hero">
-    <div>
-      <div class="eyebrow">Anatomy Atlas · Dr. Sharilyn Rennie</div>
-      <h1>Every structure. <span>Every specimen.</span></h1>
-      <p class="lede">Real cadavers, classroom models and slides, all searchable and ready to practice.</p>
-      <div class="btns"><a class="btn primary" href="atlas.html">Enter the atlas</a><a class="btn ghost" href="videos.html">Watch videos</a><a class="btn ghost" href="#how">How it works</a></div>
-    </div>
-    <div class="stage" aria-hidden="true"><figure class="a"><img src="img/heart-01.jpg" alt=""></figure><figure class="b"><img src="img/kidney-hero.png" alt=""></figure><figure class="c"><img src="img/brain-hero.png" alt=""></figure></div>
+<header class="band">
+  <div class="wrap">
+    <div class="eyebrow">BIO 004 · Human Anatomy</div>
+    <h1>Rounds<span class="dot" aria-hidden="true"></span></h1>
+    <p class="sub">The lab drill you can run on your own. Pick a module, pick a set of structures, and work through the six rounds until you can point to every one and name it from memory.</p>
   </div>
+</header>
 
-  <div class="stats" aria-label="What is in the atlas">
-    <div><b data-n="470">470</b><span>Practice cards</span></div>
-    <div><b data-n="951">951</b><span>Structures tagged</span></div>
-    <div><b data-n="24">24</b><span>Chapters</span></div>
-  </div>
+<nav class="how" aria-label="How a set works">
+  <div class="step"><div class="num">00</div><span class="lab">The tour</span><span class="st">Hear each structure</span></div>
+  <div class="step"><div class="num">01</div><span class="lab">Find it</span><span class="st">Hear a name, click it</span></div>
+  <div class="step"><div class="num">02</div><span class="lab">Name it</span><span class="st">Say it, spell it</span></div>
+  <div class="step"><div class="num">03</div><span class="lab">Recall</span><span class="st">No prompts</span></div>
+  <div class="step"><div class="num">04</div><span class="lab">Clues</span><span class="st">Answer a question</span></div>
+  <div class="step"><div class="num">05</div><span class="lab">Teach it</span><span class="st">Write what you know</span></div>
+</nav>
 
-  <section id="how">
-    <div class="eyebrow">How it works</div>
-    <h2 class="sec">Three ways to <span>study</span></h2>
-    <div class="steps">
-      <div class="step"><div class="n">1</div><h3>Search a structure</h3><p>Use <b>Find a structure</b> at the top right of any page. Every image that shows it opens with the structure circled.</p></div>
-      <div class="step"><div class="n">2</div><h3>Practice a card</h3><p>Type the answers, tap to reveal, or study with every label showing.</p></div>
-      <div class="step"><div class="n">3</div><h3>Print and laminate</h3><p>Practice on the front, answer key on the back. Use a dry-erase marker.</p></div>
-    </div>
-  </section>
-
-  <div class="band">
-    <div class="eyebrow">Built for lab day</div>
-    <p class="big">Learn it on the model, then find it on the <span>cadaver</span>.</p>
-    <p class="labnote-lead">The pictures here won't match all of our lab models exactly. That's expected.</p>
-    <ul class="labnote">
-      <li><b>The structures are the same.</b> Learn the structure, not the picture, and you can find it on any model.</li>
-      <li><b>Bodies vary a little.</b> Look at as many cadavers as you can.</li>
-      <li><b>Lab is where it sticks.</b> Come to lab, practice recall at the models, and get to know the bodies.</li>
-    </ul>
-    <p class="labnote-lead">The time you put in at lab is what lets you name these structures on any model or cadaver.</p>
-  </div>
-
-  <section id="chapters">
-    <div class="eyebrow">Chapters</div>
-    <h2 class="sec">Five modules, <span>one atlas</span></h2>
-    <div class="chapters"><a class="chap mod" href="atlas.html?module=1"><small>Module 1</small><b>Body plan, tissues and skin</b><span style="font-size:14px;color:#4F576A">3 chapters · 3 ready</span></a><a class="chap mod" href="atlas.html?module=2"><small>Module 2</small><b>Bones, skeleton and joints</b><span style="font-size:14px;color:#4F576A">4 chapters · 4 ready</span></a><a class="chap mod" href="atlas.html?module=3"><small>Module 3</small><b>Muscles, heart, vessels and blood</b><span style="font-size:14px;color:#4F576A">7 chapters · 7 ready</span></a><a class="chap mod" href="atlas.html?module=4"><small>Module 4</small><b>Trunk organs and lower limb muscles</b><span style="font-size:14px;color:#4F576A">5 chapters · 5 ready</span></a><a class="chap mod" href="atlas.html?module=5"><small>Module 5</small><b>Nervous system, urinary, reproductive and head muscles</b><span style="font-size:14px;color:#4F576A">5 chapters · 5 ready</span></a></div>
-  </section>
-
-  <section id="thanks" style="padding-top:0">
-    <div class="thanks">
-      <div class="seal" aria-hidden="true">Blue<br>Link</div>
-      <div>
-        <div class="eyebrow">Special thanks</div>
-        <h3>University of Michigan Medical School and Duke University</h3>
-        <p>Our cadaver images come from BlueLink, the University of Michigan Medical School's anatomy collection, and our histology images come from Duke University's Virtual Microscopy collection. Black-and-white brain images come from Duane E. Haines's neuroanatomy atlas. Thank you both for sharing them with students everywhere.</p>
+<main id="main">
+  <section class="modules">
+    <h2>Choose a <span>module</span></h2>
+    <p>Sets open as each module begins. A clean pass through a set unlocks the next round inside it.</p>
+    <div class="grid">
+      <div class="mod locked"><div class="num">01</div><h3>Module 1</h3><span class="pill">Sets coming</span></div>
+      <div class="mod locked"><div class="num">02</div><h3>Module 2</h3><span class="pill">Sets coming</span></div>
+      <div class="mod locked"><div class="num">03</div><h3>Module 3</h3><span class="pill">Sets coming</span></div>
+      <div class="mod" style="grid-column:span 2">
+        <div class="num">04</div><h3>Module 4</h3><span class="pill open">68 sets open</span> <span class="pill">Work in progress</span>
+        <p class="wip">Pins, zones, and recordings are still being checked set by set. If something looks or sounds off, tell Dr. Rennie which set and which number.</p>
+        <div class="groups"><details class="cat"><summary><span class="cname">Larynx</span><span class="ct">3 sets</span><span class="chev" aria-hidden="true"></span></summary><ul class="sets"><li><a href="rounds.html?set=larynx-anterior" target="_top"><span class="n">01</span><span class="grow">Larynx, anterior view</span><span class="ct">7</span></a></li><li><a href="rounds.html?set=larynx-posterior" target="_top"><span class="n">02</span><span class="grow">Larynx, posterior and superior views</span><span class="ct">6</span></a></li><li><a href="rounds.html?set=bronchial-tree" target="_top"><span class="n">03</span><span class="grow">Larynx with the bronchial tree</span><span class="ct">13</span></a></li></ul></details><details class="cat"><summary><span class="cname">Respiratory</span><span class="ct">17 sets</span><span class="chev" aria-hidden="true"></span></summary><ul class="sets"><li><a href="rounds.html?set=resp-01" target="_top"><span class="n">01</span><span class="grow">Larynx, posterior view</span><span class="ct">9</span></a></li><li><a href="rounds.html?set=resp-02" target="_top"><span class="n">02</span><span class="grow">Lobes of the lungs</span><span class="ct">7</span></a></li><li><a href="rounds.html?set=resp-03" target="_top"><span class="n">03</span><span class="grow">Right lung, medial view</span><span class="ct">4</span></a></li><li><a href="rounds.html?set=resp-04" target="_top"><span class="n">04</span><span class="grow">Left lung, medial view</span><span class="ct">4</span></a></li><li><a href="rounds.html?set=resp-05" target="_top"><span class="n">05</span><span class="grow">Neck and thorax, anterior</span><span class="ct">9</span></a></li><li><a href="rounds.html?set=resp-06" target="_top"><span class="n">06</span><span class="grow">Larynx and trachea, anterior</span><span class="ct">6</span></a></li><li><a href="rounds.html?set=resp-07" target="_top"><span class="n">07</span><span class="grow">Larynx model, anterior</span><span class="ct">6</span></a></li><li><a href="rounds.html?set=resp-08" target="_top"><span class="n">08</span><span class="grow">Larynx model, posterior</span><span class="ct">7</span></a></li><li><a href="rounds.html?set=resp-09" target="_top"><span class="n">09</span><span class="grow">Larynx model, superior</span><span class="ct">5</span></a></li><li><a href="rounds.html?set=resp-10" target="_top"><span class="n">10</span><span class="grow">Larynx, trachea and bronchial tree</span><span class="ct">12</span></a></li><li><a href="rounds.html?set=resp-11" target="_top"><span class="n">11</span><span class="grow">Head, midsagittal: nasal cavity and pharynx</span><span class="ct">9</span></a></li><li><a href="rounds.html?set=resp-12" target="_top"><span class="n">12</span><span class="grow">Head, midsagittal: conchae and meatuses</span><span class="ct">7</span></a></li><li><a href="rounds.html?set=resp-13" target="_top"><span class="n">13</span><span class="grow">Head model, midsagittal: palate and tonsils</span><span class="ct">12</span></a></li><li><a href="rounds.html?set=resp-14" target="_top"><span class="n">14</span><span class="grow">Head and neck, midsagittal cadaver</span><span class="ct">7</span></a></li><li><a href="rounds.html?set=resp-15" target="_top"><span class="n">15</span><span class="grow">Lung lobule model</span><span class="ct">6</span></a></li><li><a href="rounds.html?set=resp-16" target="_top"><span class="n">16</span><span class="grow">Respiratory epithelium</span><span class="ct">3</span></a></li><li><a href="rounds.html?set=resp-17" target="_top"><span class="n">17</span><span class="grow">Trachea and esophagus, cross section</span><span class="ct">4</span></a></li></ul></details><details class="cat"><summary><span class="cname">Thorax: vessels, wall and diaphragm</span><span class="ct">13 sets</span><span class="chev" aria-hidden="true"></span></summary><ul class="sets"><li><a href="rounds.html?set=back-19" target="_top"><span class="n">01</span><span class="grow">Torso, anterior view</span><span class="ct">3</span></a></li><li><a href="rounds.html?set=back-21" target="_top"><span class="n">02</span><span class="grow">Diaphragm, from above</span><span class="ct">4</span></a></li><li><a href="rounds.html?set=back-31" target="_top"><span class="n">03</span><span class="grow">Intercostal muscles (cadaver)</span><span class="ct">2</span></a></li><li><a href="rounds.html?set=back-34" target="_top"><span class="n">04</span><span class="grow">Thoracic cavity, anterior: diaphragm (cadaver)</span><span class="ct">1</span></a></li><li><a href="rounds.html?set=heart-03" target="_top"><span class="n">05</span><span class="grow">Great veins above the heart</span><span class="ct">2</span></a></li><li><a href="rounds.html?set=heart-16" target="_top"><span class="n">06</span><span class="grow">Heart model, back view</span><span class="ct">7</span></a></li><li><a href="rounds.html?set=heart-17" target="_top"><span class="n">07</span><span class="grow">Heart model opened, front view</span><span class="ct">6</span></a></li><li><a href="rounds.html?set=heart-20" target="_top"><span class="n">08</span><span class="grow">Great veins, front view</span><span class="ct">8</span></a></li><li><a href="rounds.html?set=heart-21" target="_top"><span class="n">09</span><span class="grow">Arteries, front view</span><span class="ct">5</span></a></li><li><a href="rounds.html?set=heart-23" target="_top"><span class="n">10</span><span class="grow">Great vessels, back view</span><span class="ct">9</span></a></li><li><a href="rounds.html?set=heart-24" target="_top"><span class="n">11</span><span class="grow">Left side view</span><span class="ct">4</span></a></li><li><a href="rounds.html?set=heart-25" target="_top"><span class="n">12</span><span class="grow">Right side view</span><span class="ct">5</span></a></li><li><a href="rounds.html?set=uevn-01" target="_top"><span class="n">13</span><span class="grow">Great vessels of the thorax, model</span><span class="ct">8</span></a></li></ul></details><details class="cat"><summary><span class="cname">Digestive</span><span class="ct">16 sets</span><span class="chev" aria-hidden="true"></span></summary><ul class="sets"><li><a href="rounds.html?set=digest-01" target="_top"><span class="n">01</span><span class="grow">Stomach model, interior</span><span class="ct">10</span></a></li><li><a href="rounds.html?set=digest-02" target="_top"><span class="n">02</span><span class="grow">Liver model, anterior</span><span class="ct">4</span></a></li><li><a href="rounds.html?set=digest-03" target="_top"><span class="n">03</span><span class="grow">Liver model, inferior</span><span class="ct">5</span></a></li><li><a href="rounds.html?set=digest-04" target="_top"><span class="n">04</span><span class="grow">Biliary tree, model</span><span class="ct">6</span></a></li><li><a href="rounds.html?set=digest-05" target="_top"><span class="n">05</span><span class="grow">Intestines model</span><span class="ct">12</span></a></li><li><a href="rounds.html?set=digest-06" target="_top"><span class="n">06</span><span class="grow">Large intestine surface</span><span class="ct">2</span></a></li><li><a href="rounds.html?set=digest-07" target="_top"><span class="n">07</span><span class="grow">Pancreatic ducts, cadaver</span><span class="ct">5</span></a></li><li><a href="rounds.html?set=digest-10" target="_top"><span class="n">08</span><span class="grow">Peritoneum</span><span class="ct">2</span></a></li><li><a href="rounds.html?set=digest-11" target="_top"><span class="n">09</span><span class="grow">Greater omentum, cadaver</span><span class="ct">1</span></a></li><li><a href="rounds.html?set=digest-12" target="_top"><span class="n">10</span><span class="grow">Lesser omentum, cadaver</span><span class="ct">1</span></a></li><li><a href="rounds.html?set=digest-13" target="_top"><span class="n">11</span><span class="grow">Salivary glands, model</span><span class="ct">2</span></a></li><li><a href="rounds.html?set=digest-14" target="_top"><span class="n">12</span><span class="grow">Liver lobule model</span><span class="ct">9</span></a></li><li><a href="rounds.html?set=digest-15" target="_top"><span class="n">13</span><span class="grow">Major organs of the abdomen, cadaver</span><span class="ct">6</span></a></li><li><a href="rounds.html?set=digest-16" target="_top"><span class="n">14</span><span class="grow">Duodenum, four parts (cadaver)</span><span class="ct">5</span></a></li><li><a href="rounds.html?set=digest-17" target="_top"><span class="n">15</span><span class="grow">Mesentery of the small intestine (cadaver)</span><span class="ct">3</span></a></li><li><a href="rounds.html?set=digest-18" target="_top"><span class="n">16</span><span class="grow">Small intestine and mesentery, transverse colon lifted (cadaver)</span><span class="ct">3</span></a></li></ul></details><details class="cat"><summary><span class="cname">Abdominal and pelvic vessels</span><span class="ct">9 sets</span><span class="chev" aria-hidden="true"></span></summary><ul class="sets"><li><a href="rounds.html?set=abdves-01" target="_top"><span class="n">01</span><span class="grow">Abdominal arteries, cadaver</span><span class="ct">7</span></a></li><li><a href="rounds.html?set=abdves-02" target="_top"><span class="n">02</span><span class="grow">Abdominal veins, cadaver</span><span class="ct">3</span></a></li><li><a href="rounds.html?set=abdves-03" target="_top"><span class="n">03</span><span class="grow">Celiac trunk branches, model</span><span class="ct">6</span></a></li><li><a href="rounds.html?set=abdves-04" target="_top"><span class="n">04</span><span class="grow">Hepatic portal system, model</span><span class="ct">3</span></a></li><li><a href="rounds.html?set=abdves-05" target="_top"><span class="n">05</span><span class="grow">Abdominal and pelvic vessels, model</span><span class="ct">5</span></a></li><li><a href="rounds.html?set=abdves-06" target="_top"><span class="n">06</span><span class="grow">Iliac vessels (cadaver)</span><span class="ct">4</span></a></li><li><a href="rounds.html?set=abdves-07" target="_top"><span class="n">07</span><span class="grow">Abdominal aorta and gonadal arteries (cadaver)</span><span class="ct">2</span></a></li><li><a href="rounds.html?set=abdves-08" target="_top"><span class="n">08</span><span class="grow">Iliac veins (cadaver)</span><span class="ct">4</span></a></li><li><a href="rounds.html?set=abdves-09" target="_top"><span class="n">09</span><span class="grow">Inferior vena cava and its tributaries (cadaver)</span><span class="ct">2</span></a></li></ul></details><details class="cat"><summary><span class="cname">Lower extremity</span><span class="ct">10 sets</span><span class="chev" aria-hidden="true"></span></summary><ul class="sets"><li><a href="rounds.html?set=leg-01" target="_top"><span class="n">01</span><span class="grow">Leg, anterolateral (cadaver)</span><span class="ct">2</span></a></li><li><a href="rounds.html?set=leg-02" target="_top"><span class="n">02</span><span class="grow">Leg, anterolateral deeper (cadaver)</span><span class="ct">1</span></a></li><li><a href="rounds.html?set=leg-03" target="_top"><span class="n">03</span><span class="grow">Leg, lateral (cadaver)</span><span class="ct">5</span></a></li><li><a href="rounds.html?set=leg-04" target="_top"><span class="n">04</span><span class="grow">Leg, posterior (cadaver)</span><span class="ct">2</span></a></li><li><a href="rounds.html?set=leg-05" target="_top"><span class="n">05</span><span class="grow">Deep posterior leg (cadaver)</span><span class="ct">2</span></a></li><li><a href="rounds.html?set=thigh-12" target="_top"><span class="n">06</span><span class="grow">Femoral triangle, cadaver</span><span class="ct">3</span></a></li><li><a href="rounds.html?set=thigh-13" target="_top"><span class="n">07</span><span class="grow">Gluteal region and thigh, posterior (cadaver)</span><span class="ct">4</span></a></li><li><a href="rounds.html?set=thigh-14" target="_top"><span class="n">08</span><span class="grow">Deep gluteal region (cadaver)</span><span class="ct">1</span></a></li><li><a href="rounds.html?set=thigh-15" target="_top"><span class="n">09</span><span class="grow">Thigh, anterior deep (cadaver)</span><span class="ct">5</span></a></li><li><a href="rounds.html?set=thigh-16" target="_top"><span class="n">10</span><span class="grow">Thigh, posterior (cadaver)</span><span class="ct">3</span></a></li></ul></details><details class="cat soon"><summary><span class="cname">Lymphatic, endocrine, anterior neck</span><span class="ct">images coming</span><span class="chev" aria-hidden="true"></span></summary><p class="small" style="margin:10px 0 4px">Sets for these will be added as images come in.</p></details></div>
       </div>
+      <div class="mod locked"><div class="num">05</div><h3>Module 5</h3><span class="pill">Sets coming</span></div>
     </div>
   </section>
+</main>
 
-  <footer>
-    <span>Dr. Sharilyn Rennie · MedMasters Collaborative</span>
-    <span>For enrolled students. Please do not share images outside the course.</span>
-  </footer>
-</div>
+<footer><span>Dr. Sharilyn Rennie</span><span>Rounds · BIO 004 Human Anatomy</span></footer>
 
-<script src="search-data.js"></script>
-<script src="search.js"></script>
 <script>
 (function(){
-  const film=document.getElementById('film');
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let seen=false;try{seen=sessionStorage.getItem('atlasIntro')==='1'}catch(e){}
-  const end=()=>{film.classList.add('done');try{sessionStorage.setItem('atlasIntro','1')}catch(e){}};
-  document.getElementById('skip').onclick=end;
-  if(reduce||seen){film.classList.add('done');return}
-  const s=[1,2,3].map(i=>document.getElementById('s'+i));
-  const hw=document.getElementById('hw'),hl=document.getElementById('hl');
-  const greet=[['hello','Welcome'],['hola','Bienvenidos'],['kumusta','Maligayang pagdating']];
-  let t=0;const at=(ms,f)=>setTimeout(f,t+=ms);
-  greet.forEach(([w,l],i)=>{
-    if(i) at(2300,()=>s[0].classList.remove('on'));
-    at(i?800:200,()=>{hw.textContent=w;hl.textContent=l;void hw.getBBox();s[0].classList.add('on')});
-  });
-  at(2700,()=>{s[0].classList.remove('on');s[1].classList.add('on')});
-  at(2600,()=>{s[1].classList.remove('on');s[2].classList.add('on')});
-  at(4200,end);
+  const f=document.getElementById("film");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let seen=false; try{ seen=sessionStorage.getItem("roundsIntro")==="1"; }catch(e){}
+  let music=null;
+  const end=()=>{ f.classList.add("done"); try{ sessionStorage.setItem("roundsIntro","1"); }catch(e){} if(music){ const fade=setInterval(()=>{ music.volume=Math.max(0,music.volume-0.04); if(music.volume<=0){ music.pause(); clearInterval(fade); } },100); } };
+  document.getElementById("skipFilm").onclick=end;
+  if(reduce||seen){ f.classList.add("done"); return; }
+  document.getElementById("beginBtn").onclick=()=>{
+    try{ music=new Audio("audio/intro.mp3"); music.volume=0.55; music.play().catch(()=>{ music=null; }); music.onerror=()=>{ music=null; }; }catch(e){ music=null; }
+    const s=[1,2,3].map(i=>document.getElementById("s"+i)); const hw=document.getElementById("hw"), hl=document.getElementById("hl");
+    document.getElementById("s0").classList.remove("on");
+    const greet=[["hello","Welcome"],["hola","Bienvenidos"],["kumusta","Maligayang pagdating"]][Math.floor(Math.random()*3)];
+    let t=0; const at=(ms,fn)=>setTimeout(fn,t+=ms);
+    at(150,()=>{ hw.textContent=greet[0]; hl.textContent=greet[1]; void hw.getBBox(); s[0].classList.add("on"); });
+    at(3400,()=>{ s[0].classList.remove("on"); s[2].classList.add("on"); });
+    at(5000,()=>{ s[2].classList.remove("on"); s[1].classList.add("on"); });
+    at(2200,end);
+  };
 })();
 </script>
-
+<script>
+(function(){
+  var q=new URLSearchParams(location.search); var id=q.get("frameId")||q.get("frame")||"rounds-index";
+  function send(){ try{ if(window.parent&&window.parent!==window){ parent.postMessage({type:"resize",id:id,height:document.documentElement.scrollHeight},"*"); parent.postMessage({type:"frameHeight",id:id,height:document.documentElement.scrollHeight},"*"); } }catch(e){} }
+  if("ResizeObserver" in window){ new ResizeObserver(send).observe(document.body); }
+  window.addEventListener("load",send); window.addEventListener("resize",send); send();
+})();
+</script>
+</body>
 </html>
